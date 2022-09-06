@@ -36,7 +36,7 @@ public class Collision implements GameConstants { // Collision HAS-A Game Consta
 		
 		for (int i=0; i<lvl.speedPortal.length; i++)
 		{
-			if (r.intersects(new Rectangle(lvl.speedPortal[i][0], lvl.speedPortal[i][1], 95, 83)));
+			if (r.intersects(new Rectangle(lvl.speedPortal[i][0], lvl.speedPortal[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40)));
 			{
 				return true;
 			}
