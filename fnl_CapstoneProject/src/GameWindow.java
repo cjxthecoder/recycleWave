@@ -31,16 +31,6 @@ public class GameWindow extends JFrame
 	Image gdImage;
 	Graphics gdGraphics;
 	
-	Image block = (new ImageIcon("block.png")).getImage();
-	Image groundSpike = (new ImageIcon("groundSpike.png")).getImage();
-	Image ceilingSpike = (new ImageIcon("ceilingSpike.png")).getImage();
-	Image normalGravityPortal = (new ImageIcon("normalGravityPortal.png")).getImage();
-	Image normalSizePortal = (new ImageIcon("normalSizePortal.png")).getImage();
-	Image wavePortal = (new ImageIcon("wavePortal.png")).getImage();
-	Image cubePortal = (new ImageIcon("cubePortal.png")).getImage();
-	Image sawblade = (new ImageIcon("fish.png")).getImage();
-	Image miniPortal = (new ImageIcon("miniSizePortal.png")).getImage();
-	
 	static RunningPlayer p = new RunningPlayer(-PLAYER_HITBOX, GROUND-PLAYER_HITBOX, CUBE, UP, threeTimes, false);
 	
 	public GameWindow()
@@ -114,15 +104,15 @@ public class GameWindow extends JFrame
 	    g.drawLine(0, CEILING, 2000, CEILING);
 	    
 	    LevelEditor lvl = new LevelEditor();
-		lvl.createPlatforms(g, Color.BLACK, block);
-		lvl.createWalls(g, Color.RED, block);
-		lvl.createNormalGravityPortals(g, Color.GREEN, normalGravityPortal);
-		lvl.createNormalSizePortals(g, Color.GREEN, normalSizePortal);
-		lvl.createMiniSizePortals(g, Color.GREEN, miniPortal);
-		lvl.createWavePortals(g, Color.GREEN, wavePortal);
-		lvl.createCubePortals(g, Color.GREEN, cubePortal);
-		lvl.createSlopes(g, new Color(240, 20, 160), groundSpike, ceilingSpike);
-		lvl.createSawblades(g, Color.RED, sawblade);
+		lvl.createPlatforms(g, Color.BLACK);
+		lvl.createWalls(g, Color.RED);
+		lvl.createNormalGravityPortals(g, Color.GREEN);
+		lvl.createNormalSizePortals(g, Color.GREEN);
+		lvl.createMiniSizePortals(g, Color.GREEN);
+		lvl.createWavePortals(g, Color.GREEN);
+		lvl.createCubePortals(g, Color.GREEN);
+		lvl.createSlopes(g, new Color(240, 20, 160));
+		lvl.createSawblades(g, Color.RED);
 		lvl.createSpeedPortal(g, Color.GREEN);
 		lvl.drawProgressBar(g, FINISH_LINE, Color.BLACK, Color.CYAN);
 	}
