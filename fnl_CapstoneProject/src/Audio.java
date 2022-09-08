@@ -18,7 +18,7 @@ public class Audio {
 		
 		// DO NOT CHANGE THE FOLLOWING FOR YOUR OWN SAFETY
 		FloatControl gain = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
-		gain.setValue(-30.0f);
+		gain.setValue(-20.0f);
 	}
     
 	public void reset() {

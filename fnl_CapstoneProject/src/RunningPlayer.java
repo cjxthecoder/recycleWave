@@ -30,6 +30,7 @@ public class RunningPlayer extends Player // RunningPlayer IS-A Player!!!
 				{
 					gs.stopMusic();
 					fullScore /= myFactor;
+					attempts++;
 					Thread.sleep(1000);
 					resetPlayerFields();
 					LevelEditor.setDx(2 * START_LINE);
@@ -72,51 +73,39 @@ public class RunningPlayer extends Player // RunningPlayer IS-A Player!!!
 						}
 					}
 					
-					if (c.checkMiniSizeCollision())
+					if (c.checkMiniSizeCollision()) // divide by 4 if player is wave, else divide by 2
 					{
 						mini = true;
 						if (gamemode == WAVE) {
-							hitbox = PLAYER_HITBOX / 4;
-							player.height = PLAYER_HITBOX / 4;
-							player.width = PLAYER_HITBOX / 4;
+							setPlayerSize(0.25);
 						}
 						else {
-							hitbox = PLAYER_HITBOX / 2;
-							player.height = PLAYER_HITBOX / 2;
-							player.width = PLAYER_HITBOX / 2;
+							setPlayerSize(0.5);
 						}
 					}
 					
-					if (c.checkNormalSizeCollision())
+					if (c.checkNormalSizeCollision()) // divide by 2 if player is wave, else divide by 1
 					{
 						mini = false;
 						if (gamemode == WAVE) {
-							hitbox = PLAYER_HITBOX / 2;
-							player.height = PLAYER_HITBOX / 2;
-							player.width = PLAYER_HITBOX / 2;
+							setPlayerSize(0.5);
 						}
 						else {
-							hitbox = PLAYER_HITBOX;
-							player.height = PLAYER_HITBOX;
-							player.width = PLAYER_HITBOX;
+							setPlayerSize(1.0);
 						}
 					}
 					
-					if (c.checkWaveCollision())
+					if (c.checkWaveCollision()) // divide by 2
 					{
 						gamemode = WAVE;
-						hitbox = PLAYER_HITBOX / 2;
-						player.height = PLAYER_HITBOX / 2;
-						player.width = PLAYER_HITBOX / 2;
+						setPlayerSize(0.5);
 					}
 					
-					if (c.checkCubeCollision())
+					if (c.checkCubeCollision()) // divide by 1
 					{
 						if (gamemode == WAVE) {
 							gamemode = CUBE;
-							hitbox = PLAYER_HITBOX;
-							player.height = PLAYER_HITBOX;
-							player.width = PLAYER_HITBOX;
+							setPlayerSize(1.0);
 						}
 						else {
 							gamemode = CUBE;

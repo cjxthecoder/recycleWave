@@ -18,7 +18,7 @@ import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-// GameWindow IS-A JFrame and HAS-A Game Constants
+// GameWindow IS-A JFrame and HAS-A Action Listener and Game Constants
 public class GameWindow extends JFrame
 	implements ActionListener, GameConstants
 {

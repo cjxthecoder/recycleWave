@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
-public class Player implements GameConstants // Player HAS-A runnable and game constants
+public class Player implements GameConstants // Player HAS-A zgame constants
 {
 	public int t1, t2;
 	public static int platformY = 0;
@@ -22,6 +22,7 @@ public class Player implements GameConstants // Player HAS-A runnable and game c
 	protected double speed;
 	protected boolean mini, falling;
 	protected double fullScore = 100.0;
+	protected int attempts = 1;
 	private int xDirection;
 	private int yDirection;
 	private boolean keyPressed = false;
@@ -211,7 +212,9 @@ public class Player implements GameConstants // Player HAS-A runnable and game c
 			Image recycle = (new ImageIcon("recycleBin.png")).getImage();
 			g.drawImage(recycle, 1440, 660, null);
 			drawCenteredText(g, "Level Complete!", 96, 1.8);
-			drawCenteredText(g, "Your score: " + Math.round(100.0 * fullScore) / 100.0, 72, 1.2);
+			drawCenteredText(g, "Attempts: " + attempts, 72, 1.2);
+			drawCenteredText(g, "Your score: " + Math.round(100.0 * fullScore) / 100.0, 72, 0.9);
+
 		}
 	}
 	
@@ -251,21 +254,21 @@ public class Player implements GameConstants // Player HAS-A runnable and game c
 		return mini;
 	}
 	
-	public void setGamemode(int x)
+	public void setGamemode(int gamemode)
 	{
-		gamemode = x;
+		this.gamemode = gamemode;
 	}
 	
-	public void setGravity(int x)
+	public void setGravity(int gravity)
 	{
 		t1 = 0;
 		t2 = 0;
-		gravity = x;
+		this.gravity = gravity;
 	}
 	
-	public void setSize(boolean size)
+	public void setMini(boolean mini)
 	{
-		mini = size;
+		this.mini = mini;
 	}
 	
 	public void setXDirection(double xDir) {
@@ -278,6 +281,12 @@ public class Player implements GameConstants // Player HAS-A runnable and game c
 	
 	public void setFallingSpeed(double fallingSpeed) {
 		yDirection = (int)fallingSpeed;
+	}
+	
+	public void setPlayerSize(double factor) {
+		hitbox = (int)(PLAYER_HITBOX * factor);
+		player.height = (int)(PLAYER_HITBOX * factor);
+		player.width = (int)(PLAYER_HITBOX * factor);
 	}
 	
 	public void resetPlayerFields() {
