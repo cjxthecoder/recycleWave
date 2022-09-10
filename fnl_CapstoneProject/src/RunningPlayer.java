@@ -19,7 +19,7 @@ public class RunningPlayer extends Player // RunningPlayer IS-A Player!!!
 			Thread.sleep(500);
 			while(true)
 			{
-				if (player.x < START_LINE || LevelEditor.dx < FINISH_LINE + START_LINE)
+				if ((player.x < START_LINE || LevelEditor.dx < FINISH_LINE + START_LINE) && !gameWon)
 				{
 					setXDirection(4.0 * speed);
 					makePlayerReach300();
@@ -112,13 +112,14 @@ public class RunningPlayer extends Player // RunningPlayer IS-A Player!!!
 						}
 					}
 					
-					if (player.x < 1550) {
+					if (player.x < 1452) {
 						move();
 						fall();
 					}
 					
-					if (player.x >= 1550) {
-						player.x = 1550;
+					if (player.x >= 1452) {
+						player.x = 1452;
+						gameWon = true;
 					}
 					
 					if (player.x >= START_LINE && LevelEditor.dx >= FINISH_LINE + START_LINE) {

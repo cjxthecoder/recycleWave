@@ -20,7 +20,7 @@ public class Player implements GameConstants // Player HAS-A zgame constants
 	protected int gamemode;
 	protected int gravity;
 	protected double speed;
-	protected boolean mini, falling;
+	protected boolean mini, falling, gameWon;
 	protected double fullScore = 100.0;
 	protected int attempts = 1;
 	private int xDirection;
@@ -120,7 +120,7 @@ public class Player implements GameConstants // Player HAS-A zgame constants
 			}
 		}
 	}
-	
+
 	public void keyPressed(KeyEvent e)
 	{
 		switch(gamemode)
@@ -210,7 +210,7 @@ public class Player implements GameConstants // Player HAS-A zgame constants
 		
 		if (player.x >= 768) {
 			Image recycle = (new ImageIcon("recycleBin.png")).getImage();
-			g.drawImage(recycle, 1440, 660, null);
+			g.drawImage(recycle, 1428, 660, null);
 			drawCenteredText(g, "Level Complete!", 96, 1.8);
 			drawCenteredText(g, "Attempts: " + attempts, 72, 1.2);
 			drawCenteredText(g, "Your score: " + Math.round(100.0 * fullScore) / 100.0, 72, 0.9);
