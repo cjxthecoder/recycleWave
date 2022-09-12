@@ -131,109 +131,103 @@ public class LevelEditor implements GameConstants { // Level Editor HAS-A Game C
 	}
 	
 	// Create normal gravity portals.
-	public void createNormalGravityPortals(Graphics2D g2d, Color c)
+	public void createNormalGravityPortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
-		Image normalGravityPortal = (new ImageIcon("normalGravityPortal.png")).getImage();
 		
 		for (int i=0; i<normalGravityPortals.length; i++)
 		{
 			if (!(normalGravityPortals[i][0] < -150 || normalGravityPortals[i][0] > 1550))
 			{
 //				g2d.drawRect(normalGravityPortals[i][0], flippedGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4);
-				g2d.drawImage(normalGravityPortal, normalGravityPortals[i][0], normalGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
+				g2d.drawImage(pic, normalGravityPortals[i][0], normalGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
 			}
 		}
 	}
 	
 	// Create flipped gravity portals. (unused)
-	public void createFlippedGravityPortals(Graphics2D g2d, Color c)
+	public void createFlippedGravityPortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
-		Image flippedGravityPortal = (new ImageIcon("flippedGravityPortal.png")).getImage();
 		
 		for (int i=0; i<flippedGravityPortals.length; i++)
 		{
 			if (!(flippedGravityPortals[i][0] < -150 || flippedGravityPortals[i][0] > 1550))
 			{
 //				g2d.drawRect(flippedGravityPortals[i][0], flippedGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4);
-				g2d.drawImage(flippedGravityPortal, flippedGravityPortals[i][0], flippedGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
+				g2d.drawImage(pic, flippedGravityPortals[i][0], flippedGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
 			}
 		}
 	}
 	
 	// Create normal size portals.
-	public void createNormalSizePortals(Graphics2D g2d, Color c)
+	public void createNormalSizePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
-		Image normalSizePortal = (new ImageIcon("normalSizePortal.png")).getImage();
 		
 		for (int i=0; i<normalSizePortals.length; i++)
 		{
 			if (!(normalSizePortals[i][0] < -150 || normalSizePortals[i][0] > 1550))
 			{
 //				g2d.drawRect(normalSizePortals[i][0], normalSizePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4);
-				g2d.drawImage(normalSizePortal, normalSizePortals[i][0], normalSizePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
+				g2d.drawImage(pic, normalSizePortals[i][0], normalSizePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
 			}
 		}
 	}
 	
 	// Create mini size portals.
-	public void createMiniSizePortals(Graphics2D g2d, Color c)
+	public void createMiniSizePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
-		Image miniPortal = (new ImageIcon("miniSizePortal.png")).getImage();
 		
 		for (int i=0; i<miniSizePortals.length; i++)
 		{
 			if (!(miniSizePortals[i][0] < -150 || miniSizePortals[i][0] > 1550))
 			{
 //				g2d.drawRect(miniSizePortals[i][0], miniSizePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4);
-				g2d.drawImage(miniPortal, miniSizePortals[i][0], miniSizePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
+				g2d.drawImage(pic, miniSizePortals[i][0], miniSizePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
 			}
 		}
 	}
 	
 	// Create wave portals.
-	public void createWavePortals(Graphics2D g2d, Color c)
+	public void createWavePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
-		Image wavePortal = (new ImageIcon("wavePortal.png")).getImage();
 		
 		for (int i=0; i<wavePortals.length; i++)
 		{
 			if (!(wavePortals[i][0] < -150 || wavePortals[i][0] > 1550))
 			{
 //				g2d.drawRect(wavePortals[i][0], wavePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4);
-				g2d.drawImage(wavePortal, wavePortals[i][0], wavePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
+				g2d.drawImage(pic, wavePortals[i][0], wavePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
 			}
 		}
 	}
 	
 	// Create cube portals.
-	public void createCubePortals(Graphics2D g2d, Color c)
+	public void createCubePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
-		Image cubePortal = (new ImageIcon("cubePortal.png")).getImage();
 		
 		for (int i=0; i<cubePortals.length; i++)
 		{
 			if (!(cubePortals[i][0] < -150 || cubePortals[i][0] > 1550))
 			{
 //				g2d.drawRect(cubePortals[i][0], cubePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4);
-				g2d.drawImage(cubePortal, cubePortals[i][0], cubePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
+				g2d.drawImage(pic, cubePortals[i][0], cubePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
 			}
 		}
 	}
@@ -241,12 +235,11 @@ public class LevelEditor implements GameConstants { // Level Editor HAS-A Game C
 	/**
 	 * Platforms: x1, y-level, x2; platform length is x2 - x1 + 1.
 	 */
-	public void createPlatforms(Graphics2D g2d, Color c)
+	public void createPlatforms(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
-		Image block = (new ImageIcon("block.png")).getImage();
 		
 		for (int i=0; i<platforms.length; i++)
 		{
@@ -255,7 +248,7 @@ public class LevelEditor implements GameConstants { // Level Editor HAS-A Game C
 //				g2d.drawLine(platforms[i][0], platforms[i][1], platforms[i][2], platforms[i][1]);
 				for (int j=platforms[i][0]; j<platforms[i][2]; j+=PIXELS_PER_BLOCK)
 				{
-					g2d.drawImage(block, j, platforms[i][1], PIXELS_PER_BLOCK, PIXELS_PER_BLOCK, null);
+					g2d.drawImage(pic, j, platforms[i][1], PIXELS_PER_BLOCK, PIXELS_PER_BLOCK, null);
 				}
 			}
 		}
@@ -264,12 +257,11 @@ public class LevelEditor implements GameConstants { // Level Editor HAS-A Game C
 	/**
 	 * Walls: y1, y2, x-position; wall height is y2 - y1 + 1.
 	 */
-	public void createWalls(Graphics2D g2d, Color c)
+	public void createWalls(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
-		Image block = (new ImageIcon("block.png")).getImage();
 		
 		for (int i=0; i<walls.length; i++)
 		{
@@ -278,7 +270,7 @@ public class LevelEditor implements GameConstants { // Level Editor HAS-A Game C
 //				g2d.drawLine(walls[i][2], walls[i][0], walls[i][2], walls[i][1]);
 				for (int j=walls[i][0]; j<walls[i][1]; j+=PIXELS_PER_BLOCK)
 				{
-					g2d.drawImage(block, walls[i][2], j, PIXELS_PER_BLOCK, PIXELS_PER_BLOCK, null);
+					g2d.drawImage(pic, walls[i][2], j, PIXELS_PER_BLOCK, PIXELS_PER_BLOCK, null);
 				}
 			}
 		}
@@ -287,19 +279,18 @@ public class LevelEditor implements GameConstants { // Level Editor HAS-A Game C
 	/**
 	 * Sawblades: diameter, x-center, y-level;
 	 */
-	public void createSawblades(Graphics2D g2d, Color c)
+	public void createSawblades(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
-		Image sawblade = (new ImageIcon("fish.png")).getImage();
 		
 		for (int i=0; i<sawblades.length; i++)
 		{
 			if (!((sawblades[i][1] + sawblades[i][0] / 2) < -10 || (sawblades[i][1] - sawblades[i][0] / 2) > 1550))
 			{
 //				g2d.fillOval(sawblades[i][1] - sawblades[i][0] / 3, sawblades[i][2] -  sawblades[i][0] / 3, (2 * sawblades[i][0]) / 3, (2 * sawblades[i][0]) / 3);
-				g2d.drawImage(sawblade, sawblades[i][1] - sawblades[i][0] / 2, sawblades[i][2] - sawblades[i][0] / 2, null);
+				g2d.drawImage(pic, sawblades[i][1] - sawblades[i][0] / 2, sawblades[i][2] - sawblades[i][0] / 2, null);
 			}  
 		}
 	}
@@ -308,13 +299,11 @@ public class LevelEditor implements GameConstants { // Level Editor HAS-A Game C
 	 * Slopes: x-start, y-start, x-end, y-end
 	 * Since we are lazy we decided to make ground spikes slope as well.
 	 */
-	public void createSlopes(Graphics2D g2d, Color c)
+	public void createSlopes(Graphics2D g2d, Color c, Image groundSpike, Image ceilingSpike)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(10);
 		g2d.setStroke(stroke);
-		Image groundSpike = (new ImageIcon("groundSpike.png")).getImage();
-		Image ceilingSpike = (new ImageIcon("ceilingSpike.png")).getImage();
 		
 		for (int i=0; i<slopes.length; i++)
 		{

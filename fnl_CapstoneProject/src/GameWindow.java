@@ -30,6 +30,7 @@ public class GameWindow extends JFrame
 	
 	Image gdImage;
 	Graphics gdGraphics;
+	LevelEditor lvl;
 	
 	static RunningPlayer p = new RunningPlayer(-PLAYER_HITBOX, GROUND-PLAYER_HITBOX, CUBE, UP, threeTimes, false);
 	
@@ -65,6 +66,7 @@ public class GameWindow extends JFrame
 	public void paint(Graphics g)
 	{
 		if (gameStarted) {
+			lvl = new LevelEditor();
 			gdImage = createImage(getWidth(), getHeight());
 			gdGraphics = gdImage.getGraphics();
 			draw(gdGraphics);
@@ -72,7 +74,7 @@ public class GameWindow extends JFrame
 		}
 		
 		else {
-			p.drawCenteredText(g, "Recycle Wave", 96, 1.8);
+			p.drawCenteredText(g, "Recycle Wave", 96, 1.5);
 			g.drawRect(660, 35, 121, 40);
 			g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
 			g.drawString("Drag your cursor here", 664, 58);
@@ -98,21 +100,19 @@ public class GameWindow extends JFrame
 //			g.drawLine(-20, i, 1540, i);
 //		}
 		
-		g.setColor(new Color(40, 220, 230));
-	    g.drawLine(0, GROUND, 2000, GROUND);
-	    g.setColor(new Color(40, 220, 230));
-	    g.drawLine(0, CEILING, 2000, CEILING);
+		g.setColor(Color.CYAN);
+		g.drawLine(0, GROUND, 1550, GROUND);
+	    g.drawLine(0, CEILING, 1550, CEILING);
 	    
-	    LevelEditor lvl = new LevelEditor();
-		lvl.createPlatforms(g, Color.BLACK);
-		lvl.createWalls(g, Color.RED);
-		lvl.createNormalGravityPortals(g, Color.GREEN);
-		lvl.createNormalSizePortals(g, Color.GREEN);
-		lvl.createMiniSizePortals(g, Color.GREEN);
-		lvl.createWavePortals(g, Color.GREEN);
-		lvl.createCubePortals(g, Color.GREEN);
-		lvl.createSlopes(g, new Color(240, 20, 160));
-		lvl.createSawblades(g, Color.RED);
+		lvl.createPlatforms(g, Color.BLACK, new ImageIcon("block.png").getImage());
+		lvl.createWalls(g, Color.RED, new ImageIcon("block.png").getImage());
+		lvl.createNormalGravityPortals(g, Color.GREEN, new ImageIcon("normalGravityPortal.png").getImage());
+		lvl.createNormalSizePortals(g, Color.GREEN, new ImageIcon("NormalSizePortal.png").getImage());
+		lvl.createMiniSizePortals(g, Color.GREEN, new ImageIcon("miniSizePortal.png").getImage());
+		lvl.createWavePortals(g, Color.GREEN, new ImageIcon("wavePortal.png").getImage());
+		lvl.createCubePortals(g, Color.GREEN, new ImageIcon("cubePortal.png").getImage());
+		lvl.createSlopes(g, new Color(240, 20, 160), new ImageIcon("groundSpike.png").getImage(), new ImageIcon("ceilingSpike.png").getImage());
+		lvl.createSawblades(g, Color.RED, new ImageIcon("fish.png").getImage());
 		lvl.createSpeedPortal(g, Color.GREEN);
 		lvl.drawProgressBar(g, FINISH_LINE, Color.BLACK, Color.CYAN);
 	}

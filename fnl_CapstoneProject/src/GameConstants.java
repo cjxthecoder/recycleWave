@@ -1,3 +1,6 @@
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public interface GameConstants // Fixed constants for all classes in the program
 {
@@ -29,4 +32,4 @@ public interface GameConstants // Fixed constants for all classes in the program
 	double twoTimes = 1.25;
 	double threeTimes = 1.5;
 	double fourTimes = 2;
-} 
+}
