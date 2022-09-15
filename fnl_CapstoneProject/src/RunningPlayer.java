@@ -19,7 +19,7 @@ public class RunningPlayer extends Player // RunningPlayer IS-A Player!!!
 			Thread.sleep(500);
 			while(true)
 			{
-				if ((player.x < START_LINE || LevelEditor.dx < FINISH_LINE + START_LINE) && !gameWon)
+				if ((player.x < START_LINE || LevelEditor.dx < START_LINE - FINISH_LINE) && !gameWon)
 				{
 					setXDirection(4.0 * speed);
 					makePlayerReach300();
@@ -122,7 +122,7 @@ public class RunningPlayer extends Player // RunningPlayer IS-A Player!!!
 						gameWon = true;
 					}
 					
-					if (player.x >= START_LINE && LevelEditor.dx >= FINISH_LINE + START_LINE) {
+					if (player.x >= START_LINE && LevelEditor.dx >= START_LINE - FINISH_LINE) {
 						LevelEditor.goForward((int)(4.0 * speed));
 					}
 					

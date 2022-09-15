@@ -114,7 +114,7 @@ public class GameWindow extends JFrame
 		lvl.createSlopes(g, new Color(240, 20, 160), new ImageIcon("groundSpike.png").getImage(), new ImageIcon("ceilingSpike.png").getImage());
 		lvl.createSawblades(g, Color.RED, new ImageIcon("fish.png").getImage());
 		lvl.createSpeedPortal(g, Color.GREEN);
-		lvl.drawProgressBar(g, FINISH_LINE, Color.BLACK, Color.CYAN);
+		lvl.drawProgressBar(g, -FINISH_LINE, Color.BLACK, Color.CYAN);
 	}
 	
 	public void draw(Graphics g)
