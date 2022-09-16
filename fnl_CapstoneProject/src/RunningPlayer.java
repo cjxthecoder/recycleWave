@@ -1,6 +1,3 @@
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
 
 /**
  * The RunningPlayer class is an instance of the Player when the game

@@ -1,3 +1,4 @@
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -8,6 +9,21 @@ import java.awt.Stroke;
 import java.awt.geom.Line2D;
 
 import javax.swing.ImageIcon;
+
+/**
+ * The LevelEditor class acts as the text editor and database for all of the
+ * objects in our game. Each type of objects is 2D array containing an array
+ * of arrays, each array representing one object in the game. To make editing
+ * easier, each parameter of the arrays within the 2D arrays uses a special
+ * function that fixes the objects' position to a grid exactly. Because the
+ * grid-snapping function for circles is slightly different compared to the
+ * other objects, a total of 4 special functions is used. Although not an object
+ * in the game, this class also draws the progress bar for the game.
+ * 
+ * @author Brandon
+ *
+ * @since 1.0
+ */
 
 public class LevelEditor implements GameConstants { // Level Editor HAS-A Game Constants
 	
