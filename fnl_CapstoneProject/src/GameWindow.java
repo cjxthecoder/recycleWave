@@ -18,7 +18,19 @@ import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-// GameWindow IS-A JFrame and HAS-A Action Listener and Game Constants
+/**
+ * The GameWindow class is the class responsible for drawing graphics on the screen.
+ * It also has a starting menu that uses JComboBox so that the user can choose the
+ * game's difficulty. To play the game, there is a button that can be clicked by the
+ * user to start the game. An InputListner is instantiated so that the game and take
+ * keyboard input from the user. An Image and Graphics class, as well as the .paint()
+ * function, is used to draw graphics on the screen.
+ * 
+ * @author Daniel
+ *
+ * @since 1.0
+ */
+
 public class GameWindow extends JFrame
 	implements ActionListener, GameConstants
 {

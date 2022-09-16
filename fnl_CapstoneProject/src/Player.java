@@ -12,7 +12,19 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
-public class Player implements GameConstants // Player HAS-A zgame constants
+/**
+ * The player class contains all the information for the player. This includes
+ * the player's position, hitbox size, gamemode, gravity, speed, the x- and y-
+ * velocities on screen, if it's mini or falling, the number of attempts the player
+ * has spent on a level, the player's score, whether or not the player has won the
+ * game, and if the player is pressing the key to control the player.
+ * 
+ * @author Daniel
+ *
+ * @since 1.0
+ */
+
+public class Player implements GameConstants
 {
 	public int t1, t2;
 	public static int platformY = 0;

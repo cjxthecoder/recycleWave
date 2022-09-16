@@ -1,6 +1,14 @@
 import java.awt.Color;
 import javax.swing.JFrame;
 
+/**
+ * The main method for our game.
+ * 
+ * @author Brandon
+ *
+ * @since 1.0
+ */
+
 public class Main extends JFrame
 {	
 	public static void main(String[] args)

@@ -1,8 +1,17 @@
-import java.awt.Image;
 
-import javax.swing.ImageIcon;
+/**
+ * The GameConstants interface contains the list of constant values used
+ * in our game. This includes the ground pixel level, the ceiling pixel level,
+ * the size of the player's hitbox, pass-by values for the player's gamemode,
+ * gravity, the pixel level for the start line and finish line, amount of pixels
+ * per block, diameter of the saws, and double values for the player's speed.
+ * 
+ * @author Brandon
+ *
+ * @since 1.0
+ */
 
-public interface GameConstants // Fixed constants for all classes in the program
+public interface GameConstants
 {
 	// Constants related to the game window
 	int GROUND = 780;

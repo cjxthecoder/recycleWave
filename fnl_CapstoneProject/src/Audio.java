@@ -7,6 +7,15 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * The Audio class is for implementing sound in-game. An audio has a {@link Clip}
+ * that can be reset, set to a certain frame, be started, or be stopped.
+ * 
+ * @author Ali
+ *
+ * @since 1.0
+ */
+
 public class Audio {
 	
 	private Clip clip;

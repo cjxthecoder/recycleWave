@@ -2,7 +2,24 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class RunningPlayer extends Player // RunningPlayer IS-A Player!!!
+/**
+ * The RunningPlayer class is an instance of the Player when the game
+ * is running. A crucial point is that this class must be runnable for
+ * the game to run, because our game uses a threading system to allow input
+ * from the player while the program runs behind the scenes. When running,
+ * .sleep() is used to delay the time for the program to execute code, and
+ * this allows use to set the program running at a certain refresh rate. In
+ * our game, this value is 200hz (200 updates per second). This can also be
+ * used to set up a large delay to give the player time to take in at what
+ * has just happened. For example, when the game is starting or when the player
+ * has just died, etc.
+ * 
+ * @author Daniel
+ *
+ * @since 1.0
+ */
+
+public class RunningPlayer extends Player
 	implements Runnable
 {
 	public RunningPlayer(int x, int y, int gamemode, int gravity, double speed, boolean mini) {
