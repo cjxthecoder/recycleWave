@@ -25,7 +25,7 @@ import javax.swing.ImageIcon;
  * @since 1.0
  */
 
-public class LevelEditor implements GameConstants { // Level Editor HAS-A Game Constants
+public class LevelEditor implements GameConstants {
 	
 	// Starting point of the level relative to the left-side of the window
 	static int dx = START_LINE;

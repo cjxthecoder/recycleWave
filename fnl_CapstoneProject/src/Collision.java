@@ -17,7 +17,7 @@ import java.awt.geom.Line2D;
  * @since 1.0
  */
 
-public class Collision implements GameConstants { // Collision HAS-A Game Constant
+public class Collision implements GameConstants {
 	
 	public boolean checkDeathCollisions()
 	{

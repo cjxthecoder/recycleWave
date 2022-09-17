@@ -1,8 +1,8 @@
 
 /**
- * The RunningPlayer class is an instance of the Player when the game
- * is running. A crucial point is that this class must be runnable for
- * the game to run, because our game uses a threading system to allow input
+ * The RunningPlayer class IS-A instance of the Player when the game is
+ * running. A crucial point is that this class must be runnable for the
+ * game to run, because our game uses a threading system to allow input
  * from the player while the program runs behind the scenes. When running,
  * .sleep() is used to delay the time for the program to execute code, and
  * this allows use to set the program running at a certain refresh rate. In
