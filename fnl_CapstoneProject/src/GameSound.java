@@ -6,7 +6,7 @@ import java.io.File;
  * the clip, an audio file is instantiated in the other classes. This class uses
  * .play() and .stop() from the Audio class to start and stop the clip.
  * 
- * @author Ali
+ * @author Ali Haryanawalla
  *
  * @since 1.0
  */

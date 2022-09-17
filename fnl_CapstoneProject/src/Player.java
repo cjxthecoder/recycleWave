@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
  * has spent on a level, the player's score, whether or not the player has won the
  * game, and if the player is pressing the key to control the player.
  * 
- * @author Daniel
+ * @author Daniel Cheng
  *
  * @since 1.0
  */

@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
  * (not related to KeyAdapter) from the Player class will be called, resulting
  * in movement of the Player.
  * 
- * @author Daniel
+ * @author Daniel Cheng
  *
  * @since 1.0
  */

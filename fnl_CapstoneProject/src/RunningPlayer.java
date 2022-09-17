@@ -11,7 +11,7 @@
  * has just happened. For example, when the game is starting or when the player
  * has just died, etc.
  * 
- * @author Daniel
+ * @author Daniel Cheng
  *
  * @since 1.0
  */

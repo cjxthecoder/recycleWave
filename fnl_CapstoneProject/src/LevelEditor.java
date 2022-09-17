@@ -20,7 +20,7 @@ import javax.swing.ImageIcon;
  * other objects, a total of 4 special functions is used. Although not an object
  * in the game, this class also draws the progress bar for the game.
  * 
- * @author Brandon
+ * @author Brandon Tsao
  *
  * @since 1.0
  */

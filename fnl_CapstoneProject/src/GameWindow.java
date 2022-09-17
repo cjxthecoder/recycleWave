@@ -23,7 +23,7 @@ import java.awt.event.ActionListener;
  * keyboard input from the user. An Image and Graphics class, as well as the .paint()
  * function, is used to draw graphics on the screen.
  * 
- * @author Daniel
+ * @author Daniel Cheng
  *
  * @since 1.0
  */

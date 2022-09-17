@@ -6,7 +6,7 @@
  * gravity, the pixel level for the start line and finish line, amount of pixels
  * per block, diameter of the saws, and double values for the player's speed.
  * 
- * @author Brandon
+ * @author Brandon Tsao
  *
  * @since 1.0
  */

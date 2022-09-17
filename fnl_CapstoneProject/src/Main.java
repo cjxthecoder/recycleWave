@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 /**
  * The main method for our game.
  * 
- * @author Brandon
+ * @author Brandon Tsao
  *
  * @since 1.0
  */

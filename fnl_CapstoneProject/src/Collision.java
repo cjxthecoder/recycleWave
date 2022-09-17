@@ -12,7 +12,7 @@ import java.awt.geom.Line2D;
  * calculating the nearest distance between the player and the circle, then checking
  * if the difference is less than the circle's radius.
  * 
- * @author Ali
+ * @author Ali Haryanawalla
  *
  * @since 1.0
  */
