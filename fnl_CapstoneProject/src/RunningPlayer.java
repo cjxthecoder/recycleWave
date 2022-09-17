@@ -147,7 +147,7 @@ public class RunningPlayer extends Player
 				}
 			}
 		} catch(Exception e) {
-	        e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 }
