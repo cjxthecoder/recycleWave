@@ -11,8 +11,8 @@ import java.awt.geom.Line2D;
 import javax.swing.ImageIcon;
 
 /**
- * The LevelEditor class acts as the text editor and database for all of the
- * objects in our game. Each type of objects is 2D array containing an array
+ * The LevelEditor class serves as the text editor and database for all of the
+ * objects in our game. Each type of objects is a 2D array containing an array
  * of arrays, each array representing one object in the game. To make editing
  * easier, each parameter of the arrays within the 2D arrays uses a special
  * function that fixes the objects' position to a grid exactly. Because the
