@@ -28,8 +28,8 @@ import java.awt.geom.Line2D;
  * the player and the game's obstacles. The player is a square, which is equivalent to
  * a rectangle with equal width and height. Since all objects are either a rectangle, 
  * a line, or a circle, 3 collision detection methods are required. The rectangle
- * (.intersects()) and line (.intersectsLine()) methods are provided by the built-in
- * {@link Rectangle} library, while the .intersectsCircle() method is implemented by
+ * (intersects()) and line (intersectsLine()) methods are provided by the built-in
+ * {@link Rectangle} library, while the intersectsCircle() method is implemented by
  * calculating the nearest distance between the player and the circle, then checking
  * if the difference is less than the circle's radius.
  * 

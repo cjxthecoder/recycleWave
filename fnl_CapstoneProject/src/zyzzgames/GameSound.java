@@ -25,7 +25,8 @@ import java.io.File;
 /**
  * The GameSound class has an Audio that allows the clip to be played. To load
  * the clip, an audio file is instantiated in the other classes. This class uses
- * .play() and .stop() from the Audio class to start and stop the clip.
+ * play() and stop() from the Audio class to start and stop the clip, as well as
+ * the setOffset() method to start the music from a certain point.
  * 
  * @author Ali Haryanawalla
  *

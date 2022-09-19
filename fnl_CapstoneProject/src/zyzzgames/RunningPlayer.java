@@ -25,7 +25,7 @@ package zyzzgames;
  * running. A crucial point is that this class must be runnable for the
  * game to run, because our game uses a threading system to allow input
  * from the player while the program runs behind the scenes. When running,
- * .sleep() is used to delay the time for the program to execute code, and
+ * sleep() is used to delay the time for the program to execute code, and
  * this allows use to set the program running at a certain refresh rate. In
  * our game, this value is 200hz (200 updates per second). This can also be
  * used to set up a large delay to give the player time to take in at what

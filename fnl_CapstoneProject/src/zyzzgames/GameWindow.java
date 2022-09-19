@@ -40,8 +40,8 @@ import java.awt.event.ActionListener;
  * The GameWindow class is the class responsible for drawing graphics on the screen.
  * It also has a starting menu that uses JComboBox so that the user can choose the
  * game's difficulty. To play the game, there is a button that can be clicked by the
- * user to start the game. An InputListner is instantiated so that the game and take
- * keyboard input from the user. An Image and Graphics class, as well as the .paint()
+ * user to start the game. An InputListner is instantiated so that the game can take
+ * keyboard input from the user. An Image and Graphics class, as well as the paint()
  * function, is used to draw graphics on the screen.
  * 
  * @author Daniel Cheng
