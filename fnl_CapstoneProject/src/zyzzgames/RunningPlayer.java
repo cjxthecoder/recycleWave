@@ -2,18 +2,10 @@
  * Copyright (c) 2022, Team Zyzz LLC, All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * This code is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License version 2 only, as
- * published by the Free Software Foundation. Team Zyzz designates this
- * particular file as subject to the "Classpath" exception as provided
- * by Team Zyzz in the LICENSE file that accompanied this code.
- *
  * This code is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
- * version 2 for more details (a copy is included in the LICENSE file that
- * accompanied this code).
- *
+ * FITNESS FOR A PARTICULAR PURPOSE.
+ * 
  * Please contact Sunnyvale, Rockefeller Dr, Apt 3B, CA 94097 USA if you
  * need additional information or have any questions.
  */
@@ -25,12 +17,12 @@ package zyzzgames;
  * running. A crucial point is that this class must be runnable for the
  * game to run, because our game uses a threading system to allow input
  * from the player while the program runs behind the scenes. When running,
- * sleep() is used to delay the time for the program to execute code, and
- * this allows use to set the program running at a certain refresh rate. In
- * our game, this value is 5 ms (=200 updates per second). This can also be
- * used to set up a large delay to give the player time to take in at what
- * has just happened. For example, when the game is starting or when the player
- * has just died, etc.
+ * sleep() is used to delay the time (in milliseconds) for the program to
+ * execute code, and this allows use to set the program running at a certain
+ * refresh rate. In our game, this value is 5 (=200 updates per second). This
+ * can also be used to set up a large delay to give the player time to take in
+ * at what has just happened. For example, when the game is starting or when
+ * the player has just died, etc.
  * 
  * @author Daniel Cheng
  *
