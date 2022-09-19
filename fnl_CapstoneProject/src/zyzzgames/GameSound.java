@@ -1,4 +1,3 @@
-package zyzzgames;
 /*
  * Copyright (c) 2022, Team Zyzz LLC, All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -18,6 +17,9 @@ package zyzzgames;
  * Please contact Sunnyvale, Rockefeller Dr, Apt 3B, CA 94097 USA if you
  * need additional information or have any questions.
  */
+
+package zyzzgames;
+
 import java.io.File;
 
 /**
