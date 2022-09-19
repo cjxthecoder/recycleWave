@@ -39,8 +39,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @since 1.0
  */
 
-public class Audio {
-	
+public class Audio
+{
 	private Clip clip;
 	
 	public Audio(File source) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
