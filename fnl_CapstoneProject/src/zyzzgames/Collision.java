@@ -38,8 +38,8 @@ import java.awt.geom.Line2D;
  * @since 1.0
  */
 
-public class Collision implements GameConstants {
-	
+public class Collision implements GameConstants
+{
 	public boolean checkDeathCollisions()
 	{
 		LevelEditor lvl = new LevelEditor();
