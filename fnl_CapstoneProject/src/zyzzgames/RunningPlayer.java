@@ -27,7 +27,7 @@ package zyzzgames;
  * from the player while the program runs behind the scenes. When running,
  * sleep() is used to delay the time for the program to execute code, and
  * this allows use to set the program running at a certain refresh rate. In
- * our game, this value is 200hz (200 updates per second). This can also be
+ * our game, this value is 5 ms (=200 updates per second). This can also be
  * used to set up a large delay to give the player time to take in at what
  * has just happened. For example, when the game is starting or when the player
  * has just died, etc.
