@@ -81,7 +81,7 @@ public class GameWindow extends JFrame
 		this.add(comboBox);
 		
 		Container c = getContentPane();
-	    c.setLayout(new FlowLayout());
+		c.setLayout(new FlowLayout());
 	}
 	
 	public void actionPerformed(ActionEvent e)
@@ -132,7 +132,7 @@ public class GameWindow extends JFrame
 		
 		g.setColor(Color.CYAN);
 		g.drawLine(0, GROUND, 1550, GROUND);
-	    g.drawLine(0, CEILING, 1550, CEILING);
+		g.drawLine(0, CEILING, 1550, CEILING);
 	    
 		lvl.createPlatforms(g, Color.BLACK, new ImageIcon("block.png").getImage());
 		lvl.createWalls(g, Color.RED, new ImageIcon("block.png").getImage());
@@ -149,7 +149,7 @@ public class GameWindow extends JFrame
 	
 	public void draw(Graphics g)
 	{
-	    drawGameGraphics((Graphics2D) g);
+		drawGameGraphics((Graphics2D) g);
 		p.drawPlayer(g);
 		repaint();
 	}

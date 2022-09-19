@@ -39,18 +39,18 @@ public class GameSound
 
 	public void loadMusic()
 	{ 
-	    try {
-	    	if (audio == null) {
-	    		audio = new Audio(new File("976863_F-777---Sonic-Blaster-HJfo.wav"));
-	    	}
-	    	audio.setOffset(38.0);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+		try {
+			if (audio == null) {
+				audio = new Audio(new File("976863_F-777---Sonic-Blaster-HJfo.wav"));
+			}
+			audio.setOffset(38.0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void startMusic() {
-        audio.play();
+		audio.play();
 	}
 	
 	public void stopMusic() {
