@@ -1,3 +1,4 @@
+package zyzzgames;
 
 /**
  * The GameConstants interface contains the list of constant values used
