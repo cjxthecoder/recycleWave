@@ -114,6 +114,8 @@ public class GameWindow extends JFrame
 	
 	public void drawGameGraphics(Graphics2D g)
 	{
+//		// Grid lines used when editing the level
+//		
 //		for (int i=-20; i<=4300; i+=40) {
 //			g.drawLine(i, Player.CEILING, i, Player.GROUND);
 //		}
