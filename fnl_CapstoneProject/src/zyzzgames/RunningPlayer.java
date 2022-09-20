@@ -42,6 +42,7 @@ public class RunningPlayer extends Player
 	public void run()
 	{	
 		gs.loadMusic();
+		
 		try {
 			Thread.sleep(500);
 			while(true)

@@ -14,10 +14,11 @@ package zyzzgames;
 
 /**
  * The GameConstants interface contains the list of constant values used
- * in our game. This includes the ground pixel level, the ceiling pixel level,
- * the size of the player's hitbox, pass-by values for the player's gamemode,
- * gravity, the pixel level for the start line and finish line, amount of pixels
- * per block, diameter of the saws, and double values for the player's speed.
+ * in our game. This includes the ground pixel level, the ceiling pixel
+ * level, the size of the player's hitbox, integer value representations
+ * for the player's gamemode and gravity, the pixel level for the start
+ * line and finish line, amount of pixels per block, diameter of the saws,
+ * and double values for the player's speed.
  * 
  * @author Brandon Tsao
  *
