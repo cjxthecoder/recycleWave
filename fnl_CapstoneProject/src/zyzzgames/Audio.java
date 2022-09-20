@@ -46,13 +46,13 @@ public class Audio
 	}
     
 	public void reset() {
-        clip.stop();
-        clip.setFramePosition(0);
-    }
+		clip.stop();
+		clip.setFramePosition(0);
+	}
 	
 	public void setOffset(double seconds) {
-        clip.setFramePosition((int)(48000 * seconds));
-    }
+		clip.setFramePosition((int)(48000 * seconds));
+	}
 
 	public void play() {
 		clip.start();
