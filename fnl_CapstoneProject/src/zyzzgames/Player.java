@@ -323,5 +323,6 @@ public class Player implements GameConstants
 		gravity = UP;
 		speed = threeTimes;
 		mini = false;
+		keyPressed = false;
 	}
 }
