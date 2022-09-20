@@ -26,10 +26,11 @@ import javax.swing.ImageIcon;
 
 /**
  * The player class contains all the information for the player. This includes
- * the player's position, hitbox size, gamemode, gravity, speed, the x- and y-
- * velocities on screen, if it's mini or falling, the number of attempts the player
- * has spent on a level, the player's score, whether or not the player has won the
- * game, and if the player is pressing the key to control the player.
+ * the player's position in x- and y-coordinates, hitbox size, gamemode, gravity,
+ * speed, the x- and y- velocities on screen, if it's mini or falling, the number
+ * of attempts the player has spent on a level, the player's score out of 100,
+ * whether or not the player has won the game, and if the player is pressing the
+ * keyboard to control the player.
  * 
  * @author Daniel Cheng
  *
