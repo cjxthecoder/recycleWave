@@ -1,6 +1,6 @@
 # Capstone Project: Recycle Wave
 
-Team name: Zyzz
+Company Name: Team Zyzz
 
 Team members: Brandon Tsao, Ali Haryanawalla, Daniel Cheng
 
