@@ -8,6 +8,8 @@
  * 
  * Please contact Sunnyvale, Rockefeller Dr, Apt 3B, CA 94087 USA if you
  * need additional information or have any questions.
+ * 
+ * Current version: 1.0
  */
 
 package zyzzgames;
@@ -24,7 +26,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * The Audio class is for implementing sound in-game. An audio has a {@link Clip}
- * that can be reset, set to a certain frame, be started, or be stopped.
+ * that can be reset, set to a certain frame, be started, and be stopped.
  * 
  * @author Ali Haryanawalla
  *
