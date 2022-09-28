@@ -10,7 +10,7 @@ Document rev date: 5/24/22
 A game with a character that moves up and down with a wave pattern and try and not to hit the sides, or you lose the game. An environmental idea is to have a plastic bottle and a tree or coral, and you try and make the bottle not hit the coral or the fish. 
 
 ## Target user profile:
-Children and adults of all ages (6+)
+Children or adults of all ages.
 
 ## Instructions: 
 1. Press the run button
