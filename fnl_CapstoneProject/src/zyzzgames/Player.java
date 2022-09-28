@@ -220,28 +220,31 @@ public class Player implements GameConstants
 		{
 			case CUBE:
 				if (gravity == DOWN) {
-					Image playerIcon = (new ImageIcon("playerCubeUp.png")).getImage();
-					g.drawImage(playerIcon, player.x, player.y, player.width, player.height, null);
+					Image playerCubeUp = (new ImageIcon("playerCubeUp.png")).getImage();
+					g.drawImage(playerCubeUp, player.x, player.y, player.width, player.height, null);
 				}
+				
 				else {
-					Image playerIcon = (new ImageIcon("playerCubeDown.png")).getImage();
-					g.drawImage(playerIcon, player.x, player.y, player.width, player.height, null);
+					Image playerCubeDown = (new ImageIcon("playerCubeDown.png")).getImage();
+					g.drawImage(playerCubeDown, player.x, player.y, player.width, player.height, null);
 				}
 				break;
 				
 			case WAVE:
 				if ((gravity == DOWN && falling == true) || (gravity == UP && falling == false)) {
-					Image wave = (new ImageIcon("playerWaveDown.png")).getImage();
-					g.drawImage(wave, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
+					Image playerWaveDown = (new ImageIcon("playerWaveDown.png")).getImage();
+					g.drawImage(playerWaveDown, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
 				}
+				
 				else {
 					if (keyPressed == false) {
-						Image wave = (new ImageIcon("playerWaveDown.png")).getImage();
-						g.drawImage(wave, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
+						Image playerWaveDown = (new ImageIcon("playerWaveDown.png")).getImage();
+						g.drawImage(playerWaveDown, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
 					}
+					
 					else {
-						Image wave = (new ImageIcon("playerWaveUp.png")).getImage();
-						g.drawImage(wave, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
+						Image playerWaveUp = (new ImageIcon("playerWaveUp.png")).getImage();
+						g.drawImage(playerWaveUp, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
 					}
 				}
 				break;
