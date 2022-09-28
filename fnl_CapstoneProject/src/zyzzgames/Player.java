@@ -219,8 +219,14 @@ public class Player implements GameConstants
 		switch(gamemode)
 		{
 			case CUBE:
-				Image playerIcon = (new ImageIcon("playerCube.png")).getImage();
-				g.drawImage(playerIcon, player.x, player.y, player.width, player.height, null);
+				if (gravity == DOWN) {
+					Image playerIcon = (new ImageIcon("playerCubeUp.png")).getImage();
+					g.drawImage(playerIcon, player.x, player.y, player.width, player.height, null);
+				}
+				else {
+					Image playerIcon = (new ImageIcon("playerCubeDown.png")).getImage();
+					g.drawImage(playerIcon, player.x, player.y, player.width, player.height, null);
+				}
 				break;
 				
 			case WAVE:
@@ -229,8 +235,14 @@ public class Player implements GameConstants
 					g.drawImage(wave, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
 				}
 				else {
-					Image wave = (new ImageIcon("playerWaveUp.png")).getImage();
-					g.drawImage(wave, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
+					if (keyPressed == false) {
+						Image wave = (new ImageIcon("playerWaveDown.png")).getImage();
+						g.drawImage(wave, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
+					}
+					else {
+						Image wave = (new ImageIcon("playerWaveUp.png")).getImage();
+						g.drawImage(wave, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
+					}
 				}
 				break;
 		}
