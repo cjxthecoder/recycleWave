@@ -123,7 +123,7 @@ public class Player implements GameConstants
 			{
 				case CUBE:
 					t1++;
-					setFallingSpeed(Math.min(t1 / 4.0, 8.0) * speed * gravity );
+					setFallingSpeed(Math.min(t1 / 4.0, 8.0) * speed * gravity);
 					break;
 			
 				case SHIP:
