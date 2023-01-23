@@ -36,12 +36,12 @@ public interface GameConstants
 	double myFactor = 1.0185508475756433;
 	
 	// Constants related to the player's gamemode
-	int CUBE = 2;
-	int SHIP = 4;
-	int BALL = 8;
-	int UFO = 16;
-	int WAVE = 32;
-	int SPIDER = 64;
+	byte CUBE = 2;
+	byte SHIP = 4;
+	byte BALL = 8;
+	byte UFO = 16;
+	byte WAVE = 32;
+	byte SPIDER = 64;
 	
 	// Constants related to the player's gravity
 	int DOWN = 1;

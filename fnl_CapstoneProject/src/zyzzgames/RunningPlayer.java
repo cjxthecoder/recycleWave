@@ -34,7 +34,7 @@ package zyzzgames;
 public class RunningPlayer extends Player
 	implements Runnable
 {
-	public RunningPlayer(int x, int y, int gamemode, int gravity, double speed, boolean mini) {
+	public RunningPlayer(int x, int y, byte gamemode, int gravity, double speed, boolean mini) {
 		super(x, y, gamemode, gravity, speed, mini);
 	}
 	
@@ -44,11 +44,12 @@ public class RunningPlayer extends Player
 	public void run()
 	{	
 		gs.loadMusic();
-		
+		LevelEditor lvl = new LevelEditor();
 		try {
 			Thread.sleep(500);
 			while(true)
 			{
+				System.out.println(Player.getX() + " " + Player.getY() + " vs " + lvl.wavePortals[0][0] + " " + lvl.wavePortals[0][1] + " " + c.checkWaveCollision());
 				if ((player.x < START_LINE || LevelEditor.dx < START_LINE - FINISH_LINE) && !gameWon)
 				{
 					setXDirection(4.0 * speed);
@@ -159,7 +160,7 @@ public class RunningPlayer extends Player
 					else {
 						LevelEditor.goForward(0);
 					}
-					Thread.sleep(5);
+					Thread.sleep(50);
 				}
 			}
 		} catch(Exception e) {

@@ -58,7 +58,7 @@ public class Player implements GameConstants
 	
 	Collision c = new Collision();
 	
-	public Player(int x, int y, int gamemode, int gravity, double speed, boolean mini)
+	public Player(int x, int y, byte gamemode, int gravity, double speed, boolean mini)
 	{
 		this.gamemode = gamemode;
 		this.gravity = gravity;
