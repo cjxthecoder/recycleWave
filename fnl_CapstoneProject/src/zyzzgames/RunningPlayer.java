@@ -49,7 +49,7 @@ public class RunningPlayer extends Player
 			Thread.sleep(500);
 			while(true)
 			{
-				System.out.println(Player.getX() + " " + Player.getY() + " vs " + lvl.wavePortals[0][0] + " " + lvl.wavePortals[0][1] + " " + c.checkWaveCollision());
+//				System.out.println(Player.getX() + " " + Player.getY() + " vs " + lvl.wavePortals[0][0] + " " + lvl.wavePortals[0][1] + " " + c.checkWaveCollision());
 				if ((player.x < START_LINE || LevelEditor.dx < START_LINE - FINISH_LINE) && !gameWon)
 				{
 					setXDirection(4.0 * speed);
@@ -160,7 +160,7 @@ public class RunningPlayer extends Player
 					else {
 						LevelEditor.goForward(0);
 					}
-					Thread.sleep(50);
+					Thread.sleep(5);
 				}
 			}
 		} catch(Exception e) {

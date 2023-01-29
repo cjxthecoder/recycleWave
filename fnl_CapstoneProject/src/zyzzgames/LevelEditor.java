@@ -43,7 +43,8 @@ import javax.swing.ImageIcon;
 public class LevelEditor implements GameConstants
 {
 	// Starting point of the level relative to the left-side of the window
-	static int dx = START_LINE;
+	static int dx = START_LINE - 1500;
+	static final int starting_dx = dx;
 	
 	// A 2D array of platforms with each array being the position of one platform 
 	int[][] platforms = {{ X(1), Y(9), X(23) }};
@@ -90,8 +91,8 @@ public class LevelEditor implements GameConstants
 			
 	// Using the definitions above, below are 7 different types of portals and there respective positions
 	int[][] speedPortal = {{ X(26), Y(10) }, { X(26), Y(12) }};
-	int[][] normalGravityPortals = {{ X(1), Y(22) }, { X(1), Y(18) }, { X(1), Y(14) }};
-	int[][] flippedGravityPortals = {{ 0, 0 }};
+	int[][] normalGravityPortals = {{ X(1), Y(22) }, { X(1), Y(18) }, { X(1), Y(14) }, { X(63), Y(15) }};
+	int[][] flippedGravityPortals = {{ 0, 0 }, { X(58), Y(15) }};
 	int[][] normalSizePortals = {{ X(197), Y(8) }};
 	int[][] miniSizePortals = {{ X(110), Y(12) }, };
 	int[][] wavePortals = {{ X(25), Y(12) }};
