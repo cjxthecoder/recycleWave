@@ -104,6 +104,16 @@ public class RunningPlayer extends Player
 						}
 					}
 					
+					if (c.checkFlippedGravityCollision())
+					{
+						if (gravity == DOWN)
+						{
+							t1 = 0;
+							t2 = 0;
+							gravity = UP;
+						}
+					}
+					
 					if (c.checkMiniSizeCollision()) // divide by 4 if player is wave, else divide by 2
 					{
 						mini = true;

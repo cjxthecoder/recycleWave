@@ -236,6 +236,11 @@ public class Player implements GameConstants
 					g.drawImage(playerWaveDown, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
 				}
 				
+				else if ((gravity == DOWN && falling == false) || (gravity == UP && falling == true)) {
+					Image playerWaveUp = (new ImageIcon("playerWaveUp.png")).getImage();
+					g.drawImage(playerWaveUp, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
+				}
+				
 				else {
 					if (keyPressed == false) {
 						Image playerWaveDown = (new ImageIcon("playerWaveDown.png")).getImage();

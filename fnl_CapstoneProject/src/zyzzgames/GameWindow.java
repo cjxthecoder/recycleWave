@@ -132,6 +132,7 @@ public class GameWindow extends JFrame
 		lvl.createPlatforms(g, Color.BLACK, new ImageIcon("block.png").getImage());
 		lvl.createWalls(g, Color.RED, new ImageIcon("block.png").getImage());
 		lvl.createNormalGravityPortals(g, Color.GREEN, new ImageIcon("normalGravityPortal.png").getImage());
+		lvl.createFlippedGravityPortals(g, Color.GREEN, new ImageIcon("flippedGravityPortal.png").getImage());
 		lvl.createNormalSizePortals(g, Color.GREEN, new ImageIcon("NormalSizePortal.png").getImage());
 		lvl.createMiniSizePortals(g, Color.GREEN, new ImageIcon("miniSizePortal.png").getImage());
 		lvl.createWavePortals(g, Color.GREEN, new ImageIcon("wavePortal.png").getImage());

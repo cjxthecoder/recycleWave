@@ -91,6 +91,22 @@ public class Collision implements GameConstants
 		return false;
 	}
 	
+	public boolean checkFlippedGravityCollision()
+	{
+		LevelEditor lvl = new LevelEditor();
+		
+		for (int i=0; i<lvl.flippedGravityPortals.length; i++)
+		{
+			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
+					(new Rectangle(lvl.flippedGravityPortals[i][0], lvl.flippedGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4)))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	public boolean checkMiniSizeCollision()
 	{
 		LevelEditor lvl = new LevelEditor();
