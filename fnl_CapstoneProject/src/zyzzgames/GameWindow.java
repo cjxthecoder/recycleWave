@@ -104,11 +104,9 @@ public class GameWindow extends JFrame
 				g.drawRect(642, 33, 121, 40);
 				g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
 				g.drawString("Drag your cursor here", 650, 56);
+				g.drawRect(761, 37, 120, 99);
 				g.drawRect(767, 39, 126, 27);
 				g.drawLine(860, 39, 860, 66);
-				g.drawLine(761, 73, 761, 136);
-				g.drawLine(761, 136, 881, 136);
-				g.drawLine(881, 66, 881, 136);
 				g.drawString("Over there>", 772, 56);
 				g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
 				g.drawString("As well!", 778, 90);

@@ -91,7 +91,7 @@ public class LevelEditor implements GameConstants
 	// Using the definitions above, below are 7 different types of portals and there respective positions
 	int[][] speedPortal = {{ X(26), Y(10) }, { X(26), Y(12) }};
 	int[][] normalGravityPortals = {{ X(1), Y(22) }, { X(1), Y(18) }, { X(1), Y(14) }, { X(63), Y(15) }};
-	int[][] flippedGravityPortals = {{ X(58), Y(15) }};
+	int[][] flippedGravityPortals = {{ X(57), Y(15) }};
 	int[][] normalSizePortals = {{ X(197), Y(8) }};
 	int[][] miniSizePortals = {{ X(110), Y(12) }, };
 	int[][] wavePortals = {{ X(25), Y(12) }};
