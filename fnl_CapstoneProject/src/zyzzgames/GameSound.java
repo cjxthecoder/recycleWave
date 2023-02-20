@@ -49,6 +49,6 @@ public class GameSound
 	
 	public void stopMusic() {
 		audio.stop();
-		audio.setOffset(37.8);
+		audio.setOffset(38.0);
 	}
 }
