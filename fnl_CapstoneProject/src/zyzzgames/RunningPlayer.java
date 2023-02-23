@@ -39,17 +39,35 @@ public class RunningPlayer extends Player
 	}
 	
 	GameSound gs = new GameSound();
+	double s = THREE_TIMES;
 	
 	@Override
 	public void run()
 	{	
 		gs.loadMusic();
-		LevelEditor lvl = new LevelEditor();
+		
+		switch (String.valueOf(GameWindow.comboBox.getSelectedItem()))
+		{
+			case "Easy":
+				s = HALF_TIMES;
+				break;
+			case "Medium":
+				s = ONE_TIMES;
+			case "Hard":
+				s = TWO_TIMES;
+				break;
+			case "Insane":
+				s = THREE_TIMES;
+				break;
+			case "Impossible":
+				s = FOUR_TIMES;
+				break;
+		}
+		
 		try {
 			Thread.sleep(500);
 			while(true)
 			{
-//				System.out.println(Player.getX() + " " + Player.getY() + " vs " + lvl.wavePortals[0][0] + " " + lvl.wavePortals[0][1] + " " + c.checkWaveCollision());
 				if ((player.x < START_LINE || LevelEditor.dx < START_LINE - FINISH_LINE) && !gameWon)
 				{
 					setXDirection(4.0 * speed);
@@ -60,7 +78,7 @@ public class RunningPlayer extends Player
 				if (c.checkDeathCollisions()) // c.checkDeathCollisions()
 				{
 					gs.stopMusic();
-					fullScore /= myFactor;
+					fullScore /= MY_FACTOR;
 					attempts++;
 					Thread.sleep(1000);
 					resetPlayerFields();
@@ -72,26 +90,7 @@ public class RunningPlayer extends Player
 					
 					if (c.checkSpeedCollision())
 					{
-						switch (String.valueOf(GameWindow.comboBox.getSelectedItem())) {
-							case "Easy":
-								speed = halfTimes;
-								break;
-							case "Medium":
-								speed = oneTimes;
-								break;
-							case "Hard":
-								speed = twoTimes;
-								break;
-							case "Insane":
-								speed = threeTimes;
-								break;
-							case "Impossible":
-								speed = fourTimes;
-								break;
-							default:
-								speed = threeTimes;
-								break;
-							}
+						speed = s;
 					}
 					
 					if (c.checkNormalGravityCollision())

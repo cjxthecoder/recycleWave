@@ -22,6 +22,8 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.geom.Line2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 
@@ -43,7 +45,7 @@ import javax.swing.ImageIcon;
 public class LevelEditor implements GameConstants
 {
 	// Starting point of the level relative to the left-side of the window
-	static int dx = START_LINE;
+	public static int dx = START_LINE;
 	
 	// A 2D array of platforms with each array being the position of one platform 
 	int[][] platforms = {{ X(1), Y(9), X(23) }};
@@ -52,15 +54,15 @@ public class LevelEditor implements GameConstants
 	int[][] walls = {{ Y(8), Y(0), X(1) }, { Y(8), Y(0), X(22) }};
 
 	// A 2D array of sawblades with each array being the position of one sawblade
-	int[][] sawblades = {{ d, cX(50), cY(14) }, { d, cX(56), cY(6) }, { d, cX(61), cY(8) },
-						 { d, cX(69), cY(15)}, { d, cX(76), cY(3) }, { d, cX(94), cY(12) },
-						 { d, cX(97), cY(5) }, { d, cX(109), cY(14) }, { d, cX(114), cY(8) },
-						 { d, cX(140), cY(7) }, { d, cX(146), cY(15) }, { d, cX(152), cY(7) },
-						 { d, cX(161), cY(4)}, { d, cX(166), cY(14) }, { d, cX(171), cY(4) }, { d, cX(176), cY(14)},
-						 { d, cX(181), cY(4)},  { d, cX(186), cY(14) }, { d, cX(191), cY(4)}, { d, cX(196), cY(14)},
-						 { d, cX(211), cY(4) }, { d, cX(214), cY(11) }, { d, cX(218), cY(15) }, { d, cX(225), cY(15) },
-						 { d, cX(235), cY(2) }, { d, cX(240), cY(15) }, { d, cX(245), cY(13) },
-						 { d, cX(261), cY(2) }, { d, cX(265), cY(8) }, { d, cX(270), cY(4) }, { d, cX(271), cY(12) }};
+	int[][] sawblades = {{ D, cX(50), cY(14) }, { D, cX(56), cY(6) }, { D, cX(61), cY(8) },
+						 { D, cX(69), cY(15)}, { D, cX(76), cY(3) }, { D, cX(94), cY(12) },
+						 { D, cX(97), cY(5) }, { D, cX(109), cY(14) }, { D, cX(114), cY(8) },
+						 { D, cX(140), cY(7) }, { D, cX(146), cY(15) }, { D, cX(152), cY(7) },
+						 { D, cX(161), cY(4)}, { D, cX(166), cY(14) }, { D, cX(171), cY(4) }, { D, cX(176), cY(14)},
+						 { D, cX(181), cY(4)},  { D, cX(186), cY(14) }, { D, cX(191), cY(4)}, { D, cX(196), cY(14)},
+						 { D, cX(211), cY(4) }, { D, cX(214), cY(11) }, { D, cX(218), cY(15) }, { D, cX(225), cY(15) },
+						 { D, cX(235), cY(2) }, { D, cX(240), cY(15) }, { D, cX(245), cY(13) },
+						 { D, cX(261), cY(2) }, { D, cX(265), cY(8) }, { D, cX(270), cY(4) }, { D, cX(271), cY(12) }};
 
 	// A 2D array of slopes with each array being the position of one slope
 	int[][] slopes = {{ X(25), Y(0), X(35), Y(10) }, { X(35), Y(10), X(45), Y(0) },
@@ -89,11 +91,11 @@ public class LevelEditor implements GameConstants
 					  { X(260), Y(0), X(271), Y(0) }};
 			
 	// Using the definitions above, below are 7 different types of portals and there respective positions
-	int[][] speedPortal = {{ X(26), Y(10) }, { X(26), Y(12) }};
+	int[][] speedPortals = {{ X(26), Y(12) }, { X(26), Y(10) }};
 	int[][] normalGravityPortals = {{ X(1), Y(22) }, { X(1), Y(18) }, { X(1), Y(14) }, { X(63), Y(15) }};
 	int[][] flippedGravityPortals = {{ X(57), Y(15) }};
 	int[][] normalSizePortals = {{ X(197), Y(8) }};
-	int[][] miniSizePortals = {{ X(110), Y(12) }, };
+	int[][] miniSizePortals = {{ X(110), Y(12) }};
 	int[][] wavePortals = {{ X(25), Y(12) }};
 	int[][] cubePortals = {{ X(277), Y(13) }, { X(277), Y(9) }};
 
@@ -104,20 +106,20 @@ public class LevelEditor implements GameConstants
 	 * from the bottom of the window to the top.
 	 */
 	
-	public int X(int x) {
+	private int X(int x) {
 		return x * PIXELS_PER_BLOCK + dx;
 	}
 	
-	public int Y(int y) {
+	private int Y(int y) {
 		return -y * PIXELS_PER_BLOCK + GROUND;
 	}
 	
 	// cX and cY for coordinates of circles (sawblades)
-	public int cX(int x) {
+	private int cX(int x) {
 		return x * PIXELS_PER_BLOCK + PIXELS_PER_BLOCK / 2 + dx;
 	}
 	
-	public int cY(int y) {
+	private int cY(int y) {
 		return -y * PIXELS_PER_BLOCK + GROUND - PIXELS_PER_BLOCK / 2;
 	}
 	
@@ -129,32 +131,28 @@ public class LevelEditor implements GameConstants
 		Image pic4 = (new ImageIcon("three.png")).getImage();
 		Image pic5 = (new ImageIcon("four.png")).getImage();
 		
-		for (int i=0; i<speedPortal.length; i++)
+		for (int i=0; i<speedPortals.length; i++)
 		{
 			switch (String.valueOf(GameWindow.comboBox.getSelectedItem()))
 			{
 				case "Easy":
-					g2d.drawImage(pic1, speedPortal[i][0], speedPortal[i][1], null);
+					g2d.drawImage(pic1, speedPortals[i][0], speedPortals[i][1], null);
 	//				g2d.drawRect(speedPortal[i][0], speedPortal[i][1], 95, 83);
 					break;
 				case "Medium":
-					g2d.drawImage(pic2, speedPortal[i][0], speedPortal[i][1], null);
+					g2d.drawImage(pic2, speedPortals[i][0], speedPortals[i][1], null);
 	//				g2d.drawRect(speedPortal[i][0], speedPortal[i][1], 95, 83);
 					break;
 				case "Hard":
-					g2d.drawImage(pic3, speedPortal[i][0], speedPortal[i][1], null);
+					g2d.drawImage(pic3, speedPortals[i][0], speedPortals[i][1], null);
 	//				g2d.drawRect(speedPortal[i][0], speedPortal[i][1], 95, 83);
 					break;
 				case "Insane":
-					g2d.drawImage(pic4, speedPortal[i][0], speedPortal[i][1], null);
+					g2d.drawImage(pic4, speedPortals[i][0], speedPortals[i][1], null);
 	//				g2d.drawRect(speedPortal[i][0], speedPortal[i][1], 95, 83);
 					break;
 				case "Impossible":
-					g2d.drawImage(pic5, speedPortal[i][0], speedPortal[i][1], null);
-	//				g2d.drawRect(speedPortal[i][0], speedPortal[i][1], 95, 83);
-					break;
-				default:
-					g2d.drawImage(pic4, speedPortal[i][0], speedPortal[i][1], null);
+					g2d.drawImage(pic5, speedPortals[i][0], speedPortals[i][1], null);
 	//				g2d.drawRect(speedPortal[i][0], speedPortal[i][1], 95, 83);
 					break;
 			}

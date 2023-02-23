@@ -15,6 +15,7 @@
 package zyzzgames;
 
 import java.io.File;
+import zyzzgames.Player;
 
 /**
  * The GameSound class has an Audio that allows the clip to be played. To load
@@ -35,7 +36,7 @@ public class GameSound
 	{ 
 		try {
 			if (audio == null) {
-				audio = new Audio(new File("976863_F-777---Sonic-Blaster-HJfo.wav"));
+				audio = new Audio(new File("574484_F-777---Sonic-Blaster.wav"));
 			}
 			audio.setOffset(38.0);
 		} catch (Exception e) {
@@ -49,6 +50,6 @@ public class GameSound
 	
 	public void stopMusic() {
 		audio.stop();
-		audio.setOffset(38.0);
+		audio.setOffset(37.75);
 	}
 }

@@ -33,7 +33,7 @@ public interface GameConstants
 	int GROUND = 780;
 	int CEILING = 60;
 	int PLAYER_HITBOX = 40;
-	double myFactor = 1.0185508475756433;
+	double MY_FACTOR = 1.0185508475756433;
 	
 	// Constants related to the player's gamemode
 	byte CUBE = 2;
@@ -51,12 +51,12 @@ public interface GameConstants
 	int START_LINE = 300;
 	int FINISH_LINE = 11300;
 	int PIXELS_PER_BLOCK = 40;
-	int d = 150;
+	int D = 150;
 	
 	// Constants related to the player's speed
-	double halfTimes = 0.5;
-	double oneTimes = 1.0;
-	double twoTimes = 1.25;
-	double threeTimes = 1.5;
-	double fourTimes = 2.0;
+	double HALF_TIMES = 0.5;
+	double ONE_TIMES = 1.0;
+	double TWO_TIMES = 1.25;
+	double THREE_TIMES = 1.5;
+	double FOUR_TIMES = 2.0;
 }

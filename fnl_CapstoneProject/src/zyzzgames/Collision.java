@@ -33,7 +33,7 @@ import java.awt.geom.Line2D;
  */
 
 public class Collision implements GameConstants
-{
+{	
 	public boolean checkDeathCollisions()
 	{
 		LevelEditor lvl = new LevelEditor();
@@ -63,10 +63,10 @@ public class Collision implements GameConstants
 	{
 		LevelEditor lvl = new LevelEditor();
 		
-		for (int i=0; i<lvl.speedPortal.length; i++)
+		for (int i=0; i<lvl.speedPortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.speedPortal[i][0], lvl.speedPortal[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40)));
+					(new Rectangle(lvl.speedPortals[i][0], lvl.speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40)))
 			{
 				return true;
 			}

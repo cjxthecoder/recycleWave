@@ -344,7 +344,7 @@ public class Player implements GameConstants
 		hitbox = PLAYER_HITBOX;
 		gamemode = CUBE;
 		gravity = UP;
-		speed = threeTimes;
+		speed = THREE_TIMES;
 		mini = false;
 		keyPressed = false;
 	}

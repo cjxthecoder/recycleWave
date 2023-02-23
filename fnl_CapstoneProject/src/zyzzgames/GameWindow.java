@@ -56,7 +56,7 @@ public class GameWindow extends JFrame
 	Graphics gdGraphics;
 	LevelEditor lvl;
 	
-	static RunningPlayer p = new RunningPlayer(-PLAYER_HITBOX, GROUND-PLAYER_HITBOX, CUBE, UP, threeTimes, false);
+	static RunningPlayer p = new RunningPlayer(-PLAYER_HITBOX, GROUND-PLAYER_HITBOX, CUBE, UP, THREE_TIMES, false);
 	
 	public GameWindow()
 	{
