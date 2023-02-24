@@ -123,7 +123,7 @@ public class LevelEditor implements GameConstants
 		return -y * PIXELS_PER_BLOCK + GROUND - PIXELS_PER_BLOCK / 2;
 	}
 	
-	public void createSpeedPortal(Graphics2D g2d, Color c)
+	public void createSpeedPortals(Graphics2D g2d, Color c)
 	{
 		Image pic1 = (new ImageIcon("half.png")).getImage();
 		Image pic2 = (new ImageIcon("one.png")).getImage();
@@ -137,23 +137,28 @@ public class LevelEditor implements GameConstants
 			{
 				case "Easy":
 					g2d.drawImage(pic1, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-	//				g2d.drawRect(speedPortal[i][0], speedPortal[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
+//					g2d.setColor(c);
+//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
 					break;
 				case "Medium":
 					g2d.drawImage(pic2, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-	//				g2d.drawRect(speedPortal[i][0], speedPortal[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
+//					g2d.setColor(c);
+//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
 					break;
 				case "Hard":
 					g2d.drawImage(pic3, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-	//				g2d.drawRect(speedPortal[i][0], speedPortal[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
+//					g2d.setColor(c);
+//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
 				case "Insane":
 					g2d.drawImage(pic4, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-	//				g2d.drawRect(speedPortal[i][0], speedPortal[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
+//					g2d.setColor(c);
+//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
 					break;
 				case "Impossible":
 					g2d.drawImage(pic5, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-	//				g2d.drawRect(speedPortal[i][0], speedPortal[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
-					break;
+//					g2d.setColor(c);
+//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
+					break;					
 			}
 		}
 	}
