@@ -131,32 +131,29 @@ public class LevelEditor implements GameConstants
 		Image pic4 = (new ImageIcon("three.png")).getImage();
 		Image pic5 = (new ImageIcon("four.png")).getImage();
 		
+		g2d.setColor(c);
+		
 		for (int i=0; i<speedPortals.length; i++)
 		{
 			switch (String.valueOf(GameWindow.comboBox.getSelectedItem()))
 			{
 				case "Easy":
 					g2d.drawImage(pic1, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-//					g2d.setColor(c);
 //					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
 					break;
 				case "Medium":
 					g2d.drawImage(pic2, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-//					g2d.setColor(c);
 //					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
 					break;
 				case "Hard":
 					g2d.drawImage(pic3, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-//					g2d.setColor(c);
 //					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
 				case "Insane":
 					g2d.drawImage(pic4, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-//					g2d.setColor(c);
 //					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
 					break;
 				case "Impossible":
 					g2d.drawImage(pic5, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-//					g2d.setColor(c);
 //					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
 					break;					
 			}
