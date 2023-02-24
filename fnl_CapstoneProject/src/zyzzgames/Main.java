@@ -9,7 +9,7 @@
  * Please contact Sunnyvale, Rockefeller Dr, Apt 3B, CA 94087 USA if you
  * need additional information or have any questions.
  * 
- * Current Version: 1.0
+ * Current Version: 1.1
  */
 
 package zyzzgames;
