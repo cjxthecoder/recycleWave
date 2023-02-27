@@ -52,7 +52,7 @@ public class Player implements GameConstants
 	protected int attempts = 1;
 	private int xDirection;
 	private int yDirection;
-	private boolean keyPressed = false;
+	protected boolean keyPressed = false;
 	
 	static Rectangle player;
 	
@@ -231,26 +231,14 @@ public class Player implements GameConstants
 				break;
 				
 			case WAVE:
-				if ((gravity == DOWN && falling == true) || (gravity == UP && falling == false)) {
+				if ((gravity == DOWN && keyPressed == false) || (gravity == UP && keyPressed == true)) {
 					Image playerWaveDown = (new ImageIcon("playerWaveDown.png")).getImage();
 					g.drawImage(playerWaveDown, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
 				}
 				
-				else if ((gravity == DOWN && falling == false) || (gravity == UP && falling == true)) {
+				else {
 					Image playerWaveUp = (new ImageIcon("playerWaveUp.png")).getImage();
 					g.drawImage(playerWaveUp, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
-				}
-				
-				else {
-					if (keyPressed == false) {
-						Image playerWaveDown = (new ImageIcon("playerWaveDown.png")).getImage();
-						g.drawImage(playerWaveDown, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
-					}
-					
-					else {
-						Image playerWaveUp = (new ImageIcon("playerWaveUp.png")).getImage();
-						g.drawImage(playerWaveUp, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
-					}
 				}
 				break;
 		}
