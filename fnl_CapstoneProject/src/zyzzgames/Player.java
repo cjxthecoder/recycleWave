@@ -52,7 +52,7 @@ public class Player implements GameConstants
 	protected int attempts = 1;
 	private int xDirection;
 	private int yDirection;
-	protected boolean keyPressed = false;
+	private boolean keyPressed = false;
 	
 	static Rectangle player;
 	
