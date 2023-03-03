@@ -39,7 +39,7 @@ public class RunningPlayer extends Player
 	}
 	
 	GameSound gs = new GameSound();
-	double s = THREE_TIMES;
+	double s;
 	
 	@Override
 	public void run()
@@ -78,7 +78,7 @@ public class RunningPlayer extends Player
 				if (c.checkDeathCollisions()) // c.checkDeathCollisions()
 				{
 					gs.stopMusic();
-					fullScore /= MY_FACTOR;
+					fullScore /= FACTOR;
 					attempts++;
 					Thread.sleep(1000);
 					resetPlayerFields();
