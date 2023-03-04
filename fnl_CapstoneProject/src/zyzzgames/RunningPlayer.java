@@ -39,7 +39,7 @@ public class RunningPlayer extends Player
 	}
 	
 	GameSound gs = new GameSound();
-	double s;
+	double s = speed;
 	
 	@Override
 	public void run()
