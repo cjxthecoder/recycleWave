@@ -33,7 +33,7 @@ public interface GameConstants
 	int GROUND = 780;
 	int CEILING = 60;
 	int PLAYER_HITBOX = 40;
-	double FACTOR = 1.0185508475756433;
+	double TWO_HUNDRED_FIFTIETH_ROOT_OF_ONE_HUNDRED = 1.0185508475756433;
 	
 	// Constants related to the player's gamemode
 	byte CUBE = 2;

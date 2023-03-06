@@ -50,17 +50,23 @@ public class RunningPlayer extends Player
 		{
 			case "Easy":
 				s = HALF_TIMES;
+				fullScore *= HALF_TIMES;
 				break;
 			case "Medium":
 				s = ONE_TIMES;
+				fullScore *= ONE_TIMES;
+				break;
 			case "Hard":
 				s = TWO_TIMES;
+				fullScore *= TWO_TIMES;
 				break;
 			case "Insane":
 				s = THREE_TIMES;
+				fullScore *= THREE_TIMES;
 				break;
 			case "Impossible":
 				s = FOUR_TIMES;
+				fullScore *= FOUR_TIMES;
 				break;
 		}
 		
@@ -78,7 +84,7 @@ public class RunningPlayer extends Player
 				if (c.checkDeathCollisions()) // c.checkDeathCollisions()
 				{
 					gs.stopMusic();
-					fullScore /= FACTOR;
+					fullScore /= TWO_HUNDRED_FIFTIETH_ROOT_OF_ONE_HUNDRED;
 					attempts++;
 					Thread.sleep(1000);
 					resetPlayerFields();

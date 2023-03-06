@@ -38,7 +38,7 @@ public class Collision implements GameConstants
 	{
 		LevelEditor lvl = new LevelEditor();
 		
-		for (int i=0; i<lvl.slopes.length; i++)
+		for (int i = 0; i < lvl.slopes.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersectsLine
 					(new Line2D.Double(lvl.slopes[i][0], lvl.slopes[i][1],lvl.slopes[i][2], lvl.slopes[i][3])))
@@ -47,7 +47,7 @@ public class Collision implements GameConstants
 			}
 		}
 		
-		for (int i=0; i<lvl.sawblades.length; i++)
+		for (int i = 0; i < lvl.sawblades.length; i++)
 		{
 			if (intersectsCircle(new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()),
 									lvl.sawblades[i][1], lvl.sawblades[i][2], lvl.sawblades[i][0])) 
@@ -63,7 +63,7 @@ public class Collision implements GameConstants
 	{
 		LevelEditor lvl = new LevelEditor();
 		
-		for (int i=0; i<lvl.speedPortals.length; i++)
+		for (int i = 0; i < lvl.speedPortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
 					(new Rectangle(lvl.speedPortals[i][0], lvl.speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40)))
@@ -79,7 +79,7 @@ public class Collision implements GameConstants
 	{
 		LevelEditor lvl = new LevelEditor();
 		
-		for (int i=0; i<lvl.normalGravityPortals.length; i++)
+		for (int i = 0; i < lvl.normalGravityPortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
 					(new Rectangle(lvl.normalGravityPortals[i][0], lvl.normalGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4)))
@@ -95,7 +95,7 @@ public class Collision implements GameConstants
 	{
 		LevelEditor lvl = new LevelEditor();
 		
-		for (int i=0; i<lvl.flippedGravityPortals.length; i++)
+		for (int i = 0; i < lvl.flippedGravityPortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
 					(new Rectangle(lvl.flippedGravityPortals[i][0], lvl.flippedGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4)))
@@ -111,7 +111,7 @@ public class Collision implements GameConstants
 	{
 		LevelEditor lvl = new LevelEditor();
 		
-		for (int i=0; i<lvl.miniSizePortals.length; i++)
+		for (int i = 0; i < lvl.miniSizePortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
 					(new Rectangle(lvl.miniSizePortals[i][0], lvl.miniSizePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4)))
@@ -127,7 +127,7 @@ public class Collision implements GameConstants
 	{
 		LevelEditor lvl = new LevelEditor();
 		
-		for (int i=0; i<lvl.normalSizePortals.length; i++)
+		for (int i = 0; i < lvl.normalSizePortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
 					(new Rectangle(lvl.normalSizePortals[i][0], lvl.normalSizePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4)))
@@ -143,7 +143,7 @@ public class Collision implements GameConstants
 	{
 		LevelEditor lvl = new LevelEditor();
 		
-		for (int i=0; i<lvl.wavePortals.length; i++)
+		for (int i = 0; i < lvl.wavePortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
 					(new Rectangle(lvl.wavePortals[i][0], lvl.wavePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4)))
@@ -159,7 +159,7 @@ public class Collision implements GameConstants
 	{
 		LevelEditor lvl = new LevelEditor();
 		
-		for (int i=0; i<lvl.cubePortals.length; i++)
+		for (int i = 0; i < lvl.cubePortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
 					(new Rectangle(lvl.cubePortals[i][0], lvl.cubePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4)))
@@ -175,7 +175,7 @@ public class Collision implements GameConstants
 	{
 		LevelEditor lvl = new LevelEditor();
 		
-		for (int i=0; i<lvl.platforms.length; i++)
+		for (int i = 0; i < lvl.platforms.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersectsLine
 					(new Line2D.Double(lvl.platforms[i][0], lvl.platforms[i][1], lvl.platforms[i][2], lvl.platforms[i][1])))

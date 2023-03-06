@@ -133,7 +133,7 @@ public class LevelEditor implements GameConstants
 		
 		g2d.setColor(c);
 		
-		for (int i=0; i<speedPortals.length; i++)
+		for (int i = 0; i < speedPortals.length; i++)
 		{
 			switch (String.valueOf(GameWindow.comboBox.getSelectedItem()))
 			{
@@ -148,6 +148,7 @@ public class LevelEditor implements GameConstants
 				case "Hard":
 					g2d.drawImage(pic3, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
 //					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
+					break;
 				case "Insane":
 					g2d.drawImage(pic4, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
 //					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
@@ -167,7 +168,7 @@ public class LevelEditor implements GameConstants
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
 		
-		for (int i=0; i<normalGravityPortals.length; i++)
+		for (int i = 0; i < normalGravityPortals.length; i++)
 		{
 			if (!(normalGravityPortals[i][0] < -150 || normalGravityPortals[i][0] > 1550))
 			{
@@ -184,7 +185,7 @@ public class LevelEditor implements GameConstants
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
 		
-		for (int i=0; i<flippedGravityPortals.length; i++)
+		for (int i = 0; i < flippedGravityPortals.length; i++)
 		{
 			if (!(flippedGravityPortals[i][0] < -150 || flippedGravityPortals[i][0] > 1550))
 			{
@@ -201,7 +202,7 @@ public class LevelEditor implements GameConstants
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
 		
-		for (int i=0; i<normalSizePortals.length; i++)
+		for (int i = 0; i < normalSizePortals.length; i++)
 		{
 			if (!(normalSizePortals[i][0] < -150 || normalSizePortals[i][0] > 1550))
 			{
@@ -218,7 +219,7 @@ public class LevelEditor implements GameConstants
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
 		
-		for (int i=0; i<miniSizePortals.length; i++)
+		for (int i = 0; i < miniSizePortals.length; i++)
 		{
 			if (!(miniSizePortals[i][0] < -150 || miniSizePortals[i][0] > 1550))
 			{
@@ -235,7 +236,7 @@ public class LevelEditor implements GameConstants
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
 		
-		for (int i=0; i<wavePortals.length; i++)
+		for (int i = 0; i < wavePortals.length; i++)
 		{
 			if (!(wavePortals[i][0] < -150 || wavePortals[i][0] > 1550))
 			{
@@ -252,7 +253,7 @@ public class LevelEditor implements GameConstants
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
 		
-		for (int i=0; i<cubePortals.length; i++)
+		for (int i = 0; i < cubePortals.length; i++)
 		{
 			if (!(cubePortals[i][0] < -150 || cubePortals[i][0] > 1550))
 			{
@@ -271,12 +272,12 @@ public class LevelEditor implements GameConstants
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
 		
-		for (int i=0; i<platforms.length; i++)
+		for (int i = 0; i < platforms.length; i++)
 		{
 			if (!(platforms[i][1] < -10 || platforms[i][0] > 1550))
 			{
 //				g2d.drawLine(platforms[i][0], platforms[i][1], platforms[i][2], platforms[i][1]);
-				for (int j=platforms[i][0]; j<platforms[i][2]; j+=PIXELS_PER_BLOCK)
+				for (int j = platforms[i][0]; j < platforms[i][2]; j += PIXELS_PER_BLOCK)
 				{
 					g2d.drawImage(pic, j, platforms[i][1], PIXELS_PER_BLOCK, PIXELS_PER_BLOCK, null);
 				}
@@ -293,12 +294,12 @@ public class LevelEditor implements GameConstants
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
 		
-		for (int i=0; i<walls.length; i++)
+		for (int i = 0; i < walls.length; i++)
 		{
 			if (!(walls[i][2] < -10 || walls[i][2] > 1550))
 			{
 //				g2d.drawLine(walls[i][2], walls[i][0], walls[i][2], walls[i][1]);
-				for (int j=walls[i][0]; j<walls[i][1]; j+=PIXELS_PER_BLOCK)
+				for (int j = walls[i][0]; j < walls[i][1]; j += PIXELS_PER_BLOCK)
 				{
 					g2d.drawImage(pic, walls[i][2], j, PIXELS_PER_BLOCK, PIXELS_PER_BLOCK, null);
 				}
@@ -315,7 +316,7 @@ public class LevelEditor implements GameConstants
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
 		
-		for (int i=0; i<sawblades.length; i++)
+		for (int i = 0; i < sawblades.length; i++)
 		{
 			if (!((sawblades[i][1] + sawblades[i][0] / 2) < -10 || (sawblades[i][1] - sawblades[i][0] / 2) > 1550))
 			{
@@ -335,13 +336,13 @@ public class LevelEditor implements GameConstants
 		Stroke stroke = new BasicStroke(10);
 		g2d.setStroke(stroke);
 		
-		for (int i=0; i<slopes.length; i++)
+		for (int i = 0; i < slopes.length; i++)
 		{
 			if (!(slopes[i][1] < -10 || slopes[i][0] > 1550))
 			{
 				if (slopes[i][1] == slopes[i][3] && slopes[i][1] >= 420)
 				{
-					for (int j=slopes[i][0]; j<slopes[i][2]; j+=PIXELS_PER_BLOCK)
+					for (int j = slopes[i][0]; j < slopes[i][2]; j += PIXELS_PER_BLOCK)
 					{
 						g2d.drawImage(groundSpike, j, slopes[i][1] - 23, null);
 					}
@@ -349,7 +350,7 @@ public class LevelEditor implements GameConstants
 				
 				else if (slopes[i][1] == slopes[i][3] && slopes[i][1] < 420)
 				{
-					for (int j=slopes[i][0]; j<slopes[i][2]; j+=PIXELS_PER_BLOCK)
+					for (int j = slopes[i][0]; j < slopes[i][2]; j += PIXELS_PER_BLOCK)
 					{
 						g2d.drawImage(ceilingSpike, j, slopes[i][1], null);
 					}
