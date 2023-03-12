@@ -46,17 +46,16 @@ import java.awt.event.ActionListener;
 public class GameWindow extends JFrame
 	implements ActionListener, GameConstants
 {
-	public boolean gameStarted = false;
+	private Image gdImage;
+	private Graphics gdGraphics;
+	private LevelEditor lvl;
 	
 	private JButton play;
 	private String[] difficulty = {"Easy", "Medium", "Hard", "Insane", "Impossible"};
-	static JComboBox<String> comboBox;
 	
-	Image gdImage;
-	Graphics gdGraphics;
-	LevelEditor lvl;
-	
-	static RunningPlayer p = new RunningPlayer(-PLAYER_HITBOX, GROUND-PLAYER_HITBOX, CUBE, UP, THREE_TIMES, false);
+	public static JComboBox<String> comboBox;
+	public static RunningPlayer p = new RunningPlayer(-PLAYER_HITBOX, GROUND-PLAYER_HITBOX, CUBE, UP, THREE_TIMES, false);
+	public boolean gameStarted = false;
 	
 	public GameWindow()
 	{
@@ -82,7 +81,7 @@ public class GameWindow extends JFrame
 	{
 		gameStarted = true;
 		repaint();
-		Thread p1 = new Thread(p);
+		Thread p1 = new Thread(getP());
 		p1.start();
 	}
 	
@@ -98,7 +97,7 @@ public class GameWindow extends JFrame
 		}
 		
 		else {
-			p.drawCenteredText(g, "Recycle Wave", 96, 1.5);
+			getP().drawCenteredText(g, "Recycle Wave", 96, 1.5);
 			
 			if (System.getProperty("os.name").contains("Mac")) {
 				g.drawRect(642, 33, 121, 40);
@@ -164,7 +163,15 @@ public class GameWindow extends JFrame
 	public void draw(Graphics g)
 	{
 		drawGameGraphics((Graphics2D) g);
-		p.drawPlayer(g);
+		getP().drawPlayer(g);
 		repaint();
+	}
+
+	public JComboBox<String> getComboBox() {
+		return comboBox;
+	}
+
+	public RunningPlayer getP() {
+		return p;
 	}
 }

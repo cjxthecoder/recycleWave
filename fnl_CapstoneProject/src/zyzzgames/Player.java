@@ -44,14 +44,11 @@ public class Player implements GameConstants
 	public int t1, t2;
 	public static int platformY = 0;
 	protected static int hitbox;
-	protected int gamemode;
-	protected int gravity;
+	protected int gamemode, gravity, attempts;
 	protected double speed;
-	protected boolean mini, falling, gameWon;
 	protected double fullScore = 100.0;
-	protected int attempts = 1;
-	private int xDirection;
-	private int yDirection;
+	protected boolean mini, falling, gameWon;
+	private int xDirection, yDirection;
 	private boolean keyPressed = false;
 	
 	static Rectangle player;
