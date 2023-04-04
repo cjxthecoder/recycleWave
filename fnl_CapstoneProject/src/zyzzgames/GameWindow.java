@@ -44,7 +44,7 @@ import java.awt.event.ActionListener;
  */
 
 public class GameWindow extends JFrame
-	implements ActionListener, GameConstants
+	implements ActionListener
 {
 	private Image gdImage;
 	private Graphics gdGraphics;
@@ -54,7 +54,11 @@ public class GameWindow extends JFrame
 	private String[] difficulty = {"Easy", "Medium", "Hard", "Insane", "Impossible"};
 	
 	public static JComboBox<String> comboBox;
-	public static RunningPlayer p = new RunningPlayer(-PLAYER_HITBOX, GROUND-PLAYER_HITBOX, CUBE, UP, THREE_TIMES, false);
+	public static RunningPlayer p = new RunningPlayer(-GameConstants.PLAYER_HITBOX,
+														GameConstants.GROUND-GameConstants.PLAYER_HITBOX,
+														GameConstants.CUBE,
+														GameConstants.UP,
+														GameConstants.THREE_TIMES, false);
 	public boolean gameStarted = false;
 	
 	public GameWindow()
@@ -143,8 +147,8 @@ public class GameWindow extends JFrame
 //		}
 		
 		g.setColor(Color.CYAN);
-		g.drawLine(0, GROUND, 1550, GROUND);
-		g.drawLine(0, CEILING, 1550, CEILING);
+		g.drawLine(0, GameConstants.GROUND, 1550, GameConstants.GROUND);
+		g.drawLine(0, GameConstants.CEILING, 1550, GameConstants.CEILING);
 	    
 		lvl.createPlatforms(g, Color.BLACK, new ImageIcon("block.png").getImage());
 		lvl.createWalls(g, Color.RED, new ImageIcon("block.png").getImage());
@@ -157,7 +161,7 @@ public class GameWindow extends JFrame
 		lvl.createSlopes(g, new Color(240, 20, 160), new ImageIcon("groundSpike.png").getImage(), new ImageIcon("ceilingSpike.png").getImage());
 		lvl.createSawblades(g, Color.RED, new ImageIcon("fish.png").getImage());
 		lvl.createSpeedPortals(g, Color.GREEN);
-		lvl.drawProgressBar(g, -FINISH_LINE, Color.BLACK, Color.CYAN);
+		lvl.drawProgressBar(g, -GameConstants.FINISH_LINE, Color.BLACK, Color.CYAN);
 	}
 	
 	public void draw(Graphics g)

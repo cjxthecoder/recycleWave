@@ -26,7 +26,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * The Audio class is for implementing sound in-game. An audio has a {@link Clip}
- * that can be reset, set to a certain frame, be started, and be stopped.
+ * that can be reset, set to a certain frame, be started, or be stopped.
  * 
  * @author Ali Haryanawalla
  *

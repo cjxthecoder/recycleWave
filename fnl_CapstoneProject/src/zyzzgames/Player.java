@@ -39,7 +39,7 @@ import javax.swing.ImageIcon;
  * @since 1.0
  */
 
-public class Player implements GameConstants
+public class Player
 {
 	public int t1, t2;
 	public static int platformY = 0;
@@ -52,7 +52,7 @@ public class Player implements GameConstants
 	private int xDirection, yDirection;
 	private boolean keyPressed = false;
 	
-	static Rectangle player;
+	public static Rectangle player;
 	
 	Collision c = new Collision();
 	
@@ -63,9 +63,9 @@ public class Player implements GameConstants
 		this.speed = speed;
 		this.mini = mini;
 		
-		hitbox = PLAYER_HITBOX;
+		hitbox = GameConstants.PLAYER_HITBOX;
 		
-		if (gamemode == WAVE) {
+		if (gamemode == GameConstants.WAVE) {
 			hitbox /= 2;
 		}
 		
@@ -85,24 +85,24 @@ public class Player implements GameConstants
 	{
 	 	player.y += yDirection;
 	 	
-	 	if (player.y <= CEILING) {
-	 		player.y = CEILING;
+	 	if (player.y <= GameConstants.CEILING) {
+	 		player.y = GameConstants.CEILING;
 	 	}
 	 	
-	 	if (player.y >= GROUND - hitbox) {
-	 		player.y = GROUND - hitbox;
+	 	if (player.y >= GameConstants.GROUND - hitbox) {
+	 		player.y = GameConstants.GROUND - hitbox;
 	 	}
 	 	
 	 	if (c.checkPlatformCollision())
 	 	{
 	 		switch(gravity)
 	 		{
-	 			case UP:
+	 			case GameConstants.UP:
 	 				player.y = platformY + 1;
 	 				setFallingSpeed(0);
 	 				break;
 	 				
-	 			case DOWN:
+	 			case GameConstants.DOWN:
 	 				player.y = platformY - hitbox;
 	 				setFallingSpeed(0);
 	 				break;
@@ -115,22 +115,22 @@ public class Player implements GameConstants
 	
 	protected void fall()
 	{
-		if ((gravity == UP && player.y <= GROUND - hitbox) || (gravity == DOWN && player.y >= CEILING))
+		if ((gravity == GameConstants.UP && player.y <= GameConstants.GROUND - hitbox) || (gravity == GameConstants.DOWN && player.y >= GameConstants.CEILING))
 		{
 			switch(gamemode)
 			{
-				case CUBE:
+				case GameConstants.CUBE:
 					t1++;
 					setFallingSpeed(Math.min(t1 / 4.0, 8.0) * speed * gravity);
 					break;
 			
-				case SHIP:
+				case GameConstants.SHIP:
 					break;
 				
-				case BALL:
+				case GameConstants.BALL:
 					break;
 				
-				case WAVE:
+				case GameConstants.WAVE:
 					if (!keyPressed)
 					{
 						if (mini == true) {
@@ -150,10 +150,10 @@ public class Player implements GameConstants
 	{
 		switch(gamemode)
 		{
-			case CUBE:
+			case GameConstants.CUBE:
 				break;
 				
-			case SHIP:
+			case GameConstants.SHIP:
 				if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
 					t1++;
 					setYDirection(-Math.min(t1, 4.0) * speed * gravity);
@@ -161,10 +161,10 @@ public class Player implements GameConstants
 				}
 				break;
 				
-			case BALL:
+			case GameConstants.BALL:
 				break;
 				
-			case WAVE:
+			case GameConstants.WAVE:
 				if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
 					falling = false;
 					if (getSize() == true) {
@@ -184,10 +184,10 @@ public class Player implements GameConstants
 	{
 		switch(gamemode)
 		{
-			case CUBE:
+			case GameConstants.CUBE:
 				break;
 				
-			case SHIP:
+			case GameConstants.SHIP:
 				if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
 					t1 = 0;
 					t2 = 0;
@@ -196,10 +196,10 @@ public class Player implements GameConstants
 				}
 				break;
 			
-			case BALL:
+			case GameConstants.BALL:
 				break;
 				
-			case WAVE:
+			case GameConstants.WAVE:
 				falling = true;
 				if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
 					setYDirection(0);
@@ -216,8 +216,8 @@ public class Player implements GameConstants
 		
 		switch(gamemode)
 		{
-			case CUBE:
-				if (gravity == DOWN) {
+			case GameConstants.CUBE:
+				if (gravity == GameConstants.DOWN) {
 					Image playerCubeUp = (new ImageIcon("playerCubeUp.png")).getImage();
 					g.drawImage(playerCubeUp, player.x, player.y, player.width, player.height, null);
 				}
@@ -228,8 +228,8 @@ public class Player implements GameConstants
 				}
 				break;
 				
-			case WAVE:
-				if ((gravity == DOWN && keyPressed == false) || (gravity == UP && keyPressed == true)) {
+			case GameConstants.WAVE:
+				if ((gravity == GameConstants.DOWN && keyPressed == false) || (gravity == GameConstants.UP && keyPressed == true)) {
 					Image playerWaveDown = (new ImageIcon("playerWaveDown.png")).getImage();
 					g.drawImage(playerWaveDown, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
 				}
@@ -317,20 +317,20 @@ public class Player implements GameConstants
 	}
 	
 	public void setPlayerSize(double factor) {
-		hitbox = (int)(PLAYER_HITBOX * factor);
-		player.height = (int)(PLAYER_HITBOX * factor);
-		player.width = (int)(PLAYER_HITBOX * factor);
+		hitbox = (int)(GameConstants.PLAYER_HITBOX * factor);
+		player.height = (int)(GameConstants.PLAYER_HITBOX * factor);
+		player.width = (int)(GameConstants.PLAYER_HITBOX * factor);
 	}
 	
 	public void resetPlayerFields() {
-		player.x = START_LINE;
-		player.y = GROUND - hitbox;
-		player.height = PLAYER_HITBOX;
-		player.width = PLAYER_HITBOX;
-		hitbox = PLAYER_HITBOX;
-		gamemode = CUBE;
-		gravity = UP;
-		speed = THREE_TIMES;
+		player.x = GameConstants.START_LINE;
+		player.y = GameConstants.GROUND - hitbox;
+		player.height = GameConstants.PLAYER_HITBOX;
+		player.width = GameConstants.PLAYER_HITBOX;
+		hitbox = GameConstants.PLAYER_HITBOX;
+		gamemode = GameConstants.CUBE;
+		gravity = GameConstants.UP;
+		speed = GameConstants.THREE_TIMES;
 		mini = false;
 		keyPressed = false;
 	}

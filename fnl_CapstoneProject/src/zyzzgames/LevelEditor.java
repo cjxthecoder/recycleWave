@@ -42,10 +42,12 @@ import javax.swing.ImageIcon;
  * @since 1.0
  */
 
-public class LevelEditor implements GameConstants
+public class LevelEditor
 {
 	// Starting point of the level relative to the left-side of the window
-	public static int dx = START_LINE;
+	public static int dx = GameConstants.START_LINE;
+	private int d = GameConstants.SAWBLADE_DIAMETER;
+	private int ppb = GameConstants.PIXELS_PER_BLOCK;
 	
 	// A 2D array of platforms with each array being the position of one platform 
 	int[][] platforms = {{ X(1), Y(9), X(23) }};
@@ -54,15 +56,15 @@ public class LevelEditor implements GameConstants
 	int[][] walls = {{ Y(8), Y(0), X(1) }, { Y(8), Y(0), X(22) }};
 
 	// A 2D array of sawblades with each array being the position of one sawblade
-	int[][] sawblades = {{ D, cX(50), cY(14) }, { D, cX(56), cY(6) }, { D, cX(61), cY(8) },
-						 { D, cX(69), cY(15)}, { D, cX(76), cY(3) }, { D, cX(94), cY(12) },
-						 { D, cX(97), cY(5) }, { D, cX(109), cY(14) }, { D, cX(114), cY(8) },
-						 { D, cX(140), cY(7) }, { D, cX(146), cY(15) }, { D, cX(152), cY(7) },
-						 { D, cX(161), cY(4)}, { D, cX(166), cY(14) }, { D, cX(171), cY(4) }, { D, cX(176), cY(14)},
-						 { D, cX(181), cY(4)},  { D, cX(186), cY(14) }, { D, cX(191), cY(4)}, { D, cX(196), cY(14)},
-						 { D, cX(211), cY(4) }, { D, cX(214), cY(11) }, { D, cX(218), cY(15) }, { D, cX(225), cY(15) },
-						 { D, cX(235), cY(2) }, { D, cX(240), cY(15) }, { D, cX(245), cY(13) },
-						 { D, cX(261), cY(2) }, { D, cX(265), cY(8) }, { D, cX(270), cY(4) }, { D, cX(271), cY(12) }};
+	int[][] sawblades = {{ d, cX(50), cY(14) }, { d, cX(56), cY(6) }, { d, cX(61), cY(8) },
+						 { d, cX(69), cY(15)}, { d, cX(76), cY(3) }, { d, cX(94), cY(12) },
+						 { d, cX(97), cY(5) }, { d, cX(109), cY(14) }, { d, cX(114), cY(8) },
+						 { d, cX(140), cY(7) }, { d, cX(146), cY(15) }, { d, cX(152), cY(7) },
+						 { d, cX(161), cY(4)}, { d, cX(166), cY(14) }, { d, cX(171), cY(4) }, { d, cX(176), cY(14)},
+						 { d, cX(181), cY(4)},  { d, cX(186), cY(14) }, { d, cX(191), cY(4)}, { d, cX(196), cY(14)},
+						 { d, cX(211), cY(4) }, { d, cX(214), cY(11) }, { d, cX(218), cY(15) }, { d, cX(225), cY(15) },
+						 { d, cX(235), cY(2) }, { d, cX(240), cY(15) }, { d, cX(245), cY(13) },
+						 { d, cX(261), cY(2) }, { d, cX(265), cY(8) }, { d, cX(270), cY(4) }, { d, cX(271), cY(12) }};
 
 	// A 2D array of slopes with each array being the position of one slope
 	int[][] slopes = {{ X(25), Y(0), X(35), Y(10) }, { X(35), Y(10), X(45), Y(0) },
@@ -107,20 +109,20 @@ public class LevelEditor implements GameConstants
 	 */
 	
 	private int X(int x) {
-		return x * PIXELS_PER_BLOCK + dx;
+		return x * ppb + dx;
 	}
 	
 	private int Y(int y) {
-		return -y * PIXELS_PER_BLOCK + GROUND;
+		return -y * ppb + GameConstants.GROUND;
 	}
 	
 	// cX and cY for coordinates of circles (sawblades)
 	private int cX(int x) {
-		return x * PIXELS_PER_BLOCK + PIXELS_PER_BLOCK / 2 + dx;
+		return x * ppb + ppb / 2 + dx;
 	}
 	
 	private int cY(int y) {
-		return -y * PIXELS_PER_BLOCK + GROUND - PIXELS_PER_BLOCK / 2;
+		return -y * ppb + GameConstants.GROUND - ppb / 2;
 	}
 	
 	public void createSpeedPortals(Graphics2D g2d, Color c)
@@ -138,24 +140,24 @@ public class LevelEditor implements GameConstants
 			switch (String.valueOf(GameWindow.comboBox.getSelectedItem()))
 			{
 				case "Easy":
-					g2d.drawImage(pic1, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
+					g2d.drawImage(pic1, speedPortals[i][0], speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40, null);
+//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40);
 					break;
 				case "Medium":
-					g2d.drawImage(pic2, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
+					g2d.drawImage(pic2, speedPortals[i][0], speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40, null);
+//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40);
 					break;
 				case "Hard":
-					g2d.drawImage(pic3, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
+					g2d.drawImage(pic3, speedPortals[i][0], speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40, null);
+//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40);
 					break;
 				case "Insane":
-					g2d.drawImage(pic4, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
+					g2d.drawImage(pic4, speedPortals[i][0], speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40, null);
+//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40);
 					break;
 				case "Impossible":
-					g2d.drawImage(pic5, speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40, null);
-//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40);
+					g2d.drawImage(pic5, speedPortals[i][0], speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40, null);
+//					g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40);
 					break;					
 			}
 		}
@@ -172,8 +174,8 @@ public class LevelEditor implements GameConstants
 		{
 			if (!(normalGravityPortals[i][0] < -150 || normalGravityPortals[i][0] > 1550))
 			{
-//				g2d.drawRect(normalGravityPortals[i][0], flippedGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4);
-				g2d.drawImage(pic, normalGravityPortals[i][0], normalGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
+//				g2d.drawRect(normalGravityPortals[i][0], flippedGravityPortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4);
+				g2d.drawImage(pic, normalGravityPortals[i][0], normalGravityPortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4, null);
 			}
 		}
 	}
@@ -189,8 +191,8 @@ public class LevelEditor implements GameConstants
 		{
 			if (!(flippedGravityPortals[i][0] < -150 || flippedGravityPortals[i][0] > 1550))
 			{
-//				g2d.drawRect(flippedGravityPortals[i][0], flippedGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4);
-				g2d.drawImage(pic, flippedGravityPortals[i][0], flippedGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
+//				g2d.drawRect(flippedGravityPortals[i][0], flippedGravityPortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4);
+				g2d.drawImage(pic, flippedGravityPortals[i][0], flippedGravityPortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4, null);
 			}
 		}
 	}
@@ -206,8 +208,8 @@ public class LevelEditor implements GameConstants
 		{
 			if (!(normalSizePortals[i][0] < -150 || normalSizePortals[i][0] > 1550))
 			{
-//				g2d.drawRect(normalSizePortals[i][0], normalSizePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4);
-				g2d.drawImage(pic, normalSizePortals[i][0], normalSizePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
+//				g2d.drawRect(normalSizePortals[i][0], normalSizePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4);
+				g2d.drawImage(pic, normalSizePortals[i][0], normalSizePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4, null);
 			}
 		}
 	}
@@ -223,8 +225,8 @@ public class LevelEditor implements GameConstants
 		{
 			if (!(miniSizePortals[i][0] < -150 || miniSizePortals[i][0] > 1550))
 			{
-//				g2d.drawRect(miniSizePortals[i][0], miniSizePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4);
-				g2d.drawImage(pic, miniSizePortals[i][0], miniSizePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
+//				g2d.drawRect(miniSizePortals[i][0], miniSizePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4);
+				g2d.drawImage(pic, miniSizePortals[i][0], miniSizePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4, null);
 			}
 		}
 	}
@@ -240,8 +242,8 @@ public class LevelEditor implements GameConstants
 		{
 			if (!(wavePortals[i][0] < -150 || wavePortals[i][0] > 1550))
 			{
-//				g2d.drawRect(wavePortals[i][0], wavePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4);
-				g2d.drawImage(pic, wavePortals[i][0], wavePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
+//				g2d.drawRect(wavePortals[i][0], wavePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4);
+				g2d.drawImage(pic, wavePortals[i][0], wavePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4, null);
 			}
 		}
 	}
@@ -257,8 +259,8 @@ public class LevelEditor implements GameConstants
 		{
 			if (!(cubePortals[i][0] < -150 || cubePortals[i][0] > 1550))
 			{
-//				g2d.drawRect(cubePortals[i][0], cubePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4);
-				g2d.drawImage(pic, cubePortals[i][0], cubePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4, null);
+//				g2d.drawRect(cubePortals[i][0], cubePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4);
+				g2d.drawImage(pic, cubePortals[i][0], cubePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4, null);
 			}
 		}
 	}
@@ -277,9 +279,9 @@ public class LevelEditor implements GameConstants
 			if (!(platforms[i][1] < -10 || platforms[i][0] > 1550))
 			{
 //				g2d.drawLine(platforms[i][0], platforms[i][1], platforms[i][2], platforms[i][1]);
-				for (int j = platforms[i][0]; j < platforms[i][2]; j += PIXELS_PER_BLOCK)
+				for (int j = platforms[i][0]; j < platforms[i][2]; j += ppb)
 				{
-					g2d.drawImage(pic, j, platforms[i][1], PIXELS_PER_BLOCK, PIXELS_PER_BLOCK, null);
+					g2d.drawImage(pic, j, platforms[i][1], ppb, ppb, null);
 				}
 			}
 		}
@@ -299,9 +301,9 @@ public class LevelEditor implements GameConstants
 			if (!(walls[i][2] < -10 || walls[i][2] > 1550))
 			{
 //				g2d.drawLine(walls[i][2], walls[i][0], walls[i][2], walls[i][1]);
-				for (int j = walls[i][0]; j < walls[i][1]; j += PIXELS_PER_BLOCK)
+				for (int j = walls[i][0]; j < walls[i][1]; j += ppb)
 				{
-					g2d.drawImage(pic, walls[i][2], j, PIXELS_PER_BLOCK, PIXELS_PER_BLOCK, null);
+					g2d.drawImage(pic, walls[i][2], j, ppb, ppb, null);
 				}
 			}
 		}
@@ -342,7 +344,7 @@ public class LevelEditor implements GameConstants
 			{
 				if (slopes[i][1] == slopes[i][3] && slopes[i][1] >= 420)
 				{
-					for (int j = slopes[i][0]; j < slopes[i][2]; j += PIXELS_PER_BLOCK)
+					for (int j = slopes[i][0]; j < slopes[i][2]; j += ppb)
 					{
 						g2d.drawImage(groundSpike, j, slopes[i][1] - 23, null);
 					}
@@ -350,7 +352,7 @@ public class LevelEditor implements GameConstants
 				
 				else if (slopes[i][1] == slopes[i][3] && slopes[i][1] < 420)
 				{
-					for (int j = slopes[i][0]; j < slopes[i][2]; j += PIXELS_PER_BLOCK)
+					for (int j = slopes[i][0]; j < slopes[i][2]; j += ppb)
 					{
 						g2d.drawImage(ceilingSpike, j, slopes[i][1], null);
 					}
@@ -370,11 +372,11 @@ public class LevelEditor implements GameConstants
 		g2d.setStroke(stroke);
 		g2d.setColor(progressColor);
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.fillRect(558, 38, (420 * (dx - START_LINE)) / levelEndPoint, 15);
+		g2d.fillRect(558, 38, (420 * (dx - GameConstants.START_LINE)) / levelEndPoint, 15);
 		g2d.setColor(barColor);
 		g2d.drawRect(558, 38, 420, 15);
 		g2d.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
-		g2d.drawString((Math.max(0, (100 * (dx - START_LINE)) / levelEndPoint)) + "%", 986, 54);
+		g2d.drawString((Math.max(0, (100 * (dx - GameConstants.START_LINE)) / levelEndPoint)) + "%", 986, 54);
 	}
 	
 	public static void setDx(int x) {

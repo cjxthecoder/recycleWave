@@ -27,36 +27,36 @@ package zyzzgames;
  * @since 1.0
  */
 
-public interface GameConstants
+public class GameConstants
 {
 	// Constants related to the game window
-	int GROUND = 780;
-	int CEILING = 60;
-	int PLAYER_HITBOX = 40;
-	double TWO_HUNDRED_FIFTIETH_ROOT_OF_ONE_HUNDRED = 1.0185508475756433;
+	public static final int GROUND = 780;
+	public static final int CEILING = 60;
+	public static final int PLAYER_HITBOX = 40;
+	public static final double TWO_HUNDRED_FIFTIETH_ROOT_OF_ONE_HUNDRED = 1.0185508475756433;
 	
 	// Constants related to the player's gamemode
-	byte CUBE = 2;
-	byte SHIP = 4;
-	byte BALL = 8;
-	byte UFO = 16;
-	byte WAVE = 32;
-	byte SPIDER = 64;
+	public static final byte CUBE = 2;
+	public static final byte SHIP = 4;
+	public static final byte BALL = 8;
+	public static final byte UFO = 16;
+	public static final byte WAVE = 32;
+	public static final byte SPIDER = 64;
 	
 	// Constants related to the player's gravity
-	int DOWN = 1;
-	int UP = -1;
+	public static final int DOWN = 1;
+	public static final int UP = -1;
 	
 	// Constants related to the placement of objects in the level editor, and when the player has won the game
-	int START_LINE = 300;
-	int FINISH_LINE = 11300;
-	int PIXELS_PER_BLOCK = 40;
-	int D = 150;
+	public static final int START_LINE = 300;
+	public static final int FINISH_LINE = 11300;
+	public static final int PIXELS_PER_BLOCK = 40;
+	public static final int SAWBLADE_DIAMETER = 150;
 	
 	// Constants related to the player's speed
-	double HALF_TIMES = 0.5;
-	double ONE_TIMES = 1.0;
-	double TWO_TIMES = 1.25;
-	double THREE_TIMES = 1.5;
-	double FOUR_TIMES = 2.0;
+	public static final double HALF_TIMES = 0.5;
+	public static final double ONE_TIMES = 1.0;
+	public static final double TWO_TIMES = 1.25;
+	public static final double THREE_TIMES = 1.5;
+	public static final double FOUR_TIMES = 2.0;
 }

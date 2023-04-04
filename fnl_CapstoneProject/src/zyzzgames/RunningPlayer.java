@@ -49,24 +49,24 @@ public class RunningPlayer extends Player
 		switch (String.valueOf(GameWindow.comboBox.getSelectedItem()))
 		{
 			case "Easy":
-				s = HALF_TIMES;
-				fullScore *= HALF_TIMES;
+				s = GameConstants.HALF_TIMES;
+				fullScore *= GameConstants.HALF_TIMES;
 				break;
 			case "Medium":
-				s = ONE_TIMES;
-				fullScore *= ONE_TIMES;
+				s = GameConstants.ONE_TIMES;
+				fullScore *= GameConstants.ONE_TIMES;
 				break;
 			case "Hard":
-				s = TWO_TIMES;
-				fullScore *= TWO_TIMES;
+				s = GameConstants.TWO_TIMES;
+				fullScore *= GameConstants.TWO_TIMES;
 				break;
 			case "Insane":
-				s = THREE_TIMES;
-				fullScore *= THREE_TIMES;
+				s = GameConstants.THREE_TIMES;
+				fullScore *= GameConstants.THREE_TIMES;
 				break;
 			case "Impossible":
-				s = FOUR_TIMES;
-				fullScore *= FOUR_TIMES;
+				s = GameConstants.FOUR_TIMES;
+				fullScore *= GameConstants.FOUR_TIMES;
 				break;
 		}
 		
@@ -74,7 +74,7 @@ public class RunningPlayer extends Player
 			Thread.sleep(500);
 			while(true)
 			{
-				if ((player.x < START_LINE || LevelEditor.dx < START_LINE - FINISH_LINE) && !gameWon)
+				if ((player.x < GameConstants.START_LINE || LevelEditor.dx < GameConstants.START_LINE - GameConstants.FINISH_LINE) && !gameWon)
 				{
 					setXDirection(4.0 * speed);
 					makePlayerReach300();
@@ -84,11 +84,11 @@ public class RunningPlayer extends Player
 				if (c.checkDeathCollisions()) // c.checkDeathCollisions()
 				{
 					gs.stopMusic();
-					fullScore /= TWO_HUNDRED_FIFTIETH_ROOT_OF_ONE_HUNDRED;
+					fullScore /= GameConstants.TWO_HUNDRED_FIFTIETH_ROOT_OF_ONE_HUNDRED;
 					attempts++;
 					Thread.sleep(1000);
 					resetPlayerFields();
-					LevelEditor.setDx(2 * START_LINE);
+					LevelEditor.setDx(2 * GameConstants.START_LINE);
 				}
 				
 				else {
@@ -101,28 +101,28 @@ public class RunningPlayer extends Player
 					
 					if (c.checkNormalGravityCollision())
 					{
-						if (gravity == UP)
+						if (gravity == GameConstants.UP)
 						{
 							t1 = 0;
 							t2 = 0;
-							gravity = DOWN;
+							gravity = GameConstants.DOWN;
 						}
 					}
 					
 					if (c.checkFlippedGravityCollision())
 					{
-						if (gravity == DOWN)
+						if (gravity == GameConstants.DOWN)
 						{
 							t1 = 0;
 							t2 = 0;
-							gravity = UP;
+							gravity = GameConstants.UP;
 						}
 					}
 					
 					if (c.checkMiniSizeCollision()) // divide by 4 if player is wave, else divide by 2
 					{
 						mini = true;
-						if (gamemode == WAVE) {
+						if (gamemode == GameConstants.WAVE) {
 							setPlayerSize(0.25);
 						}
 						else {
@@ -133,7 +133,7 @@ public class RunningPlayer extends Player
 					if (c.checkNormalSizeCollision()) // divide by 2 if player is wave, else divide by 1
 					{
 						mini = false;
-						if (gamemode == WAVE) {
+						if (gamemode == GameConstants.WAVE) {
 							setPlayerSize(0.5);
 						}
 						else {
@@ -143,18 +143,18 @@ public class RunningPlayer extends Player
 					
 					if (c.checkWaveCollision()) // divide by 2
 					{
-						gamemode = WAVE;
+						gamemode = GameConstants.WAVE;
 						setPlayerSize(0.5);
 					}
 					
 					if (c.checkCubeCollision()) // divide by 1
 					{
-						if (gamemode == WAVE) {
-							gamemode = CUBE;
+						if (gamemode == GameConstants.WAVE) {
+							gamemode = GameConstants.CUBE;
 							setPlayerSize(1.0);
 						}
 						else {
-							gamemode = CUBE;
+							gamemode = GameConstants.CUBE;
 						}
 					}
 					
@@ -168,7 +168,7 @@ public class RunningPlayer extends Player
 						gameWon = true;
 					}
 					
-					if (player.x >= START_LINE && LevelEditor.dx >= START_LINE - FINISH_LINE) {
+					if (player.x >= GameConstants.START_LINE && LevelEditor.dx >= GameConstants.START_LINE - GameConstants.FINISH_LINE) {
 						LevelEditor.goForward((int)(4.0 * speed));
 					}
 					

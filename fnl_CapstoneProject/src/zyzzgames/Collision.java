@@ -32,8 +32,10 @@ import java.awt.geom.Line2D;
  * @since 1.0
  */
 
-public class Collision implements GameConstants
+public class Collision
 {	
+	private int ppb = GameConstants.PIXELS_PER_BLOCK;
+	
 	public boolean checkDeathCollisions()
 	{
 		LevelEditor lvl = new LevelEditor();
@@ -66,7 +68,7 @@ public class Collision implements GameConstants
 		for (int i = 0; i < lvl.speedPortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.speedPortals[i][0], lvl.speedPortals[i][1], (19 * PIXELS_PER_BLOCK) / 8, (83 * PIXELS_PER_BLOCK) / 40)))
+					(new Rectangle(lvl.speedPortals[i][0], lvl.speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40)))
 			{
 				return true;
 			}
@@ -82,7 +84,7 @@ public class Collision implements GameConstants
 		for (int i = 0; i < lvl.normalGravityPortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.normalGravityPortals[i][0], lvl.normalGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4)))
+					(new Rectangle(lvl.normalGravityPortals[i][0], lvl.normalGravityPortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
 			{
 				return true;
 			}
@@ -98,7 +100,7 @@ public class Collision implements GameConstants
 		for (int i = 0; i < lvl.flippedGravityPortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.flippedGravityPortals[i][0], lvl.flippedGravityPortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4)))
+					(new Rectangle(lvl.flippedGravityPortals[i][0], lvl.flippedGravityPortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
 			{
 				return true;
 			}
@@ -114,7 +116,7 @@ public class Collision implements GameConstants
 		for (int i = 0; i < lvl.miniSizePortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.miniSizePortals[i][0], lvl.miniSizePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4)))
+					(new Rectangle(lvl.miniSizePortals[i][0], lvl.miniSizePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
 			{
 				return true;
 			}
@@ -130,7 +132,7 @@ public class Collision implements GameConstants
 		for (int i = 0; i < lvl.normalSizePortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.normalSizePortals[i][0], lvl.normalSizePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4)))
+					(new Rectangle(lvl.normalSizePortals[i][0], lvl.normalSizePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
 			{
 				return true;
 			}
@@ -146,7 +148,7 @@ public class Collision implements GameConstants
 		for (int i = 0; i < lvl.wavePortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.wavePortals[i][0], lvl.wavePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4)))
+					(new Rectangle(lvl.wavePortals[i][0], lvl.wavePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
 			{
 				return true;
 			}
@@ -162,7 +164,7 @@ public class Collision implements GameConstants
 		for (int i = 0; i < lvl.cubePortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.cubePortals[i][0], lvl.cubePortals[i][1], (3 * PIXELS_PER_BLOCK) / 2, (15 * PIXELS_PER_BLOCK) / 4)))
+					(new Rectangle(lvl.cubePortals[i][0], lvl.cubePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
 			{
 				return true;
 			}
