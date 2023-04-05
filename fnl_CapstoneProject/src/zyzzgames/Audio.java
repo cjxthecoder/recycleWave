@@ -36,9 +36,11 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Audio
 {
 	private Clip clip;
+	private String src;
 	
-	public Audio(File source) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
-		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(source);
+	public Audio(String source) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+		src = source;
+		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(src));
 		clip = AudioSystem.getClip();
 		clip.open(audioInputStream);
 		
@@ -52,8 +54,9 @@ public class Audio
 		clip.setFramePosition(0);
 	}
 	
-	public void setOffset(double seconds) {
-		clip.setFramePosition((int)(48000 * seconds));
+	public void setOffset(float seconds) {
+		int hz = Integer.parseInt(src.substring(0, 5));
+		clip.setFramePosition((int)(hz * seconds));
 	}
 
 	public void play() {

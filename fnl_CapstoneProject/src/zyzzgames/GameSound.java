@@ -36,9 +36,9 @@ public class GameSound
 	{ 
 		try {
 			if (audio == null) {
-				audio = new Audio(new File("574484_F-777---Sonic-Blaster.wav"));
+				audio = new Audio("48000/574484_F-777---Sonic-Blaster_48000.wav");
 			}
-			audio.setOffset(38.0);
+			audio.setOffset(38.0f);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -50,6 +50,6 @@ public class GameSound
 	
 	public void stopMusic() {
 		audio.stop();
-		audio.setOffset(37.75);
+		audio.setOffset(37.75f);
 	}
 }
