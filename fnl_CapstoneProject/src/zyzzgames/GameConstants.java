@@ -37,10 +37,11 @@ public class GameConstants
 	
 	// Constants related to the player's gamemode
 	public static final byte CUBE = 2;
-	public static final byte SHIP = 4;
-	public static final byte BALL = 8;
-	public static final byte UFO = 16;
-	public static final byte WAVE = 32;
+	public static final byte SHIP = 3;
+	public static final byte BALL = 4;
+	public static final byte UFO = 8;
+	public static final byte WAVE = 16;
+	public static final byte ROBOT = 32;
 	public static final byte SPIDER = 64;
 	
 	// Constants related to the player's gravity
