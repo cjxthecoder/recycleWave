@@ -137,7 +137,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < speedPortals.length; i++)
 		{
-			switch (String.valueOf(GameWindow.comboBox.getSelectedItem()))
+			switch (String.valueOf(GameWindow.getComboBox().getSelectedItem()))
 			{
 				case "Easy":
 					g2d.drawImage(pic1, speedPortals[i][0], speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40, null);

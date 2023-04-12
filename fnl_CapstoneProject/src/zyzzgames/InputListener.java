@@ -33,10 +33,10 @@ public class InputListener extends KeyAdapter
 {
 	@Override
 	public void keyPressed(KeyEvent e) {
-		GameWindow.p.keyPressed(e);
+		GameWindow.getP().keyPressed(e);
 	}	
 	@Override
 	public void keyReleased(KeyEvent e) {
-		GameWindow.p.keyReleased(e);
+		GameWindow.getP().keyReleased(e);
 	}
 }

@@ -53,8 +53,8 @@ public class GameWindow extends JFrame
 	private JButton play;
 	private String[] difficulty = {"Easy", "Medium", "Hard", "Insane", "Impossible"};
 	
-	public static JComboBox<String> comboBox;
-	public static RunningPlayer p = new RunningPlayer(-GameConstants.PLAYER_HITBOX,
+	private static JComboBox<String> comboBox;
+	private static RunningPlayer p = new RunningPlayer(-GameConstants.PLAYER_HITBOX,
 														GameConstants.GROUND-GameConstants.PLAYER_HITBOX,
 														GameConstants.CUBE,
 														GameConstants.UP,
@@ -171,11 +171,11 @@ public class GameWindow extends JFrame
 		repaint();
 	}
 
-	public JComboBox<String> getComboBox() {
+	public static JComboBox<String> getComboBox() {
 		return comboBox;
 	}
 
-	public RunningPlayer getP() {
+	public static RunningPlayer getP() {
 		return p;
 	}
 }

@@ -32,8 +32,6 @@ public class Main extends JFrame
 {	
 	public static void main(String[] args)
 	{
-		Field[] fields = GameConstants.class.getFields();
-		System.out.println(Arrays.toString(fields));
 		GameWindow gw = new GameWindow();
 		gw.setBounds(0, 0, 1536, 840);
 		gw.setBackground(new Color(20, 90, 230));

@@ -46,7 +46,7 @@ public class RunningPlayer extends Player
 	{	
 		gs.loadMusic();
 		
-		switch (String.valueOf(GameWindow.comboBox.getSelectedItem()))
+		switch (String.valueOf(GameWindow.getComboBox().getSelectedItem()))
 		{
 			case "Easy":
 				s = GameConstants.HALF_TIMES;
