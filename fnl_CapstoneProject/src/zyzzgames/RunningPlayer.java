@@ -72,7 +72,7 @@ public class RunningPlayer extends Player
 		
 		try {
 			Thread.sleep(500);
-			while(true)
+			while (true)
 			{
 				if ((player.x < GameConstants.START_LINE || LevelEditor.dx < GameConstants.START_LINE - GameConstants.FINISH_LINE) && !gameWon)
 				{

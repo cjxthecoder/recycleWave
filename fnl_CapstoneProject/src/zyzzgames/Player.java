@@ -41,8 +41,8 @@ import javax.swing.ImageIcon;
 
 public class Player
 {
-	public int t1, t2;
-	public static int platformY = 0;
+	protected int t1, t2;
+	protected static int platformY = 0;
 	protected static int hitbox;
 	protected int gamemode, gravity;
 	protected int attempts = 1;
@@ -256,7 +256,7 @@ public class Player
 		Font font = new Font(Font.SANS_SERIF, Font.PLAIN, pt);
 		FontMetrics metrics = g.getFontMetrics(font);
 		int x = (1536 - metrics.stringWidth(s)) / 2;
-		int y = (int)((840 - metrics.getHeight()) / yFactor + metrics.getAscent());
+		int y = (int) Math.round((840 - metrics.getHeight()) / yFactor + metrics.getAscent());
 		g.setFont(font);
 		g.drawString(s, x, y/2);
 	}
@@ -305,21 +305,21 @@ public class Player
 	}
 	
 	public void setXDirection(double xDir) {
-		xDirection = (int)xDir;
+		xDirection = (int) Math.round(xDir);
 	}
 	
 	public void setYDirection(double yDir) {
-		yDirection = (int)yDir;
+		yDirection = (int) Math.round(yDir);
 	}
 	
 	public void setFallingSpeed(double fallingSpeed) {
-		yDirection = (int)fallingSpeed;
+		yDirection = (int) Math.round(fallingSpeed);
 	}
 	
 	public void setPlayerSize(double factor) {
-		hitbox = (int)(GameConstants.PLAYER_HITBOX * factor);
-		player.height = (int)(GameConstants.PLAYER_HITBOX * factor);
-		player.width = (int)(GameConstants.PLAYER_HITBOX * factor);
+		hitbox = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
+		player.height = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
+		player.width = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
 	}
 	
 	public void resetPlayerFields() {
