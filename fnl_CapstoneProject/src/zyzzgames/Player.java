@@ -279,11 +279,6 @@ public class Player
 		return gravity;
 	}
 
-	protected boolean isMini()
-	{
-		return mini;
-	}
-	
 	protected void setGamemode(int gamemode)
 	{
 		this.gamemode = gamemode;
