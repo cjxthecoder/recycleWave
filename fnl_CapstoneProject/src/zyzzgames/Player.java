@@ -52,7 +52,7 @@ public class Player
 	private int xDirection, yDirection;
 	private boolean keyPressed = false;
 	
-	public static Rectangle player;
+	protected static Rectangle player;
 	
 	Collision c = new Collision();
 	
@@ -146,7 +146,7 @@ public class Player
 		}
 	}
 
-	public void keyPressed(KeyEvent e)
+	protected void keyPressed(KeyEvent e)
 	{
 		switch(gamemode)
 		{
@@ -180,7 +180,7 @@ public class Player
 		}
 	}
 	
-	public void keyReleased(KeyEvent e)
+	protected void keyReleased(KeyEvent e)
 	{
 		switch(gamemode)
 		{
@@ -209,7 +209,7 @@ public class Player
 		}
 	}
 	
-	public void drawPlayer(Graphics g)
+	protected void drawPlayer(Graphics g)
 	{
 		g.setColor(Color.BLACK);
 //		g.drawRect(player.x, player.y, player.width, player.height);
@@ -251,7 +251,7 @@ public class Player
 		}
 	}
 	
-	public void drawCenteredText(Graphics g, String s, int pt, double yFactor) {
+	protected void drawCenteredText(Graphics g, String s, int pt, double yFactor) {
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		Font font = new Font(Font.SANS_SERIF, Font.PLAIN, pt);
 		FontMetrics metrics = g.getFontMetrics(font);
@@ -261,68 +261,68 @@ public class Player
 		g.drawString(s, x, y/2);
 	}
 	
-	public static int getX() {
+	protected static int getX() {
 		return player.x;
 	}
 	
-	public static int getY() {
+	protected static int getY() {
 		return player.y;
 	}
 	
-	public static int getHitbox() {
+	protected static int getHitbox() {
 		return hitbox;
 	}
 	
-	public int getGamemode() {
+	protected int getGamemode() {
 		return gamemode;
 	}
 	
-	public int getGravity()
+	protected int getGravity()
 	{
 		return gravity;
 	}
 
-	public boolean getSize()
+	protected boolean getSize()
 	{
 		return mini;
 	}
 	
-	public void setGamemode(int gamemode)
+	protected void setGamemode(int gamemode)
 	{
 		this.gamemode = gamemode;
 	}
 	
-	public void setGravity(int gravity)
+	protected void setGravity(int gravity)
 	{
 		t1 = 0;
 		t2 = 0;
 		this.gravity = gravity;
 	}
 	
-	public void setMini(boolean mini)
+	protected void setMini(boolean mini)
 	{
 		this.mini = mini;
 	}
 	
-	public void setXDirection(double xDir) {
+	protected void setXDirection(double xDir) {
 		xDirection = (int) Math.round(xDir);
 	}
 	
-	public void setYDirection(double yDir) {
+	protected void setYDirection(double yDir) {
 		yDirection = (int) Math.round(yDir);
 	}
 	
-	public void setFallingSpeed(double fallingSpeed) {
+	protected void setFallingSpeed(double fallingSpeed) {
 		yDirection = (int) Math.round(fallingSpeed);
 	}
 	
-	public void setPlayerSize(double factor) {
+	protected void setPlayerSize(double factor) {
 		hitbox = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
 		player.height = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
 		player.width = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
 	}
 	
-	public void resetPlayerFields() {
+	protected void resetPlayerFields() {
 		player.x = GameConstants.START_LINE;
 		player.y = GameConstants.GROUND - hitbox;
 		player.height = GameConstants.PLAYER_HITBOX;
