@@ -17,7 +17,7 @@ Children or adults of all ages.
 2. It will load you into a window that may or may not have a background. On top of the title there are 2 rectangles that says to "drag your cursor here" or "over there> AS WELL!". Drag your mouse there.
 3. Dragging to the left rectangle will create the "Play" button. Click this to play the game. Dragging to the area pointed by the text "over there>" creates a drop down menu, where you can choose the speed of the game.
 4. Once the game is running, your player will land on a platform before entering a cool portal. You can press the spacebar, enter, or up key to move your characater. Holding the key makes your character move up, while releasing the key allows you chracter to fall down.
-5. Reach 100% to complete the level, where your final score will be given exactly by 100/(t^(deaths)), where t is the 250th root of 100. After the level is completed you can rerun the program to try the game at a different speed.
+5. Reach 100% to complete the level, where your final score will be given exactly by 100/(x^(deaths)), where x is a double closer to the 250th root of 100 than any other double value. After the level is completed you can rerun the program to try the game at a different speed.
 
 ## Class List:
 - Audio
