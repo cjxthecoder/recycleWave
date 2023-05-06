@@ -34,25 +34,23 @@ import java.awt.geom.Line2D;
 
 public class Collision
 {	
-	private int ppb = GameConstants.PIXELS_PER_BLOCK;
+	private static int ppb = GameConstants.PIXELS_PER_BLOCK;
 	
-	public boolean checkDeathCollisions()
+	public static boolean checkDeathCollision(int[][] slopes, int[][] sawblades)
 	{
-		LevelEditor lvl = new LevelEditor();
-		
-		for (int i = 0; i < lvl.slopes.length; i++)
+		for (int i = 0; i < slopes.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersectsLine
-					(new Line2D.Double(lvl.slopes[i][0], lvl.slopes[i][1],lvl.slopes[i][2], lvl.slopes[i][3])))
+					(new Line2D.Double(slopes[i][0], slopes[i][1],slopes[i][2], slopes[i][3])))
 			{
 				return true;
 			}
 		}
 		
-		for (int i = 0; i < lvl.sawblades.length; i++)
+		for (int i = 0; i < sawblades.length; i++)
 		{
 			if (intersectsCircle(new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()),
-									lvl.sawblades[i][1], lvl.sawblades[i][2], lvl.sawblades[i][0])) 
+									sawblades[i][1], sawblades[i][2], sawblades[i][0])) 
 			{
 				return true;
 			}
@@ -61,14 +59,12 @@ public class Collision
 		return false;
 	}
 	
-	public boolean checkSpeedCollision()
+	public static boolean checkSpeedCollision(int[][] speedPortals)
 	{
-		LevelEditor lvl = new LevelEditor();
-		
-		for (int i = 0; i < lvl.speedPortals.length; i++)
+		for (int i = 0; i < speedPortals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.speedPortals[i][0], lvl.speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40)))
+					(new Rectangle(speedPortals[i][0], speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40)))
 			{
 				return true;
 			}
@@ -77,14 +73,12 @@ public class Collision
 		return false;
 	}
 	
-	public boolean checkNormalGravityCollision()
+	public static boolean checkPortalCollision(int[][] portals)
 	{
-		LevelEditor lvl = new LevelEditor();
-		
-		for (int i = 0; i < lvl.normalGravityPortals.length; i++)
+		for (int i = 0; i < portals.length; i++)
 		{
 			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.normalGravityPortals[i][0], lvl.normalGravityPortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
+					(new Rectangle(portals[i][0], portals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
 			{
 				return true;
 			}
@@ -93,87 +87,7 @@ public class Collision
 		return false;
 	}
 	
-	public boolean checkFlippedGravityCollision()
-	{
-		LevelEditor lvl = new LevelEditor();
-		
-		for (int i = 0; i < lvl.flippedGravityPortals.length; i++)
-		{
-			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.flippedGravityPortals[i][0], lvl.flippedGravityPortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
-			{
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	public boolean checkMiniSizeCollision()
-	{
-		LevelEditor lvl = new LevelEditor();
-		
-		for (int i = 0; i < lvl.miniSizePortals.length; i++)
-		{
-			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.miniSizePortals[i][0], lvl.miniSizePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
-			{
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	public boolean checkNormalSizeCollision()
-	{
-		LevelEditor lvl = new LevelEditor();
-		
-		for (int i = 0; i < lvl.normalSizePortals.length; i++)
-		{
-			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.normalSizePortals[i][0], lvl.normalSizePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
-			{
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	public boolean checkWaveCollision()
-	{
-		LevelEditor lvl = new LevelEditor();
-		
-		for (int i = 0; i < lvl.wavePortals.length; i++)
-		{
-			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.wavePortals[i][0], lvl.wavePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
-			{
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	public boolean checkCubeCollision()
-	{
-		LevelEditor lvl = new LevelEditor();
-		
-		for (int i = 0; i < lvl.cubePortals.length; i++)
-		{
-			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
-					(new Rectangle(lvl.cubePortals[i][0], lvl.cubePortals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
-			{
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	public boolean checkPlatformCollision()
+	public static boolean checkPlatformCollision()
 	{
 		LevelEditor lvl = new LevelEditor();
 		
@@ -190,7 +104,7 @@ public class Collision
 		return false;
 	}
 	
-	private boolean intersectsCircle(Rectangle r, int circleX, int circleY, int diameter)
+	private static boolean intersectsCircle(Rectangle r, int circleX, int circleY, int diameter)
 	{
 		double testX = circleX;
 		double testY = circleY;

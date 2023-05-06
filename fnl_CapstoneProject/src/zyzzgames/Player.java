@@ -41,10 +41,9 @@ import javax.swing.ImageIcon;
 
 public class Player
 {
-	protected int t1, t2;
 	protected static int platformY = 0;
 	protected static int hitbox;
-	protected int gamemode, gravity;
+	protected int t1, t2, gamemode, gravity;
 	protected int attempts = 1;
 	protected double speed;
 	protected double fullScore = 100.0;
@@ -52,10 +51,8 @@ public class Player
 	private int xDirection, yDirection;
 	private boolean keyPressed = false;
 	
-	protected static Rectangle player;
-	
-	Collision c = new Collision();
-	
+	public static Rectangle player;
+		
 	public Player(int x, int y, byte gamemode, int gravity, double speed, boolean mini)
 	{
 		this.gamemode = gamemode;
@@ -93,7 +90,7 @@ public class Player
 	 		player.y = GameConstants.GROUND - hitbox;
 	 	}
 	 	
-	 	if (c.checkPlatformCollision())
+	 	if (Collision.checkPlatformCollision())
 	 	{
 	 		switch(gravity)
 	 		{
@@ -133,7 +130,7 @@ public class Player
 				case GameConstants.WAVE:
 					if (!keyPressed)
 					{
-						if (mini == true) {
+						if (mini) {
 							setFallingSpeed(8.0 * speed * gravity);
 						}
 						
@@ -167,7 +164,7 @@ public class Player
 			case GameConstants.WAVE:
 				if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
 					falling = false;
-					if (getSize() == true) {
+					if (mini) {
 						setYDirection(-8.0 * speed * gravity);
 					}
 					
@@ -229,7 +226,7 @@ public class Player
 				break;
 				
 			case GameConstants.WAVE:
-				if ((gravity == GameConstants.DOWN && keyPressed == false) || (gravity == GameConstants.UP && keyPressed == true)) {
+				if ((gravity == GameConstants.DOWN && !keyPressed) || (gravity == GameConstants.UP && keyPressed)) {
 					Image playerWaveDown = (new ImageIcon("playerWaveDown.png")).getImage();
 					g.drawImage(playerWaveDown, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
 				}
@@ -282,7 +279,7 @@ public class Player
 		return gravity;
 	}
 
-	protected boolean getSize()
+	protected boolean isMini()
 	{
 		return mini;
 	}

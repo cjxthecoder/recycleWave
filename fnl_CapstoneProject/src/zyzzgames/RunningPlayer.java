@@ -39,12 +39,12 @@ public class RunningPlayer extends Player
 	}
 	
 	GameSound gs = new GameSound();
-	double s = speed;
 	
 	@Override
 	public void run()
 	{	
 		gs.loadMusic();
+		double s = speed;
 		
 		switch (String.valueOf(GameWindow.getComboBox().getSelectedItem()))
 		{
@@ -74,6 +74,8 @@ public class RunningPlayer extends Player
 			Thread.sleep(500);
 			while (true)
 			{
+				LevelEditor lvl = new LevelEditor();
+				
 				if ((player.x < GameConstants.START_LINE || LevelEditor.dx < GameConstants.START_LINE - GameConstants.FINISH_LINE) && !gameWon)
 				{
 					setXDirection(4.0 * speed);
@@ -81,7 +83,7 @@ public class RunningPlayer extends Player
 					Thread.sleep(5);
 				}
 				
-				if (c.checkDeathCollisions()) // c.checkDeathCollisions()
+				if (Collision.checkDeathCollision(lvl.slopes, lvl.sawblades))
 				{
 					gs.stopMusic();
 					fullScore /= GameConstants.MAGIC;
@@ -94,12 +96,12 @@ public class RunningPlayer extends Player
 				else {
 					gs.startMusic();
 					
-					if (c.checkSpeedCollision())
+					if (Collision.checkPortalCollision(lvl.speedPortals))
 					{
 						speed = s;
 					}
 					
-					if (c.checkNormalGravityCollision())
+					if (Collision.checkPortalCollision(lvl.normalGravityPortals))
 					{
 						if (gravity == GameConstants.UP)
 						{
@@ -109,7 +111,7 @@ public class RunningPlayer extends Player
 						}
 					}
 					
-					if (c.checkFlippedGravityCollision())
+					if (Collision.checkPortalCollision(lvl.flippedGravityPortals))
 					{
 						if (gravity == GameConstants.DOWN)
 						{
@@ -119,9 +121,10 @@ public class RunningPlayer extends Player
 						}
 					}
 					
-					if (c.checkMiniSizeCollision()) // divide by 4 if player is wave, else divide by 2
+					if (Collision.checkPortalCollision(lvl.miniSizePortals)) // divide by 4 if player is wave, else divide by 2
 					{
 						mini = true;
+						
 						if (gamemode == GameConstants.WAVE) {
 							setPlayerSize(0.25);
 						}
@@ -130,9 +133,10 @@ public class RunningPlayer extends Player
 						}
 					}
 					
-					if (c.checkNormalSizeCollision()) // divide by 2 if player is wave, else divide by 1
+					if (Collision.checkPortalCollision(lvl.normalSizePortals)) // divide by 2 if player is wave, else divide by 1
 					{
 						mini = false;
+						
 						if (gamemode == GameConstants.WAVE) {
 							setPlayerSize(0.5);
 						}
@@ -141,20 +145,25 @@ public class RunningPlayer extends Player
 						}
 					}
 					
-					if (c.checkWaveCollision()) // divide by 2
+					if (Collision.checkPortalCollision(lvl.wavePortals)) // divide by 4 if player is mini, else divide by 2
 					{
 						gamemode = GameConstants.WAVE;
-						setPlayerSize(0.5);
+						
+						if (mini) {
+							setPlayerSize(0.25);
+						} else {
+							setPlayerSize(0.5);
+						}
 					}
 					
-					if (c.checkCubeCollision()) // divide by 1
+					if (Collision.checkPortalCollision(lvl.cubePortals)) // divide by 2 if player is mini, else divide by 1
 					{
-						if (gamemode == GameConstants.WAVE) {
-							gamemode = GameConstants.CUBE;
-							setPlayerSize(1.0);
-						}
-						else {
-							gamemode = GameConstants.CUBE;
+						gamemode = GameConstants.CUBE;
+						
+						if (mini) {
+							setPlayerSize(0.5);
+						} else {
+							setPlayerSize(1);
 						}
 					}
 					
