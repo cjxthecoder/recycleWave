@@ -33,7 +33,7 @@ public class GameConstants
 	public static final int GROUND = 780;
 	public static final int CEILING = 60;
 	public static final int PLAYER_HITBOX = 40;
-	public static final double TWO_HUNDRED_FIFTIETH_ROOT_OF_ONE_HUNDRED = 1.0185508475756433;
+	public static final double MAGIC = 1.0185508475756433;
 	
 	// Constants related to the player's gamemode
 	public static final byte CUBE = 2;

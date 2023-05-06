@@ -84,7 +84,7 @@ public class RunningPlayer extends Player
 				if (c.checkDeathCollisions()) // c.checkDeathCollisions()
 				{
 					gs.stopMusic();
-					fullScore /= GameConstants.TWO_HUNDRED_FIFTIETH_ROOT_OF_ONE_HUNDRED;
+					fullScore /= GameConstants.MAGIC;
 					attempts++;
 					Thread.sleep(1000);
 					resetPlayerFields();
