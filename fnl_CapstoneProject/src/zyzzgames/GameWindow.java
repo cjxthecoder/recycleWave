@@ -14,11 +14,6 @@
 
 package zyzzgames;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -29,6 +24,11 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 
 /**
  * The GameWindow class is the class responsible for drawing graphics on the screen.

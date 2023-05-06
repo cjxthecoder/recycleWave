@@ -22,8 +22,6 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.geom.Line2D;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 

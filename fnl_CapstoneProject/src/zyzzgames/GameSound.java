@@ -14,9 +14,6 @@
 
 package zyzzgames;
 
-import java.io.File;
-import zyzzgames.Player;
-
 /**
  * The GameSound class has an Audio that allows the clip to be played. To load
  * the clip, an audio file is instantiated in the other classes. This class uses

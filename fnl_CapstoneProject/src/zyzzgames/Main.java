@@ -15,9 +15,6 @@
 package zyzzgames;
 
 import java.awt.Color;
-import java.lang.reflect.Field;
-import java.math.BigInteger;
-import java.util.Arrays;
 
 import javax.swing.JFrame;
 
