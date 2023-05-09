@@ -42,23 +42,27 @@ import javax.swing.ImageIcon;
 public class Player
 {
 	protected static int platformY = 0;
-	protected static int hitbox;
-	protected int t1, t2, gamemode, gravity;
-	protected int attempts = 1;
-	protected double speed;
-	protected double fullScore = 100.0;
-	protected boolean mini, falling, gameWon;
+	protected int t1;
+	protected int t2;
+	private static int hitbox;
+	private int gamemode;
+	private int gravity;
+	private int attempts = 1;
+	private double speed;
+	private double fullScore = 100.0;
+	private boolean mini;
+	private boolean gameWon;
 	private int xDirection, yDirection;
 	private boolean keyPressed = false;
 	
 	public static Rectangle player;
 		
-	public Player(int x, int y, byte gamemode, int gravity, double speed, boolean mini)
+	public Player(int x, int y, int gamemode, int gravity, double speed, boolean mini)
 	{
 		this.gamemode = gamemode;
 		this.gravity = gravity;
-		this.speed = speed;
-		this.mini = mini;
+		this.setSpeed(speed);
+		this.setMini(mini);
 		
 		hitbox = GameConstants.PLAYER_HITBOX;
 		
@@ -118,7 +122,7 @@ public class Player
 			{
 				case GameConstants.CUBE:
 					t1++;
-					setFallingSpeed(Math.min(t1 / 4.0, 8.0) * speed * gravity);
+					setFallingSpeed(Math.min(t1 / 4.0, 8.0) * getSpeed() * gravity);
 					break;
 			
 				case GameConstants.SHIP:
@@ -130,12 +134,12 @@ public class Player
 				case GameConstants.WAVE:
 					if (!keyPressed)
 					{
-						if (mini) {
-							setFallingSpeed(8.0 * speed * gravity);
+						if (isMini()) {
+							setFallingSpeed(8.0 * getSpeed() * gravity);
 						}
 						
 						else {
-							setFallingSpeed(4.0 * speed * gravity);
+							setFallingSpeed(4.0 * getSpeed() * gravity);
 						}
 					}
 					break;
@@ -153,7 +157,7 @@ public class Player
 			case GameConstants.SHIP:
 				if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
 					t1++;
-					setYDirection(-Math.min(t1, 4.0) * speed * gravity);
+					setYDirection(-Math.min(t1, 4.0) * getSpeed() * gravity);
 					keyPressed = true;
 				}
 				break;
@@ -163,13 +167,12 @@ public class Player
 				
 			case GameConstants.WAVE:
 				if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
-					falling = false;
-					if (mini) {
-						setYDirection(-8.0 * speed * gravity);
+					if (isMini()) {
+						setYDirection(-8.0 * getSpeed() * gravity);
 					}
 					
 					else {
-						setYDirection(-4.0 * speed * gravity);
+						setYDirection(-4.0 * getSpeed() * gravity);
 					}
 					keyPressed = true;
 				}
@@ -197,8 +200,7 @@ public class Player
 				break;
 				
 			case GameConstants.WAVE:
-				falling = true;
-				if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
 					setYDirection(0);
 					keyPressed = false;
 				}
@@ -242,8 +244,8 @@ public class Player
 			Image recycle = (new ImageIcon("recycleBin.png")).getImage();
 			g.drawImage(recycle, 1428, 660, null);
 			drawCenteredText(g, "Level Complete!", 96, 1.8);
-			drawCenteredText(g, "Attempts: " + attempts, 72, 1.2);
-			drawCenteredText(g, "Your score: " + Math.round(100.0 * fullScore) / 100.0, 72, 0.9);
+			drawCenteredText(g, "Attempts: " + getAttempts(), 72, 1.2);
+			drawCenteredText(g, "Your score: " + Math.round(100.0 * getFullScore()) / 100.0, 72, 0.9);
 
 		}
 	}
@@ -258,60 +260,8 @@ public class Player
 		g.drawString(s, x, y/2);
 	}
 	
-	protected static int getX() {
-		return player.x;
-	}
-	
-	protected static int getY() {
-		return player.y;
-	}
-	
-	protected static int getHitbox() {
-		return hitbox;
-	}
-	
-	protected int getGamemode() {
-		return gamemode;
-	}
-	
-	protected int getGravity()
-	{
-		return gravity;
-	}
-
-	protected void setGamemode(int gamemode)
-	{
-		this.gamemode = gamemode;
-	}
-	
-	protected void setGravity(int gravity)
-	{
-		t1 = 0;
-		t2 = 0;
-		this.gravity = gravity;
-	}
-	
-	protected void setMini(boolean mini)
-	{
-		this.mini = mini;
-	}
-	
-	protected void setXDirection(double xDir) {
-		xDirection = (int) Math.round(xDir);
-	}
-	
-	protected void setYDirection(double yDir) {
-		yDirection = (int) Math.round(yDir);
-	}
-	
 	protected void setFallingSpeed(double fallingSpeed) {
 		yDirection = (int) Math.round(fallingSpeed);
-	}
-	
-	protected void setPlayerSize(double factor) {
-		hitbox = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
-		player.height = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
-		player.width = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
 	}
 	
 	protected void resetPlayerFields() {
@@ -322,8 +272,96 @@ public class Player
 		hitbox = GameConstants.PLAYER_HITBOX;
 		gamemode = GameConstants.CUBE;
 		gravity = GameConstants.UP;
-		speed = GameConstants.THREE_TIMES;
-		mini = false;
+		setSpeed(GameConstants.THREE_TIMES);
+		setMini(false);
 		keyPressed = false;
+	}
+	
+	protected static int getX() {
+		return player.x;
+	}
+	
+	protected void setXDirection(double xDir) {
+		xDirection = (int) Math.round(xDir);
+	}
+	
+	protected static int getY() {
+		return player.y;
+	}
+	
+	protected void setYDirection(double yDir) {
+		yDirection = (int) Math.round(yDir);
+	}
+	
+	protected static int getHitbox() {
+		return hitbox;
+	}
+	
+	protected void setPlayerSize(double factor) {
+		hitbox = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
+		player.height = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
+		player.width = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
+	}
+	
+	protected int getGamemode() {
+		return gamemode;
+	}
+
+	protected void setGamemode(int gamemode)
+	{
+		this.gamemode = gamemode;
+	}
+
+	protected int getGravity()
+	{
+		return gravity;
+	}
+	
+	protected void setGravity(int gravity)
+	{
+		t1 = 0;
+		t2 = 0;
+		this.gravity = gravity;
+	}
+	
+	public double getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(double speed) {
+		this.speed = speed;
+	}
+
+	public boolean isMini() {
+		return mini;
+	}
+	
+	public void setMini(boolean mini)
+	{
+		this.mini = mini;
+	}
+	
+	public boolean isGameWon() {
+		return gameWon;
+	}
+
+	public void setGameWon(boolean gameWon) {
+		this.gameWon = gameWon;
+	}
+	
+	public double getFullScore() {
+		return fullScore;
+	}
+
+	public void setFullScore(double fullScore) {
+		this.fullScore = fullScore;
+	}
+
+	public int getAttempts() {
+		return attempts;
+	}
+
+	public void setAttempts(int attempts) {
+		this.attempts = attempts;
 	}
 }

@@ -34,7 +34,7 @@ package zyzzgames;
 public class RunningPlayer extends Player
 	implements Runnable
 {
-	public RunningPlayer(int x, int y, byte gamemode, int gravity, double speed, boolean mini) {
+	public RunningPlayer(int x, int y, int gamemode, int gravity, double speed, boolean mini) {
 		super(x, y, gamemode, gravity, speed, mini);
 	}
 	
@@ -44,29 +44,29 @@ public class RunningPlayer extends Player
 	public void run()
 	{	
 		gs.loadMusic();
-		double s = speed;
+		double s = getSpeed();
 		
 		switch (String.valueOf(GameWindow.getComboBox().getSelectedItem()))
 		{
 			case "Easy":
 				s = GameConstants.HALF_TIMES;
-				fullScore *= GameConstants.HALF_TIMES;
+				setFullScore(getFullScore() * GameConstants.HALF_TIMES);
 				break;
 			case "Medium":
 				s = GameConstants.ONE_TIMES;
-				fullScore *= GameConstants.ONE_TIMES;
+				setFullScore(getFullScore() * GameConstants.ONE_TIMES);
 				break;
 			case "Hard":
 				s = GameConstants.TWO_TIMES;
-				fullScore *= GameConstants.TWO_TIMES;
+				setFullScore(getFullScore() * GameConstants.TWO_TIMES);
 				break;
 			case "Insane":
 				s = GameConstants.THREE_TIMES;
-				fullScore *= GameConstants.THREE_TIMES;
+				setFullScore(getFullScore() * GameConstants.THREE_TIMES);
 				break;
 			case "Impossible":
 				s = GameConstants.FOUR_TIMES;
-				fullScore *= GameConstants.FOUR_TIMES;
+				setFullScore(getFullScore() * GameConstants.FOUR_TIMES);
 				break;
 		}
 		
@@ -76,9 +76,9 @@ public class RunningPlayer extends Player
 			{
 				LevelEditor lvl = new LevelEditor();
 				
-				if ((player.x < GameConstants.START_LINE || LevelEditor.dx < GameConstants.START_LINE - GameConstants.FINISH_LINE) && !gameWon)
+				if ((player.x < GameConstants.START_LINE || LevelEditor.dx < GameConstants.START_LINE - GameConstants.FINISH_LINE) && !isGameWon())
 				{
-					setXDirection(4.0 * speed);
+					setXDirection(4.0 * getSpeed());
 					makePlayerReach300();
 					Thread.sleep(5);
 				}
@@ -86,8 +86,8 @@ public class RunningPlayer extends Player
 				if (Collision.checkDeathCollision(lvl.slopes, lvl.sawblades))
 				{
 					gs.stopMusic();
-					fullScore /= GameConstants.MAGIC;
-					attempts++;
+					setFullScore(getFullScore() / GameConstants.MAGIC);
+					setAttempts(getAttempts() + 1);
 					Thread.sleep(1000);
 					resetPlayerFields();
 					LevelEditor.setDx(2 * GameConstants.START_LINE);
@@ -98,34 +98,34 @@ public class RunningPlayer extends Player
 					
 					if (Collision.checkPortalCollision(lvl.speedPortals))
 					{
-						speed = s;
+						setSpeed(s);
 					}
 					
 					if (Collision.checkPortalCollision(lvl.normalGravityPortals))
 					{
-						if (gravity == GameConstants.UP)
+						if (getGravity() == GameConstants.UP)
 						{
 							t1 = 0;
 							t2 = 0;
-							gravity = GameConstants.DOWN;
+							setGravity(GameConstants.DOWN);
 						}
 					}
 					
 					if (Collision.checkPortalCollision(lvl.flippedGravityPortals))
 					{
-						if (gravity == GameConstants.DOWN)
+						if (getGravity() == GameConstants.DOWN)
 						{
 							t1 = 0;
 							t2 = 0;
-							gravity = GameConstants.UP;
+							setGravity(GameConstants.UP);
 						}
 					}
 					
 					if (Collision.checkPortalCollision(lvl.miniSizePortals)) // divide by 4 if player is wave, else divide by 2
 					{
-						mini = true;
+						setMini(true);
 						
-						if (gamemode == GameConstants.WAVE) {
+						if (getGamemode() == GameConstants.WAVE) {
 							setPlayerSize(0.25);
 						}
 						else {
@@ -135,9 +135,9 @@ public class RunningPlayer extends Player
 					
 					if (Collision.checkPortalCollision(lvl.normalSizePortals)) // divide by 2 if player is wave, else divide by 1
 					{
-						mini = false;
+						setMini(false);
 						
-						if (gamemode == GameConstants.WAVE) {
+						if (getGamemode() == GameConstants.WAVE) {
 							setPlayerSize(0.5);
 						}
 						else {
@@ -147,9 +147,9 @@ public class RunningPlayer extends Player
 					
 					if (Collision.checkPortalCollision(lvl.wavePortals)) // divide by 4 if player is mini, else divide by 2
 					{
-						gamemode = GameConstants.WAVE;
+						setGamemode(GameConstants.WAVE);
 						
-						if (mini) {
+						if (isMini()) {
 							setPlayerSize(0.25);
 						} else {
 							setPlayerSize(0.5);
@@ -158,9 +158,9 @@ public class RunningPlayer extends Player
 					
 					if (Collision.checkPortalCollision(lvl.cubePortals)) // divide by 2 if player is mini, else divide by 1
 					{
-						gamemode = GameConstants.CUBE;
+						setGamemode(GameConstants.CUBE);
 						
-						if (mini) {
+						if (isMini()) {
 							setPlayerSize(0.5);
 						} else {
 							setPlayerSize(1);
@@ -174,11 +174,11 @@ public class RunningPlayer extends Player
 					
 					if (player.x >= 1452) {
 						player.x = 1452;
-						gameWon = true;
+						setGameWon(true);
 					}
 					
 					if (player.x >= GameConstants.START_LINE && LevelEditor.dx >= GameConstants.START_LINE - GameConstants.FINISH_LINE) {
-						LevelEditor.goForward((int)(4.0 * speed));
+						LevelEditor.goForward((int)(4.0 * getSpeed()));
 					}
 					
 					else {
