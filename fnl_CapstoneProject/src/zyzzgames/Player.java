@@ -41,6 +41,7 @@ import javax.swing.ImageIcon;
 
 public class Player
 {
+	protected static Rectangle player;
 	protected static int platformY = 0;
 	protected int t1;
 	protected int t2;
@@ -54,8 +55,6 @@ public class Player
 	private boolean gameWon;
 	private int xDirection, yDirection;
 	private boolean keyPressed = false;
-	
-	public static Rectangle player;
 		
 	public Player(int x, int y, int gamemode, int gravity, double speed, boolean mini)
 	{
