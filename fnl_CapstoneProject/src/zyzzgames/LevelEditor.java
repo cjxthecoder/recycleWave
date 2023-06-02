@@ -6,8 +6,8 @@
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE.
  * 
- * Please contact Sunnyvale, Rockefeller Dr, Apt 3B, CA 94087 USA if you
- * need additional information or have any questions.
+ * Please contact danielcheng2200@gmail.com if you need additional information
+ * or have any questions.
  * 
  * Current Version: 1.1
  */
