@@ -23,8 +23,6 @@ import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.geom.Line2D;
 
-import javax.swing.ImageIcon;
-
 /**
  * The LevelEditor class serves as the text editor and database for all of the
  * objects in our game. Each type of objects is a 2D array containing an array
@@ -126,12 +124,6 @@ public class LevelEditor
 	
 	public void createSpeedPortals(Graphics2D g2d, Color c)
 	{
-		Image pic1 = (new ImageIcon("half.png")).getImage();
-		Image pic2 = (new ImageIcon("one.png")).getImage();
-		Image pic3 = (new ImageIcon("two.png")).getImage();
-		Image pic4 = (new ImageIcon("three.png")).getImage();
-		Image pic5 = (new ImageIcon("four.png")).getImage();
-		
 		g2d.setColor(c);
 		
 		for (int i = 0; i < speedPortals.length; i++)
@@ -139,31 +131,31 @@ public class LevelEditor
 			switch (String.valueOf(GameWindow.getComboBox().getSelectedItem()))
 			{
 				case "Easy":
-					g2d.drawImage(pic1, speedPortals[i][0], speedPortals[i][1],
+					g2d.drawImage(GameConstants.Y, speedPortals[i][0], speedPortals[i][1],
 							(int) Math.round((19 * ppb) / 8.0), (int) Math.round((83 * ppb) / 40.0), null);
 					if (drawHitboxes) g2d.drawRect(speedPortals[i][0], speedPortals[i][1],
 							(int) Math.round((19 * ppb) / 8.0), (int) Math.round((83 * ppb) / 40.0));
 					break;
 				case "Medium":
-					g2d.drawImage(pic2, speedPortals[i][0], speedPortals[i][1],
+					g2d.drawImage(GameConstants.B, speedPortals[i][0], speedPortals[i][1],
 							(int) Math.round((19 * ppb) / 8.0), (int) Math.round((83 * ppb) / 40.0), null);
 					if (drawHitboxes) g2d.drawRect(speedPortals[i][0], speedPortals[i][1],
 							(int) Math.round((19 * ppb) / 8.0), (int) Math.round((83 * ppb) / 40.0));
 					break;
 				case "Hard":
-					g2d.drawImage(pic3, speedPortals[i][0], speedPortals[i][1],
+					g2d.drawImage(GameConstants.G, speedPortals[i][0], speedPortals[i][1],
 							(int) Math.round((19 * ppb) / 8.0), (int) Math.round((83 * ppb) / 40.0), null);
 					if (drawHitboxes) g2d.drawRect(speedPortals[i][0], speedPortals[i][1],
 							(int) Math.round((19 * ppb) / 8.0), (int) Math.round((83 * ppb) / 40.0));
 					break;
 				case "Insane":
-					g2d.drawImage(pic4, speedPortals[i][0], speedPortals[i][1],
+					g2d.drawImage(GameConstants.P, speedPortals[i][0], speedPortals[i][1],
 							(int) Math.round((19 * ppb) / 8.0), (int) Math.round((83 * ppb) / 40.0), null);
 					if (drawHitboxes) g2d.drawRect(speedPortals[i][0], speedPortals[i][1],
 							(int) Math.round((19 * ppb) / 8.0), (int) Math.round((83 * ppb) / 40.0));
 					break;
 				case "Impossible":
-					g2d.drawImage(pic5, speedPortals[i][0], speedPortals[i][1],
+					g2d.drawImage(GameConstants.R, speedPortals[i][0], speedPortals[i][1],
 							(int) Math.round((19 * ppb) / 8.0), (int) Math.round((83 * ppb) / 40.0), null);
 					if (drawHitboxes) g2d.drawRect(speedPortals[i][0], speedPortals[i][1],
 							(int) Math.round((19 * ppb) / 8.0), (int) Math.round((83 * ppb) / 40.0));

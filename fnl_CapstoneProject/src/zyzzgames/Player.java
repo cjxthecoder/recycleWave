@@ -19,12 +19,9 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
-
-import javax.swing.ImageIcon;
 
 /**
  * The player class contains all the information for the player. This includes
@@ -54,12 +51,6 @@ public class Player
 	private boolean gameWon;
 	private int xDirection, yDirection;
 	private boolean keyPressed = false;
-	
-	private static final Image PCU = new ImageIcon("playerCubeUp.png").getImage();
-	private static final Image PCD = new ImageIcon("playerCubeDown.png").getImage();
-	private static final Image PWU = new ImageIcon("playerWaveUp.png").getImage();
-	private static final Image PWD = new ImageIcon("playerWaveDown.png").getImage();
-	private static final Image RB = new ImageIcon("recycleBin.png").getImage();
 		
 	public Player(int x, int y, int gamemode, int gravity, double speed, boolean mini)
 	{
@@ -219,27 +210,27 @@ public class Player
 		{
 			case GameConstants.CUBE:
 				if (gravity == GameConstants.DOWN) {
-					g.drawImage(PCU, player.x, player.y, player.width, player.height, null);
+					g.drawImage(GameConstants.PCU, player.x, player.y, player.width, player.height, null);
 				}
 				
 				else {
-					g.drawImage(PCD, player.x, player.y, player.width, player.height, null);
+					g.drawImage(GameConstants.PCD, player.x, player.y, player.width, player.height, null);
 				}
 				break;
 				
 			case GameConstants.WAVE:
 				if ((gravity == GameConstants.DOWN && !keyPressed) || (gravity == GameConstants.UP && keyPressed)) {
-					g.drawImage(PWD, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
+					g.drawImage(GameConstants.PWD, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
 				}
 				
 				else {
-					g.drawImage(PWU, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
+					g.drawImage(GameConstants.PWU, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
 				}
 				break;
 		}
 		
 		if (player.x >= 768) {
-			g.drawImage(RB, 1428, 660, null);
+			g.drawImage(GameConstants.RB, 1428, 660, null);
 			drawCenteredText(g, "Level Complete!", 96, 1.8);
 			drawCenteredText(g, "Attempts: " + getAttempts(), 72, 1.2);
 			drawCenteredText(g, "Your score: " + Math.round(100.0 * getFullScore()) / 100.0, 72, 0.9);

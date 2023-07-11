@@ -14,6 +14,9 @@
 
 package zyzzgames;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  * The GameConstants interface contains the list of constant values used
  * in our game. This includes the ground pixel level, the ceiling pixel
@@ -60,4 +63,30 @@ public class GameConstants
 	public static final double TWO_TIMES = 1.25;
 	public static final double THREE_TIMES = 1.5;
 	public static final double FOUR_TIMES = 2.0;
+	
+	// Constants related to the images of the level's structures
+	public static final Image BLK = new ImageIcon("block.png").getImage();
+	public static final Image NGP = new ImageIcon("normalGravityPortal.png").getImage();
+	public static final Image FGP = new ImageIcon("flippedGravityPortal.png").getImage();
+	public static final Image NSP = new ImageIcon("normalSizePortal.png").getImage();
+	public static final Image MSP = new ImageIcon("miniSizePortal.png").getImage();
+	public static final Image WP = new ImageIcon("wavePortal.png").getImage();
+	public static final Image CP = new ImageIcon("cubePortal.png").getImage();
+	public static final Image GS = new ImageIcon("groundSpike.png").getImage();
+	public static final Image CS = new ImageIcon("ceilingSpike.png").getImage();
+	public static final Image SB = new ImageIcon("fish.png").getImage();
+	
+	// Constants related to the images of the level's difficulty
+	public static final Image Y = (new ImageIcon("half.png")).getImage();
+	public static final Image B = (new ImageIcon("one.png")).getImage();
+	public static final Image G = (new ImageIcon("two.png")).getImage();
+	public static final Image P = (new ImageIcon("three.png")).getImage();
+	public static final Image R = (new ImageIcon("four.png")).getImage();
+	
+	// Constants related to the images of the player
+	public static final Image PCU = new ImageIcon("playerCubeUp.png").getImage();
+	public static final Image PCD = new ImageIcon("playerCubeDown.png").getImage();
+	public static final Image PWU = new ImageIcon("playerWaveUp.png").getImage();
+	public static final Image PWD = new ImageIcon("playerWaveDown.png").getImage();
+	public static final Image RB = new ImageIcon("recycleBin.png").getImage();
 }
