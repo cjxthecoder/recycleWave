@@ -34,7 +34,7 @@ import java.awt.geom.Line2D;
 
 public class Collision
 {	
-	private static int ppb = GameConstants.PIXELS_PER_BLOCK;
+	private static final int PPB = GameConstants.PIXELS_PER_BLOCK;
 	
 	public static boolean checkDeathCollision(int[][] slopes, int[][] sawblades, Player p)
 	{
@@ -64,7 +64,7 @@ public class Collision
 		for (int i = 0; i < speedPortals.length; i++)
 		{
 			if (new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox()).intersects
-					(new Rectangle(speedPortals[i][0], speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40)))
+					(new Rectangle(speedPortals[i][0], speedPortals[i][1], (19 * PPB) / 8, (83 * PPB) / 40)))
 			{
 				return true;
 			}
@@ -78,7 +78,7 @@ public class Collision
 		for (int i = 0; i < portals.length; i++)
 		{
 			if (new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox()).intersects
-					(new Rectangle(portals[i][0], portals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
+					(new Rectangle(portals[i][0], portals[i][1], (3 * PPB) / 2, (15 * PPB) / 4)))
 			{
 				return true;
 			}

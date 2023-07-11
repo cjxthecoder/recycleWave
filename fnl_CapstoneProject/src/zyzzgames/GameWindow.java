@@ -25,7 +25,6 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -46,17 +45,6 @@ import javax.swing.JFrame;
 public class GameWindow extends JFrame
 	implements ActionListener
 {
-	private static final Image BLK = new ImageIcon("block.png").getImage();
-	private static final Image NGP = new ImageIcon("normalGravityPortal.png").getImage();
-	private static final Image FGP = new ImageIcon("flippedGravityPortal.png").getImage();
-	private static final Image NSP = new ImageIcon("normalSizePortal.png").getImage();
-	private static final Image MSP = new ImageIcon("miniSizePortal.png").getImage();
-	private static final Image WP = new ImageIcon("wavePortal.png").getImage();
-	private static final Image CP = new ImageIcon("cubePortal.png").getImage();
-	private static final Image GS = new ImageIcon("groundSpike.png").getImage();
-	private static final Image CS = new ImageIcon("ceilingSpike.png").getImage();
-	private static final Image SB = new ImageIcon("fish.png").getImage();
-
 	private Image gdImage;
 	private Graphics gdGraphics;
 	private LevelEditor lvl;
@@ -161,16 +149,16 @@ public class GameWindow extends JFrame
 		g.drawLine(0, GameConstants.GROUND, 1550, GameConstants.GROUND);
 		g.drawLine(0, GameConstants.CEILING, 1550, GameConstants.CEILING);
 	    
-		lvl.createPlatforms(g, Color.BLACK, BLK);
-		lvl.createWalls(g, Color.RED, BLK);
-		lvl.createNormalGravityPortals(g, Color.GREEN, NGP);
-		lvl.createFlippedGravityPortals(g, Color.GREEN, FGP);
-		lvl.createNormalSizePortals(g, Color.GREEN, NSP);
-		lvl.createMiniSizePortals(g, Color.GREEN, MSP);
-		lvl.createWavePortals(g, Color.GREEN, WP);
-		lvl.createCubePortals(g, Color.GREEN, CP);
-		lvl.createSlopes(g, new Color(240, 20, 160), GS, CS);
-		lvl.createSawblades(g, Color.RED, SB);
+		lvl.createPlatforms(g, Color.BLACK, GameConstants.BLK);
+		lvl.createWalls(g, Color.RED, GameConstants.BLK);
+		lvl.createNormalGravityPortals(g, Color.GREEN, GameConstants.NGP);
+		lvl.createFlippedGravityPortals(g, Color.GREEN, GameConstants.FGP);
+		lvl.createNormalSizePortals(g, Color.GREEN, GameConstants.NSP);
+		lvl.createMiniSizePortals(g, Color.GREEN, GameConstants.MSP);
+		lvl.createWavePortals(g, Color.GREEN, GameConstants.WP);
+		lvl.createCubePortals(g, Color.GREEN, GameConstants.CP);
+		lvl.createSlopes(g, new Color(240, 20, 160), GameConstants.GS, GameConstants.CS);
+		lvl.createSawblades(g, Color.RED, GameConstants.SB);
 		lvl.createSpeedPortals(g, Color.GREEN);
 		lvl.drawProgressBar(g, -GameConstants.FINISH_LINE, Color.BLACK, Color.CYAN);
 	}
