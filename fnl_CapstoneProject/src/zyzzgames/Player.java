@@ -41,11 +41,10 @@ import javax.swing.ImageIcon;
 
 public class Player
 {
-	protected static Rectangle player;
-	protected static int platformY = 0;
-	protected int t1;
-	protected int t2;
-	private static int hitbox;
+	private Rectangle player;
+	private int t1, t2;
+	private int platformY = 0;
+	private int hitbox;
 	private int gamemode;
 	private int gravity;
 	private int attempts = 1;
@@ -55,6 +54,12 @@ public class Player
 	private boolean gameWon;
 	private int xDirection, yDirection;
 	private boolean keyPressed = false;
+	
+	private static final Image PCU = new ImageIcon("playerCubeUp.png").getImage();
+	private static final Image PCD = new ImageIcon("playerCubeDown.png").getImage();
+	private static final Image PWU = new ImageIcon("playerWaveUp.png").getImage();
+	private static final Image PWD = new ImageIcon("playerWaveDown.png").getImage();
+	private static final Image RB = new ImageIcon("recycleBin.png").getImage();
 		
 	public Player(int x, int y, int gamemode, int gravity, double speed, boolean mini)
 	{
@@ -76,12 +81,12 @@ public class Player
 		player = new Rectangle(x, y, hitbox, hitbox);
 	}
 	
-	protected void makePlayerReach300()
+	public void makePlayerReach300()
 	{
 		player.x += xDirection;
 	}
 
-	protected void move()
+	public void move()
 	{
 	 	player.y += yDirection;
 	 	
@@ -93,7 +98,7 @@ public class Player
 	 		player.y = GameConstants.GROUND - hitbox;
 	 	}
 	 	
-	 	if (Collision.checkPlatformCollision())
+	 	if (Collision.checkPlatformCollision(this))
 	 	{
 	 		switch(gravity)
 	 		{
@@ -108,12 +113,11 @@ public class Player
 	 				break;
 	 		}
 	 		
-	 		t1 = 0;
-	 		t2 = 0;
+	 		resetTime();
 	 	}
 	}
 	
-	protected void fall()
+	public void fall()
 	{
 		if ((gravity == GameConstants.UP && player.y <= GameConstants.GROUND - hitbox) || (gravity == GameConstants.DOWN && player.y >= GameConstants.CEILING))
 		{
@@ -146,7 +150,7 @@ public class Player
 		}
 	}
 
-	protected void keyPressed(KeyEvent e)
+	public void keyPressed(KeyEvent e)
 	{
 		switch(gamemode)
 		{
@@ -179,7 +183,7 @@ public class Player
 		}
 	}
 	
-	protected void keyReleased(KeyEvent e)
+	public void keyReleased(KeyEvent e)
 	{
 		switch(gamemode)
 		{
@@ -188,8 +192,7 @@ public class Player
 				
 			case GameConstants.SHIP:
 				if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
-					t1 = 0;
-					t2 = 0;
+					resetTime();
 					setYDirection(0);
 					keyPressed = false;
 				}
@@ -207,7 +210,7 @@ public class Player
 		}
 	}
 	
-	protected void drawPlayer(Graphics g)
+	public void drawPlayer(Graphics g)
 	{
 		g.setColor(Color.BLACK);
 //		g.drawRect(player.x, player.y, player.width, player.height);
@@ -216,32 +219,27 @@ public class Player
 		{
 			case GameConstants.CUBE:
 				if (gravity == GameConstants.DOWN) {
-					Image playerCubeUp = (new ImageIcon("playerCubeUp.png")).getImage();
-					g.drawImage(playerCubeUp, player.x, player.y, player.width, player.height, null);
+					g.drawImage(PCU, player.x, player.y, player.width, player.height, null);
 				}
 				
 				else {
-					Image playerCubeDown = (new ImageIcon("playerCubeDown.png")).getImage();
-					g.drawImage(playerCubeDown, player.x, player.y, player.width, player.height, null);
+					g.drawImage(PCD, player.x, player.y, player.width, player.height, null);
 				}
 				break;
 				
 			case GameConstants.WAVE:
 				if ((gravity == GameConstants.DOWN && !keyPressed) || (gravity == GameConstants.UP && keyPressed)) {
-					Image playerWaveDown = (new ImageIcon("playerWaveDown.png")).getImage();
-					g.drawImage(playerWaveDown, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
+					g.drawImage(PWD, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
 				}
 				
 				else {
-					Image playerWaveUp = (new ImageIcon("playerWaveUp.png")).getImage();
-					g.drawImage(playerWaveUp, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
+					g.drawImage(PWU, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
 				}
 				break;
 		}
 		
 		if (player.x >= 768) {
-			Image recycle = (new ImageIcon("recycleBin.png")).getImage();
-			g.drawImage(recycle, 1428, 660, null);
+			g.drawImage(RB, 1428, 660, null);
 			drawCenteredText(g, "Level Complete!", 96, 1.8);
 			drawCenteredText(g, "Attempts: " + getAttempts(), 72, 1.2);
 			drawCenteredText(g, "Your score: " + Math.round(100.0 * getFullScore()) / 100.0, 72, 0.9);
@@ -249,7 +247,7 @@ public class Player
 		}
 	}
 	
-	protected void drawCenteredText(Graphics g, String s, int pt, double yFactor) {
+	public void drawCenteredText(Graphics g, String s, int pt, double yFactor) {
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		Font font = new Font(Font.SANS_SERIF, Font.PLAIN, pt);
 		FontMetrics metrics = g.getFontMetrics(font);
@@ -259,11 +257,11 @@ public class Player
 		g.drawString(s, x, y/2);
 	}
 	
-	protected void setFallingSpeed(double fallingSpeed) {
+	public void setFallingSpeed(double fallingSpeed) {
 		yDirection = (int) Math.round(fallingSpeed);
 	}
 	
-	protected void resetPlayerFields() {
+	public void resetPlayerFields() {
 		player.x = GameConstants.START_LINE;
 		player.y = GameConstants.GROUND - hitbox;
 		player.height = GameConstants.PLAYER_HITBOX;
@@ -276,50 +274,62 @@ public class Player
 		keyPressed = false;
 	}
 	
-	protected static int getX() {
+	public void resetTime() {
+		t1 = 0;
+		t2 = 0;
+	}
+	
+	public int getX() {
 		return player.x;
 	}
 	
-	protected void setXDirection(double xDir) {
+	public void setX(int x) {
+		player.x = x;
+	}
+	
+	public void setXDirection(double xDir) {
 		xDirection = (int) Math.round(xDir);
 	}
 	
-	protected static int getY() {
+	public int getY() {
 		return player.y;
 	}
 	
-	protected void setYDirection(double yDir) {
+	public void setY(int y) {
+		player.y = y;
+	}
+	
+	public void setYDirection(double yDir) {
 		yDirection = (int) Math.round(yDir);
 	}
 	
-	protected static int getHitbox() {
+	public int getHitbox() {
 		return hitbox;
 	}
 	
-	protected void setPlayerSize(double factor) {
+	public void setPlayerSize(double factor) {
 		hitbox = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
 		player.height = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
 		player.width = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
 	}
 	
-	protected int getGamemode() {
+	public int getGamemode() {
 		return gamemode;
 	}
 
-	protected void setGamemode(int gamemode)
+	public void setGamemode(int gamemode)
 	{
 		this.gamemode = gamemode;
 	}
 
-	protected int getGravity()
+	public int getGravity()
 	{
 		return gravity;
 	}
 	
-	protected void setGravity(int gravity)
+	public void setGravity(int gravity)
 	{
-		t1 = 0;
-		t2 = 0;
+		resetTime();
 		this.gravity = gravity;
 	}
 	
@@ -340,7 +350,15 @@ public class Player
 		this.mini = mini;
 	}
 	
-	public boolean isGameWon() {
+	public int getPlatform() {
+		return platformY;
+	}
+	
+	public void setPlatform(int platformY) {
+		this.platformY = platformY;
+	}
+	
+	public boolean gameWon() {
 		return gameWon;
 	}
 

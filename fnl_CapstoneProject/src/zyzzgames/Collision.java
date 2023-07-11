@@ -36,11 +36,11 @@ public class Collision
 {	
 	private static int ppb = GameConstants.PIXELS_PER_BLOCK;
 	
-	public static boolean checkDeathCollision(int[][] slopes, int[][] sawblades)
+	public static boolean checkDeathCollision(int[][] slopes, int[][] sawblades, Player p)
 	{
 		for (int i = 0; i < slopes.length; i++)
 		{
-			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersectsLine
+			if (new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox()).intersectsLine
 					(new Line2D.Double(slopes[i][0], slopes[i][1],slopes[i][2], slopes[i][3])))
 			{
 				return true;
@@ -49,7 +49,7 @@ public class Collision
 		
 		for (int i = 0; i < sawblades.length; i++)
 		{
-			if (intersectsCircle(new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()),
+			if (intersectsCircle(new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox()),
 									sawblades[i][1], sawblades[i][2], sawblades[i][0])) 
 			{
 				return true;
@@ -59,11 +59,11 @@ public class Collision
 		return false;
 	}
 	
-	public static boolean checkSpeedCollision(int[][] speedPortals)
+	public static boolean checkSpeedCollision(int[][] speedPortals, Player p)
 	{
 		for (int i = 0; i < speedPortals.length; i++)
 		{
-			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
+			if (new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox()).intersects
 					(new Rectangle(speedPortals[i][0], speedPortals[i][1], (19 * ppb) / 8, (83 * ppb) / 40)))
 			{
 				return true;
@@ -73,11 +73,11 @@ public class Collision
 		return false;
 	}
 	
-	public static boolean checkPortalCollision(int[][] portals)
+	public static boolean checkPortalCollision(int[][] portals, Player p)
 	{
 		for (int i = 0; i < portals.length; i++)
 		{
-			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersects
+			if (new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox()).intersects
 					(new Rectangle(portals[i][0], portals[i][1], (3 * ppb) / 2, (15 * ppb) / 4)))
 			{
 				return true;
@@ -87,16 +87,16 @@ public class Collision
 		return false;
 	}
 	
-	public static boolean checkPlatformCollision()
+	public static boolean checkPlatformCollision(Player p)
 	{
 		LevelEditor lvl = new LevelEditor();
 		
 		for (int i = 0; i < lvl.platforms.length; i++)
 		{
-			if (new Rectangle(Player.getX(), Player.getY(), Player.getHitbox(), Player.getHitbox()).intersectsLine
+			if (new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox()).intersectsLine
 					(new Line2D.Double(lvl.platforms[i][0], lvl.platforms[i][1], lvl.platforms[i][2], lvl.platforms[i][1])))
 			{
-				Player.platformY = lvl.platforms[i][1];
+				p.setPlatform(lvl.platforms[i][1]);
 				return true;
 			}
 		}
