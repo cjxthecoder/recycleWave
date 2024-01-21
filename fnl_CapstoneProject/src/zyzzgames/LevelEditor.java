@@ -89,7 +89,7 @@ public class LevelEditor
 					  { X(271), Y(18), X(277), Y(12) }, { X(277), Y(12), X(280), Y(18) }, { X(271), Y(0), X(277), Y(6) }, { X(277), Y(6), X(280), Y(0) },
 					  { X(260), Y(0), X(271), Y(0) }};
 			
-	// Using the definitions above, below are 7 different types of portals and there respective positions
+	// Using the definitions above, below are 7 different types of portals and their respective positions
 	int[][] speedPortals = {{ X(26), Y(12) }, { X(26), Y(10) }};
 	int[][] normalGravityPortals = {{ X(1), Y(16) }, { X(63), Y(15) }};
 	int[][] flippedGravityPortals = {{ X(57), Y(15) }};
