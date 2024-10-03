@@ -77,11 +77,11 @@ public class GameConstants
 	public static final Image SB = new ImageIcon("fish.png").getImage();
 	
 	// Constants related to the images of the level's difficulty
-	public static final Image Y = (new ImageIcon("half.png")).getImage();
-	public static final Image B = (new ImageIcon("one.png")).getImage();
-	public static final Image G = (new ImageIcon("two.png")).getImage();
-	public static final Image P = (new ImageIcon("three.png")).getImage();
-	public static final Image R = (new ImageIcon("four.png")).getImage();
+	public static final Image Y = new ImageIcon("half.png").getImage();
+	public static final Image B = new ImageIcon("one.png").getImage();
+	public static final Image G = new ImageIcon("two.png").getImage();
+	public static final Image P = new ImageIcon("three.png").getImage();
+	public static final Image R = new ImageIcon("four.png").getImage();
 	
 	// Constants related to the images of the player
 	public static final Image PCU = new ImageIcon("playerCubeUp.png").getImage();

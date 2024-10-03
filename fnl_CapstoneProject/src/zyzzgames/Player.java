@@ -253,11 +253,11 @@ public class Player
 	}
 	
 	public void resetPlayerFields() {
+		hitbox = GameConstants.PLAYER_HITBOX;
 		player.x = GameConstants.START_LINE;
 		player.y = GameConstants.GROUND - hitbox;
-		player.height = GameConstants.PLAYER_HITBOX;
-		player.width = GameConstants.PLAYER_HITBOX;
-		hitbox = GameConstants.PLAYER_HITBOX;
+		player.height = hitbox;
+		player.width = hitbox;
 		gamemode = GameConstants.CUBE;
 		gravity = GameConstants.UP;
 		setSpeed(GameConstants.THREE_TIMES);
@@ -300,8 +300,8 @@ public class Player
 	
 	public void setPlayerSize(double factor) {
 		hitbox = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
-		player.height = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
-		player.width = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
+		player.height = hitbox;
+		player.width = hitbox;
 	}
 	
 	public int getGamemode() {

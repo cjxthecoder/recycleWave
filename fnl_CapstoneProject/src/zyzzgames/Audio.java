@@ -45,7 +45,7 @@ public class Audio
 		clip.open(audioInputStream);
 		
 		// DO NOT CHANGE THE FOLLOWING FOR YOUR OWN SAFETY
-		FloatControl gain = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+		FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 		gain.setValue(-20.0f);
 	}
     
