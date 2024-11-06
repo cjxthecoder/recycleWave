@@ -14,6 +14,9 @@
 
 package zyzzgames;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -97,6 +100,8 @@ public class LevelEditor
 	int[][] miniSizePortals = {{ X(110), Y(12) }};
 	int[][] wavePortals = {{ X(25), Y(12) }};
 	int[][] cubePortals = {{ X(277), Y(13) }, { X(277), Y(9) }};
+	
+	List<List<Integer>> trails = new ArrayList<>();
 
 	/* 
 	 * To make editing easier, the following functions takes in the grid distance and height
@@ -398,5 +403,13 @@ public class LevelEditor
 	
 	public static void goForward(int t) {
 		setDx(dx - t);
+	}
+	
+	public void addPixels(Graphics2D g, int x, int y) {
+		// TODO Auto-generated method stub
+	}
+
+	public void drawPixels(Graphics2D g, int x, int y) {
+		// TODO Auto-generated method stub
 	}
 }

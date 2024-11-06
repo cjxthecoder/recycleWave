@@ -18,7 +18,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
- * The GameConstants interface contains the list of constant values used
+ * The GameConstants class contains the list of constant values used
  * in our game. This includes the ground pixel level, the ceiling pixel
  * level, the size of the player's hitbox, integer value representations
  * for the player's gamemode and gravity, the pixel level for the start
