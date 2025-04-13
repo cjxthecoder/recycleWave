@@ -390,11 +390,11 @@ public class LevelEditor
 		g2d.setStroke(stroke);
 		g2d.setColor(progressColor);
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.fillRect(558, 38, Math.round((420 * (dx - GameConstants.START_LINE)) / levelEndPoint), 15);
+		g2d.fillRect(558, 38, Math.round((420 * (GameConstants.START_LINE - dx)) / levelEndPoint), 15);
 		g2d.setColor(barColor);
 		g2d.drawRect(558, 38, 420, 15);
 		g2d.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
-		g2d.drawString((Math.max(0, Math.round((100 * (dx - GameConstants.START_LINE)) / levelEndPoint))) + "%", 986, 54);
+		g2d.drawString((Math.max(0, Math.round((100 * (GameConstants.START_LINE - dx)) / levelEndPoint))) + "%", 986, 54);
 	}
 	
 	public static void setDx(int x) {

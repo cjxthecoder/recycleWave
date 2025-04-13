@@ -39,13 +39,14 @@ public class GameConstants
 	public static final double MAGIC = 1.0185508475756433;
 	
 	// Constants related to the player's gamemode
-	public static final int CUBE = 2;
-	public static final int SHIP = 3;
-	public static final int BALL = 4;
-	public static final int UFO = 8;
-	public static final int WAVE = 16;
-	public static final int ROBOT = 32;
-	public static final int SPIDER = 64;
+	public static final int CUBE = 12;
+	public static final int SHIP = 13;
+	public static final int BALL = 15;
+	public static final int UFO = 14;
+	public static final int WAVE = 10;
+	public static final int ROBOT = 11;
+	public static final int SPIDER = 9;
+	public static final int SWINGCOPTER = 8;
 	
 	// Constants related to the player's gravity
 	public static final int DOWN = 1;

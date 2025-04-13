@@ -48,7 +48,11 @@ public class Audio
 		FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 		gain.setValue(-20.0f);
 	}
-    
+	
+	public boolean isPlaying() {
+		return clip.isRunning();
+	}
+	
 	public void reset() {
 		clip.stop();
 		clip.setFramePosition(0);

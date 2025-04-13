@@ -43,7 +43,6 @@ public class RunningPlayer extends Player
 	@Override
 	public void run()
 	{	
-		gs.loadMusic();
 		double s = getSpeed();
 		
 		switch (String.valueOf(GameWindow.getComboBox().getSelectedItem()))
@@ -72,6 +71,8 @@ public class RunningPlayer extends Player
 		
 		try {
 			Thread.sleep(500);
+			gs.loadMusic();
+			
 			while (true)
 			{
 				LevelEditor lvl = new LevelEditor();
@@ -91,11 +92,10 @@ public class RunningPlayer extends Player
 					Thread.sleep(1000);
 					resetPlayerFields();
 					LevelEditor.setDx(2 * GameConstants.START_LINE);
+					gs.startMusic();
 				}
 				
 				else {
-					gs.startMusic();
-					
 					if (Collision.checkPortalCollision(lvl.speedPortals, this))
 					{
 						setSpeed(s);

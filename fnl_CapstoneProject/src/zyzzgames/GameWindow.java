@@ -21,6 +21,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -63,6 +64,8 @@ public class GameWindow extends JFrame
 	public GameWindow()
 	{
 		super("Recycle Wave");
+		
+		this.setLayout(new FlowLayout());
 		this.addKeyListener(new InputListener());
 		
 		play = new JButton("Play");
@@ -73,11 +76,9 @@ public class GameWindow extends JFrame
 		comboBox = new JComboBox<>(difficulty);
 		comboBox.setFocusable(false);
 		
-		this.add(play);
-		this.add(comboBox);
-		
 		Container c = getContentPane();
-		c.setLayout(new FlowLayout());
+		c.add(play);
+		c.add(comboBox);
 	}
 	
 	public void actionPerformed(ActionEvent e)
@@ -157,10 +158,10 @@ public class GameWindow extends JFrame
 		lvl.createMiniSizePortals(g, Color.GREEN, GameConstants.MSP);
 		lvl.createWavePortals(g, Color.GREEN, GameConstants.WP);
 		lvl.createCubePortals(g, Color.GREEN, GameConstants.CP);
-		lvl.createSlopes(g, new Color(240, 20, 160), GameConstants.GS, GameConstants.CS);
+		lvl.createSlopes(g, new Color(240, 16, 160), GameConstants.GS, GameConstants.CS);
 		lvl.createSawblades(g, Color.RED, GameConstants.SB);
 		lvl.createSpeedPortals(g, Color.GREEN);
-		lvl.drawProgressBar(g, -GameConstants.FINISH_LINE, Color.BLACK, Color.CYAN);
+		lvl.drawProgressBar(g, GameConstants.FINISH_LINE, Color.BLACK, Color.CYAN);
 		
 //		if (getP().getGamemode() == GameConstants.WAVE && false) {
 //			lvl.addPixels(g, getP().getX(), getP().getY());
