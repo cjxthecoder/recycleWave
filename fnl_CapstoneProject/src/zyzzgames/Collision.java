@@ -91,12 +91,12 @@ public class Collision
 	{
 		LevelEditor lvl = new LevelEditor();
 		
-		for (int i = 0; i < lvl.platforms.length; i++)
+		for (int i = 0; i < lvl.getPlatforms().length; i++)
 		{
 			if (new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox()).intersectsLine
-					(new Line2D.Double(lvl.platforms[i][0], lvl.platforms[i][1], lvl.platforms[i][2], lvl.platforms[i][1])))
+					(new Line2D.Double(lvl.getPlatforms()[i][0], lvl.getPlatforms()[i][1], lvl.getPlatforms()[i][2], lvl.getPlatforms()[i][1])))
 			{
-				p.setPlatform(lvl.platforms[i][1]);
+				p.setPlatform(lvl.getPlatforms()[i][1]);
 				return true;
 			}
 		}

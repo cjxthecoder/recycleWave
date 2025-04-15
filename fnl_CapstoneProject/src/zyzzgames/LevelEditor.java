@@ -16,6 +16,7 @@ package zyzzgames;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -50,13 +51,13 @@ public class LevelEditor
 	private boolean drawHitboxes = false;
 	
 	// A 2D array of platforms with each array being the position of one platform 
-	int[][] platforms = {{ X(1), Y(9), X(23) }};
+	private int[][] platforms = {{ X(1), Y(9), X(23) }};
 
 	// A 2D array of walls with each array being the position of one wall
-	int[][] walls = {{ Y(8), Y(0), X(1) }, { Y(8), Y(0), X(22) }};
+	private int[][] walls = {{ Y(8), Y(0), X(1) }, { Y(8), Y(0), X(22) }};
 
 	// A 2D array of sawblades with each array being the position of one sawblade
-	int[][] sawblades = {{ d, cX(50), cY(14) }, { d, cX(56), cY(6) }, { d, cX(61), cY(8) },
+	private int[][] sawblades = {{ d, cX(50), cY(14) }, { d, cX(56), cY(6) }, { d, cX(61), cY(8) },
 						 { d, cX(69), cY(15)}, { d, cX(76), cY(3) }, { d, cX(94), cY(12) },
 						 { d, cX(97), cY(5) }, { d, cX(109), cY(14) }, { d, cX(114), cY(8) },
 						 { d, cX(140), cY(7) }, { d, cX(146), cY(15) }, { d, cX(152), cY(7) },
@@ -67,7 +68,7 @@ public class LevelEditor
 						 { d, cX(261), cY(2) }, { d, cX(265), cY(8) }, { d, cX(270), cY(4) }, { d, cX(271), cY(12) }};
 
 	// A 2D array of slopes with each array being the position of one slope
-	int[][] slopes = {{ X(25), Y(0), X(35), Y(10) }, { X(35), Y(10), X(45), Y(0) },
+	private int[][] slopes = {{ X(25), Y(0), X(35), Y(10) }, { X(35), Y(10), X(45), Y(0) },
 					  { X(32), Y(18), X(41), Y(9) }, { X(41), Y(9), X(50), Y(18) },
 					  { X(43), Y(7), X(50), Y(0) }, { X(43), Y(7), X(47), Y(11) }, { X(47), Y(11), X(58), Y(0) },
 					  { X(50), Y(18), X(75), Y(18) }, { X(58), Y(0), X(67), Y(9) }, { X(67), Y(9), X(76), Y(0) },
@@ -93,15 +94,18 @@ public class LevelEditor
 					  { X(260), Y(0), X(271), Y(0) }};
 			
 	// Using the definitions above, below are 7 different types of portals and their respective positions
-	int[][] speedPortals = {{ X(26), Y(12) }, { X(26), Y(10) }};
-	int[][] normalGravityPortals = {{ X(1), Y(16) }, { X(63), Y(15) }};
-	int[][] flippedGravityPortals = {{ X(57), Y(15) }};
-	int[][] normalSizePortals = {{ X(197), Y(8) }};
-	int[][] miniSizePortals = {{ X(110), Y(12) }};
-	int[][] wavePortals = {{ X(25), Y(12) }};
-	int[][] cubePortals = {{ X(277), Y(13) }, { X(277), Y(9) }};
+	private int[][] speedPortals = {{ X(26), Y(12) }, { X(26), Y(10) }};
+	private int[][] normalGravityPortals = {{ X(1), Y(16) }, { X(63), Y(15) }};
+	private int[][] flippedGravityPortals = {{ X(57), Y(15) }};
+	private int[][] normalSizePortals = {{ X(197), Y(8) }};
+	private int[][] miniSizePortals = {{ X(110), Y(12) }};
+	private int[][] wavePortals = {{ X(25), Y(12) }};
+	private int[][] cubePortals = {{ X(277), Y(13) }, { X(277), Y(9) }};
 	
-	List<List<Integer>> trails = new ArrayList<>();
+	// List<List<Integer>> trails = new ArrayList<>();
+	private Map<String, int[][]> allPortals = Map.of("SP", speedPortals,
+			"NGP", normalGravityPortals, "FGP", flippedGravityPortals, "NSP", normalSizePortals,
+			"MSP", miniSizePortals, "WP", wavePortals, "CP", cubePortals);
 
 	/* 
 	 * To make editing easier, the following functions takes in the grid distance and height
@@ -403,6 +407,26 @@ public class LevelEditor
 	
 	public static void goForward(int t) {
 		setDx(dx - t);
+	}
+	
+	public int[][] getPlatforms() {
+		return platforms;
+	}
+	
+	public int[][] getWalls() {
+		return walls;
+	}
+	
+	public int[][] getSawblades() {
+		return sawblades;
+	}
+	
+	public int[][] getSlopes() {
+		return slopes;
+	}
+	
+	public int[][] getPortals(String portal) {
+		return allPortals.get(portal);
 	}
 	
 	public void addPixels(Graphics2D g, int x, int y) {

@@ -163,7 +163,7 @@ public class GameWindow extends JFrame
 		lvl.createSpeedPortals(g, Color.GREEN);
 		lvl.drawProgressBar(g, GameConstants.FINISH_LINE, Color.BLACK, Color.CYAN);
 		
-//		if (getP().getGamemode() == GameConstants.WAVE && false) {
+//		if (getP().getGamemode() == GameConstants.WAVE) {
 //			lvl.addPixels(g, getP().getX(), getP().getY());
 //			lvl.drawPixels(g, getP().getX(), getP().getY());
 //		}

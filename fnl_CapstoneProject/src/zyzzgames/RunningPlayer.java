@@ -84,7 +84,7 @@ public class RunningPlayer extends Player
 					Thread.sleep(5);
 				}
 				
-				if (Collision.checkDeathCollision(lvl.slopes, lvl.sawblades, this))
+				if (Collision.checkDeathCollision(lvl.getSlopes(), lvl.getSawblades(), this))
 				{
 					gs.stopMusic();
 					setFullScore(getFullScore() / GameConstants.MAGIC);
@@ -96,12 +96,12 @@ public class RunningPlayer extends Player
 				}
 				
 				else {
-					if (Collision.checkPortalCollision(lvl.speedPortals, this))
+					if (Collision.checkPortalCollision(lvl.getPortals("SP"), this))
 					{
 						setSpeed(s);
 					}
 					
-					if (Collision.checkPortalCollision(lvl.normalGravityPortals, this))
+					if (Collision.checkPortalCollision(lvl.getPortals("NGP"), this))
 					{
 						if (getGravity() == GameConstants.UP)
 						{
@@ -110,7 +110,7 @@ public class RunningPlayer extends Player
 						}
 					}
 					
-					if (Collision.checkPortalCollision(lvl.flippedGravityPortals, this))
+					if (Collision.checkPortalCollision(lvl.getPortals("FGP"), this))
 					{
 						if (getGravity() == GameConstants.DOWN)
 						{
@@ -119,23 +119,7 @@ public class RunningPlayer extends Player
 						}
 					}
 					
-					if (Collision.checkPortalCollision(lvl.miniSizePortals, this)) // divide by 4 if player is wave, else divide by 2
-					{
-						setMini(true);
-						
-						if (getGamemode() == GameConstants.WAVE) {
-							setPlayerSize(0.25);
-						}
-						else {
-							setPlayerSize(0.5);
-						}
-						
-						if (keyIsPressed() && getGamemode() == GameConstants.WAVE) {
-							setYDirection(-8.0 * getSpeed() * this.getGravity());
-						}
-					}
-					
-					if (Collision.checkPortalCollision(lvl.normalSizePortals, this)) // divide by 2 if player is wave, else divide by 1
+					if (Collision.checkPortalCollision(lvl.getPortals("NSP"), this)) // divide by 2 if player is wave, else divide by 1
 					{
 						setMini(false);
 						
@@ -151,7 +135,23 @@ public class RunningPlayer extends Player
 						}
 					}
 					
-					if (Collision.checkPortalCollision(lvl.wavePortals, this)) // divide by 4 if player is mini, else divide by 2
+					if (Collision.checkPortalCollision(lvl.getPortals("MSP"), this)) // divide by 4 if player is wave, else divide by 2
+					{
+						setMini(true);
+						
+						if (getGamemode() == GameConstants.WAVE) {
+							setPlayerSize(0.25);
+						}
+						else {
+							setPlayerSize(0.5);
+						}
+						
+						if (keyIsPressed() && getGamemode() == GameConstants.WAVE) {
+							setYDirection(-8.0 * getSpeed() * this.getGravity());
+						}
+					}
+					
+					if (Collision.checkPortalCollision(lvl.getPortals("WP"), this)) // divide by 4 if player is mini, else divide by 2
 					{
 						setGamemode(GameConstants.WAVE);
 						
@@ -162,7 +162,7 @@ public class RunningPlayer extends Player
 						}
 					}
 					
-					if (Collision.checkPortalCollision(lvl.cubePortals, this)) // divide by 2 if player is mini, else divide by 1
+					if (Collision.checkPortalCollision(lvl.getPortals("CP"), this)) // divide by 2 if player is mini, else divide by 1
 					{
 						setGamemode(GameConstants.CUBE);
 						
