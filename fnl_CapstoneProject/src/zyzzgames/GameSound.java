@@ -29,22 +29,21 @@ public class GameSound
 {
 	Audio audio;
 
-	public void loadMusic()
+	public void loadMusic(float seconds)
 	{ 
 		try {
 			if (audio == null) {
 				audio = new Audio("48000/574484_F-777---Sonic-Blaster_48000.wav");
 			}
-			audio.setOffset(38.1f);
-			audio.play();
+			startMusic(seconds);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void startMusic() {
+	public void startMusic(float seconds) {
 		if (!audio.isPlaying()) {
-			audio.setOffset(38.4f);
+			audio.setOffset(seconds);
 			audio.play();
 		}
 	}

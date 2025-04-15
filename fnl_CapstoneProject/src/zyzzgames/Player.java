@@ -22,6 +22,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 /**
  * The player class contains all the information for the player. This includes
@@ -51,6 +52,7 @@ public class Player
 	private boolean gameWon;
 	private int xDirection, yDirection;
 	private boolean keyPressed = false;
+	private List<Integer> hotKeys = List.of(KeyEvent.VK_UP, KeyEvent.VK_SPACE, KeyEvent.VK_ENTER);
 		
 	public Player(int x, int y, int gamemode, int gravity, double speed, boolean mini)
 	{
@@ -149,7 +151,7 @@ public class Player
 				break;
 				
 			case GameConstants.SHIP:
-				if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
+				if (hotKeys.contains(e.getKeyCode())) {
 					t1++;
 					setYDirection(-Math.min(t1, 4.0) * getSpeed() * gravity);
 					keyPressed = true;
@@ -160,7 +162,7 @@ public class Player
 				break;
 				
 			case GameConstants.WAVE:
-				if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
+				if (hotKeys.contains(e.getKeyCode())) {
 					if (isMini()) {
 						setYDirection(-8.0 * getSpeed() * gravity);
 					}
@@ -182,7 +184,7 @@ public class Player
 				break;
 				
 			case GameConstants.SHIP:
-				if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
+				if (hotKeys.contains(e.getKeyCode())) {
 					resetTime();
 					setYDirection(0);
 					keyPressed = false;
@@ -193,7 +195,7 @@ public class Player
 				break;
 				
 			case GameConstants.WAVE:
-			if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
+				if (hotKeys.contains(e.getKeyCode())) {
 					setYDirection(0);
 					keyPressed = false;
 				}
