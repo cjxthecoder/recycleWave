@@ -41,10 +41,10 @@ public class Player
 {
 	private Rectangle player;
 	private int t1, t2;
-	private int platformY = 0;
 	private int hitbox;
 	private int gamemode;
 	private int gravity;
+	private int platformY = 0;
 	private int attempts = 1;
 	private double speed;
 	private double fullScore = 100.0;
@@ -130,10 +130,9 @@ public class Player
 				case GameConstants.WAVE:
 					if (!keyPressed)
 					{
-						if (isMini()) {
+						if (playerIsMini()) {
 							setFallingSpeed(8.0 * getSpeed() * gravity);
 						}
-						
 						else {
 							setFallingSpeed(4.0 * getSpeed() * gravity);
 						}
@@ -163,10 +162,9 @@ public class Player
 				
 			case GameConstants.WAVE:
 				if (hotKeys.contains(e.getKeyCode())) {
-					if (isMini()) {
+					if (playerIsMini()) {
 						setYDirection(-8.0 * getSpeed() * gravity);
 					}
-					
 					else {
 						setYDirection(-4.0 * getSpeed() * gravity);
 					}
@@ -236,7 +234,6 @@ public class Player
 			drawCenteredText(g, "Level Complete!", 96, 1.8);
 			drawCenteredText(g, "Attempts: " + getAttempts(), 72, 1.2);
 			drawCenteredText(g, "Your score: " + Math.round(100.0 * getFullScore()) / 100.0, 72, 0.9);
-
 		}
 	}
 	
@@ -326,23 +323,6 @@ public class Player
 		this.gravity = gravity;
 	}
 	
-	public double getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(double speed) {
-		this.speed = speed;
-	}
-
-	public boolean isMini() {
-		return mini;
-	}
-	
-	public void setMini(boolean mini)
-	{
-		this.mini = mini;
-	}
-	
 	public int getPlatform() {
 		return platformY;
 	}
@@ -351,12 +331,20 @@ public class Player
 		this.platformY = platformY;
 	}
 	
-	public boolean gameWon() {
-		return gameWon;
+	public int getAttempts() {
+		return attempts;
 	}
 
-	public void setGameWon(boolean gameWon) {
-		this.gameWon = gameWon;
+	public void setAttempts(int attempts) {
+		this.attempts = attempts;
+	}
+	
+	public double getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(double speed) {
+		this.speed = speed;
 	}
 	
 	public double getFullScore() {
@@ -366,12 +354,25 @@ public class Player
 	public void setFullScore(double fullScore) {
 		this.fullScore = fullScore;
 	}
-
-	public int getAttempts() {
-		return attempts;
+	
+	public boolean playerIsMini() {
+		return mini;
+	}
+	
+	public void setMini(boolean mini)
+	{
+		this.mini = mini;
+	}
+	
+	public boolean gameIsWon() {
+		return gameWon;
 	}
 
-	public void setAttempts(int attempts) {
-		this.attempts = attempts;
+	public void setGameWon(boolean gameWon) {
+		this.gameWon = gameWon;
+	}
+	
+	public boolean keyIsPressed() {
+		return keyPressed;
 	}
 }

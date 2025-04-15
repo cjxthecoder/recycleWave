@@ -77,7 +77,7 @@ public class RunningPlayer extends Player
 			{
 				LevelEditor lvl = new LevelEditor();
 				
-				if ((getX() < GameConstants.START_LINE || LevelEditor.dx < GameConstants.START_LINE - GameConstants.FINISH_LINE) && !gameWon())
+				if ((getX() < GameConstants.START_LINE || LevelEditor.dx < GameConstants.START_LINE - GameConstants.FINISH_LINE) && !gameIsWon())
 				{
 					setXDirection(4.0 * getSpeed());
 					makePlayerReach300();
@@ -129,6 +129,10 @@ public class RunningPlayer extends Player
 						else {
 							setPlayerSize(0.5);
 						}
+						
+						if (keyIsPressed() && getGamemode() == GameConstants.WAVE) {
+							setYDirection(-8.0 * getSpeed() * this.getGravity());
+						}
 					}
 					
 					if (Collision.checkPortalCollision(lvl.normalSizePortals, this)) // divide by 2 if player is wave, else divide by 1
@@ -141,13 +145,17 @@ public class RunningPlayer extends Player
 						else {
 							setPlayerSize(1.0);
 						}
+						
+						if (keyIsPressed() && getGamemode() == GameConstants.WAVE) {
+							setYDirection(-4.0 * getSpeed() * this.getGravity());
+						}
 					}
 					
 					if (Collision.checkPortalCollision(lvl.wavePortals, this)) // divide by 4 if player is mini, else divide by 2
 					{
 						setGamemode(GameConstants.WAVE);
 						
-						if (isMini()) {
+						if (playerIsMini()) {
 							setPlayerSize(0.25);
 						} else {
 							setPlayerSize(0.5);
@@ -158,7 +166,7 @@ public class RunningPlayer extends Player
 					{
 						setGamemode(GameConstants.CUBE);
 						
-						if (isMini()) {
+						if (playerIsMini()) {
 							setPlayerSize(0.5);
 						} else {
 							setPlayerSize(1);
