@@ -4,10 +4,10 @@ Company Name: Team Zyzz
 
 Team members: Brandon Tsao, Ali Haryanawalla, Daniel Cheng
 
-Document last revised: 11/1/2023
+Document last revised: 4/16/2025
 
 ## Program purpose:
-A game with a character that moves up and down in a wave pattern. Your goal is to not to hit the sides, or you lose the game. An environmental idea is to have a plastic bottle and a tree or coral, and you try and make the bottle not hit the coral or the fish. 
+A game with a character that moves up and down in a wave pattern. Your goal is to not hit the sides, or you lose the game. The environmental idea is to have a plastic bottle and a tree or coral, while you try to move the bottle into the recycling bin without hitting the coral or the fish.
 
 ## Target user profile:
 Children or adults of all ages.
