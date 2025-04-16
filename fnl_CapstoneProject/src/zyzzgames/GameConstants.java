@@ -71,8 +71,8 @@ public class GameConstants
 	public static final Image FGP = new ImageIcon("flippedGravityPortal.png").getImage();
 	public static final Image NSP = new ImageIcon("normalSizePortal.png").getImage();
 	public static final Image MSP = new ImageIcon("miniSizePortal.png").getImage();
-	public static final Image WP = new ImageIcon("wavePortal.png").getImage();
-	public static final Image CP = new ImageIcon("cubePortal.png").getImage();
+	public static final Image WVP = new ImageIcon("wavePortal.png").getImage();
+	public static final Image CBP = new ImageIcon("cubePortal.png").getImage();
 	public static final Image GS = new ImageIcon("groundSpike.png").getImage();
 	public static final Image CS = new ImageIcon("ceilingSpike.png").getImage();
 	public static final Image SB = new ImageIcon("fish.png").getImage();
@@ -89,5 +89,5 @@ public class GameConstants
 	public static final Image PCD = new ImageIcon("playerCubeDown.png").getImage();
 	public static final Image PWU = new ImageIcon("playerWaveUp.png").getImage();
 	public static final Image PWD = new ImageIcon("playerWaveDown.png").getImage();
-	public static final Image RB = new ImageIcon("recycleBin.png").getImage();
+	public static final Image FNL = new ImageIcon("recycleBin.png").getImage();
 }

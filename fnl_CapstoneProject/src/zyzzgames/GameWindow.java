@@ -156,8 +156,8 @@ public class GameWindow extends JFrame
 		lvl.createFlippedGravityPortals(g, Color.GREEN, GameConstants.FGP);
 		lvl.createNormalSizePortals(g, Color.GREEN, GameConstants.NSP);
 		lvl.createMiniSizePortals(g, Color.GREEN, GameConstants.MSP);
-		lvl.createWavePortals(g, Color.GREEN, GameConstants.WP);
-		lvl.createCubePortals(g, Color.GREEN, GameConstants.CP);
+		lvl.createWavePortals(g, Color.GREEN, GameConstants.WVP);
+		lvl.createCubePortals(g, Color.GREEN, GameConstants.CBP);
 		lvl.createSlopes(g, new Color(240, 16, 160), GameConstants.GS, GameConstants.CS);
 		lvl.createSawblades(g, Color.RED, GameConstants.SB);
 		lvl.createSpeedPortals(g, Color.GREEN);

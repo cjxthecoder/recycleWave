@@ -95,7 +95,7 @@ public class RunningPlayer extends Player
 				}
 				
 				else {
-					if (Collision.checkPortalCollision(lvl.getPortals("SP"), this))
+					if (Collision.checkPortalCollision(lvl.getPortals("SPP"), this))
 					{
 						setSpeed(s);
 					}
@@ -150,7 +150,7 @@ public class RunningPlayer extends Player
 						}
 					}
 					
-					if (Collision.checkPortalCollision(lvl.getPortals("WP"), this)) // divide by 4 if player is mini, else divide by 2
+					if (Collision.checkPortalCollision(lvl.getPortals("WVP"), this)) // divide by 4 if player is mini, else divide by 2
 					{
 						setGamemode(GameConstants.WAVE);
 						
@@ -161,7 +161,7 @@ public class RunningPlayer extends Player
 						}
 					}
 					
-					if (Collision.checkPortalCollision(lvl.getPortals("CP"), this)) // divide by 2 if player is mini, else divide by 1
+					if (Collision.checkPortalCollision(lvl.getPortals("CBP"), this)) // divide by 2 if player is mini, else divide by 1
 					{
 						setGamemode(GameConstants.CUBE);
 						

@@ -103,9 +103,9 @@ public class LevelEditor
 	private int[][] cubePortals = {{ X(277), Y(13) }, { X(277), Y(9) }};
 	
 	// List<List<Integer>> trails = new ArrayList<>();
-	private Map<String, int[][]> allPortals = Map.of("SP", speedPortals,
+	private Map<String, int[][]> allPortals = Map.of("SPP", speedPortals,
 			"NGP", normalGravityPortals, "FGP", flippedGravityPortals, "NSP", normalSizePortals,
-			"MSP", miniSizePortals, "WP", wavePortals, "CP", cubePortals);
+			"MSP", miniSizePortals, "WVP", wavePortals, "CBP", cubePortals);
 
 	/* 
 	 * To make editing easier, the following functions takes in the grid distance and height
@@ -425,8 +425,8 @@ public class LevelEditor
 		return slopes;
 	}
 	
-	public int[][] getPortals(String portal) {
-		return allPortals.get(portal);
+	public int[][] getPortals(String portalType) {
+		return allPortals.get(portalType);
 	}
 	
 	public void addPixels(Graphics2D g, int x, int y) {
