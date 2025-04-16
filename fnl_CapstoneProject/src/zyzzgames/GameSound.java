@@ -14,6 +14,11 @@
 
 package zyzzgames;
 
+import java.io.IOException;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 /**
  * The GameSound class has an Audio that allows the clip to be played. To load
  * the clip, an audio file is instantiated in the other classes. This class uses
@@ -28,15 +33,11 @@ package zyzzgames;
 public class GameSound
 {
 	Audio audio;
-
-	public void loadMusic(float seconds)
-	{ 
+	
+	public GameSound(String file) {
 		try {
-			if (audio == null) {
-				audio = new Audio("48000/574484_F-777---Sonic-Blaster_48000.wav");
-			}
-			startMusic(seconds);
-		} catch (Exception e) {
+			audio = new Audio("48000/574484_F-777---Sonic-Blaster_48000.wav");
+		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 			e.printStackTrace();
 		}
 	}

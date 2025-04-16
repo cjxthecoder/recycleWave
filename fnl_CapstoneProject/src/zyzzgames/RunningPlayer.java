@@ -38,12 +38,11 @@ public class RunningPlayer extends Player
 		super(x, y, gamemode, gravity, speed, mini);
 	}
 	
-	GameSound gs = new GameSound();
-	
 	@Override
 	public void run()
 	{	
 		double s = getSpeed();
+		GameSound gs = new GameSound("48000/574484_F-777---Sonic-Blaster_48000.wav");
 		
 		switch (String.valueOf(GameWindow.getComboBox().getSelectedItem()))
 		{
@@ -71,7 +70,7 @@ public class RunningPlayer extends Player
 		
 		try {
 			Thread.sleep(500);
-			gs.loadMusic(38.1f);
+			gs.startMusic(38.1f);
 			
 			while (true)
 			{
@@ -193,7 +192,7 @@ public class RunningPlayer extends Player
 					Thread.sleep(5);
 				}
 			}
-		} catch(Exception e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
