@@ -14,10 +14,10 @@ Children or adults of all ages.
 
 ## Instructions: 
 1. Press the run button
-2. It will load you into a window that may or may not have a background. On top of the title, there are 2 rectangles that say to "drag your cursor here" or "over there> AS WELL!". Drag your mouse there.
-3. Dragging to the left rectangle will create the "Play" button. Click this to play the game. Dragging to the area pointed by the text "over there>" creates a drop-down menu, where you can choose the speed of the game.
-4. Once the game is running, your player will land on a platform before entering a cool portal. You can press the spacebar, enter, or up key to move your character. Holding the key makes your character move up, while releasing the key allows your character to fall down.
-5. Reach 100% to complete the level, where your final score will be given exactly by 100/(x^(deaths)), where x is a constant left as an exercise for the reader to discover. After the level is completed you can rerun the program to try the game at a different speed.
+2. It will load you into a window that may or may not have a background. On top of the title, there are 2 rectangles that say to "Drag your cursor here" or "Over there> As well!". Drag your mouse there.
+3. Dragging your mouse to the left rectangle will create the "Play" button. Click this to play the game. Dragging to the area pointed by the text "over there>" creates a drop-down menu, where you can choose the speed of the game.
+4. Once the game is running, your player will land on a platform before entering a cool portal. You can press the spacebar, enter, or up key to move your character. Holding the key makes your character move up, while releasing the key allows your character to fall.
+5. Reach 100% to complete the level, where your final score will be given exactly by (100s)/(x^(deaths)), where s is the level's speed and x is a constant left as an exercise for the reader to discover. After the level is completed, you can rerun the program to try the game at a different speed to achieve a higher score.
 
 ## Class List:
 - Audio
@@ -57,23 +57,23 @@ Children or adults of all ages.
 - The setOffset() method doesn't start the music at the same place
   - FIX: Use a different value as the parameter so that there are more times when the music does start at the same place
 - Adding +dx to every 4-5 digit value in all of those 2D arrays...too much work and hard to understand
-  - FIX: A function is used so that the position of objects created is fixed to a grid, and thus the position of these objects in grid units are much smaller.
+  - FIX: A function is used so that the position of objects created is fixed to a grid, and thus the position of these objects in grid units is much smaller.
 - When the player becomes smaller, using hitbox /= 2 results in the hitbox rapidly reaching zero, and vice versa for becoming bigger
   - FIX: Since the player's hitbox can only be 40x40, 20x20, or 10x10, every transformation scenario can be written out, with what the player's hitboxes will be in each case.
 - Button not showing in the title screen
   - FIX: Using the FlowLayout from lipogrammer worked out very well, as well as some instructions for the player written out in text on the window.
 - A way to center text
-  - Using the .getAscent() method from the FontMetrics class allowed us to get the dimension of any string of text on the screen, and the problem is reduced to centering a rectangle on a rectangle window.
+  - Using the .getAscent() method from the FontMetrics class allowed us to get the dimensions of any string of text on the screen, and the problem is reduced to centering a rectangle on a rectangle window.
 ## Key lessons learned
 - How to initialize audio from a file, and how to make the audio stop or start by converting it into a clip
 - How to make the program read key input from the user
-- How to detect collision between various shapes
+- How to detect a collision between various shapes
 - How to create a drop-down menu with a list of options (JComboBox)
-- How thread and runnable works to run a game
+- How Thread and Runnable works to run a game
 ## Further development
 - If we had more time, we would make more levels, try representing objects in an ArrayList, as well as adding more graphics to the game.
 - Other areas of RND:
-  - Explore modeling the player's movement by including a vector for x and y velocities so that other gamemodes such as cube or ship can be accurately implemented as well.
+  - Explore modeling the player's movement by including a vector for x and y velocities so that other gamemodes, such as cube or ship, can be accurately implemented as well.
   - Remake the project using paintComponent so that there will not be issues like the button not showing.
   - Add a camera to track the player so that the player can move higher than y=720.
   - Add a Level Editor GUI so that a level can be edited directly by the user in a window.
