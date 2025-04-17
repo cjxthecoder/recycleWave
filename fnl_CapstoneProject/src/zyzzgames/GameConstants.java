@@ -89,5 +89,5 @@ public class GameConstants
 	public static final Image PCD = new ImageIcon("playerCubeDown.png").getImage();
 	public static final Image PWU = new ImageIcon("playerWaveUp.png").getImage();
 	public static final Image PWD = new ImageIcon("playerWaveDown.png").getImage();
-	public static final Image FNL = new ImageIcon("recycleBin.png").getImage();
+	public static final Image RCB = new ImageIcon("recycleBin.png").getImage();
 }

@@ -230,7 +230,7 @@ public class Player
 		}
 		
 		if (player.x >= 768) {
-			g.drawImage(GameConstants.FNL, 1428, 660, null);
+			g.drawImage(GameConstants.RCB, 1428, 660, null);
 			drawCenteredText(g, "Level Complete!", 96, 1.8);
 			drawCenteredText(g, "Attempts: " + getAttempts(), 72, 1.2);
 			drawCenteredText(g, "Your score: " + Math.round(100.0 * getFullScore()) / 100.0, 72, 0.9);
