@@ -76,7 +76,7 @@ public class RunningPlayer extends Player
 			{
 				LevelEditor lvl = new LevelEditor();
 				
-				if ((getX() < GameConstants.START_LINE || LevelEditor.dx < GameConstants.START_LINE - GameConstants.FINISH_LINE) && !gameIsWon())
+				if ((getX() < GameConstants.START_LINE || lvl.getDx() < GameConstants.START_LINE - GameConstants.FINISH_LINE) && !gameIsWon())
 				{
 					setXDirection(4.0 * getSpeed());
 					makePlayerReach300();
@@ -90,7 +90,7 @@ public class RunningPlayer extends Player
 					setAttempts(getAttempts() + 1);
 					Thread.sleep(1000);
 					resetPlayerFields();
-					LevelEditor.setDx(2 * GameConstants.START_LINE);
+					lvl.setDx(2 * GameConstants.START_LINE);
 					gs.startMusic(38.4f);
 				}
 				
@@ -182,12 +182,12 @@ public class RunningPlayer extends Player
 						setGameWon(true);
 					}
 					
-					if (getX() >= GameConstants.START_LINE && LevelEditor.dx >= GameConstants.START_LINE - GameConstants.FINISH_LINE) {
-						LevelEditor.goForward((int)(4.0 * getSpeed()));
+					if (getX() >= GameConstants.START_LINE && lvl.getDx() >= GameConstants.START_LINE - GameConstants.FINISH_LINE) {
+						lvl.goForward((int)(4.0 * getSpeed()));
 					}
 					
 					else {
-						LevelEditor.goForward(0);
+						lvl.goForward(0);
 					}
 					Thread.sleep(5);
 				}

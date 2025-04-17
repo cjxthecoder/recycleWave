@@ -45,7 +45,7 @@ import java.awt.geom.Line2D;
 public class LevelEditor
 {
 	// Starting point of the level relative to the left-side of the window
-	public static int dx = GameConstants.START_LINE;
+	private static int dx = GameConstants.START_LINE;
 	private int d = GameConstants.SAWBLADE_DIAMETER;
 	private int ppb = GameConstants.PIXELS_PER_BLOCK;
 	private boolean drawHitboxes = false;
@@ -401,11 +401,15 @@ public class LevelEditor
 		g2d.drawString((Math.max(0, Math.round((100 * (GameConstants.START_LINE - dx)) / levelEndPoint))) + "%", 986, 54);
 	}
 	
-	public static void setDx(int x) {
+	public int getDx() {
+		return dx;
+	}
+	
+	public void setDx(int x) {
 		dx = x;
 	}
 	
-	public static void goForward(int t) {
+	public void goForward(int t) {
 		setDx(dx - t);
 	}
 	

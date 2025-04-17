@@ -32,15 +32,15 @@ Children or adults of all ages.
 ## Interface List:
 - GameConstants
 ## Team responsibility:
-### Brandon:
+### Brandon T:
 - GameConstants.java
 - LevelEditor.java
 - Main.java
-### Ali:
+### Ali H:
 - Audio.java
 - Collision.java
 - GameSound.java
-### Daniel:
+### Daniel C:
 - GameWindow.java
 - InputListener.java
 - Player.java
