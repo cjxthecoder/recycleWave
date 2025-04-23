@@ -97,12 +97,12 @@ public class Player
 	 		{
 	 			case GameConstants.UP:
 	 				player.y = platformY + 1;
-	 				setFallingSpeed(0);
+	 				setYDirection(0);
 	 				break;
 	 				
 	 			case GameConstants.DOWN:
 	 				player.y = platformY - hitbox;
-	 				setFallingSpeed(0);
+	 				setYDirection(0);
 	 				break;
 	 		}
 	 		
@@ -118,7 +118,7 @@ public class Player
 			{
 				case GameConstants.CUBE:
 					t1++;
-					setFallingSpeed(Math.min(t1 / 4.0, 8.0) * getSpeed() * gravity);
+					setYDirection(Math.min(t1 / 4.0, 8.0) * getSpeed() * gravity);
 					break;
 			
 				case GameConstants.SHIP:
@@ -131,10 +131,10 @@ public class Player
 					if (!keyPressed)
 					{
 						if (playerIsMini()) {
-							setFallingSpeed(8.0 * getSpeed() * gravity);
+							setYDirection(8.0 * getSpeed() * gravity);
 						}
 						else {
-							setFallingSpeed(4.0 * getSpeed() * gravity);
+							setYDirection(4.0 * getSpeed() * gravity);
 						}
 					}
 					break;
@@ -245,10 +245,6 @@ public class Player
 		int y = (int) Math.round((840 - metrics.getHeight()) / yFactor + metrics.getAscent());
 		g.setFont(font);
 		g.drawString(s, x, y/2);
-	}
-	
-	public void setFallingSpeed(double fallingSpeed) {
-		yDirection = (int) Math.round(fallingSpeed);
 	}
 	
 	public void resetPlayerFields() {
