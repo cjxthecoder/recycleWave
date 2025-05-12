@@ -4,7 +4,7 @@ Lead Designer & Developer: Daniel Cheng
 
 Document last revised: 5/12/2025
 
-![My Image](/Screen Shot 2025-05-12 at 4.53.26 PM.png)
+![My Image](Screen Shot 2025-05-12 at 4.53.26 PM.png)
 
 ## Program purpose:
 A game with a character that moves up and down in a wave pattern. Your goal is to not hit the sides, or you lose the game. The environmental idea is to have a plastic bottle and a tree or coral, while you try to move the bottle into the recycling bin without hitting the coral or the fish.
