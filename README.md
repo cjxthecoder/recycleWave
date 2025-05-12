@@ -2,7 +2,7 @@
 
 Company Name: Team Zyzz
 
-Team members: Brandon Tsao, Ali Haryanawalla, Daniel Cheng
+Lead Developer: Daniel Cheng
 
 Document last revised: 4/16/2025
 
@@ -22,6 +22,7 @@ Children or adults of all ages.
 ## Class List:
 - Audio
 - Collision
+- GameConstants
 - GameSound
 - GameWindow
 - InputListener
@@ -29,22 +30,6 @@ Children or adults of all ages.
 - Main
 - Player
 - RunningPlayer
-## Interface List:
-- GameConstants
-## Team responsibility:
-### Brandon T:
-- GameConstants.java
-- LevelEditor.java
-- Main.java
-### Ali H:
-- Audio.java
-- Collision.java
-- GameSound.java
-### Daniel C:
-- GameWindow.java
-- InputListener.java
-- Player.java
-- RunningPlayer.java
 ## Bugs & Problems (with fixes)
 - A way for the user to choose different speeds to play the game
   - FIX: Using a JComboBox, and a switch-case block to apply different speeds depending on what the user had chosen (by using .getSelectedItem())
