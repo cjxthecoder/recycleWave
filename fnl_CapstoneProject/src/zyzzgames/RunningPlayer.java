@@ -140,7 +140,7 @@ public class RunningPlayer extends Player
 						
 						if (getGamemode() == GameConstants.WAVE) {
 							setPlayerSize(0.25);
-						}
+						} 
 						else {
 							setPlayerSize(0.5);
 						}

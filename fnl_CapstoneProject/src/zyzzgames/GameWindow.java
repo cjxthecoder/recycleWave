@@ -101,37 +101,42 @@ public class GameWindow extends JFrame
 		}
 		
 		else {
-			getP().drawCenteredText(g, "Recycle Wave", 96, 1.5);
-			
-			if (System.getProperty("os.name").contains("Mac")) {
-				g.drawRect(642, 33, 121, 40);
-				g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
-				g.drawString("Drag your cursor here", 650, 56);
-				g.drawRect(761, 37, 120, 99);
-				g.drawRect(767, 39, 126, 27);
-				g.drawLine(860, 39, 860, 66);
-				g.drawString("Over there>", 772, 56);
-				g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
-				g.drawString("As well!", 778, 90);
-				g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
-				g.drawString("Don't forget to", 778, 110);
-				g.drawString("try clicking :)", 778, 130);
-			}
-			
-			else {
-				g.drawRect(660, 35, 121, 40);
-				g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
-				g.drawString("Drag your cursor here", 664, 58);
-				g.drawRect(784, 41, 92, 119);
-				g.drawLine(784, 67, 876, 67);
-				g.drawLine(853, 41, 853, 67);
-				g.drawString("Over there>", 788, 58);
-				g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
-				g.drawString("As well!", 790, 90);
-				g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
-				g.drawString("Don't forget to", 790, 110);
-				g.drawString("try clicking :)", 790, 130);
-			}
+			drawGameTitle(g);
+		}
+	}
+	
+	public void drawGameTitle(Graphics g)
+	{
+		p.drawCenteredText(g, "Recycle Wave", 96, 1.5);
+		
+		if (System.getProperty("os.name").contains("Mac")) {
+			g.drawRect(643, 33, 120, 40);
+			g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
+			g.drawString("Drag your cursor here", 650, 56);
+			g.drawRect(761, 37, 120, 99);
+			g.drawRect(767, 39, 126, 27);
+			g.drawLine(860, 39, 860, 66);
+			g.drawString("Over there>", 772, 56);
+			g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
+			g.drawString("As well!", 778, 90);
+			g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
+			g.drawString("Don't forget to", 778, 110);
+			g.drawString("try clicking :)", 778, 130);
+		}
+		
+		else {
+			g.drawRect(661, 35, 120, 40);
+			g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
+			g.drawString("Drag your cursor here", 664, 58);
+			g.drawRect(784, 41, 92, 119);
+			g.drawLine(784, 67, 876, 67);
+			g.drawLine(853, 41, 853, 67);
+			g.drawString("Over there>", 788, 58);
+			g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
+			g.drawString("As well!", 790, 90);
+			g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
+			g.drawString("Don't forget to", 790, 110);
+			g.drawString("try clicking :)", 790, 130);
 		}
 	}
 	
@@ -163,7 +168,7 @@ public class GameWindow extends JFrame
 		lvl.createSpeedPortals(g, Color.GREEN);
 		lvl.drawProgressBar(g, GameConstants.FINISH_LINE, Color.BLACK, Color.CYAN);
 		
-//		if (getP().getGamemode() == GameConstants.WAVE) {
+//		if (p.getGamemode() == GameConstants.WAVE) {
 //			lvl.addPixels(g, getP().getX(), getP().getY());
 //			lvl.drawPixels(g, getP().getX(), getP().getY());
 //		}
