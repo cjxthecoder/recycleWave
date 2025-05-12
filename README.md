@@ -13,7 +13,7 @@ A game with a character that moves up and down in a wave pattern. Your goal is t
 Children or adults of all ages.
 
 ## Instructions: 
-1. Press the run button
+1. Press the run button (if you are running in the Java IDE)
 2. It will load you into a window that may or may not have a background. On top of the title, there are 2 rectangles that say to "Drag your cursor here" or "Over there> As well!". Drag your mouse there.
 3. Dragging your mouse to the left rectangle will create the "Play" button. Click this to play the game. Dragging to the area pointed by the text "over there>" creates a drop-down menu, where you can choose the speed of the game.
 4. Once the game is running, your player will land on a platform before entering a cool portal. You can press the spacebar, enter, or up key to move your character. Holding the key makes your character move up, while releasing the key allows your character to fall.
