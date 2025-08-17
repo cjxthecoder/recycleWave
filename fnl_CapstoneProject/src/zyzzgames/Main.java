@@ -25,14 +25,13 @@ import javax.swing.JFrame;
  * @since 1.0
  */
 
-public class Main extends JFrame
+public class Main
 {	
 	public static void main(String[] args)
 	{
-		GameWindow gw = new GameWindow();
-		gw.setBounds(0, 0, 1536, 840);
+		GameWindow gw = new GameWindow(0, 0, 1536, 840);
 		gw.setBackground(new Color(20, 90, 230));
-		gw.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		gw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gw.setResizable(false);
 		gw.setVisible(true);
 	}
