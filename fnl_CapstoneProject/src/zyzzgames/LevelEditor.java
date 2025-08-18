@@ -102,7 +102,7 @@ public class LevelEditor
 	private int[][] wavePortals = {{ gX(25), gY(12) }};
 	private int[][] cubePortals = {{ gX(277), gY(13) }, { gX(277), gY(9) }};
 	
-	List<List<Integer>> trails = new ArrayList<>();
+	// A map consisting of the names of the portals to their respective arrays
 	private Map<String, int[][]> allPortals = Map.of("SPP", speedPortals,
 			"NGP", normalGravityPortals, "FGP", flippedGravityPortals, "NSP", normalSizePortals,
 			"MSP", miniSizePortals, "WVP", wavePortals, "CBP", cubePortals);
