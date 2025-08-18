@@ -51,56 +51,56 @@ public class LevelEditor
 	private boolean drawHitboxes = false;
 	
 	// A 2D array of platforms with each array being the position of one platform 
-	private int[][] platforms = {{ X(1), Y(9), X(23) }};
+	private int[][] platforms = {{ gX(1), gY(9), gX(23) }};
 
 	// A 2D array of walls with each array being the position of one wall
-	private int[][] walls = {{ Y(8), Y(0), X(1) }, { Y(8), Y(0), X(22) }};
+	private int[][] walls = {{ gY(8), gY(0), gX(1) }, { gY(8), gY(0), gX(22) }};
 
 	// A 2D array of sawblades with each array being the position of one sawblade
-	private int[][] sawblades = {{ d, cX(50), cY(14) }, { d, cX(56), cY(6) }, { d, cX(61), cY(8) },
-						 { d, cX(69), cY(15)}, { d, cX(76), cY(3) }, { d, cX(94), cY(12) },
-						 { d, cX(97), cY(5) }, { d, cX(109), cY(14) }, { d, cX(114), cY(8) },
-						 { d, cX(140), cY(7) }, { d, cX(146), cY(15) }, { d, cX(152), cY(7) },
-						 { d, cX(161), cY(4)}, { d, cX(166), cY(14) }, { d, cX(171), cY(4) }, { d, cX(176), cY(14)},
-						 { d, cX(181), cY(4)},  { d, cX(186), cY(14) }, { d, cX(191), cY(4)}, { d, cX(196), cY(14)},
-						 { d, cX(211), cY(4) }, { d, cX(214), cY(11) }, { d, cX(218), cY(15) }, { d, cX(225), cY(15) },
-						 { d, cX(235), cY(2) }, { d, cX(240), cY(15) }, { d, cX(245), cY(13) },
-						 { d, cX(261), cY(2) }, { d, cX(265), cY(8) }, { d, cX(270), cY(4) }, { d, cX(271), cY(12) }};
+	private int[][] sawblades = {{ d, gcX(50), gcY(14) }, { d, gcX(56), gcY(6) }, { d, gcX(61), gcY(8) },
+						 { d, gcX(69), gcY(15)}, { d, gcX(76), gcY(3) }, { d, gcX(94), gcY(12) },
+						 { d, gcX(97), gcY(5) }, { d, gcX(109), gcY(14) }, { d, gcX(114), gcY(8) },
+						 { d, gcX(140), gcY(7) }, { d, gcX(146), gcY(15) }, { d, gcX(152), gcY(7) },
+						 { d, gcX(161), gcY(4)}, { d, gcX(166), gcY(14) }, { d, gcX(171), gcY(4) }, { d, gcX(176), gcY(14)},
+						 { d, gcX(181), gcY(4)},  { d, gcX(186), gcY(14) }, { d, gcX(191), gcY(4)}, { d, gcX(196), gcY(14)},
+						 { d, gcX(211), gcY(4) }, { d, gcX(214), gcY(11) }, { d, gcX(218), gcY(15) }, { d, gcX(225), gcY(15) },
+						 { d, gcX(235), gcY(2) }, { d, gcX(240), gcY(15) }, { d, gcX(245), gcY(13) },
+						 { d, gcX(261), gcY(2) }, { d, gcX(265), gcY(8) }, { d, gcX(270), gcY(4) }, { d, gcX(271), gcY(12) }};
 
 	// A 2D array of slopes with each array being the position of one slope
-	private int[][] slopes = {{ X(25), Y(0), X(35), Y(10) }, { X(35), Y(10), X(45), Y(0) },
-					  { X(32), Y(18), X(41), Y(9) }, { X(41), Y(9), X(50), Y(18) },
-					  { X(43), Y(7), X(50), Y(0) }, { X(43), Y(7), X(47), Y(11) }, { X(47), Y(11), X(58), Y(0) },
-					  { X(50), Y(18), X(75), Y(18) }, { X(58), Y(0), X(67), Y(9) }, { X(67), Y(9), X(76), Y(0) },
-					  { X(70), Y(12), X(76), Y(18) }, { X(70), Y(12), X(73), Y(9) }, { X(76), Y(18), X(82), Y(12) }, { X(79), Y(9), X(82), Y(12) },
-					  { X(75), Y(7), X(76), Y(6) }, { X(76), Y(6), X(77), Y(7) },
-					  { X(77), Y(18), X(86), Y(9) }, { X(86), Y(9), X(95), Y(18) },
-					  { X(81), Y(0), X(90), Y(9) }, { X(90), Y(9), X(95), Y(4)}, { X(91), Y(0), X(95), Y(4) },
-					  { X(95), Y(18), X(102), Y(11) }, { X(102), Y(11), X(109), Y(18) },
-					  { X(95), Y(0), X(106), Y(11) }, { X(106), Y(11), X(117), Y(0) }, { X(109), Y(18), X(115), Y(18) },
-					  { X(115), Y(18), X(121), Y(6) }, { X(121), Y(6), X(127), Y(18) },
-					  { X(121), Y(0), X(127), Y(12) }, { X(127), Y(12), X(133), Y(0) },
-					  { X(127), Y(18), X(133), Y(6) }, { X(133), Y(6), X(139), Y(18) },
-					  { X(136), Y(0), X(146), Y(5) }, { X(146), Y(5), X(156), Y(0) }, { X(153), Y(18), X(158), Y(8) },
-					  { X(138), Y(18), X(193), Y(18) }, { X(156), Y(0), X(199), Y(0) },
-					  { X(192), Y(18), X(197), Y(8) }, { X(198), Y(3), X(201), Y(0) }, { X(198), Y(3), X(203), Y(8) }, { X(203), Y(8), X(211), Y(0) },
-					  { X(199), Y(18), X(208), Y(9) }, { X(208), Y(9), X(217), Y(18) },
-					  { X(211), Y(0), X(222), Y(11) }, { X(222), Y(11), X(233), Y(0) }, { X(217), Y(18), X(232), Y(18) },
-					  { X(228), Y(13), X(233), Y(18) }, { X(233), Y(18), X(238), Y(13) }, { X(230), Y(13), X(233), Y(16) }, { X(233), Y(16), X(236), Y(13) },
-					  { X(232), Y(13), X(233), Y(14) }, { X(233), Y(14), X(234), Y(13) }, { X(232), Y(9), X(233), Y(8) }, { X(233), Y(8), X(234), Y(9) },
-					  { X(228), Y(9), X(233), Y(4) }, { X(233), Y(4), X(238), Y(9) }, { X(230), Y(9), X(233), Y(6) }, { X(233), Y(6), X(236), Y(9) },
-					  { X(240), Y(0), X(250), Y(10) }, { X(250), Y(10), X(260), Y(0) }, { X(247), Y(18), X(259), Y(6) }, { X(259), Y(6), X(271), Y(18) },
-					  { X(271), Y(18), X(277), Y(12) }, { X(277), Y(12), X(280), Y(18) }, { X(271), Y(0), X(277), Y(6) }, { X(277), Y(6), X(280), Y(0) },
-					  { X(260), Y(0), X(271), Y(0) }};
+	private int[][] slopes = {{ gX(25), gY(0), gX(35), gY(10) }, { gX(35), gY(10), gX(45), gY(0) },
+					  { gX(32), gY(18), gX(41), gY(9) }, { gX(41), gY(9), gX(50), gY(18) },
+					  { gX(43), gY(7), gX(50), gY(0) }, { gX(43), gY(7), gX(47), gY(11) }, { gX(47), gY(11), gX(58), gY(0) },
+					  { gX(50), gY(18), gX(75), gY(18) }, { gX(58), gY(0), gX(67), gY(9) }, { gX(67), gY(9), gX(76), gY(0) },
+					  { gX(70), gY(12), gX(76), gY(18) }, { gX(70), gY(12), gX(73), gY(9) }, { gX(76), gY(18), gX(82), gY(12) }, { gX(79), gY(9), gX(82), gY(12) },
+					  { gX(75), gY(7), gX(76), gY(6) }, { gX(76), gY(6), gX(77), gY(7) },
+					  { gX(77), gY(18), gX(86), gY(9) }, { gX(86), gY(9), gX(95), gY(18) },
+					  { gX(81), gY(0), gX(90), gY(9) }, { gX(90), gY(9), gX(95), gY(4)}, { gX(91), gY(0), gX(95), gY(4) },
+					  { gX(95), gY(18), gX(102), gY(11) }, { gX(102), gY(11), gX(109), gY(18) },
+					  { gX(95), gY(0), gX(106), gY(11) }, { gX(106), gY(11), gX(117), gY(0) }, { gX(109), gY(18), gX(115), gY(18) },
+					  { gX(115), gY(18), gX(121), gY(6) }, { gX(121), gY(6), gX(127), gY(18) },
+					  { gX(121), gY(0), gX(127), gY(12) }, { gX(127), gY(12), gX(133), gY(0) },
+					  { gX(127), gY(18), gX(133), gY(6) }, { gX(133), gY(6), gX(139), gY(18) },
+					  { gX(136), gY(0), gX(146), gY(5) }, { gX(146), gY(5), gX(156), gY(0) }, { gX(153), gY(18), gX(158), gY(8) },
+					  { gX(138), gY(18), gX(193), gY(18) }, { gX(156), gY(0), gX(199), gY(0) },
+					  { gX(192), gY(18), gX(197), gY(8) }, { gX(198), gY(3), gX(201), gY(0) }, { gX(198), gY(3), gX(203), gY(8) }, { gX(203), gY(8), gX(211), gY(0) },
+					  { gX(199), gY(18), gX(208), gY(9) }, { gX(208), gY(9), gX(217), gY(18) },
+					  { gX(211), gY(0), gX(222), gY(11) }, { gX(222), gY(11), gX(233), gY(0) }, { gX(217), gY(18), gX(232), gY(18) },
+					  { gX(228), gY(13), gX(233), gY(18) }, { gX(233), gY(18), gX(238), gY(13) }, { gX(230), gY(13), gX(233), gY(16) }, { gX(233), gY(16), gX(236), gY(13) },
+					  { gX(232), gY(13), gX(233), gY(14) }, { gX(233), gY(14), gX(234), gY(13) }, { gX(232), gY(9), gX(233), gY(8) }, { gX(233), gY(8), gX(234), gY(9) },
+					  { gX(228), gY(9), gX(233), gY(4) }, { gX(233), gY(4), gX(238), gY(9) }, { gX(230), gY(9), gX(233), gY(6) }, { gX(233), gY(6), gX(236), gY(9) },
+					  { gX(240), gY(0), gX(250), gY(10) }, { gX(250), gY(10), gX(260), gY(0) }, { gX(247), gY(18), gX(259), gY(6) }, { gX(259), gY(6), gX(271), gY(18) },
+					  { gX(271), gY(18), gX(277), gY(12) }, { gX(277), gY(12), gX(280), gY(18) }, { gX(271), gY(0), gX(277), gY(6) }, { gX(277), gY(6), gX(280), gY(0) },
+					  { gX(260), gY(0), gX(271), gY(0) }};
 			
 	// Using the definitions above, below are 7 different types of portals and their respective positions
-	private int[][] speedPortals = {{ X(26), Y(12) }, { X(26), Y(10) }};
-	private int[][] normalGravityPortals = {{ X(1), Y(16) }, { X(63), Y(15) }};
-	private int[][] flippedGravityPortals = {{ X(57), Y(15) }};
-	private int[][] normalSizePortals = {{ X(197), Y(8) }};
-	private int[][] miniSizePortals = {{ X(110), Y(12) }};
-	private int[][] wavePortals = {{ X(25), Y(12) }};
-	private int[][] cubePortals = {{ X(277), Y(13) }, { X(277), Y(9) }};
+	private int[][] speedPortals = {{ gX(26), gY(12) }, { gX(26), gY(10) }};
+	private int[][] normalGravityPortals = {{ gX(1), gY(16) }, { gX(63), gY(15) }};
+	private int[][] flippedGravityPortals = {{ gX(57), gY(15) }};
+	private int[][] normalSizePortals = {{ gX(197), gY(8) }};
+	private int[][] miniSizePortals = {{ gX(110), gY(12) }};
+	private int[][] wavePortals = {{ gX(25), gY(12) }};
+	private int[][] cubePortals = {{ gX(277), gY(13) }, { gX(277), gY(9) }};
 	
 	List<List<Integer>> trails = new ArrayList<>();
 	private Map<String, int[][]> allPortals = Map.of("SPP", speedPortals,
@@ -114,20 +114,20 @@ public class LevelEditor
 	 * from the bottom of the window to the top.
 	 */
 	
-	private int X(int x) {
+	private int gX(int x) {
 		return x * ppb + dx;
 	}
 	
-	private int Y(int y) {
+	private int gY(int y) {
 		return -y * ppb + GameConstants.GROUND;
 	}
 	
 	// cX and cY for coordinates of circles (sawblades)
-	private int cX(int x) {
+	private int gcX(int x) {
 		return x * ppb + ppb / 2 + dx;
 	}
 	
-	private int cY(int y) {
+	private int gcY(int y) {
 		return -y * ppb + GameConstants.GROUND - ppb / 2;
 	}
 	
@@ -182,7 +182,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < normalGravityPortals.length; i++)
 		{
-			if (!(normalGravityPortals[i][0] < -150 || normalGravityPortals[i][0] > 1550))
+			if (!(normalGravityPortals[i][0] < -150 || normalGravityPortals[i][0] > 1560))
 			{
 				g2d.drawImage(pic, normalGravityPortals[i][0], normalGravityPortals[i][1],
 						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
@@ -201,7 +201,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < flippedGravityPortals.length; i++)
 		{
-			if (!(flippedGravityPortals[i][0] < -150 || flippedGravityPortals[i][0] > 1550))
+			if (!(flippedGravityPortals[i][0] < -150 || flippedGravityPortals[i][0] > 1560))
 			{
 				g2d.drawImage(pic, flippedGravityPortals[i][0], flippedGravityPortals[i][1],
 						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
@@ -220,7 +220,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < normalSizePortals.length; i++)
 		{
-			if (!(normalSizePortals[i][0] < -150 || normalSizePortals[i][0] > 1550))
+			if (!(normalSizePortals[i][0] < -150 || normalSizePortals[i][0] > 1560))
 			{
 				g2d.drawImage(pic, normalSizePortals[i][0], normalSizePortals[i][1],
 						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
@@ -239,7 +239,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < miniSizePortals.length; i++)
 		{
-			if (!(miniSizePortals[i][0] < -150 || miniSizePortals[i][0] > 1550))
+			if (!(miniSizePortals[i][0] < -150 || miniSizePortals[i][0] > 1560))
 			{
 				g2d.drawImage(pic, miniSizePortals[i][0], miniSizePortals[i][1],
 						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
@@ -258,7 +258,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < wavePortals.length; i++)
 		{
-			if (!(wavePortals[i][0] < -150 || wavePortals[i][0] > 1550))
+			if (!(wavePortals[i][0] < -150 || wavePortals[i][0] > 1560))
 			{
 				g2d.drawImage(pic, wavePortals[i][0], wavePortals[i][1],
 						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
@@ -277,7 +277,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < cubePortals.length; i++)
 		{
-			if (!(cubePortals[i][0] < -150 || cubePortals[i][0] > 1550))
+			if (!(cubePortals[i][0] < -150 || cubePortals[i][0] > 1560))
 			{
 				g2d.drawImage(pic, cubePortals[i][0], cubePortals[i][1],
 						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
@@ -298,7 +298,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < platforms.length; i++)
 		{
-			if (!(platforms[i][1] < -10 || platforms[i][0] > 1550))
+			if (!(platforms[i][1] < -24 || platforms[i][0] > 1560))
 			{
 				for (int j = platforms[i][0]; j < platforms[i][2]; j += ppb)
 				{
@@ -320,7 +320,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < walls.length; i++)
 		{
-			if (!(walls[i][2] < -10 || walls[i][2] > 1550))
+			if (!(walls[i][2] < -24 || walls[i][2] > 1560))
 			{
 				for (int j = walls[i][0]; j < walls[i][1]; j += ppb)
 				{
@@ -342,7 +342,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < sawblades.length; i++)
 		{
-			if (!((sawblades[i][1] + sawblades[i][0] / 2) < -10 || (sawblades[i][1] - sawblades[i][0] / 2) > 1550))
+			if (!((sawblades[i][1] + sawblades[i][0] / 2) < -24 || (sawblades[i][1] - sawblades[i][0] / 2) > 1560))
 			{
 				g2d.drawImage(pic, sawblades[i][1] - sawblades[i][0] / 2, sawblades[i][2] - sawblades[i][0] / 2, null);
 				if (drawHitboxes) g2d.fillOval(sawblades[i][1] - sawblades[i][0] / 2, sawblades[i][2] - sawblades[i][0] / 2, sawblades[i][0], sawblades[i][0]);
@@ -362,7 +362,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < slopes.length; i++)
 		{
-			if (!(slopes[i][1] < -10 || slopes[i][0] > 1550))
+			if (!(slopes[i][1] < -24 || slopes[i][0] > 1560))
 			{
 				if (slopes[i][1] == slopes[i][3] && slopes[i][1] >= 420)
 				{
