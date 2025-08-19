@@ -14,10 +14,6 @@
 
 package zyzzgames;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -26,6 +22,7 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.geom.Line2D;
+import java.util.Map;
 
 /**
  * The LevelEditor class serves as the text editor and database for all of the
@@ -431,13 +428,5 @@ public class LevelEditor
 	
 	public int[][] getPortals(String portalType) {
 		return allPortals.get(portalType);
-	}
-	
-	public void addPixels(Graphics2D g, int x, int y) {
-		trails.add(List.of(x, y));
-	}
-
-	public void drawPixels(Graphics2D g, int x, int y) {
-		g.drawRect(x, y, 5, 5);
 	}
 }

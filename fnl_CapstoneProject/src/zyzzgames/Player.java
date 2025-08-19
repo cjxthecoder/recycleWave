@@ -40,7 +40,7 @@ import java.util.List;
 public class Player
 {
 	private Rectangle player;
-	private int t1, t2;
+	private int t1;
 	private int hitbox;
 	private int gamemode;
 	private int gravity;
@@ -150,11 +150,6 @@ public class Player
 				break;
 				
 			case GameConstants.SHIP:
-				if (hotKeys.contains(e.getKeyCode())) {
-					t1++;
-					setYDirection(-Math.min(t1, 4.0) * getSpeed() * gravity);
-					keyPressed = true;
-				}
 				break;
 				
 			case GameConstants.BALL:
@@ -182,11 +177,6 @@ public class Player
 				break;
 				
 			case GameConstants.SHIP:
-				if (hotKeys.contains(e.getKeyCode())) {
-					resetTime();
-					setYDirection(0);
-					keyPressed = false;
-				}
 				break;
 			
 			case GameConstants.BALL:
@@ -204,7 +194,6 @@ public class Player
 	public void drawPlayer(Graphics g)
 	{
 		g.setColor(Color.BLACK);
-//		g.drawRect(player.x, player.y, player.width, player.height);
 		
 		switch(gamemode)
 		{
@@ -262,7 +251,6 @@ public class Player
 	
 	public void resetTime() {
 		t1 = 0;
-		t2 = 0;
 	}
 	
 	public int getX() {
