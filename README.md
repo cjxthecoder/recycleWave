@@ -70,6 +70,7 @@ Children or adults of all ages.
 - Most of the game graphics: https://geometry-dash.fandom.com/wiki/Level_Components
 - Plastic bottle cube: https://www.pngfind.com/mpng/iiooTim_plastic-clipart-water-bottle-plastic-bottle-png-clipart/
 - Plastic bottle wave: https://www.nicepng.com/ourpic/u2q8e6y3i1w7r5u2_plastic-bottles-clipart-full-water-bottle-clipart-png/
+- Recycle Bin: https://www.hiclipart.com/free-transparent-background-png-clipart-iexyq
 ### Labs
 - Diploma
   - How to use the extends and super keywords to achieve an IS-A relationship
@@ -79,3 +80,4 @@ Children or adults of all ages.
   - How to draw images on the window
 - Stars
   - How to use for-loops
+
