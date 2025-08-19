@@ -303,18 +303,15 @@ public class Player
 		return gamemode;
 	}
 
-	public void setGamemode(int gamemode)
-	{
+	public void setGamemode(int gamemode) {
 		this.gamemode = gamemode;
 	}
 
-	public int getGravity()
-	{
+	public int getGravity() {
 		return gravity;
 	}
 	
-	public void setGravity(int gravity)
-	{
+	public void setGravity(int gravity) {
 		resetTime();
 		this.gravity = gravity;
 	}
@@ -355,8 +352,7 @@ public class Player
 		return mini;
 	}
 	
-	public void setMini(boolean mini)
-	{
+	public void setMini(boolean mini) {
 		this.mini = mini;
 	}
 	
