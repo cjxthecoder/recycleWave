@@ -37,26 +37,26 @@ Children or adults of all ages.
   - FIX: Use .setFocusable(false) on the button component so that after an action is performed, the Key Listener can continue to be focused on the window.
 - It is very hard to implement a camera that tracks the player while updating the graphics, as well as the player's position, on the screen!
   - FIX: Make the player stay at a fixed x-position while letting the background of the level move to the left. This creates the illusion of the player moving forward in a level.
-- Too many objects in the level for the computer the render?
+- Too many objects in the level for the computer to render?
   - FIX: When there are too many objects, an if statement is used to not draw anything that will appear offscreen.
 - The setOffset() method doesn't start the music at the same place
-  - FIX: Use a different value as the parameter so that there are more times when the music does start at the same place
+  - FIX: Use a different value as the parameter so that there are more times when the music starts at the same place
 - Adding +dx to every 4-5 digit value in all of those 2D arrays...too much work and hard to understand
   - FIX: A function is used so that the position of objects created is fixed to a grid, and thus the position of these objects in grid units is much smaller.
 - When the player becomes smaller, using hitbox /= 2 results in the hitbox rapidly reaching zero, and vice versa for becoming bigger
   - FIX: Since the player's hitbox can only be 40x40, 20x20, or 10x10, every transformation scenario can be written out, with what the player's hitboxes will be in each case.
 - Button not showing in the title screen
-  - FIX: Using the FlowLayout from lipogrammer worked out very well, as well as some instructions for the player written out in text on the window.
+  - FIX: Using the FlowLayout from Lipogrammer worked out very well, as well as some instructions for the player written out in text on the window.
 - A way to center text
-  - Using the .getAscent() method from the FontMetrics class allowed us to get the dimensions of any string of text on the screen, and the problem is reduced to centering a rectangle on a rectangle window.
+  - Using the .getAscent() method from the FontMetrics class allowed us to get the dimensions of any string of text on the screen, and the problem is reduced to centering a rectangle on a rectangular window.
 ## Key lessons learned
 - How to initialize audio from a file, and how to make the audio stop or start by converting it into a clip
 - How to make the program read key input from the user
 - How to detect a collision between various shapes
 - How to create a drop-down menu with a list of options (JComboBox)
-- How Thread and Runnable works to run a game
+- How Thread and Runnable work to run a game
 ## Further development
-- If we had more time, we would make more levels, try representing objects in an ArrayList, as well as adding more graphics to the game.
+- If we had more time, we would make more levels, try representing objects in an ArrayList, as well as add more graphics to the game.
 - Other areas of RND:
   - Explore modeling the player's movement by including a vector for x and y velocities so that other gamemodes, such as cube or ship, can be accurately implemented as well.
   - Remake the project using paintComponent so that there will not be issues like the button not showing.
@@ -68,9 +68,8 @@ Children or adults of all ages.
   - Allowed us to learn about Fonts, Graphics2D, Stroke, RenderingHint, and much more
 - Music: F-777 - Sonic Blaster (HJfod Remix) - https://www.newgrounds.com/audio/listen/976863 (Free for use)
 - Most of the game graphics: https://geometry-dash.fandom.com/wiki/Level_Components
-- Plastic bottle cube: https://www.google.com/search?q=plastic+bottle+clipart&rlz=1CAJIKU_enUS966&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjDme66z_v3AhWym44IHVOLBGYQ_AUoAXoECAEQAw&cshid=1653515153297890&biw=1366&bih=617&dpr=1&safe=active&ssui=on#imgrc=1L2HNFPNM7oy_M
-- Plastic bottle wave: https://www.nicepng.com/ourpic/u2q8e6y3i1w7r5u2_plastic-bottles-clipart-full-water-bottle-clipart-png
-- Recycle Bin: https://www.hiclipart.com/free-transparent-background-png-clipart-iexyq
+- Plastic bottle cube: https://www.pngfind.com/mpng/iiooTim_plastic-clipart-water-bottle-plastic-bottle-png-clipart/
+- Plastic bottle wave: https://www.nicepng.com/ourpic/u2q8e6y3i1w7r5u2_plastic-bottles-clipart-full-water-bottle-clipart-png/
 ### Labs
 - Diploma
   - How to use the extends and super keywords to achieve an IS-A relationship
@@ -80,3 +79,4 @@ Children or adults of all ages.
   - How to draw images on the window
 - Stars
   - How to use for-loops
+
