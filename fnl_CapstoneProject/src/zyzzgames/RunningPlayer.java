@@ -76,7 +76,8 @@ public class RunningPlayer extends Player
 			{
 				LevelEditor lvl = new LevelEditor();
 				
-				if ((getX() < GameConstants.START_LINE || lvl.getDx() < GameConstants.START_LINE - GameConstants.FINISH_LINE) && !gameIsWon())
+				if ((getX() < GameConstants.START_LINE ||
+						lvl.getDx() < GameConstants.START_LINE - GameConstants.FINISH_LINE) && !gameIsWon())
 				{
 					setXDirection(4.0 * getSpeed());
 					makePlayerReach300();
@@ -171,6 +172,24 @@ public class RunningPlayer extends Player
 							setPlayerSize(1);
 						}
 					}
+					
+					if (Collision.checkPlatformCollision(lvl.getPlatforms(), this))
+				 	{
+				 		switch(getGravity())
+				 		{
+				 			case GameConstants.UP:
+				 				setY(getPlatformY() + 1);
+				 				setYDirection(0);
+				 				break;
+				 				
+				 			case GameConstants.DOWN:
+				 				setY(getPlatformY() - getHitbox());
+				 				setYDirection(0);
+				 				break;
+				 		}
+				 		
+				 		resetTime();
+				 	}
 					
 					if (getX() < 1452) {
 						move();

@@ -90,29 +90,12 @@ public class Player
 	 	if (player.y >= GameConstants.GROUND - hitbox) {
 	 		player.y = GameConstants.GROUND - hitbox;
 	 	}
-	 	
-	 	if (Collision.checkPlatformCollision(this))
-	 	{
-	 		switch(gravity)
-	 		{
-	 			case GameConstants.UP:
-	 				player.y = platformY + 1;
-	 				setYDirection(0);
-	 				break;
-	 				
-	 			case GameConstants.DOWN:
-	 				player.y = platformY - hitbox;
-	 				setYDirection(0);
-	 				break;
-	 		}
-	 		
-	 		resetTime();
-	 	}
 	}
 	
 	public void fall()
 	{
-		if ((gravity == GameConstants.UP && player.y <= GameConstants.GROUND - hitbox) || (gravity == GameConstants.DOWN && player.y >= GameConstants.CEILING))
+		if ((gravity == GameConstants.UP && player.y <= GameConstants.GROUND - hitbox) ||
+				(gravity == GameConstants.DOWN && player.y >= GameConstants.CEILING))
 		{
 			switch(gamemode)
 			{
@@ -209,11 +192,12 @@ public class Player
 				
 			case GameConstants.WAVE:
 				if ((gravity == GameConstants.DOWN && !keyPressed) || (gravity == GameConstants.UP && keyPressed)) {
-					g.drawImage(GameConstants.PWD, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
+					g.drawImage(GameConstants.PWD, player.x - player.width / 2,
+							player.y - player.height / 2, player.width * 2, player.height * 2, null);
 				}
 				
 				else {
-					g.drawImage(GameConstants.PWU, player.x - player.width / 2, player.y - player.height / 2, player.width * 2, player.height * 2, null);
+					g.drawImage(GameConstants.PWU, player.x - player.width / 2,player.y - player.height / 2, player.width * 2, player.height * 2, null);
 				}
 				break;
 		}
@@ -304,11 +288,11 @@ public class Player
 		this.gravity = gravity;
 	}
 	
-	public int getPlatform() {
+	public int getPlatformY() {
 		return platformY;
 	}
 	
-	public void setPlatform(int platformY) {
+	public void setPlatformY(int platformY) {
 		this.platformY = platformY;
 	}
 	

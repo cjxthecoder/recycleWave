@@ -87,16 +87,14 @@ public class Collision
 		return false;
 	}
 	
-	public static boolean checkPlatformCollision(Player p)
+	public static boolean checkPlatformCollision(int[][] platforms, Player p)
 	{
-		LevelEditor lvl = new LevelEditor();
-		
-		for (int i = 0; i < lvl.getPlatforms().length; i++)
+		for (int i = 0; i < platforms.length; i++)
 		{
 			if (new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox()).intersectsLine
-					(new Line2D.Double(lvl.getPlatforms()[i][0], lvl.getPlatforms()[i][1], lvl.getPlatforms()[i][2], lvl.getPlatforms()[i][1])))
+					(new Line2D.Double(platforms[i][0], platforms[i][1], platforms[i][2], platforms[i][1])))
 			{
-				p.setPlatform(lvl.getPlatforms()[i][1]);
+				p.setPlatformY(platforms[i][1]);
 				return true;
 			}
 		}
