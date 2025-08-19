@@ -2,7 +2,7 @@
 
 Lead Designer & Developer: Daniel Cheng
 
-Document last revised: 5/12/2025
+Document last revised: 8/18/2025
 
 ![My Image](Screen%20Shot%202025-05-12%20at%204.53.26%20PM.png)
 
@@ -79,4 +79,5 @@ Children or adults of all ages.
   - How to draw images on the window
 - Stars
   - How to use for-loops
+
 
