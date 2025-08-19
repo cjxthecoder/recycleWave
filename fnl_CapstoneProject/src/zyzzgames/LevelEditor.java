@@ -128,6 +128,7 @@ public class LevelEditor
 		return -y * ppb + GameConstants.GROUND - ppb / 2;
 	}
 	
+	// Create speed portals based on the difficulty selected by the user.
 	public void createSpeedPortals(Graphics2D g2d, Color c)
 	{
 		g2d.setColor(c);
@@ -181,15 +182,16 @@ public class LevelEditor
 		{
 			if (!(normalGravityPortals[i][0] < -150 || normalGravityPortals[i][0] > 1560))
 			{
-				g2d.drawImage(pic, normalGravityPortals[i][0], normalGravityPortals[i][1],
-						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
-				if (drawHitboxes) g2d.drawRect(normalGravityPortals[i][0], normalGravityPortals[i][1],
-						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0));
+				g2d.drawImage(pic, normalGravityPortals[i][0], normalGravityPortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
+				if (drawHitboxes)
+				{
+					g2d.drawRect(normalGravityPortals[i][0], normalGravityPortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0));
+				}
 			}
 		}
 	}
 	
-	// Create flipped gravity portals. (unused)
+	// Create flipped gravity portals.
 	public void createFlippedGravityPortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
@@ -200,10 +202,11 @@ public class LevelEditor
 		{
 			if (!(flippedGravityPortals[i][0] < -150 || flippedGravityPortals[i][0] > 1560))
 			{
-				g2d.drawImage(pic, flippedGravityPortals[i][0], flippedGravityPortals[i][1],
-						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
-				if (drawHitboxes) g2d.drawRect(flippedGravityPortals[i][0], flippedGravityPortals[i][1],
-						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0));
+				g2d.drawImage(pic, flippedGravityPortals[i][0], flippedGravityPortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
+				if (drawHitboxes)
+				{
+					g2d.drawRect(flippedGravityPortals[i][0], flippedGravityPortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0));
+				}
 			}
 		}
 	}
@@ -219,10 +222,11 @@ public class LevelEditor
 		{
 			if (!(normalSizePortals[i][0] < -150 || normalSizePortals[i][0] > 1560))
 			{
-				g2d.drawImage(pic, normalSizePortals[i][0], normalSizePortals[i][1],
-						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
-				if (drawHitboxes) g2d.drawRect(normalSizePortals[i][0], normalSizePortals[i][1],
-						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0));
+				g2d.drawImage(pic, normalSizePortals[i][0], normalSizePortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
+				if (drawHitboxes)
+				{
+					g2d.drawRect(normalSizePortals[i][0], normalSizePortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0));
+				}
 			}
 		}
 	}
@@ -238,10 +242,11 @@ public class LevelEditor
 		{
 			if (!(miniSizePortals[i][0] < -150 || miniSizePortals[i][0] > 1560))
 			{
-				g2d.drawImage(pic, miniSizePortals[i][0], miniSizePortals[i][1],
-						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
-				if (drawHitboxes) g2d.drawRect(miniSizePortals[i][0], miniSizePortals[i][1],
-						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0));
+				g2d.drawImage(pic, miniSizePortals[i][0], miniSizePortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
+				if (drawHitboxes)
+				{
+					g2d.drawRect(miniSizePortals[i][0], miniSizePortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0));
+				}
 			}
 		}
 	}
@@ -257,10 +262,11 @@ public class LevelEditor
 		{
 			if (!(wavePortals[i][0] < -150 || wavePortals[i][0] > 1560))
 			{
-				g2d.drawImage(pic, wavePortals[i][0], wavePortals[i][1],
-						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
-				if (drawHitboxes) g2d.drawRect(wavePortals[i][0], wavePortals[i][1],
-						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0));
+				g2d.drawImage(pic, wavePortals[i][0], wavePortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
+				if (drawHitboxes)
+				{
+					g2d.drawRect(wavePortals[i][0], wavePortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0));
+				}
 			}
 		}
 	}
@@ -276,10 +282,11 @@ public class LevelEditor
 		{
 			if (!(cubePortals[i][0] < -150 || cubePortals[i][0] > 1560))
 			{
-				g2d.drawImage(pic, cubePortals[i][0], cubePortals[i][1],
-						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
-				if (drawHitboxes) g2d.drawRect(cubePortals[i][0], cubePortals[i][1],
-						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0));
+				g2d.drawImage(pic, cubePortals[i][0], cubePortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
+				if (drawHitboxes)
+				{
+					g2d.drawRect(cubePortals[i][0], cubePortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0));
+				}
 			}
 		}
 	}
@@ -301,7 +308,10 @@ public class LevelEditor
 				{
 					g2d.drawImage(pic, j, platforms[i][1], ppb, ppb, null);
 				}
-				if (drawHitboxes) g2d.drawLine(platforms[i][0], platforms[i][1], platforms[i][2], platforms[i][1]);
+				if (drawHitboxes)
+				{
+					g2d.drawLine(platforms[i][0], platforms[i][1], platforms[i][2], platforms[i][1]);
+				}
 			}
 		}
 	}
@@ -323,7 +333,10 @@ public class LevelEditor
 				{
 					g2d.drawImage(pic, walls[i][2], j, ppb, ppb, null);
 				}
-				if (drawHitboxes) g2d.drawLine(walls[i][2], walls[i][0], walls[i][2], walls[i][1]);
+				if (drawHitboxes)
+				{
+					g2d.drawLine(walls[i][2], walls[i][0], walls[i][2], walls[i][1]);
+				}
 			}
 		}
 	}
@@ -342,7 +355,10 @@ public class LevelEditor
 			if (!((sawblades[i][1] + sawblades[i][0] / 2) < -24 || (sawblades[i][1] - sawblades[i][0] / 2) > 1560))
 			{
 				g2d.drawImage(pic, sawblades[i][1] - sawblades[i][0] / 2, sawblades[i][2] - sawblades[i][0] / 2, null);
-				if (drawHitboxes) g2d.fillOval(sawblades[i][1] - sawblades[i][0] / 2, sawblades[i][2] - sawblades[i][0] / 2, sawblades[i][0], sawblades[i][0]);
+				if (drawHitboxes)
+				{
+					g2d.fillOval(sawblades[i][1] - sawblades[i][0] / 2, sawblades[i][2] - sawblades[i][0] / 2, sawblades[i][0], sawblades[i][0]);
+				}
 			}  
 		}
 	}
@@ -385,8 +401,7 @@ public class LevelEditor
 		}
 	}
 
-	public void drawProgressBar(Graphics2D g2d, int levelEndPoint, Color barColor, Color progressColor)
-	{
+	public void drawProgressBar(Graphics2D g2d, int levelEndPoint, Color barColor, Color progressColor) {
 		Stroke stroke = new BasicStroke(3);
 		g2d.setStroke(stroke);
 		g2d.setColor(progressColor);
