@@ -34,7 +34,8 @@ package zyzzgames;
 public class RunningPlayer extends Player
 	implements Runnable
 {
-	public RunningPlayer(int x, int y, int gamemode, int gravity, double speed, boolean mini) {
+	public RunningPlayer(int x, int y, int gamemode, int gravity, double speed, boolean mini)
+	{
 		super(x, y, gamemode, gravity, speed, mini);
 	}
 	
