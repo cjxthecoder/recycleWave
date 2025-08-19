@@ -79,5 +79,3 @@ Children or adults of all ages.
   - How to draw images on the window
 - Stars
   - How to use for-loops
-
-
