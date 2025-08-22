@@ -2,7 +2,7 @@
 
 Lead Designer & Developer: Daniel Cheng
 
-Document last revised: 8/18/2025
+Document last revised: 8/19/2025
 
 ![My Image](Screen%20Shot%202025-05-12%20at%204.53.26%20PM.png)
 
@@ -59,7 +59,7 @@ Children or adults of all ages.
 - If we had more time, we would make more levels, try representing objects in an ArrayList, as well as add more graphics to the game.
 - Other areas of RND:
   - Explore modeling the player's movement by including a vector for x and y velocities so that other gamemodes, such as cube or ship, can be accurately implemented as well.
-  - Remake the project using paintComponent so that there will not be issues like the button not showing.
+  - Remake the project using JComponent.paintComponent(g) instead of Window.paint(g) so that there will not be issues like the button not showing.
   - Add a camera to track the player so that the player can move higher than y=720.
   - Add a Level Editor GUI so that a level can be edited directly by the user in a window.
 ## Credit List
@@ -80,4 +80,5 @@ Children or adults of all ages.
   - How to draw images on the window
 - Stars
   - How to use for-loops
+
 
