@@ -2,7 +2,7 @@
 
 Lead Designer & Developer: Daniel Cheng
 
-Document last revised: 8/19/2025
+Document last revised: 8/22/2025
 
 ![My Image](Screen%20Shot%202025-05-12%20at%204.53.26%20PM.png)
 
@@ -56,7 +56,7 @@ Children or adults of all ages.
 - How to create a drop-down menu with a list of options (JComboBox)
 - How Thread and Runnable work to run a game
 ## Further development
-- If we had more time, we would make more levels, try representing objects in an ArrayList, as well as add more graphics to the game.
+- If we had more time, we would make more levels, try representing objects in an ArrayList, add more graphics to the game, or create a level select and pause menu.
 - Other areas of RND:
   - Explore modeling the player's movement by including a vector for x and y velocities so that other gamemodes, such as cube or ship, can be accurately implemented as well.
   - Remake the project using JComponent.paintComponent(g) instead of Window.paint(g) so that there will not be issues like the button not showing.
@@ -80,5 +80,6 @@ Children or adults of all ages.
   - How to draw images on the window
 - Stars
   - How to use for-loops
+
 
 
