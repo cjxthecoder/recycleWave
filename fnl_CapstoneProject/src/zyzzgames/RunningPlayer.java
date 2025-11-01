@@ -71,7 +71,7 @@ public class RunningPlayer extends Player
 		
 		try {
 			Thread.sleep(500);
-			gs.startMusic(38.1f);
+			gs.startMusic(37.9f);
 			
 			while (true)
 			{
