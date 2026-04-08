@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, 2025, Team Zyzz and/or its affiliates, All rights reserved.
+ * Copyright (c) 2022, 2026, Team Zyzz and/or its affiliates, All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is distributed in the hope that it will be useful, but WITHOUT
@@ -9,7 +9,7 @@
  * Please contact danielcheng2200@gmail.com if you need additional information
  * or have any questions.
  * 
- * Current Version: 1.5
+ * Current Version: 1.6
  */
 
 package zyzzgames;
