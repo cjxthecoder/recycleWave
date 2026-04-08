@@ -47,6 +47,10 @@ import javax.swing.JFrame;
 public class GameWindow extends JFrame
 	implements ActionListener
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 78719680237395213L;
 	private Image gdImage;
 	private Graphics gdGraphics;
 	
