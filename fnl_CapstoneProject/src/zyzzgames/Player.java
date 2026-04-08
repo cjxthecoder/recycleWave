@@ -58,8 +58,8 @@ public class Player
 	{
 		this.gamemode = gamemode;
 		this.gravity = gravity;
-		this.setSpeed(speed);
-		this.setMini(mini);
+		this.speed = speed;
+		this.mini = mini;
 		
 		hitbox = GameConstants.PLAYER_HITBOX;
 		
