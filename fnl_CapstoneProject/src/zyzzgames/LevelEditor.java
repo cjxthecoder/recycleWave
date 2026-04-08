@@ -22,8 +22,6 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.geom.Line2D;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -62,15 +60,15 @@ public class LevelEditor
 			{ gX(22), gY(4) }, { gX(22), gY(3) }, { gX(22), gY(2) }, { gX(22), gY(1) }};
 
 	// A 2D array of sawblades with each array being the position of one sawblade
-	private int[][] sawblades = {{ d, gcX(50), gcY(14) }, { d, gcX(56), gcY(6) }, { d, gcX(61), gcY(8) },
-						 { d, gcX(69), gcY(15)}, { d, gcX(76), gcY(3) }, { d, gcX(94), gcY(12) },
-						 { d, gcX(97), gcY(5) }, { d, gcX(109), gcY(14) }, { d, gcX(114), gcY(8) },
-						 { d, gcX(140), gcY(7) }, { d, gcX(146), gcY(15) }, { d, gcX(152), gcY(7) },
-						 { d, gcX(161), gcY(4)}, { d, gcX(166), gcY(14) }, { d, gcX(171), gcY(4) }, { d, gcX(176), gcY(14)},
-						 { d, gcX(181), gcY(4)},  { d, gcX(186), gcY(14) }, { d, gcX(191), gcY(4)}, { d, gcX(196), gcY(14)},
-						 { d, gcX(211), gcY(4) }, { d, gcX(214), gcY(11) }, { d, gcX(218), gcY(15) }, { d, gcX(225), gcY(15) },
-						 { d, gcX(235), gcY(2) }, { d, gcX(240), gcY(15) }, { d, gcX(245), gcY(13) },
-						 { d, gcX(261), gcY(2) }, { d, gcX(265), gcY(8) }, { d, gcX(270), gcY(4) }, { d, gcX(271), gcY(12) }};
+	private int[][] sawblades = {{ gcX(50), gcY(14), d }, { gcX(56), gcY(6), d }, { gcX(61), gcY(8), d },
+						 { gcX(69), gcY(15), d }, { gcX(76), gcY(3), d }, { gcX(94), gcY(12), d },
+						 { gcX(97), gcY(5), d }, { gcX(109), gcY(14), d }, { gcX(114), gcY(8), d },
+						 { gcX(140), gcY(7), d }, { gcX(146), gcY(15), d }, { gcX(152), gcY(7), d },
+						 { gcX(161), gcY(4), d }, { gcX(166), gcY(14), d }, { gcX(171), gcY(4), d },
+						 { gcX(176), gcY(14), d }, { gcX(181), gcY(4), d }, { gcX(186), gcY(14), d }, { gcX(191), gcY(4), d },
+						 { gcX(196), gcY(14), d }, { gcX(211), gcY(4), d }, { gcX(214), gcY(11), d }, { gcX(218), gcY(15), d },
+						 { gcX(225), gcY(15), d }, { gcX(235), gcY(2), d }, { gcX(240), gcY(15), d }, { gcX(245), gcY(13), d },
+						 { gcX(261), gcY(2), d }, { gcX(265), gcY(8), d }, { gcX(270), gcY(4), d }, { gcX(271), gcY(12), d }};
 
 	// A 2D array of slopes with each array being the position of one slope
 	private int[][] slopes = {{ gX(25), gY(0), gX(35), gY(10) }, { gX(35), gY(10), gX(45), gY(0) },
@@ -136,14 +134,19 @@ public class LevelEditor
 		return -y * ppb + GameConstants.GROUND - ppb / 2;
 	}
 	
-	// Create speed portals based on the difficulty selected by the user.
-	public void drawSpeedPortals(Graphics2D g2d, Color c)
+	/**
+	 * Create speed portals based on the difficulty selected by the user.
+	 * @param g2d
+	 * @param c
+	 * @param difficulty
+	 */
+	public void drawSpeedPortals(Graphics2D g2d, Color c, String difficulty)
 	{
 		g2d.setColor(c);
 		
 		for (int i = 0; i < speedPortals.length; i++)
 		{
-			switch (String.valueOf(GameWindow.getComboBox().getSelectedItem()))
+			switch (difficulty)
 			{
 				case "Easy":
 					g2d.drawImage(GameConstants.Y, speedPortals[i][0], speedPortals[i][1],
@@ -179,7 +182,12 @@ public class LevelEditor
 		}
 	}
 	
-	// Create normal gravity portals.
+	/**
+	 * Create normal gravity portals.
+	 * @param g2d
+	 * @param c
+	 * @param pic
+	 */
 	public void drawNormalGravityPortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
@@ -199,7 +207,12 @@ public class LevelEditor
 		}
 	}
 	
-	// Create flipped gravity portals.
+	/**
+	 * Create flipped gravity portals.
+	 * @param g2d
+	 * @param c
+	 * @param pic
+	 */
 	public void drawFlippedGravityPortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
@@ -219,7 +232,12 @@ public class LevelEditor
 		}
 	}
 	
-	// Create normal size portals.
+	/**
+	 * Create normal size portals.
+	 * @param g2d
+	 * @param c
+	 * @param pic
+	 */
 	public void drawNormalSizePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
@@ -239,7 +257,12 @@ public class LevelEditor
 		}
 	}
 	
-	// Create mini size portals.
+	/**
+	 * Create mini size portals.
+	 * @param g2d
+	 * @param c
+	 * @param pic
+	 */
 	public void drawMiniSizePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
@@ -259,7 +282,12 @@ public class LevelEditor
 		}
 	}
 	
-	// Create wave portals.
+	/**
+	 * Create wave portals.
+	 * @param g2d
+	 * @param c
+	 * @param pic
+	 */
 	public void drawWavePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
@@ -279,7 +307,12 @@ public class LevelEditor
 		}
 	}
 	
-	// Create cube portals.
+	/**
+	 * Create cube portals.
+	 * @param g2d
+	 * @param c
+	 * @param pic
+	 */
 	public void drawCubePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
@@ -299,7 +332,12 @@ public class LevelEditor
 		}
 	}
 	
-	// Create blocks.
+	/**
+	 * Blocks: x-position, y-level.
+	 * @param g2d
+	 * @param c
+	 * @param pic
+	 */
 	public void drawBlocks(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
@@ -308,7 +346,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < blocks.length; i++)
 		{
-			if (!(blocks[i][1] < -24 || blocks[i][0] > 1560))
+			if (!(blocks[i][0] < -24 || blocks[i][0] > 1560))
 			{
 				g2d.drawImage(pic, blocks[i][0], blocks[i][1], ppb, ppb, null);
 				if (drawHitboxes)
@@ -320,7 +358,10 @@ public class LevelEditor
 	}
 
 	/**
-	 * Sawblades: diameter, x-center, y-level;
+	 * Sawblades: x-center, y-center, diameter.
+	 * @param g2d
+	 * @param c
+	 * @param pic
 	 */
 	public void drawSawblades(Graphics2D g2d, Color c, Image pic)
 	{
@@ -330,20 +371,26 @@ public class LevelEditor
 		
 		for (int i = 0; i < sawblades.length; i++)
 		{
-			if (!((sawblades[i][1] + sawblades[i][0] / 2) < -24 || (sawblades[i][1] - sawblades[i][0] / 2) > 1560))
+			if (!((sawblades[i][0] + sawblades[i][2] / 2) < -24 || (sawblades[i][0] - sawblades[i][2] / 2) > 1560))
 			{
-				g2d.drawImage(pic, sawblades[i][1] - sawblades[i][0] / 2, sawblades[i][2] - sawblades[i][0] / 2, null);
+				g2d.drawImage(pic, sawblades[i][0] - sawblades[i][2] / 2, sawblades[i][1] - sawblades[i][2] / 2, null);
 				if (drawHitboxes)
 				{
-					g2d.fillOval(sawblades[i][1] - sawblades[i][0] / 2, sawblades[i][2] - sawblades[i][0] / 2, sawblades[i][0], sawblades[i][0]);
+					g2d.fillOval(sawblades[i][0] - sawblades[i][2] / 2, sawblades[i][1] - sawblades[i][2] / 2, sawblades[i][2], sawblades[i][2]);
 				}
 			}  
 		}
 	}
 	
+	
 	/**
-	 * Slopes: x-start, y-start, x-end, y-end
+	 * Slopes: x-start, y-start, x-end, y-end.
+	 * <br>
 	 * Since we are lazy we decided to make ground spikes slope as well.
+	 * @param g2d
+	 * @param c
+	 * @param groundSpike
+	 * @param ceilingSpike
 	 */
 	public void drawSlopes(Graphics2D g2d, Color c, Image groundSpike, Image ceilingSpike)
 	{
@@ -379,6 +426,13 @@ public class LevelEditor
 		}
 	}
 
+	/**
+	 * Draws the progress bar based on the player's current posiition.
+	 * @param g2d
+	 * @param levelEndPoint
+	 * @param barColor
+	 * @param progressColor
+	 */
 	public void drawProgressBar(Graphics2D g2d, int levelEndPoint, Color barColor, Color progressColor) {
 		Stroke stroke = new BasicStroke(3);
 		g2d.setStroke(stroke);
@@ -404,7 +458,7 @@ public class LevelEditor
 			blocks[j][0] -= t;
 		}
 		for (int j = 0; j < sawblades.length; j++) {
-			sawblades[j][1] -= t;
+			sawblades[j][0] -= t;
 		}
 		for (int j = 0; j < slopes.length; j++) {
 			slopes[j][0] -= t;

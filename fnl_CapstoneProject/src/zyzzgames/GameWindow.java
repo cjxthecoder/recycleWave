@@ -28,6 +28,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -53,16 +54,16 @@ public class GameWindow extends JFrame
 	private Graphics gdGraphics;
 	
 	private JButton play;
+	private JComboBox<String> comboBox;
 	private String[] difficulty = {"Easy", "Medium", "Hard", "Insane", "Impossible"};
 	private LevelEditor lvl = new LevelEditor();
 	private RunningPlayer runP = new RunningPlayer(-GameConstants.PLAYER_HITBOX,
 														GameConstants.GROUND-GameConstants.PLAYER_HITBOX,
 														GameConstants.CUBE,
 														GameConstants.UP,
-														GameConstants.THREE_TIMES, false, lvl);
-	private static JComboBox<String> comboBox;
+														GameConstants.THREE_TIMES, false, "Insane", lvl);
 	public boolean gameStarted = false;
-	
+
 	public GameWindow(int x, int y, int width, int height) {
 		super("Recycle Wave");
 		
@@ -85,6 +86,7 @@ public class GameWindow extends JFrame
 	
 	public void actionPerformed(ActionEvent e) {
 		gameStarted = true;
+		runP.setDifficulty(String.valueOf(comboBox.getSelectedItem()));
 		repaint();
 		Thread p1 = new Thread(runP);
 		p1.start();
@@ -152,7 +154,7 @@ public class GameWindow extends JFrame
 		lvl.drawCubePortals(g, Color.GREEN, GameConstants.CBP);
 		lvl.drawSlopes(g, new Color(240, 16, 160), GameConstants.GS, GameConstants.CS);
 		lvl.drawSawblades(g, Color.RED, GameConstants.SB);
-		lvl.drawSpeedPortals(g, Color.GREEN);
+		lvl.drawSpeedPortals(g, Color.GREEN, String.valueOf(comboBox.getSelectedItem()));
 		lvl.drawProgressBar(g, GameConstants.FINISH_LINE, Color.BLACK, Color.CYAN);
 	}
 	
@@ -172,7 +174,7 @@ public class GameWindow extends JFrame
 		g.drawString(s, x, y/2);
 	}
 	
-	public static JComboBox<String> getComboBox() {
+	public JComboBox<String> getComboBox() {
 		return comboBox;
 	}
 }

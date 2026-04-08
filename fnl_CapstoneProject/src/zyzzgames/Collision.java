@@ -50,7 +50,7 @@ public class Collision
 		for (int i = 0; i < sawblades.length; i++)
 		{
 			if (intersectsCircle(new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox()),
-									sawblades[i][1], sawblades[i][2], sawblades[i][0])) 
+									sawblades[i][0], sawblades[i][1], sawblades[i][2])) 
 			{
 				return true;
 			}

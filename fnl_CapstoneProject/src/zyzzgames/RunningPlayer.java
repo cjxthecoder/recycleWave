@@ -34,11 +34,13 @@ package zyzzgames;
 public class RunningPlayer extends Player
 	implements Runnable
 {
+	String difficulty;
 	LevelEditor lvl;
 	
-	public RunningPlayer(int x, int y, int gamemode, int gravity, double speed, boolean mini, LevelEditor lvl)
+	public RunningPlayer(int x, int y, int gamemode, int gravity, double speed, boolean mini, String difficulty, LevelEditor lvl)
 	{
 		super(x, y, gamemode, gravity, speed, mini);
+		this.difficulty = difficulty;
 		this.lvl = lvl;
 	}
 	
@@ -48,7 +50,7 @@ public class RunningPlayer extends Player
 		double s = getSpeed();
 		GameSound gs = new GameSound("48000/574484_F-777---Sonic-Blaster_48000.wav");
 		
-		switch (String.valueOf(GameWindow.getComboBox().getSelectedItem()))
+		switch (difficulty)
 		{
 			case "Easy":
 				s = GameConstants.HALF_TIMES;
@@ -217,5 +219,9 @@ public class RunningPlayer extends Player
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void setDifficulty(String newDifficulty) {
+		difficulty = newDifficulty;
 	}
 }
