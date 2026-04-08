@@ -59,7 +59,7 @@ public class GameWindow extends JFrame
 														GameConstants.CUBE,
 														GameConstants.UP,
 														GameConstants.THREE_TIMES, false, "Insane", lvl);
-	public boolean gameStarted = false;
+	private boolean gameStarted = false;
 
 	public GameWindow(int x, int y, int width, int height) {
 		super("Recycle Wave");
