@@ -31,12 +31,18 @@ import java.awt.event.KeyEvent;
 
 public class InputListener extends KeyAdapter
 {
+	private Player p;
+
+    public InputListener(Player player) {
+        p = player;
+    }
+    
 	@Override
 	public void keyPressed(KeyEvent e) {
-		GameWindow.getP().keyPressed(e);
+		p.keyPressed(e);
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
-		GameWindow.getP().keyReleased(e);
+		p.keyReleased(e);
 	}
 }

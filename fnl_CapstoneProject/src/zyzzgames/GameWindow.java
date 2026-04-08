@@ -19,11 +19,15 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -47,17 +51,16 @@ public class GameWindow extends JFrame
 {
 	private Image gdImage;
 	private Graphics gdGraphics;
-	private LevelEditor lvl;
 	
 	private JButton play;
 	private String[] difficulty = {"Easy", "Medium", "Hard", "Insane", "Impossible"};
-	
-	private static JComboBox<String> comboBox;
-	private static RunningPlayer p = new RunningPlayer(-GameConstants.PLAYER_HITBOX,
+	private LevelEditor lvl = new LevelEditor();
+	private RunningPlayer runP = new RunningPlayer(-GameConstants.PLAYER_HITBOX,
 														GameConstants.GROUND-GameConstants.PLAYER_HITBOX,
 														GameConstants.CUBE,
 														GameConstants.UP,
-														GameConstants.THREE_TIMES, false);
+														GameConstants.THREE_TIMES, false, lvl);
+	private static JComboBox<String> comboBox;
 	public boolean gameStarted = false;
 	
 	public GameWindow(int x, int y, int width, int height) {
@@ -65,7 +68,7 @@ public class GameWindow extends JFrame
 		
 		this.setBounds(x, y, width, height);
 		this.setLayout(new FlowLayout());
-		this.addKeyListener(new InputListener());
+		this.addKeyListener(new InputListener(runP));
 		
 		play = new JButton("Play");
 		play.setPreferredSize(new Dimension(120, 40));
@@ -83,14 +86,13 @@ public class GameWindow extends JFrame
 	public void actionPerformed(ActionEvent e) {
 		gameStarted = true;
 		repaint();
-		Thread p1 = new Thread(getP());
+		Thread p1 = new Thread(runP);
 		p1.start();
 	}
 	
 	@Override
 	public void paint(Graphics g) {
 		if (gameStarted) {
-			lvl = new LevelEditor();
 			gdImage = createImage(getWidth(), getHeight());
 			gdGraphics = gdImage.getGraphics();
 			draw(gdGraphics);
@@ -103,7 +105,7 @@ public class GameWindow extends JFrame
 	}
 	
 	public void drawGameTitle(Graphics g) {
-		p.drawCenteredText(g, "Recycle Wave", 96, 1.5);
+		drawCenteredText(g, "Recycle Wave", 96, 1.5);
 		
 		if (System.getProperty("os.name").contains("Mac")) {
 			g.drawRect(643, 33, 120, 40);
@@ -141,31 +143,36 @@ public class GameWindow extends JFrame
 		g.drawLine(0, GameConstants.GROUND, 1550, GameConstants.GROUND);
 		g.drawLine(0, GameConstants.CEILING, 1550, GameConstants.CEILING);
 	    
-		lvl.createPlatforms(g, Color.BLACK, GameConstants.BLK);
-		lvl.createWalls(g, Color.RED, GameConstants.BLK);
-		lvl.createNormalGravityPortals(g, Color.GREEN, GameConstants.NGP);
-		lvl.createFlippedGravityPortals(g, Color.GREEN, GameConstants.FGP);
-		lvl.createNormalSizePortals(g, Color.GREEN, GameConstants.NSP);
-		lvl.createMiniSizePortals(g, Color.GREEN, GameConstants.MSP);
-		lvl.createWavePortals(g, Color.GREEN, GameConstants.WVP);
-		lvl.createCubePortals(g, Color.GREEN, GameConstants.CBP);
-		lvl.createSlopes(g, new Color(240, 16, 160), GameConstants.GS, GameConstants.CS);
-		lvl.createSawblades(g, Color.RED, GameConstants.SB);
-		lvl.createSpeedPortals(g, Color.GREEN);
+		lvl.drawBlocks(g, Color.BLUE, GameConstants.BLK);
+		lvl.drawNormalGravityPortals(g, Color.GREEN, GameConstants.NGP);
+		lvl.drawFlippedGravityPortals(g, Color.GREEN, GameConstants.FGP);
+		lvl.drawNormalSizePortals(g, Color.GREEN, GameConstants.NSP);
+		lvl.drawMiniSizePortals(g, Color.GREEN, GameConstants.MSP);
+		lvl.drawWavePortals(g, Color.GREEN, GameConstants.WVP);
+		lvl.drawCubePortals(g, Color.GREEN, GameConstants.CBP);
+		lvl.drawSlopes(g, new Color(240, 16, 160), GameConstants.GS, GameConstants.CS);
+		lvl.drawSawblades(g, Color.RED, GameConstants.SB);
+		lvl.drawSpeedPortals(g, Color.GREEN);
 		lvl.drawProgressBar(g, GameConstants.FINISH_LINE, Color.BLACK, Color.CYAN);
 	}
 	
 	public void draw(Graphics g) {
 		drawGameGraphics((Graphics2D) g);
-		getP().drawPlayer(g);
+		runP.drawPlayer(g);
 		repaint();
 	}
-
+	
+	public static void drawCenteredText(Graphics g, String s, int pt, double yFactor) {
+		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		Font font = new Font(Font.SANS_SERIF, Font.PLAIN, pt);
+		FontMetrics metrics = g.getFontMetrics(font);
+		int x = (1536 - metrics.stringWidth(s)) / 2;
+		int y = (int) Math.round((840 - metrics.getHeight()) / yFactor + metrics.getAscent());
+		g.setFont(font);
+		g.drawString(s, x, y/2);
+	}
+	
 	public static JComboBox<String> getComboBox() {
 		return comboBox;
-	}
-
-	public static RunningPlayer getP() {
-		return p;
 	}
 }

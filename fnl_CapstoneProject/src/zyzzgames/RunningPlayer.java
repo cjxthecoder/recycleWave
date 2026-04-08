@@ -34,9 +34,12 @@ package zyzzgames;
 public class RunningPlayer extends Player
 	implements Runnable
 {
-	public RunningPlayer(int x, int y, int gamemode, int gravity, double speed, boolean mini)
+	LevelEditor lvl;
+	
+	public RunningPlayer(int x, int y, int gamemode, int gravity, double speed, boolean mini, LevelEditor lvl)
 	{
 		super(x, y, gamemode, gravity, speed, mini);
+		this.lvl = lvl;
 	}
 	
 	@Override
@@ -75,8 +78,6 @@ public class RunningPlayer extends Player
 			
 			while (true)
 			{
-				LevelEditor lvl = new LevelEditor();
-				
 				if ((getX() < GameConstants.START_LINE ||
 						lvl.getDx() < GameConstants.START_LINE - GameConstants.FINISH_LINE) && !gameIsWon())
 				{
@@ -92,8 +93,8 @@ public class RunningPlayer extends Player
 					setAttempts(getAttempts() + 1);
 					Thread.sleep(1000);
 					resetPlayerFields();
-					lvl.setDx(2 * GameConstants.START_LINE);
-					gs.startMusic(38.4f);
+					lvl.goForward(lvl.getDx() - 2 * GameConstants.START_LINE);
+					gs.startMusic(38.3f);
 				}
 				
 				else {
@@ -174,7 +175,7 @@ public class RunningPlayer extends Player
 						}
 					}
 					
-					if (Collision.checkPlatformCollision(lvl.getPlatforms(), this))
+					if (Collision.checkPlatformCollision(lvl.getBlocks(), this))
 				 	{
 				 		switch(getGravity())
 				 		{
@@ -209,6 +210,7 @@ public class RunningPlayer extends Player
 					else {
 						lvl.goForward(0);
 					}
+					
 					Thread.sleep(5);
 				}
 			}

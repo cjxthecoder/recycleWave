@@ -22,6 +22,8 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.geom.Line2D;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,16 +44,22 @@ import java.util.Map;
 public class LevelEditor
 {
 	// Starting point of the level relative to the left-side of the window
-	private static int dx = GameConstants.START_LINE;
+	private int dx = GameConstants.START_LINE;
 	private int d = GameConstants.SAWBLADE_DIAMETER;
 	private int ppb = GameConstants.PIXELS_PER_BLOCK;
 	private boolean drawHitboxes = false;
 	
-	// A 2D array of platforms with each array being the position of one platform 
-	private int[][] platforms = {{ gX(1), gY(9), gX(23) }};
-
-	// A 2D array of walls with each array being the position of one wall
-	private int[][] walls = {{ gY(8), gY(0), gX(1) }, { gY(8), gY(0), gX(22) }};
+	// A 2D array of blocks with each array being the position of one block
+	private int[][] blocks = {{ gX(1), gY(9) }, { gX(2), gY(9) },
+			{ gX(3), gY(9) }, { gX(4), gY(9) }, { gX(5), gY(9) }, { gX(6), gY(9) },
+			{ gX(7), gY(9) }, { gX(8), gY(9) }, { gX(9), gY(9) }, { gX(10), gY(9) },
+			{ gX(11), gY(9) }, { gX(12), gY(9) }, { gX(13), gY(9) }, { gX(14), gY(9) },
+			{ gX(15), gY(9) }, { gX(16), gY(9) }, { gX(17), gY(9) }, { gX(18), gY(9) },
+			{ gX(19), gY(9) }, { gX(20), gY(9) }, { gX(21), gY(9) }, { gX(22), gY(9) },
+			{ gX(1), gY(8) }, { gX(1), gY(7) }, { gX(1), gY(6) }, { gX(1), gY(5) },
+			{ gX(1), gY(4) }, { gX(1), gY(3) }, { gX(1), gY(2) }, { gX(1), gY(1) },
+			{ gX(22), gY(8) }, { gX(22), gY(7) }, { gX(22), gY(6) }, { gX(22), gY(5) },
+			{ gX(22), gY(4) }, { gX(22), gY(3) }, { gX(22), gY(2) }, { gX(22), gY(1) }};
 
 	// A 2D array of sawblades with each array being the position of one sawblade
 	private int[][] sawblades = {{ d, gcX(50), gcY(14) }, { d, gcX(56), gcY(6) }, { d, gcX(61), gcY(8) },
@@ -112,7 +120,7 @@ public class LevelEditor
 	 */
 	
 	private int gX(int x) {
-		return x * ppb + dx;
+		return x * ppb + GameConstants.START_LINE;
 	}
 	
 	private int gY(int y) {
@@ -121,7 +129,7 @@ public class LevelEditor
 	
 	// cX and cY for coordinates of circles (sawblades)
 	private int gcX(int x) {
-		return x * ppb + ppb / 2 + dx;
+		return x * ppb + ppb / 2 + GameConstants.START_LINE;
 	}
 	
 	private int gcY(int y) {
@@ -129,7 +137,7 @@ public class LevelEditor
 	}
 	
 	// Create speed portals based on the difficulty selected by the user.
-	public void createSpeedPortals(Graphics2D g2d, Color c)
+	public void drawSpeedPortals(Graphics2D g2d, Color c)
 	{
 		g2d.setColor(c);
 		
@@ -172,7 +180,7 @@ public class LevelEditor
 	}
 	
 	// Create normal gravity portals.
-	public void createNormalGravityPortals(Graphics2D g2d, Color c, Image pic)
+	public void drawNormalGravityPortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
@@ -192,7 +200,7 @@ public class LevelEditor
 	}
 	
 	// Create flipped gravity portals.
-	public void createFlippedGravityPortals(Graphics2D g2d, Color c, Image pic)
+	public void drawFlippedGravityPortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
@@ -212,7 +220,7 @@ public class LevelEditor
 	}
 	
 	// Create normal size portals.
-	public void createNormalSizePortals(Graphics2D g2d, Color c, Image pic)
+	public void drawNormalSizePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
@@ -232,7 +240,7 @@ public class LevelEditor
 	}
 	
 	// Create mini size portals.
-	public void createMiniSizePortals(Graphics2D g2d, Color c, Image pic)
+	public void drawMiniSizePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
@@ -252,7 +260,7 @@ public class LevelEditor
 	}
 	
 	// Create wave portals.
-	public void createWavePortals(Graphics2D g2d, Color c, Image pic)
+	public void drawWavePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
@@ -272,7 +280,7 @@ public class LevelEditor
 	}
 	
 	// Create cube portals.
-	public void createCubePortals(Graphics2D g2d, Color c, Image pic)
+	public void drawCubePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
@@ -291,51 +299,21 @@ public class LevelEditor
 		}
 	}
 	
-	/**
-	 * Platforms: x1, y-level, x2; platform length is x2 - x1 + 1.
-	 */
-	public void createPlatforms(Graphics2D g2d, Color c, Image pic)
+	// Create blocks.
+	public void drawBlocks(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
 		g2d.setStroke(stroke);
 		
-		for (int i = 0; i < platforms.length; i++)
+		for (int i = 0; i < blocks.length; i++)
 		{
-			if (!(platforms[i][1] < -24 || platforms[i][0] > 1560))
+			if (!(blocks[i][1] < -24 || blocks[i][0] > 1560))
 			{
-				for (int j = platforms[i][0]; j < platforms[i][2]; j += ppb)
-				{
-					g2d.drawImage(pic, j, platforms[i][1], ppb, ppb, null);
-				}
+				g2d.drawImage(pic, blocks[i][0], blocks[i][1], ppb, ppb, null);
 				if (drawHitboxes)
 				{
-					g2d.drawLine(platforms[i][0], platforms[i][1], platforms[i][2], platforms[i][1]);
-				}
-			}
-		}
-	}
-
-	/**
-	 * Walls: y1, y2, x-position; wall height is y2 - y1 + 1.
-	 */
-	public void createWalls(Graphics2D g2d, Color c, Image pic)
-	{
-		g2d.setColor(c);
-		Stroke stroke = new BasicStroke(0);
-		g2d.setStroke(stroke);
-		
-		for (int i = 0; i < walls.length; i++)
-		{
-			if (!(walls[i][2] < -24 || walls[i][2] > 1560))
-			{
-				for (int j = walls[i][0]; j < walls[i][1]; j += ppb)
-				{
-					g2d.drawImage(pic, walls[i][2], j, ppb, ppb, null);
-				}
-				if (drawHitboxes)
-				{
-					g2d.drawLine(walls[i][2], walls[i][0], walls[i][2], walls[i][1]);
+					g2d.drawRect(blocks[i][0], blocks[i][1], ppb, ppb);
 				}
 			}
 		}
@@ -344,7 +322,7 @@ public class LevelEditor
 	/**
 	 * Sawblades: diameter, x-center, y-level;
 	 */
-	public void createSawblades(Graphics2D g2d, Color c, Image pic)
+	public void drawSawblades(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(0);
@@ -367,7 +345,7 @@ public class LevelEditor
 	 * Slopes: x-start, y-start, x-end, y-end
 	 * Since we are lazy we decided to make ground spikes slope as well.
 	 */
-	public void createSlopes(Graphics2D g2d, Color c, Image groundSpike, Image ceilingSpike)
+	public void drawSlopes(Graphics2D g2d, Color c, Image groundSpike, Image ceilingSpike)
 	{
 		g2d.setColor(c);
 		Stroke stroke = new BasicStroke(10);
@@ -417,20 +395,47 @@ public class LevelEditor
 		return dx;
 	}
 	
-	public void setDx(int x) {
-		dx = x;
+	public void setDx(int newDx) {
+		dx = newDx;
 	}
 	
 	public void goForward(int t) {
+		for (int j = 0; j < blocks.length; j++) {
+			blocks[j][0] -= t;
+		}
+		for (int j = 0; j < sawblades.length; j++) {
+			sawblades[j][1] -= t;
+		}
+		for (int j = 0; j < slopes.length; j++) {
+			slopes[j][0] -= t;
+			slopes[j][2] -= t;
+		}
+		for (int j = 0; j < speedPortals.length; j++) {
+			speedPortals[j][0] -= t;
+		}
+		for (int j = 0; j < normalGravityPortals.length; j++) {
+			normalGravityPortals[j][0] -= t;
+		}
+		for (int j = 0; j < flippedGravityPortals.length; j++) {
+			flippedGravityPortals[j][0] -= t;
+		}
+		for (int j = 0; j < normalSizePortals.length; j++) {
+			normalSizePortals[j][0] -= t;
+		}
+		for (int j = 0; j < miniSizePortals.length; j++) {
+			miniSizePortals[j][0] -= t;
+		}
+		for (int j = 0; j < wavePortals.length; j++) {
+			wavePortals[j][0] -= t;
+		}
+		for (int j = 0; j < cubePortals.length; j++) {
+			cubePortals[j][0] -= t;
+		}
 		setDx(dx - t);
 	}
 	
-	public int[][] getPlatforms() {
-		return platforms;
-	}
-	
-	public int[][] getWalls() {
-		return walls;
+	public int[][] getBlocks() {
+		return blocks;
 	}
 	
 	public int[][] getSawblades() {

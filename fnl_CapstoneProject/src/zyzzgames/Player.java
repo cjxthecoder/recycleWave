@@ -204,20 +204,10 @@ public class Player
 		
 		if (player.x >= 768) {
 			g.drawImage(GameConstants.RCB, 1428, 660, null);
-			drawCenteredText(g, "Level Complete!", 96, 1.8);
-			drawCenteredText(g, "Attempts: " + getAttempts(), 72, 1.2);
-			drawCenteredText(g, "Your score: " + Math.round(100.0 * getFullScore()) / 100.0, 72, 0.9);
+			GameWindow.drawCenteredText(g, "Level Complete!", 96, 1.8);
+			GameWindow.drawCenteredText(g, "Attempts: " + getAttempts(), 72, 1.2);
+			GameWindow.drawCenteredText(g, "Your score: " + Math.round(100.0 * getFullScore()) / 100.0, 72, 0.9);
 		}
-	}
-	
-	public void drawCenteredText(Graphics g, String s, int pt, double yFactor) {
-		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		Font font = new Font(Font.SANS_SERIF, Font.PLAIN, pt);
-		FontMetrics metrics = g.getFontMetrics(font);
-		int x = (1536 - metrics.stringWidth(s)) / 2;
-		int y = (int) Math.round((840 - metrics.getHeight()) / yFactor + metrics.getAscent());
-		g.setFont(font);
-		g.drawString(s, x, y/2);
 	}
 	
 	public void resetPlayerFields() {

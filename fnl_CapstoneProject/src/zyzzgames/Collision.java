@@ -92,7 +92,7 @@ public class Collision
 		for (int i = 0; i < platforms.length; i++)
 		{
 			if (new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox()).intersectsLine
-					(new Line2D.Double(platforms[i][0], platforms[i][1], platforms[i][2], platforms[i][1])))
+					(new Line2D.Double(platforms[i][0], platforms[i][1], platforms[i][0] + PPB, platforms[i][1])))
 			{
 				p.setPlatformY(platforms[i][1]);
 				return true;
