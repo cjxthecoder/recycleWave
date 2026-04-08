@@ -85,6 +85,7 @@ public class GameWindow extends JFrame
 		c.add(comboBox);
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		gameStarted = true;
 		runP.setDifficulty(String.valueOf(comboBox.getSelectedItem()));
@@ -107,7 +108,7 @@ public class GameWindow extends JFrame
 		}
 	}
 	
-	public void drawGameTitle(Graphics g) {
+	private void drawGameTitle(Graphics g) {
 		drawCenteredText(g, "Recycle Wave", 96, 1.5);
 		
 		if (System.getProperty("os.name").contains("Mac")) {
@@ -141,7 +142,7 @@ public class GameWindow extends JFrame
 		}
 	}
 	
-	public void drawGameGraphics(Graphics2D g) {
+	private void drawGameGraphics(Graphics2D g) {
 		g.setColor(Color.CYAN);
 		g.drawLine(0, GameConstants.GROUND, 1550, GameConstants.GROUND);
 		g.drawLine(0, GameConstants.CEILING, 1550, GameConstants.CEILING);
@@ -159,7 +160,7 @@ public class GameWindow extends JFrame
 		lvl.drawProgressBar(g, GameConstants.FINISH_LINE, Color.BLACK, Color.CYAN);
 	}
 	
-	public void draw(Graphics g) {
+	private void draw(Graphics g) {
 		drawGameGraphics((Graphics2D) g);
 		runP.drawPlayer(g);
 		repaint();
@@ -173,9 +174,5 @@ public class GameWindow extends JFrame
 		int y = (int) Math.round((840 - metrics.getHeight()) / yFactor + metrics.getAscent());
 		g.setFont(font);
 		g.drawString(s, x, y/2);
-	}
-	
-	public JComboBox<String> getComboBox() {
-		return comboBox;
 	}
 }
