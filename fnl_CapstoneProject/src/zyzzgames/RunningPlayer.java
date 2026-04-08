@@ -76,7 +76,7 @@ public class RunningPlayer extends Player
 		
 		try {
 			Thread.sleep(500);
-			gs.startMusic(37.9f);
+			gs.startMusic(38.0f);
 			
 			while (true)
 			{
@@ -96,7 +96,7 @@ public class RunningPlayer extends Player
 					Thread.sleep(1000);
 					resetPlayerFields();
 					lvl.goForward(lvl.getDx() - 2 * GameConstants.START_LINE);
-					gs.startMusic(38.3f);
+					gs.startMusic(38.4f);
 				}
 				
 				else {
