@@ -96,6 +96,7 @@ public class RunningPlayer extends Player
 					Thread.sleep(1000);
 					resetPlayerFields();
 					lvl.goForward(lvl.getDx() - 2 * GameConstants.START_LINE);
+					lvl.resetWaveTrail();
 					gs.startMusic(38.4f);
 				}
 				
@@ -194,6 +195,10 @@ public class RunningPlayer extends Player
 				 		
 				 		resetTime();
 				 	}
+					
+					if (getGamemode() == GameConstants.WAVE) {
+						lvl.addWaveTrail(this, false);
+					}
 					
 					if (getX() < 1452) {
 						move();

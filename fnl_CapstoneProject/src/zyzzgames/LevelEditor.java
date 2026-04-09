@@ -52,9 +52,11 @@ public class LevelEditor
 	private Stroke small_stroke = new BasicStroke(3);
 	private Stroke large_stroke = new BasicStroke(10);
 	private boolean drawHitboxes;
+	private boolean drawTrails = false;
 	
-	public LevelEditor(boolean drawHitboxes) {
+	public LevelEditor(boolean drawHitboxes, boolean drawTrails) {
 		this.drawHitboxes = drawHitboxes;
+		this.drawTrails = drawTrails;
 	}
 	
 	// A 2D array of blocks with each array being the position of one block
@@ -121,7 +123,7 @@ public class LevelEditor
 			"MSP", miniSizePortals, "WVP", wavePortals, "CBP", cubePortals);
 	
 	// A list consisting of the player's trail when the player is wave.
-	private List<Integer> waveTrailXY = new ArrayList<>();
+	private List<int[]> waveTrails = new ArrayList<>();
 
 	/* 
 	 * To make editing easier, the following functions takes in the grid distance and height
@@ -441,19 +443,53 @@ public class LevelEditor
 	}
 	
 	/**
+	 * Adds the player's current position to the wave trail list.
+	 * @param p
+	 * @param changeSize
+	 */
+	public void addWaveTrail(Player p, boolean changeSize)
+	{
+		if (drawTrails)
+		{
+			int[] wt = new int[3];
+			wt[0] = p.getX();
+			wt[1] = p.getY();
+			wt[2] = changeSize ? (p.playerIsMini() ? 2 : 1) : 1;
+			waveTrails.add(wt);
+			if (waveTrails.size() > 162) {
+				waveTrails.remove(0);
+			}
+		}
+	}
+	
+	/**
 	 * Draws the player's wave trail.
 	 * @param g2d
 	 * @param c
 	 */
 	public void drawWaveTrail(Graphics2D g2d, Color c)
 	{
-		for (int i = 0; i + 1 < waveTrailXY.size(); i += 2)
+		if (drawTrails)
 		{
-			if (!(waveTrailXY.get(i) < -24 || slopes[i][0] > 1560))
+			for (int i = 0; i + 1 < waveTrails.size(); i += 2)
 			{
-				g2d.setColor(c);
-				g2d.drawRect(waveTrailXY.get(i), waveTrailXY.get(i + 1), ppb / 8, ppb / 8);
+				if (!(waveTrails.get(i)[0] < -24 || waveTrails.get(i)[0] > 1560))
+				{
+					g2d.setColor(c);
+					g2d.fillRect(waveTrails.get(i)[0], waveTrails.get(i)[1], ppb / (4 * waveTrails.get(i)[2]), ppb / (4 * waveTrails.get(i)[2]));
+				}
 			}
+		}
+	}
+	
+	/**
+	 * Resets the wave trail of the player.
+	 */
+	public void resetWaveTrail()
+	{
+		if (drawTrails)
+		{
+			waveTrails.clear();
 		}
 	}
 
@@ -516,9 +552,11 @@ public class LevelEditor
 		for (int i = 0; i < cubePortals.length; i++) {
 			cubePortals[i][0] -= t;
 		}
-//		for (int i = 0; i < waveTrailXY.size(); i += 2) {
-//			waveTrailXY.set(i, waveTrailXY.get(i) - t);
-//		}
+		if (drawTrails) {
+			for (int i = 0; i < waveTrails.size(); i++) {
+				waveTrails.get(i)[0] -= t;
+			}
+		}
 		setDx(dx - t);
 	}
 	

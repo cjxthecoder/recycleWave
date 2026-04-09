@@ -57,7 +57,7 @@ public class GameWindow extends JFrame
 	private JButton play;
 	private JComboBox<String> comboBox;
 	private String[] difficulty = {"Easy", "Medium", "Hard", "Insane", "Impossible"};
-	private LevelEditor lvl = new LevelEditor(false);
+	private LevelEditor lvl = new LevelEditor(false, true);
 	private RunningPlayer runP = new RunningPlayer(-GameConstants.PLAYER_HITBOX,
 														GameConstants.GROUND-GameConstants.PLAYER_HITBOX,
 														GameConstants.CUBE,
@@ -157,7 +157,7 @@ public class GameWindow extends JFrame
 		lvl.drawSlopes(g, new Color(240, 16, 160), Color.RED, GameConstants.GS, GameConstants.CS);
 		lvl.drawSawblades(g, Color.RED, GameConstants.SB);
 		lvl.drawSpeedPortals(g, Color.GREEN, String.valueOf(comboBox.getSelectedItem()));
-//		lvl.drawWaveTrail(g, new Color(35, 182, 228));
+		lvl.drawWaveTrail(g, new Color(35, 182, 228));
 		lvl.drawProgressBar(g, GameConstants.FINISH_LINE, Color.BLACK, Color.CYAN);
 	}
 	
