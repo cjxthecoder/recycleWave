@@ -25,8 +25,7 @@ import javax.swing.JFrame;
  * @since 1.0
  */
 
-public class Main
-{	
+public class Main {
 	public static void main(String[] args) {
 		GameWindow gw = new GameWindow(0, 0, 1536, 840);
 		gw.setBackground(new Color(64, 144, 176));

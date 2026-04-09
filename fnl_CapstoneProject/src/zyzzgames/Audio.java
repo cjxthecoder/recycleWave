@@ -25,42 +25,42 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * The Audio class is for implementing sound in-game. An audio has a {@link Clip}
- * that can be reset, set to a certain frame, be started, or be stopped.
+ * The Audio class is for implementing sound in-game. An audio has a
+ * {@link Clip} that can be reset, set to a certain frame, be started, or be
+ * stopped.
  * 
  * @author Ali Haryanawalla
  *
  * @since 1.0
  */
 
-public class Audio
-{
+public class Audio {
 	private Clip clip;
 	private String src;
-	
+
 	public Audio(String source) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 		src = source;
 		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(src));
 		clip = AudioSystem.getClip();
 		clip.open(audioInputStream);
-		
+
 		// DO NOT CHANGE THE FOLLOWING FOR YOUR OWN SAFETY
 		FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 		gain.setValue(-20.0f);
 	}
-	
+
 	public boolean isPlaying() {
 		return clip.isRunning();
 	}
-	
+
 	public void reset() {
 		clip.stop();
 		clip.setFramePosition(0);
 	}
-	
+
 	public void setOffset(float seconds) {
 		int hz = Integer.parseInt(src.substring(0, 5));
-		clip.setFramePosition((int)(hz * seconds));
+		clip.setFramePosition((int) (hz * seconds));
 	}
 
 	public void play() {

@@ -19,8 +19,8 @@ import java.awt.event.KeyEvent;
 
 /**
  * The InputListener class is a {@link KeyAdapter} that invokes the built-in
- * keyPressed and keyReleased methods to take keyboard input from the user.
- * When one of those functions is called, the keyPressed() and keyReleased()
+ * keyPressed and keyReleased methods to take keyboard input from the user. When
+ * one of those functions is called, the keyPressed() and keyReleased()
  * functions (not related to KeyAdapter) from the Player class will be called,
  * resulting in movement of the Player.
  * 
@@ -29,10 +29,9 @@ import java.awt.event.KeyEvent;
  * @since 1.0
  */
 
-public class InputListener extends KeyAdapter
-{
+public class InputListener extends KeyAdapter {
 	private Player p;
-	
+
 	public InputListener(Player player) {
 		p = player;
 	}
@@ -41,6 +40,7 @@ public class InputListener extends KeyAdapter
 	public void keyPressed(KeyEvent e) {
 		p.keyPressed(e);
 	}
+
 	@Override
 	public void keyReleased(KeyEvent e) {
 		p.keyReleased(e);

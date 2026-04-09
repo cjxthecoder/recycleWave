@@ -29,10 +29,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @since 1.0
  */
 
-public class GameSound
-{
+public class GameSound {
 	private Audio audio;
-	
+
 	public GameSound(String file) {
 		try {
 			audio = new Audio(file);
@@ -40,14 +39,14 @@ public class GameSound
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void startMusic(float seconds) {
 		if (!audio.isPlaying()) {
 			audio.setOffset(seconds);
 			audio.play();
 		}
 	}
-	
+
 	public void stopMusic() {
 		audio.stop();
 	}

@@ -16,89 +16,79 @@ package zyzzgames;
 
 /**
  * The RunningPlayer class is an instance of the Player when the game is
- * running. A crucial point is that this class must be runnable for the
- * game to run, because our game uses a threading system to allow input
- * from the player while the program runs behind the scenes. When running,
- * sleep() is used to delay the time (in milliseconds) for the program to
- * execute code, and this allows use to set the program running at a certain
- * refresh rate. In our game, this value is 5 (=200 updates per second). This
- * can also be used to set up a large delay to give the player time to take in
- * at what has just happened. For example, when the game is starting or when
- * the player has just died, etc.
+ * running. A crucial point is that this class must be runnable for the game to
+ * run, because our game uses a threading system to allow input from the player
+ * while the program runs behind the scenes. When running, sleep() is used to
+ * delay the time (in milliseconds) for the program to execute code, and this
+ * allows use to set the program running at a certain refresh rate. In our game,
+ * this value is 5 (=200 updates per second). This can also be used to set up a
+ * large delay to give the player time to take in at what has just happened. For
+ * example, when the game is starting or when the player has just died, etc.
  * 
  * @author Daniel Cheng
  *
  * @since 1.0
  */
 
-public class RunningPlayer extends Player
-	implements Runnable
-{
+public class RunningPlayer extends Player implements Runnable {
 	private String difficulty;
 	private LevelEditor lvl;
 	private static final float MUSIC_START = 38.3f;
-	
-	public RunningPlayer(int x, int y, int gamemode, int gravity, double speed, boolean mini, String difficulty, LevelEditor lvl)
-	{
+
+	public RunningPlayer(int x, int y, int gamemode, int gravity, double speed, boolean mini, String difficulty,
+			LevelEditor lvl) {
 		super(x, y, gamemode, gravity, speed, mini);
 		this.difficulty = difficulty;
 		this.lvl = lvl;
 	}
-	
+
 	@Override
-	public void run()
-	{	
+	public void run() {
 		double s = getSpeed();
 		GameSound gs = new GameSound("48000/574484_F-777---Sonic-Blaster_48000.wav");
-		
-		switch (difficulty)
-		{
-			case "Easy":
-				s = GameConstants.HALF_TIMES;
-				setFullScore(getFullScore() * GameConstants.HALF_TIMES);
-				break;
-			case "Medium":
-				s = GameConstants.ONE_TIMES;
-				setFullScore(getFullScore() * GameConstants.ONE_TIMES);
-				break;
-			case "Hard":
-				s = GameConstants.TWO_TIMES;
-				setFullScore(getFullScore() * GameConstants.TWO_TIMES);
-				break;
-			case "Insane":
-				s = GameConstants.THREE_TIMES;
-				setFullScore(getFullScore() * GameConstants.THREE_TIMES);
-				break;
-			case "Impossible":
-				s = GameConstants.FOUR_TIMES;
-				setFullScore(getFullScore() * GameConstants.FOUR_TIMES);
-				break;
+
+		switch (difficulty) {
+		case "Easy":
+			s = GameConstants.HALF_TIMES;
+			setFullScore(getFullScore() * GameConstants.HALF_TIMES);
+			break;
+		case "Medium":
+			s = GameConstants.ONE_TIMES;
+			setFullScore(getFullScore() * GameConstants.ONE_TIMES);
+			break;
+		case "Hard":
+			s = GameConstants.TWO_TIMES;
+			setFullScore(getFullScore() * GameConstants.TWO_TIMES);
+			break;
+		case "Insane":
+			s = GameConstants.THREE_TIMES;
+			setFullScore(getFullScore() * GameConstants.THREE_TIMES);
+			break;
+		case "Impossible":
+			s = GameConstants.FOUR_TIMES;
+			setFullScore(getFullScore() * GameConstants.FOUR_TIMES);
+			break;
 		}
-		
+
 		try {
 			Thread.sleep(500);
 			gs.startMusic(MUSIC_START);
-			
-			while (true)
-			{
-				if (!gameIsWon())
-				{
+
+			while (true) {
+				if (!gameIsWon()) {
 					boolean before_start = getX() < GameConstants.START_LINE;
 					boolean past_finish = lvl.getDx() <= GameConstants.START_LINE - GameConstants.FINISH_LINE;
-					
+
 					// If player is before the start line or player is past the finish line
-					if (before_start || past_finish)
-					{
-						if (past_finish)
-						{
+					if (before_start || past_finish) {
+						if (past_finish) {
 							lvl.resetWaveTrail();
 						}
 						setXDirection(4.0 * getSpeed());
 						makePlayerReach320();
 					}
-					
-					if (Collision.checkDeathCollision(lvl.getSlopes(), lvl.getSawblades(), this))
-					{
+
+					if (Collision.checkDeathCollision(lvl.getSlopes(), lvl.getSawblades(), this)) {
 						gs.stopMusic();
 						setFullScore(getFullScore() / GameConstants.MAGIC);
 						setAttempts(getAttempts() + 1);
@@ -108,130 +98,122 @@ public class RunningPlayer extends Player
 						lvl.resetWaveTrail();
 						gs.startMusic(MUSIC_START);
 					}
-					
-					if (Collision.checkPortalCollision(lvl.getPortals("SPP"), this))
-					{
+
+					if (Collision.checkPortalCollision(lvl.getPortals("SPP"), this)) {
 						setSpeed(s);
 					}
-					
-					if (Collision.checkPortalCollision(lvl.getPortals("NGP"), this))
-					{
-						if (getGravity() == GameConstants.UP)
-						{
+
+					if (Collision.checkPortalCollision(lvl.getPortals("NGP"), this)) {
+						if (getGravity() == GameConstants.UP) {
 							resetTime();
 							setGravity(GameConstants.DOWN);
 						}
 					}
-					
-					if (Collision.checkPortalCollision(lvl.getPortals("FGP"), this))
-					{
-						if (getGravity() == GameConstants.DOWN)
-						{
+
+					if (Collision.checkPortalCollision(lvl.getPortals("FGP"), this)) {
+						if (getGravity() == GameConstants.DOWN) {
 							resetTime();
 							setGravity(GameConstants.UP);
 						}
 					}
-					
-					if (Collision.checkPortalCollision(lvl.getPortals("NSP"), this)) // divide by 2 if player is wave, else divide by 1
+
+					if (Collision.checkPortalCollision(lvl.getPortals("NSP"), this)) // divide by 2 if player is wave,
+																						// else divide by 1
 					{
 						setMini(false);
-						
+
 						if (getGamemode() == GameConstants.WAVE) {
 							setPlayerSize(0.5);
-						}
-						else {
+						} else {
 							setPlayerSize(1.0);
 						}
-						
+
 						if (keyIsPressed() && getGamemode() == GameConstants.WAVE) {
 							setYDirection(-4.0 * getSpeed() * this.getGravity());
 						}
 					}
-					
-					if (Collision.checkPortalCollision(lvl.getPortals("MSP"), this)) // divide by 4 if player is wave, else divide by 2
+
+					if (Collision.checkPortalCollision(lvl.getPortals("MSP"), this)) // divide by 4 if player is wave,
+																						// else divide by 2
 					{
 						setMini(true);
-						
+
 						if (getGamemode() == GameConstants.WAVE) {
 							setPlayerSize(0.25);
-						} 
-						else {
+						} else {
 							setPlayerSize(0.5);
 						}
-						
+
 						if (keyIsPressed() && getGamemode() == GameConstants.WAVE) {
 							setYDirection(-8.0 * getSpeed() * this.getGravity());
 						}
 					}
-					
-					if (Collision.checkPortalCollision(lvl.getPortals("WVP"), this)) // divide by 4 if player is mini, else divide by 2
+
+					if (Collision.checkPortalCollision(lvl.getPortals("WVP"), this)) // divide by 4 if player is mini,
+																						// else divide by 2
 					{
 						setGamemode(GameConstants.WAVE);
-						
+
 						if (playerIsMini()) {
 							setPlayerSize(0.25);
-						} 
-						else {
+						} else {
 							setPlayerSize(0.5);
 						}
 					}
-					
-					if (Collision.checkPortalCollision(lvl.getPortals("CBP"), this)) // divide by 2 if player is mini, else divide by 1
+
+					if (Collision.checkPortalCollision(lvl.getPortals("CBP"), this)) // divide by 2 if player is mini,
+																						// else divide by 1
 					{
 						setGamemode(GameConstants.CUBE);
-						
+
 						if (playerIsMini()) {
 							setPlayerSize(0.5);
-						} 
-						else {
+						} else {
 							setPlayerSize(1);
 						}
 					}
-					
-					if (Collision.checkPlatformCollision(lvl.getBlocks(), this))
-				 	{
-				 		switch(getGravity())
-				 		{
-				 			case GameConstants.UP:
-				 				setY(getPlatformY() + 1);
-				 				setYDirection(0);
-				 				break;
-				 				
-				 			case GameConstants.DOWN:
-				 				setY(getPlatformY() - getHitbox());
-				 				setYDirection(0);
-				 				break;
-				 		}
-				 		
-				 		resetTime();
-				 	}
-					
+
+					if (Collision.checkPlatformCollision(lvl.getBlocks(), this)) {
+						switch (getGravity()) {
+						case GameConstants.UP:
+							setY(getPlatformY() + 1);
+							setYDirection(0);
+							break;
+
+						case GameConstants.DOWN:
+							setY(getPlatformY() - getHitbox());
+							setYDirection(0);
+							break;
+						}
+
+						resetTime();
+					}
+
 					if (getGamemode() == GameConstants.WAVE) {
 						lvl.addWaveTrail(false, this);
 					}
-					
+
 					if (getX() < 1460) {
 						move();
 						fall();
-					}
-					else {
+					} else {
 						setX(1460);
 						setGameWon(true);
 					}
-					
+
 					// If player is at or after the start line and before the finish line
 					if (!before_start && !past_finish) {
-						lvl.goForward((int)(4.0 * getSpeed()));
+						lvl.goForward((int) (4.0 * getSpeed()));
 					}
 				}
-				
+
 				Thread.sleep(5);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void setDifficulty(String newDifficulty) {
 		difficulty = newDifficulty;
 	}
