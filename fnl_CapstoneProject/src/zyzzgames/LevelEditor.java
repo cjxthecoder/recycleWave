@@ -210,7 +210,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < normalGravityPortals.length; i++)
 		{
-			if (!(normalGravityPortals[i][0] < -150 || normalGravityPortals[i][0] > 1560))
+			if (!(normalGravityPortals[i][0] < -165 || normalGravityPortals[i][0] > 1560))
 			{
 				g2d.drawImage(pic, normalGravityPortals[i][0], normalGravityPortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
 				if (drawHitboxes)
@@ -234,7 +234,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < flippedGravityPortals.length; i++)
 		{
-			if (!(flippedGravityPortals[i][0] < -150 || flippedGravityPortals[i][0] > 1560))
+			if (!(flippedGravityPortals[i][0] < -165 || flippedGravityPortals[i][0] > 1560))
 			{
 				g2d.drawImage(pic, flippedGravityPortals[i][0], flippedGravityPortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
 				if (drawHitboxes)
@@ -258,7 +258,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < normalSizePortals.length; i++)
 		{
-			if (!(normalSizePortals[i][0] < -150 || normalSizePortals[i][0] > 1560))
+			if (!(normalSizePortals[i][0] < -165 || normalSizePortals[i][0] > 1560))
 			{
 				g2d.drawImage(pic, normalSizePortals[i][0], normalSizePortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
 				if (drawHitboxes)
@@ -282,7 +282,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < miniSizePortals.length; i++)
 		{
-			if (!(miniSizePortals[i][0] < -150 || miniSizePortals[i][0] > 1560))
+			if (!(miniSizePortals[i][0] < -165 || miniSizePortals[i][0] > 1560))
 			{
 				g2d.drawImage(pic, miniSizePortals[i][0], miniSizePortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
 				if (drawHitboxes)
@@ -306,7 +306,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < wavePortals.length; i++)
 		{
-			if (!(wavePortals[i][0] < -150 || wavePortals[i][0] > 1560))
+			if (!(wavePortals[i][0] < -165 || wavePortals[i][0] > 1560))
 			{
 				g2d.drawImage(pic, wavePortals[i][0], wavePortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
 				if (drawHitboxes)
@@ -330,7 +330,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < cubePortals.length; i++)
 		{
-			if (!(cubePortals[i][0] < -150 || cubePortals[i][0] > 1560))
+			if (!(cubePortals[i][0] < -165 || cubePortals[i][0] > 1560))
 			{
 				g2d.drawImage(pic, cubePortals[i][0], cubePortals[i][1], (int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
 				if (drawHitboxes)
@@ -354,7 +354,7 @@ public class LevelEditor
 		
 		for (int i = 0; i < blocks.length; i++)
 		{
-			if (!(blocks[i][0] < -24 || blocks[i][0] > 1560))
+			if (!(blocks[i][0] + ppb < -24 || blocks[i][0] > 1560))
 			{
 				g2d.drawImage(pic, blocks[i][0], blocks[i][1], ppb, ppb, null);
 				if (drawHitboxes)
@@ -456,7 +456,8 @@ public class LevelEditor
 			wt[1] = p.getY();
 			wt[2] = changeSize ? (p.playerIsMini() ? 2 : 1) : 1;
 			waveTrails.add(wt);
-			if (waveTrails.size() > 160) {
+			if (waveTrails.size() > 165)
+			{
 				waveTrails.remove(0);
 			}
 		}
