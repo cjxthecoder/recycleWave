@@ -45,7 +45,12 @@ public class LevelEditor
 	private int dx = GameConstants.START_LINE;
 	private int d = GameConstants.SAWBLADE_DIAMETER;
 	private int ppb = GameConstants.PIXELS_PER_BLOCK;
-	private boolean drawHitboxes = false;
+	private Stroke default_stroke = new BasicStroke(0);
+	private boolean drawHitboxes;
+	
+	public LevelEditor(boolean drawHitboxes) {
+		this.drawHitboxes = drawHitboxes;
+	}
 	
 	// A 2D array of blocks with each array being the position of one block
 	private int[][] blocks = {{ gX(1), gY(9) }, { gX(2), gY(9) },
@@ -191,8 +196,7 @@ public class LevelEditor
 	public void drawNormalGravityPortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
-		Stroke stroke = new BasicStroke(0);
-		g2d.setStroke(stroke);
+		g2d.setStroke(default_stroke);
 		
 		for (int i = 0; i < normalGravityPortals.length; i++)
 		{
@@ -216,8 +220,7 @@ public class LevelEditor
 	public void drawFlippedGravityPortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
-		Stroke stroke = new BasicStroke(0);
-		g2d.setStroke(stroke);
+		g2d.setStroke(default_stroke);
 		
 		for (int i = 0; i < flippedGravityPortals.length; i++)
 		{
@@ -241,8 +244,7 @@ public class LevelEditor
 	public void drawNormalSizePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
-		Stroke stroke = new BasicStroke(0);
-		g2d.setStroke(stroke);
+		g2d.setStroke(default_stroke);
 		
 		for (int i = 0; i < normalSizePortals.length; i++)
 		{
@@ -266,8 +268,7 @@ public class LevelEditor
 	public void drawMiniSizePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
-		Stroke stroke = new BasicStroke(0);
-		g2d.setStroke(stroke);
+		g2d.setStroke(default_stroke);
 		
 		for (int i = 0; i < miniSizePortals.length; i++)
 		{
@@ -291,8 +292,7 @@ public class LevelEditor
 	public void drawWavePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
-		Stroke stroke = new BasicStroke(0);
-		g2d.setStroke(stroke);
+		g2d.setStroke(default_stroke);
 		
 		for (int i = 0; i < wavePortals.length; i++)
 		{
@@ -316,8 +316,7 @@ public class LevelEditor
 	public void drawCubePortals(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
-		Stroke stroke = new BasicStroke(0);
-		g2d.setStroke(stroke);
+		g2d.setStroke(default_stroke);
 		
 		for (int i = 0; i < cubePortals.length; i++)
 		{
@@ -341,8 +340,7 @@ public class LevelEditor
 	public void drawBlocks(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
-		Stroke stroke = new BasicStroke(0);
-		g2d.setStroke(stroke);
+		g2d.setStroke(default_stroke);
 		
 		for (int i = 0; i < blocks.length; i++)
 		{
@@ -366,8 +364,7 @@ public class LevelEditor
 	public void drawSawblades(Graphics2D g2d, Color c, Image pic)
 	{
 		g2d.setColor(c);
-		Stroke stroke = new BasicStroke(0);
-		g2d.setStroke(stroke);
+		g2d.setStroke(default_stroke);
 		
 		for (int i = 0; i < sawblades.length; i++)
 		{
@@ -376,7 +373,7 @@ public class LevelEditor
 				g2d.drawImage(pic, sawblades[i][0] - sawblades[i][2] / 2, sawblades[i][1] - sawblades[i][2] / 2, null);
 				if (drawHitboxes)
 				{
-					g2d.fillOval(sawblades[i][0] - sawblades[i][2] / 2, sawblades[i][1] - sawblades[i][2] / 2, sawblades[i][2], sawblades[i][2]);
+					g2d.drawOval(sawblades[i][0] - sawblades[i][2] / 2, sawblades[i][1] - sawblades[i][2] / 2, sawblades[i][2], sawblades[i][2]);
 				}
 			}  
 		}
@@ -389,14 +386,13 @@ public class LevelEditor
 	 * Since we are lazy we decided to make ground spikes slope as well.
 	 * @param g2d
 	 * @param c
+	 * @param h
 	 * @param groundSpike
 	 * @param ceilingSpike
 	 */
-	public void drawSlopes(Graphics2D g2d, Color c, Image groundSpike, Image ceilingSpike)
+	public void drawSlopes(Graphics2D g2d, Color c, Color h, Image groundSpike, Image ceilingSpike)
 	{
-		g2d.setColor(c);
-		Stroke stroke = new BasicStroke(10);
-		g2d.setStroke(stroke);
+		Stroke large_stroke = new BasicStroke(10);
 		
 		for (int i = 0; i < slopes.length; i++)
 		{
@@ -420,7 +416,19 @@ public class LevelEditor
 				
 				else if (slopes[i][1] != slopes[i][3])
 				{
-					g2d.draw(new Line2D.Double(slopes[i][0], slopes[i][1], slopes[i][2], slopes[i][3]));
+					if (drawHitboxes)
+					{
+						g2d.setColor(h);
+						g2d.setStroke(default_stroke);
+						g2d.draw(new Line2D.Double(slopes[i][0], slopes[i][1], slopes[i][2], slopes[i][3]));
+					}
+					
+					else
+					{
+						g2d.setColor(c);
+						g2d.setStroke(large_stroke);
+						g2d.draw(new Line2D.Double(slopes[i][0], slopes[i][1], slopes[i][2], slopes[i][3]));
+					}
 				}
 			}
 		}
@@ -434,8 +442,8 @@ public class LevelEditor
 	 * @param progressColor
 	 */
 	public void drawProgressBar(Graphics2D g2d, int levelEndPoint, Color barColor, Color progressColor) {
-		Stroke stroke = new BasicStroke(3);
-		g2d.setStroke(stroke);
+		Stroke small_stroke = new BasicStroke(3);
+		g2d.setStroke(small_stroke);
 		g2d.setColor(progressColor);
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.fillRect(558, 38, Math.round((420 * (GameConstants.START_LINE - dx)) / levelEndPoint), 15);

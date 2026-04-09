@@ -46,7 +46,7 @@ public class GameConstants
 	public static final int WAVE = 10;
 	public static final int ROBOT = 11;
 	public static final int SPIDER = 9;
-	public static final int SWINGCOPTER = 8;
+	public static final int SWING = 8;
 	
 	// Constants related to the player's gravity
 	public static final int DOWN = 1;
