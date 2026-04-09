@@ -35,7 +35,7 @@ public class GameSound
 	
 	public GameSound(String file) {
 		try {
-			audio = new Audio("48000/574484_F-777---Sonic-Blaster_48000.wav");
+			audio = new Audio(file);
 		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 			e.printStackTrace();
 		}
