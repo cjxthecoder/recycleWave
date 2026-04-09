@@ -76,31 +76,35 @@ public class RunningPlayer extends Player
 		
 		try {
 			Thread.sleep(500);
-			gs.startMusic(38.0f);
+			gs.startMusic(38.3f);
 			
 			while (true)
 			{
-				if ((getX() < GameConstants.START_LINE ||
-						lvl.getDx() < GameConstants.START_LINE - GameConstants.FINISH_LINE) && !gameIsWon())
+				if (!gameIsWon())
 				{
-					setXDirection(4.0 * getSpeed());
-					makePlayerReach300();
-					Thread.sleep(5);
-				}
-				
-				if (Collision.checkDeathCollision(lvl.getSlopes(), lvl.getSawblades(), this))
-				{
-					gs.stopMusic();
-					setFullScore(getFullScore() / GameConstants.MAGIC);
-					setAttempts(getAttempts() + 1);
-					Thread.sleep(1000);
-					resetPlayerFields();
-					lvl.goForward(lvl.getDx() - 2 * GameConstants.START_LINE);
-					lvl.resetWaveTrail();
-					gs.startMusic(38.4f);
-				}
-				
-				else {
+					// If player is behind the start line or player is past the finish line
+					if (getX() < GameConstants.START_LINE || lvl.getDx() < GameConstants.START_LINE - GameConstants.FINISH_LINE)
+					{
+						if (lvl.getDx() < GameConstants.START_LINE - GameConstants.FINISH_LINE)
+						{
+							lvl.resetWaveTrail();
+						}
+						setXDirection(4.0 * getSpeed());
+						makePlayerReach320();
+					}
+					
+					if (Collision.checkDeathCollision(lvl.getSlopes(), lvl.getSawblades(), this))
+					{
+						gs.stopMusic();
+						setFullScore(getFullScore() / GameConstants.MAGIC);
+						setAttempts(getAttempts() + 1);
+						Thread.sleep(1000);
+						resetPlayerFields();
+						lvl.goForward(lvl.getDx() - 2 * GameConstants.START_LINE);
+						lvl.resetWaveTrail();
+						gs.startMusic(38.3f);
+					}
+					
 					if (Collision.checkPortalCollision(lvl.getPortals("SPP"), this))
 					{
 						setSpeed(s);
@@ -162,7 +166,8 @@ public class RunningPlayer extends Player
 						
 						if (playerIsMini()) {
 							setPlayerSize(0.25);
-						} else {
+						} 
+						else {
 							setPlayerSize(0.5);
 						}
 					}
@@ -173,7 +178,8 @@ public class RunningPlayer extends Player
 						
 						if (playerIsMini()) {
 							setPlayerSize(0.5);
-						} else {
+						} 
+						else {
 							setPlayerSize(1);
 						}
 					}
@@ -200,26 +206,22 @@ public class RunningPlayer extends Player
 						lvl.addWaveTrail(this, false);
 					}
 					
-					if (getX() < 1452) {
+					if (getX() < 1460) {
 						move();
 						fall();
 					}
-					
-					if (getX() >= 1452) {
-						setX(1452);
+					else {
+						setX(1460);
 						setGameWon(true);
 					}
 					
+					// If player is at or after the start line and is before the finish line
 					if (getX() >= GameConstants.START_LINE && lvl.getDx() >= GameConstants.START_LINE - GameConstants.FINISH_LINE) {
 						lvl.goForward((int)(4.0 * getSpeed()));
 					}
-					
-					else {
-						lvl.goForward(0);
-					}
-					
-					Thread.sleep(5);
 				}
+				
+				Thread.sleep(5);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();

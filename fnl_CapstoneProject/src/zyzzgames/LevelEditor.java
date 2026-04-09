@@ -52,7 +52,7 @@ public class LevelEditor
 	private Stroke small_stroke = new BasicStroke(3);
 	private Stroke large_stroke = new BasicStroke(10);
 	private boolean drawHitboxes;
-	private boolean drawTrail = false;
+	private boolean drawTrail;
 	
 	public LevelEditor(boolean drawHitboxes, boolean drawTrail) {
 		this.drawHitboxes = drawHitboxes;

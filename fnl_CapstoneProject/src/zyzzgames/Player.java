@@ -70,7 +70,7 @@ public class Player
 		player = new Rectangle(x, y, hitbox, hitbox);
 	}
 	
-	public void makePlayerReach300()
+	public void makePlayerReach320()
 	{
 		player.x += xDirection;
 	}
