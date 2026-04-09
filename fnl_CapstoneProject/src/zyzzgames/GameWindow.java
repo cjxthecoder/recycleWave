@@ -87,11 +87,13 @@ public class GameWindow extends JFrame
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		gameStarted = true;
-		runP.setDifficulty(String.valueOf(comboBox.getSelectedItem()));
-		repaint();
-		Thread p1 = new Thread(runP);
-		p1.start();
+		if (!gameStarted) {
+			gameStarted = true;
+			runP.setDifficulty(String.valueOf(comboBox.getSelectedItem()));
+			repaint();
+			Thread p1 = new Thread(runP);
+			p1.start();
+		}
 	}
 	
 	@Override
