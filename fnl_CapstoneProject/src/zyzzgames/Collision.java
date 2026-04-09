@@ -107,7 +107,7 @@ public class Collision
 		double testX = circleX;
 		double testY = circleY;
 
-		if (circleX < r.x) {  
+		if (circleX < r.x) {
 			testX = r.x;
 		}
 		else if (circleX > r.x + r.width) {

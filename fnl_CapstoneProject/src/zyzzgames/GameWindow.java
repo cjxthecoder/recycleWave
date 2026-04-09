@@ -146,7 +146,7 @@ public class GameWindow extends JFrame
 		g.setColor(Color.CYAN);
 		g.drawLine(0, GameConstants.GROUND, 1550, GameConstants.GROUND);
 		g.drawLine(0, GameConstants.CEILING, 1550, GameConstants.CEILING);
-	    
+
 		lvl.drawBlocks(g, Color.BLUE, GameConstants.BLK);
 		lvl.drawNormalGravityPortals(g, Color.GREEN, GameConstants.NGP);
 		lvl.drawFlippedGravityPortals(g, Color.GREEN, GameConstants.FGP);
@@ -157,6 +157,7 @@ public class GameWindow extends JFrame
 		lvl.drawSlopes(g, new Color(240, 16, 160), Color.RED, GameConstants.GS, GameConstants.CS);
 		lvl.drawSawblades(g, Color.RED, GameConstants.SB);
 		lvl.drawSpeedPortals(g, Color.GREEN, String.valueOf(comboBox.getSelectedItem()));
+//		lvl.drawWaveTrail(g, new Color(35, 182, 228));
 		lvl.drawProgressBar(g, GameConstants.FINISH_LINE, Color.BLACK, Color.CYAN);
 	}
 	

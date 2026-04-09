@@ -22,6 +22,9 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.geom.Line2D;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,6 +49,8 @@ public class LevelEditor
 	private int d = GameConstants.SAWBLADE_DIAMETER;
 	private int ppb = GameConstants.PIXELS_PER_BLOCK;
 	private Stroke default_stroke = new BasicStroke(0);
+	private Stroke small_stroke = new BasicStroke(3);
+	private Stroke large_stroke = new BasicStroke(10);
 	private boolean drawHitboxes;
 	
 	public LevelEditor(boolean drawHitboxes) {
@@ -77,29 +82,29 @@ public class LevelEditor
 
 	// A 2D array of slopes with each array being the position of one slope
 	private int[][] slopes = {{ gX(25), gY(0), gX(35), gY(10) }, { gX(35), gY(10), gX(45), gY(0) },
-					  { gX(32), gY(18), gX(41), gY(9) }, { gX(41), gY(9), gX(50), gY(18) },
-					  { gX(43), gY(7), gX(50), gY(0) }, { gX(43), gY(7), gX(47), gY(11) }, { gX(47), gY(11), gX(58), gY(0) },
-					  { gX(50), gY(18), gX(75), gY(18) }, { gX(58), gY(0), gX(67), gY(9) }, { gX(67), gY(9), gX(76), gY(0) },
-					  { gX(70), gY(12), gX(76), gY(18) }, { gX(70), gY(12), gX(73), gY(9) }, { gX(76), gY(18), gX(82), gY(12) }, { gX(79), gY(9), gX(82), gY(12) },
-					  { gX(75), gY(7), gX(76), gY(6) }, { gX(76), gY(6), gX(77), gY(7) },
-					  { gX(77), gY(18), gX(86), gY(9) }, { gX(86), gY(9), gX(95), gY(18) },
-					  { gX(81), gY(0), gX(90), gY(9) }, { gX(90), gY(9), gX(95), gY(4)}, { gX(91), gY(0), gX(95), gY(4) },
-					  { gX(95), gY(18), gX(102), gY(11) }, { gX(102), gY(11), gX(109), gY(18) },
-					  { gX(95), gY(0), gX(106), gY(11) }, { gX(106), gY(11), gX(117), gY(0) }, { gX(109), gY(18), gX(115), gY(18) },
-					  { gX(115), gY(18), gX(121), gY(6) }, { gX(121), gY(6), gX(127), gY(18) },
-					  { gX(121), gY(0), gX(127), gY(12) }, { gX(127), gY(12), gX(133), gY(0) },
-					  { gX(127), gY(18), gX(133), gY(6) }, { gX(133), gY(6), gX(139), gY(18) },
-					  { gX(136), gY(0), gX(146), gY(5) }, { gX(146), gY(5), gX(156), gY(0) }, { gX(153), gY(18), gX(158), gY(8) },
-					  { gX(138), gY(18), gX(193), gY(18) }, { gX(156), gY(0), gX(199), gY(0) },
-					  { gX(192), gY(18), gX(197), gY(8) }, { gX(198), gY(3), gX(201), gY(0) }, { gX(198), gY(3), gX(203), gY(8) }, { gX(203), gY(8), gX(211), gY(0) },
-					  { gX(199), gY(18), gX(208), gY(9) }, { gX(208), gY(9), gX(217), gY(18) },
-					  { gX(211), gY(0), gX(222), gY(11) }, { gX(222), gY(11), gX(233), gY(0) }, { gX(217), gY(18), gX(232), gY(18) },
-					  { gX(228), gY(13), gX(233), gY(18) }, { gX(233), gY(18), gX(238), gY(13) }, { gX(230), gY(13), gX(233), gY(16) }, { gX(233), gY(16), gX(236), gY(13) },
-					  { gX(232), gY(13), gX(233), gY(14) }, { gX(233), gY(14), gX(234), gY(13) }, { gX(232), gY(9), gX(233), gY(8) }, { gX(233), gY(8), gX(234), gY(9) },
-					  { gX(228), gY(9), gX(233), gY(4) }, { gX(233), gY(4), gX(238), gY(9) }, { gX(230), gY(9), gX(233), gY(6) }, { gX(233), gY(6), gX(236), gY(9) },
-					  { gX(240), gY(0), gX(250), gY(10) }, { gX(250), gY(10), gX(260), gY(0) }, { gX(247), gY(18), gX(259), gY(6) }, { gX(259), gY(6), gX(271), gY(18) },
-					  { gX(271), gY(18), gX(277), gY(12) }, { gX(277), gY(12), gX(280), gY(18) }, { gX(271), gY(0), gX(277), gY(6) }, { gX(277), gY(6), gX(280), gY(0) },
-					  { gX(260), gY(0), gX(271), gY(0) }};
+					{ gX(32), gY(18), gX(41), gY(9) }, { gX(41), gY(9), gX(50), gY(18) },
+					{ gX(43), gY(7), gX(50), gY(0) }, { gX(43), gY(7), gX(47), gY(11) }, { gX(47), gY(11), gX(58), gY(0) },
+					{ gX(50), gY(18), gX(75), gY(18) }, { gX(58), gY(0), gX(67), gY(9) }, { gX(67), gY(9), gX(76), gY(0) },
+					{ gX(70), gY(12), gX(76), gY(18) }, { gX(70), gY(12), gX(73), gY(9) }, { gX(76), gY(18), gX(82), gY(12) }, { gX(79), gY(9), gX(82), gY(12) },
+					{ gX(75), gY(7), gX(76), gY(6) }, { gX(76), gY(6), gX(77), gY(7) },
+					{ gX(77), gY(18), gX(86), gY(9) }, { gX(86), gY(9), gX(95), gY(18) },
+					{ gX(81), gY(0), gX(90), gY(9) }, { gX(90), gY(9), gX(95), gY(4)}, { gX(91), gY(0), gX(95), gY(4) },
+					{ gX(95), gY(18), gX(102), gY(11) }, { gX(102), gY(11), gX(109), gY(18) },
+					{ gX(95), gY(0), gX(106), gY(11) }, { gX(106), gY(11), gX(117), gY(0) }, { gX(109), gY(18), gX(115), gY(18) },
+					{ gX(115), gY(18), gX(121), gY(6) }, { gX(121), gY(6), gX(127), gY(18) },
+					{ gX(121), gY(0), gX(127), gY(12) }, { gX(127), gY(12), gX(133), gY(0) },
+					{ gX(127), gY(18), gX(133), gY(6) }, { gX(133), gY(6), gX(139), gY(18) },
+					{ gX(136), gY(0), gX(146), gY(5) }, { gX(146), gY(5), gX(156), gY(0) }, { gX(153), gY(18), gX(158), gY(8) },
+					{ gX(138), gY(18), gX(193), gY(18) }, { gX(156), gY(0), gX(199), gY(0) },
+					{ gX(192), gY(18), gX(197), gY(8) }, { gX(198), gY(3), gX(201), gY(0) }, { gX(198), gY(3), gX(203), gY(8) }, { gX(203), gY(8), gX(211), gY(0) },
+					{ gX(199), gY(18), gX(208), gY(9) }, { gX(208), gY(9), gX(217), gY(18) },
+					{ gX(211), gY(0), gX(222), gY(11) }, { gX(222), gY(11), gX(233), gY(0) }, { gX(217), gY(18), gX(232), gY(18) },
+					{ gX(228), gY(13), gX(233), gY(18) }, { gX(233), gY(18), gX(238), gY(13) }, { gX(230), gY(13), gX(233), gY(16) }, { gX(233), gY(16), gX(236), gY(13) },
+					{ gX(232), gY(13), gX(233), gY(14) }, { gX(233), gY(14), gX(234), gY(13) }, { gX(232), gY(9), gX(233), gY(8) }, { gX(233), gY(8), gX(234), gY(9) },
+					{ gX(228), gY(9), gX(233), gY(4) }, { gX(233), gY(4), gX(238), gY(9) }, { gX(230), gY(9), gX(233), gY(6) }, { gX(233), gY(6), gX(236), gY(9) },
+					{ gX(240), gY(0), gX(250), gY(10) }, { gX(250), gY(10), gX(260), gY(0) }, { gX(247), gY(18), gX(259), gY(6) }, { gX(259), gY(6), gX(271), gY(18) },
+					{ gX(271), gY(18), gX(277), gY(12) }, { gX(277), gY(12), gX(280), gY(18) }, { gX(271), gY(0), gX(277), gY(6) }, { gX(277), gY(6), gX(280), gY(0) },
+					{ gX(260), gY(0), gX(271), gY(0) }};
 			
 	// Using the definitions above, below are 7 different types of portals and their respective positions
 	private int[][] speedPortals = {{ gX(26), gY(12) }, { gX(26), gY(10) }};
@@ -114,6 +119,9 @@ public class LevelEditor
 	private Map<String, int[][]> allPortals = Map.of("SPP", speedPortals,
 			"NGP", normalGravityPortals, "FGP", flippedGravityPortals, "NSP", normalSizePortals,
 			"MSP", miniSizePortals, "WVP", wavePortals, "CBP", cubePortals);
+	
+	// A list consisting of the player's trail when the player is wave.
+	private List<Integer> waveTrailXY = new ArrayList<>();
 
 	/* 
 	 * To make editing easier, the following functions takes in the grid distance and height
@@ -375,7 +383,7 @@ public class LevelEditor
 				{
 					g2d.drawOval(sawblades[i][0] - sawblades[i][2] / 2, sawblades[i][1] - sawblades[i][2] / 2, sawblades[i][2], sawblades[i][2]);
 				}
-			}  
+			}
 		}
 	}
 	
@@ -392,8 +400,6 @@ public class LevelEditor
 	 */
 	public void drawSlopes(Graphics2D g2d, Color c, Color h, Image groundSpike, Image ceilingSpike)
 	{
-		Stroke large_stroke = new BasicStroke(10);
-		
 		for (int i = 0; i < slopes.length; i++)
 		{
 			if (!(slopes[i][1] < -24 || slopes[i][0] > 1560))
@@ -433,6 +439,23 @@ public class LevelEditor
 			}
 		}
 	}
+	
+	/**
+	 * Draws the player's wave trail.
+	 * @param g2d
+	 * @param c
+	 */
+	public void drawWaveTrail(Graphics2D g2d, Color c)
+	{
+		for (int i = 0; i + 1 < waveTrailXY.size(); i += 2)
+		{
+			if (!(waveTrailXY.get(i) < -24 || slopes[i][0] > 1560))
+			{
+				g2d.setColor(c);
+				g2d.drawRect(waveTrailXY.get(i), waveTrailXY.get(i + 1), ppb / 8, ppb / 8);
+			}
+		}
+	}
 
 	/**
 	 * Draws the progress bar based on the player's current posiition.
@@ -441,8 +464,8 @@ public class LevelEditor
 	 * @param barColor
 	 * @param progressColor
 	 */
-	public void drawProgressBar(Graphics2D g2d, int levelEndPoint, Color barColor, Color progressColor) {
-		Stroke small_stroke = new BasicStroke(3);
+	public void drawProgressBar(Graphics2D g2d, int levelEndPoint, Color barColor, Color progressColor)
+	{
 		g2d.setStroke(small_stroke);
 		g2d.setColor(progressColor);
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -462,37 +485,40 @@ public class LevelEditor
 	}
 	
 	public void goForward(int t) {
-		for (int j = 0; j < blocks.length; j++) {
-			blocks[j][0] -= t;
+		for (int i = 0; i < blocks.length; i++) {
+			blocks[i][0] -= t;
 		}
-		for (int j = 0; j < sawblades.length; j++) {
-			sawblades[j][0] -= t;
+		for (int i = 0; i < sawblades.length; i++) {
+			sawblades[i][0] -= t;
 		}
-		for (int j = 0; j < slopes.length; j++) {
-			slopes[j][0] -= t;
-			slopes[j][2] -= t;
+		for (int i = 0; i < slopes.length; i++) {
+			slopes[i][0] -= t;
+			slopes[i][2] -= t;
 		}
-		for (int j = 0; j < speedPortals.length; j++) {
-			speedPortals[j][0] -= t;
+		for (int i = 0; i < speedPortals.length; i++) {
+			speedPortals[i][0] -= t;
 		}
-		for (int j = 0; j < normalGravityPortals.length; j++) {
-			normalGravityPortals[j][0] -= t;
+		for (int i = 0; i < normalGravityPortals.length; i++) {
+			normalGravityPortals[i][0] -= t;
 		}
-		for (int j = 0; j < flippedGravityPortals.length; j++) {
-			flippedGravityPortals[j][0] -= t;
+		for (int i = 0; i < flippedGravityPortals.length; i++) {
+			flippedGravityPortals[i][0] -= t;
 		}
-		for (int j = 0; j < normalSizePortals.length; j++) {
-			normalSizePortals[j][0] -= t;
+		for (int i = 0; i < normalSizePortals.length; i++) {
+			normalSizePortals[i][0] -= t;
 		}
-		for (int j = 0; j < miniSizePortals.length; j++) {
-			miniSizePortals[j][0] -= t;
+		for (int i = 0; i < miniSizePortals.length; i++) {
+			miniSizePortals[i][0] -= t;
 		}
-		for (int j = 0; j < wavePortals.length; j++) {
-			wavePortals[j][0] -= t;
+		for (int i = 0; i < wavePortals.length; i++) {
+			wavePortals[i][0] -= t;
 		}
-		for (int j = 0; j < cubePortals.length; j++) {
-			cubePortals[j][0] -= t;
+		for (int i = 0; i < cubePortals.length; i++) {
+			cubePortals[i][0] -= t;
 		}
+//		for (int i = 0; i < waveTrailXY.size(); i += 2) {
+//			waveTrailXY.set(i, waveTrailXY.get(i) - t);
+//		}
 		setDx(dx - t);
 	}
 	

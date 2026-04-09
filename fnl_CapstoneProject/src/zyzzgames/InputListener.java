@@ -32,11 +32,11 @@ import java.awt.event.KeyEvent;
 public class InputListener extends KeyAdapter
 {
 	private Player p;
+	
+	public InputListener(Player player) {
+		p = player;
+	}
 
-    public InputListener(Player player) {
-        p = player;
-    }
-    
 	@Override
 	public void keyPressed(KeyEvent e) {
 		p.keyPressed(e);
