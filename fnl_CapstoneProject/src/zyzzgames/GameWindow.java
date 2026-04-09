@@ -48,9 +48,9 @@ public class GameWindow extends JFrame
 	implements ActionListener
 {
 	/**
-	 * 
+	 * 2026-04-09T16:03:19
 	 */
-	private static final long serialVersionUID = 78719680237395213L;
+	private static final long serialVersionUID = 1L;
 	private Image gdImage;
 	private Graphics gdGraphics;
 	
