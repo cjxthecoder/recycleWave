@@ -34,8 +34,8 @@ package zyzzgames;
 public class RunningPlayer extends Player
 	implements Runnable
 {
-	String difficulty;
-	LevelEditor lvl;
+	private String difficulty;
+	private LevelEditor lvl;
 	
 	public RunningPlayer(int x, int y, int gamemode, int gravity, double speed, boolean mini, String difficulty, LevelEditor lvl)
 	{

@@ -31,7 +31,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class GameSound
 {
-	Audio audio;
+	private Audio audio;
 	
 	public GameSound(String file) {
 		try {
