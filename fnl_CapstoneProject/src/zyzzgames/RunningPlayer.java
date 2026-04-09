@@ -36,6 +36,7 @@ public class RunningPlayer extends Player
 {
 	private String difficulty;
 	private LevelEditor lvl;
+	private static final float MUSIC_START = 38.3f;
 	
 	public RunningPlayer(int x, int y, int gamemode, int gravity, double speed, boolean mini, String difficulty, LevelEditor lvl)
 	{
@@ -76,16 +77,19 @@ public class RunningPlayer extends Player
 		
 		try {
 			Thread.sleep(500);
-			gs.startMusic(38.3f);
+			gs.startMusic(MUSIC_START);
 			
 			while (true)
 			{
 				if (!gameIsWon())
 				{
-					// If player is behind the start line or player is past the finish line
-					if (getX() < GameConstants.START_LINE || lvl.getDx() < GameConstants.START_LINE - GameConstants.FINISH_LINE)
+					boolean before_start = getX() < GameConstants.START_LINE;
+					boolean past_finish = lvl.getDx() <= GameConstants.START_LINE - GameConstants.FINISH_LINE;
+					
+					// If player is before the start line or player is past the finish line
+					if (before_start || past_finish)
 					{
-						if (lvl.getDx() < GameConstants.START_LINE - GameConstants.FINISH_LINE)
+						if (past_finish)
 						{
 							lvl.resetWaveTrail();
 						}
@@ -102,7 +106,7 @@ public class RunningPlayer extends Player
 						resetPlayerFields();
 						lvl.goForward(lvl.getDx() - 2 * GameConstants.START_LINE);
 						lvl.resetWaveTrail();
-						gs.startMusic(38.3f);
+						gs.startMusic(MUSIC_START);
 					}
 					
 					if (Collision.checkPortalCollision(lvl.getPortals("SPP"), this))
@@ -203,7 +207,7 @@ public class RunningPlayer extends Player
 				 	}
 					
 					if (getGamemode() == GameConstants.WAVE) {
-						lvl.addWaveTrail(this, false);
+						lvl.addWaveTrail(false, this);
 					}
 					
 					if (getX() < 1460) {
@@ -215,8 +219,8 @@ public class RunningPlayer extends Player
 						setGameWon(true);
 					}
 					
-					// If player is at or after the start line and is before the finish line
-					if (getX() >= GameConstants.START_LINE && lvl.getDx() >= GameConstants.START_LINE - GameConstants.FINISH_LINE) {
+					// If player is at or after the start line and before the finish line
+					if (!before_start && !past_finish) {
 						lvl.goForward((int)(4.0 * getSpeed()));
 					}
 				}

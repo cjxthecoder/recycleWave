@@ -447,7 +447,7 @@ public class LevelEditor
 	 * @param p
 	 * @param changeSize
 	 */
-	public void addWaveTrail(Player p, boolean changeSize)
+	public void addWaveTrail(boolean changeSize, Player p)
 	{
 		if (drawTrail)
 		{
