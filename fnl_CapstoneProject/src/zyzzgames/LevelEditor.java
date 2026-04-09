@@ -52,11 +52,11 @@ public class LevelEditor
 	private Stroke small_stroke = new BasicStroke(3);
 	private Stroke large_stroke = new BasicStroke(10);
 	private boolean drawHitboxes;
-	private boolean drawTrails = false;
+	private boolean drawTrail = false;
 	
-	public LevelEditor(boolean drawHitboxes, boolean drawTrails) {
+	public LevelEditor(boolean drawHitboxes, boolean drawTrail) {
 		this.drawHitboxes = drawHitboxes;
-		this.drawTrails = drawTrails;
+		this.drawTrail = drawTrail;
 	}
 	
 	// A 2D array of blocks with each array being the position of one block
@@ -449,14 +449,14 @@ public class LevelEditor
 	 */
 	public void addWaveTrail(Player p, boolean changeSize)
 	{
-		if (drawTrails)
+		if (drawTrail)
 		{
 			int[] wt = new int[3];
 			wt[0] = p.getX();
 			wt[1] = p.getY();
 			wt[2] = changeSize ? (p.playerIsMini() ? 2 : 1) : 1;
 			waveTrails.add(wt);
-			if (waveTrails.size() > 162) {
+			if (waveTrails.size() > 160) {
 				waveTrails.remove(0);
 			}
 		}
@@ -469,15 +469,13 @@ public class LevelEditor
 	 */
 	public void drawWaveTrail(Graphics2D g2d, Color c)
 	{
-		if (drawTrails)
+		if (drawTrail)
 		{
-			for (int i = 0; i + 1 < waveTrails.size(); i += 2)
+			for (int i = 0; i < waveTrails.size(); i++)
 			{
-				if (!(waveTrails.get(i)[0] < -24 || waveTrails.get(i)[0] > 1560))
-				{
-					g2d.setColor(c);
-					g2d.fillRect(waveTrails.get(i)[0], waveTrails.get(i)[1], ppb / (4 * waveTrails.get(i)[2]), ppb / (4 * waveTrails.get(i)[2]));
-				}
+				g2d.setColor(c);
+				g2d.fillRect(waveTrails.get(i)[0], waveTrails.get(i)[1],
+						(int) Math.round(ppb / (2.5 * waveTrails.get(i)[2])), (int) Math.round(ppb / (2.5 * waveTrails.get(i)[2])));
 			}
 		}
 	}
@@ -487,7 +485,7 @@ public class LevelEditor
 	 */
 	public void resetWaveTrail()
 	{
-		if (drawTrails)
+		if (drawTrail)
 		{
 			waveTrails.clear();
 		}
@@ -552,7 +550,7 @@ public class LevelEditor
 		for (int i = 0; i < cubePortals.length; i++) {
 			cubePortals[i][0] -= t;
 		}
-		if (drawTrails) {
+		if (drawTrail) {
 			for (int i = 0; i < waveTrails.size(); i++) {
 				waveTrails.get(i)[0] -= t;
 			}
