@@ -108,8 +108,7 @@ public class LevelEditor {
 			{ gX(271), gY(0), gX(277), gY(6) }, { gX(277), gY(6), gX(280), gY(0) },
 			{ gX(260), gY(0), gX(271), gY(0) } };
 
-	// Using the definitions above, below are 7 different types of portals and their
-	// respective positions
+	// Using the definitions above, below are 7 different types of portals and their respective positions
 	private int[][] speedPortals = { { gX(26), gY(12) }, { gX(26), gY(10) } };
 	private int[][] normalGravityPortals = { { gX(1), gY(16) }, { gX(63), gY(15) } };
 	private int[][] flippedGravityPortals = { { gX(57), gY(15) } };
@@ -123,8 +122,7 @@ public class LevelEditor {
 			flippedGravityPortals, "NSP", normalSizePortals, "MSP", miniSizePortals, "WVP", wavePortals, "CBP",
 			cubePortals);
 
-	// A map consisting of the difficulty names to their corresponding speed portal
-	// images
+	// A map consisting of the difficulty names to their corresponding speed portal images
 	private Map<String, Image> allSpeedPortals = Map.of("Easy", GameConstants.Y, "Medium", GameConstants.B, "Hard",
 			GameConstants.G, "Insane", GameConstants.P, "Impossible", GameConstants.R);
 
@@ -133,9 +131,9 @@ public class LevelEditor {
 
 	/*
 	 * To make editing easier, the following functions takes in the grid distance
-	 * and height and converts them to x and y values that appear in the window. The
-	 * Y converter allows you to enter y coordinates from 0 that results in the
-	 * graphics being painted starting from the bottom of the window to the top.
+	 * and height and converts them to x and y values that appear in the window.
+	 * Negating the y-value allows you to enter y coordinates from 0 that results in
+	 * the graphics being painted starting from the bottom of the window to the top.
 	 */
 
 	private int gX(int x) {
