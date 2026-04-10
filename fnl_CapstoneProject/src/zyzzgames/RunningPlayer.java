@@ -117,11 +117,11 @@ public class RunningPlayer extends Player implements Runnable {
 						}
 					}
 
-					if (Collision.checkPortalCollision(lvl.getPortals("NSP"), this)) // divide by 2 if player is wave,
-																						// else divide by 1
-					{
+					if (Collision.checkPortalCollision(lvl.getPortals("NSP"), this)) {
+
 						setMini(false);
 
+						// divide by 2 if player is wave, // else divide by 1
 						if (getGamemode() == GameConstants.WAVE) {
 							setPlayerSize(0.5);
 						} else {
@@ -133,11 +133,10 @@ public class RunningPlayer extends Player implements Runnable {
 						}
 					}
 
-					if (Collision.checkPortalCollision(lvl.getPortals("MSP"), this)) // divide by 4 if player is wave,
-																						// else divide by 2
-					{
+					if (Collision.checkPortalCollision(lvl.getPortals("MSP"), this)) {
 						setMini(true);
 
+						// divide by 4 if player is wave, // else divide by 2
 						if (getGamemode() == GameConstants.WAVE) {
 							setPlayerSize(0.25);
 						} else {
