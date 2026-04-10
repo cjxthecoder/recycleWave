@@ -88,99 +88,99 @@ public class Player {
 		if ((gravity == GameConstants.UP && player.y <= GameConstants.GROUND - hitbox)
 				|| (gravity == GameConstants.DOWN && player.y >= GameConstants.CEILING)) {
 			switch (gamemode) {
-			case GameConstants.CUBE:
-				t1++;
-				setYDirection(Math.min(t1 / 4.0, 8.0) * getSpeed() * gravity);
-				break;
-
-			case GameConstants.SHIP:
-				break;
-
-			case GameConstants.BALL:
-				break;
-
-			case GameConstants.WAVE:
-				if (!keyPressed) {
-					if (playerIsMini()) {
-						setYDirection(8.0 * getSpeed() * gravity);
-					} else {
-						setYDirection(4.0 * getSpeed() * gravity);
+				case GameConstants.CUBE:
+					t1++;
+					setYDirection(Math.min(t1 / 4.0, 8.0) * getSpeed() * gravity);
+					break;
+	
+				case GameConstants.SHIP:
+					break;
+	
+				case GameConstants.BALL:
+					break;
+	
+				case GameConstants.WAVE:
+					if (!keyPressed) {
+						if (playerIsMini()) {
+							setYDirection(8.0 * getSpeed() * gravity);
+						} else {
+							setYDirection(4.0 * getSpeed() * gravity);
+						}
 					}
-				}
-				break;
+					break;
 			}
 		}
 	}
 
 	public void keyPressed(KeyEvent e) {
 		switch (gamemode) {
-		case GameConstants.CUBE:
-			break;
-
-		case GameConstants.SHIP:
-			break;
-
-		case GameConstants.BALL:
-			break;
-
-		case GameConstants.WAVE:
-			if (hotKeys.contains(e.getKeyCode())) {
-				if (playerIsMini()) {
-					setYDirection(-8.0 * getSpeed() * gravity);
-				} else {
-					setYDirection(-4.0 * getSpeed() * gravity);
+			case GameConstants.CUBE:
+				break;
+	
+			case GameConstants.SHIP:
+				break;
+	
+			case GameConstants.BALL:
+				break;
+	
+			case GameConstants.WAVE:
+				if (hotKeys.contains(e.getKeyCode())) {
+					if (playerIsMini()) {
+						setYDirection(-8.0 * getSpeed() * gravity);
+					} else {
+						setYDirection(-4.0 * getSpeed() * gravity);
+					}
+					keyPressed = true;
 				}
-				keyPressed = true;
-			}
-			break;
+				break;
 		}
 	}
 
 	public void keyReleased(KeyEvent e) {
 		switch (gamemode) {
-		case GameConstants.CUBE:
-			break;
-
-		case GameConstants.SHIP:
-			break;
-
-		case GameConstants.BALL:
-			break;
-
-		case GameConstants.WAVE:
-			if (hotKeys.contains(e.getKeyCode())) {
-				setYDirection(0);
-				keyPressed = false;
+			case GameConstants.CUBE:
+				break;
+	
+			case GameConstants.SHIP:
+				break;
+	
+			case GameConstants.BALL:
+				break;
+	
+			case GameConstants.WAVE:
+				if (hotKeys.contains(e.getKeyCode())) {
+					setYDirection(0);
+					keyPressed = false;
+				}
+				break;
 			}
-			break;
-		}
 	}
 
 	public void drawPlayer(Graphics g) {
 		g.setColor(Color.BLACK);
 
 		switch (gamemode) {
-		case GameConstants.CUBE:
-			if (gravity == GameConstants.DOWN) {
-				g.drawImage(GameConstants.PCU, player.x, player.y, player.width, player.height, null);
-			}
-
-			else {
-				g.drawImage(GameConstants.PCD, player.x, player.y, player.width, player.height, null);
-			}
-			break;
-
-		case GameConstants.WAVE:
-			if ((gravity == GameConstants.DOWN && !keyPressed) || (gravity == GameConstants.UP && keyPressed)) {
-				g.drawImage(GameConstants.PWD, player.x - player.width / 2, player.y - player.height / 2,
-						player.width * 2, player.height * 2, null);
-			}
-
-			else {
-				g.drawImage(GameConstants.PWU, player.x - player.width / 2, player.y - player.height / 2,
-						player.width * 2, player.height * 2, null);
-			}
-			break;
+			case GameConstants.CUBE:
+				if (gravity == GameConstants.DOWN) {
+					g.drawImage(GameConstants.PCU, player.x, player.y, player.width, player.height, null);
+				}
+	
+				else {
+					g.drawImage(GameConstants.PCD, player.x, player.y, player.width, player.height, null);
+				}
+				break;
+	
+			case GameConstants.WAVE:
+				if ((gravity == GameConstants.DOWN && !keyPressed) || (gravity == GameConstants.UP && keyPressed)) {
+					g.drawImage(GameConstants.PWD, player.x - player.width / 2, player.y - player.height / 2,
+							player.width * 2, player.height * 2, null);
+				}
+	
+				else {
+					g.drawImage(GameConstants.PWU, player.x - player.width / 2, player.y - player.height / 2,
+							player.width * 2, player.height * 2, null);
+				}
+				break;
 		}
 
 		if (player.x >= 768) {

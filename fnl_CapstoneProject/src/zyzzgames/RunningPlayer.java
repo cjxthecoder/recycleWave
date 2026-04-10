@@ -148,11 +148,10 @@ public class RunningPlayer extends Player implements Runnable {
 						}
 					}
 
-					if (Collision.checkPortalCollision(lvl.getPortals("WVP"), this)) // divide by 4 if player is mini,
-																						// else divide by 2
-					{
+					if (Collision.checkPortalCollision(lvl.getPortals("WVP"), this)) {
 						setGamemode(GameConstants.WAVE);
 
+						// divide by 4 if player is mini, else divide by 2
 						if (playerIsMini()) {
 							setPlayerSize(0.25);
 						} else {
@@ -160,11 +159,10 @@ public class RunningPlayer extends Player implements Runnable {
 						}
 					}
 
-					if (Collision.checkPortalCollision(lvl.getPortals("CBP"), this)) // divide by 2 if player is mini,
-																						// else divide by 1
-					{
+					if (Collision.checkPortalCollision(lvl.getPortals("CBP"), this)) {
 						setGamemode(GameConstants.CUBE);
 
+						// divide by 2 if player is mini, else divide by 1
 						if (playerIsMini()) {
 							setPlayerSize(0.5);
 						} else {
@@ -174,15 +172,15 @@ public class RunningPlayer extends Player implements Runnable {
 
 					if (Collision.checkPlatformCollision(lvl.getBlocks(), this)) {
 						switch (getGravity()) {
-						case GameConstants.UP:
-							setY(getPlatformY() + 1);
-							setYDirection(0);
-							break;
-
-						case GameConstants.DOWN:
-							setY(getPlatformY() - getHitbox());
-							setYDirection(0);
-							break;
+							case GameConstants.UP:
+								setY(getPlatformY() + 1);
+								setYDirection(0);
+								break;
+	
+							case GameConstants.DOWN:
+								setY(getPlatformY() - getHitbox());
+								setYDirection(0);
+								break;
 						}
 
 						resetTime();
