@@ -51,8 +51,7 @@ public class GameConstants {
 	public static final int DOWN = 1;
 	public static final int UP = -1;
 
-	// Constants related to the placement of objects in the level editor, and when
-	// the player has won the game
+	// Constants related to the placement of objects in the level editor, and when the player has won the game
 	public static final int START_LINE = 320;
 	public static final int FINISH_LINE = 11320;
 	public static final int PIXELS_PER_BLOCK = 40;
