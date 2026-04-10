@@ -67,8 +67,8 @@ public class Collision {
 
 	public static boolean checkPortalCollision(int[][] portals, Player p) {
 		for (int i = 0; i < portals.length; i++) {
-			if (new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox())
-					.intersects(new Rectangle(portals[i][0], portals[i][1], (3 * PPB) / 2, (15 * PPB) / 4))) {
+			if (new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox()).intersects(
+					new Rectangle(portals[i][0], portals[i][1], (3 * PPB) / 2, (15 * PPB) / 4))) {
 				return true;
 			}
 		}
