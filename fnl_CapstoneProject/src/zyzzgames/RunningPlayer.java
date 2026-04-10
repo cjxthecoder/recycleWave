@@ -99,7 +99,7 @@ public class RunningPlayer extends Player implements Runnable {
 						gs.startMusic(MUSIC_START);
 					}
 
-					if (Collision.checkPortalCollision(lvl.getPortals("SPP"), this)) {
+					if (Collision.checkSpeedCollision(lvl.getPortals("SPP"), this)) {
 						setSpeed(s);
 					}
 
