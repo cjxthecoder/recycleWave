@@ -46,7 +46,7 @@ public class Audio {
 		clip.open(audioInputStream);
 		hz = clip.getFormat().getSampleRate();
 		FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-		gain.setValue(-20.0f);
+		gain.setValue(-10.0f);
 	}
 
 	public boolean isPlaying() {
