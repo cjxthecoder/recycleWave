@@ -51,11 +51,11 @@ public class LevelEditor {
 	private Stroke small_stroke = new BasicStroke(3);
 	private Stroke large_stroke = new BasicStroke(10);
 	private boolean drawHitboxes;
-	private boolean drawTrail;
+	private boolean drawWaveTrail;
 
-	public LevelEditor(boolean drawHitboxes, boolean drawTrail) {
+	public LevelEditor(boolean drawHitboxes, boolean drawWaveTrail) {
 		this.drawHitboxes = drawHitboxes;
-		this.drawTrail = drawTrail;
+		this.drawWaveTrail = drawWaveTrail;
 	}
 
 	// A 2D array of blocks with each array being the position of one block
@@ -108,7 +108,8 @@ public class LevelEditor {
 			{ gX(271), gY(0), gX(277), gY(6) }, { gX(277), gY(6), gX(280), gY(0) },
 			{ gX(260), gY(0), gX(271), gY(0) } };
 
-	// Using the definitions above, below are 7 different types of portals and their respective positions
+	// Using the definitions above, below are 7 different types of portals and their
+	// respective positions
 	private int[][] speedPortals = { { gX(26), gY(12) }, { gX(26), gY(10) } };
 	private int[][] normalGravityPortals = { { gX(1), gY(16) }, { gX(63), gY(15) } };
 	private int[][] flippedGravityPortals = { { gX(57), gY(15) } };
@@ -122,7 +123,7 @@ public class LevelEditor {
 			flippedGravityPortals, "NSP", normalSizePortals, "MSP", miniSizePortals, "WVP", wavePortals, "CBP",
 			cubePortals);
 
-	// A list consisting of the player's trail when the player is wave.
+	// A list consisting of the p's trail when the p is wave.
 	private List<int[]> waveTrails = new ArrayList<>();
 
 	/*
@@ -150,7 +151,7 @@ public class LevelEditor {
 	}
 
 	/**
-	 * Create speed portals based on the difficulty selected by the user.
+	 * Draw speed portals based on the difficulty selected by the user.
 	 * 
 	 * @param g2d
 	 * @param c
@@ -170,7 +171,7 @@ public class LevelEditor {
 	}
 
 	/**
-	 * Create normal gravity portals.
+	 * Draw normal gravity portals.
 	 * 
 	 * @param g2d
 	 * @param c
@@ -193,7 +194,7 @@ public class LevelEditor {
 	}
 
 	/**
-	 * Create flipped gravity portals.
+	 * Draw flipped gravity portals.
 	 * 
 	 * @param g2d
 	 * @param c
@@ -216,7 +217,7 @@ public class LevelEditor {
 	}
 
 	/**
-	 * Create normal size portals.
+	 * Draw normal size portals.
 	 * 
 	 * @param g2d
 	 * @param c
@@ -239,7 +240,7 @@ public class LevelEditor {
 	}
 
 	/**
-	 * Create mini size portals.
+	 * Draw mini size portals.
 	 * 
 	 * @param g2d
 	 * @param c
@@ -262,7 +263,7 @@ public class LevelEditor {
 	}
 
 	/**
-	 * Create wave portals.
+	 * Draw wave portals.
 	 * 
 	 * @param g2d
 	 * @param c
@@ -285,7 +286,7 @@ public class LevelEditor {
 	}
 
 	/**
-	 * Create cube portals.
+	 * Draw cube portals.
 	 * 
 	 * @param g2d
 	 * @param c
@@ -361,6 +362,7 @@ public class LevelEditor {
 	 * @param ceilingSpike
 	 */
 	public void drawSlopes(Graphics2D g2d, Color c, Color h, Image groundSpike, Image ceilingSpike) {
+		g2d.setColor(c);
 		for (int i = 0; i < slopes.length; i++) {
 			if (!(slopes[i][1] < -24 || slopes[i][0] > 1560)) {
 				if (slopes[i][1] == slopes[i][3] && slopes[i][1] >= 420) {
@@ -393,13 +395,25 @@ public class LevelEditor {
 	}
 
 	/**
+	 * Draws the ground and ceiling.
+	 * 
+	 * @param g
+	 * @param cyan
+	 */
+	public void drawGround(Graphics2D g, Color cyan) {
+		g.setColor(Color.CYAN);
+		g.drawLine(0, GameConstants.GROUND, 1550, GameConstants.GROUND);
+		g.drawLine(0, GameConstants.CEILING, 1550, GameConstants.CEILING);
+	}
+
+	/**
 	 * Adds the player's current position to the wave trail list.
 	 * 
 	 * @param p
 	 * @param changeSize
 	 */
 	public void addWaveTrail(boolean changeSize, Player p) {
-		if (drawTrail) {
+		if (drawWaveTrail) {
 			int[] wt = new int[3];
 			wt[0] = p.getX();
 			wt[1] = p.getY();
@@ -418,7 +432,7 @@ public class LevelEditor {
 	 * @param c
 	 */
 	public void drawWaveTrail(Graphics2D g2d, Color c) {
-		if (drawTrail) {
+		if (drawWaveTrail) {
 			for (int i = 0; i < waveTrails.size(); i++) {
 				g2d.setColor(c);
 				g2d.fillRect(waveTrails.get(i)[0], waveTrails.get(i)[1],
@@ -432,13 +446,74 @@ public class LevelEditor {
 	 * Resets the wave trail of the player.
 	 */
 	public void resetWaveTrail() {
-		if (drawTrail) {
+		if (drawWaveTrail) {
 			waveTrails.clear();
 		}
 	}
 
 	/**
-	 * Draws the progress bar based on the player's current posiition.
+	 * Draws the player.
+	 * 
+	 * @param g2d
+	 * @param c
+	 * @param p
+	 */
+	public void drawPlayer(Graphics2D g2d, Color c, Player p) {
+		g2d.setColor(c);
+		g2d.setStroke(default_stroke);
+
+		switch (p.getGamemode()) {
+			case GameConstants.CUBE:
+				if (p.getGravity() == GameConstants.DOWN) {
+					g2d.drawImage(GameConstants.PCU, p.getX(), p.getY(), p.getHitbox(), p.getHitbox(), null);
+				}
+	
+				else {
+					g2d.drawImage(GameConstants.PCD, p.getX(), p.getY(), p.getHitbox(), p.getHitbox(), null);
+				}
+	
+				if (drawHitboxes) {
+					g2d.drawRect(p.getX(), p.getY(), p.getHitbox(), p.getHitbox());
+				}
+				break;
+	
+			case GameConstants.WAVE:
+				if ((p.getGravity() == GameConstants.DOWN && !p.keyIsPressed())
+						|| (p.getGravity() == GameConstants.UP && p.keyIsPressed())) {
+					g2d.drawImage(GameConstants.PWD, p.getX() - p.getHitbox() / 2, p.getY() - p.getHitbox() / 2,
+							p.getHitbox() * 2, p.getHitbox() * 2, null);
+				}
+	
+				else {
+					g2d.drawImage(GameConstants.PWU, p.getX() - p.getHitbox() / 2, p.getY() - p.getHitbox() / 2,
+							p.getHitbox() * 2, p.getHitbox() * 2, null);
+				}
+	
+				if (drawHitboxes) {
+					g2d.drawRect(p.getX(), p.getY(), p.getHitbox(), p.getHitbox());
+				}
+				break;
+	
+			default:
+				for (int i = p.getX(); i < p.getX() + p.getHitbox(); i += 2) {
+					for (int j = p.getY(); j < p.getY() + p.getHitbox(); j += 2) {
+						g2d.setColor((i / 2 + j / 2) % 2 == 0 ? Color.BLACK : Color.MAGENTA);
+						g2d.fillRect(i, j, 2, 2);
+					}
+				}
+		}
+
+		if (p.getX() >= 768) {
+			g2d.setColor(Color.BLACK);
+			g2d.drawImage(GameConstants.RCB, 1428, 660, null);
+			GameWindow.drawCenteredText(g2d, "Level Complete!", 96, 1.8);
+			GameWindow.drawCenteredText(g2d, "Attempts: " + p.getAttempts(), 72, 1.2);
+			GameWindow.drawCenteredText(g2d, "Your score: " + Math.round(1000.0 * p.getFullScore()) / 1000.0, 72, 0.9);
+		}
+	}
+
+	/**
+	 * Draws the progress bar based on the player's current position.
 	 * 
 	 * @param g2d
 	 * @param levelEndPoint
@@ -453,8 +528,7 @@ public class LevelEditor {
 		g2d.setColor(barColor);
 		g2d.drawRect(558, 38, 420, 15);
 		g2d.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
-		g2d.drawString((Math.max(0, Math.round((100 * (GameConstants.START_LINE - dx)) / levelEndPoint))) + "%", 986,
-				54);
+		g2d.drawString((Math.max(0, Math.round((100 * (GameConstants.START_LINE - dx)) / levelEndPoint))) + "%", 986, 54);
 	}
 
 	public int getDx() {
@@ -497,7 +571,7 @@ public class LevelEditor {
 		for (int i = 0; i < cubePortals.length; i++) {
 			cubePortals[i][0] -= t;
 		}
-		if (drawTrail) {
+		if (drawWaveTrail) {
 			for (int i = 0; i < waveTrails.size(); i++) {
 				waveTrails.get(i)[0] -= t;
 			}

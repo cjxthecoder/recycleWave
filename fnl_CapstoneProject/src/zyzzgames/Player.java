@@ -14,8 +14,6 @@
 
 package zyzzgames;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -153,41 +151,6 @@ public class Player {
 					keyPressed = false;
 				}
 				break;
-			}
-	}
-
-	public void drawPlayer(Graphics g) {
-		g.setColor(Color.BLACK);
-
-		switch (gamemode) {
-			case GameConstants.CUBE:
-				if (gravity == GameConstants.DOWN) {
-					g.drawImage(GameConstants.PCU, player.x, player.y, player.width, player.height, null);
-				}
-	
-				else {
-					g.drawImage(GameConstants.PCD, player.x, player.y, player.width, player.height, null);
-				}
-				break;
-	
-			case GameConstants.WAVE:
-				if ((gravity == GameConstants.DOWN && !keyPressed) || (gravity == GameConstants.UP && keyPressed)) {
-					g.drawImage(GameConstants.PWD, player.x - player.width / 2, player.y - player.height / 2,
-							player.width * 2, player.height * 2, null);
-				}
-	
-				else {
-					g.drawImage(GameConstants.PWU, player.x - player.width / 2, player.y - player.height / 2,
-							player.width * 2, player.height * 2, null);
-				}
-				break;
-		}
-
-		if (player.x >= 768) {
-			g.drawImage(GameConstants.RCB, 1428, 660, null);
-			GameWindow.drawCenteredText(g, "Level Complete!", 96, 1.8);
-			GameWindow.drawCenteredText(g, "Attempts: " + getAttempts(), 72, 1.2);
-			GameWindow.drawCenteredText(g, "Your score: " + Math.round(1000.0 * getFullScore()) / 1000.0, 72, 0.9);
 		}
 	}
 

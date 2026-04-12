@@ -110,7 +110,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	}
 
 	private void drawGameTitle(Graphics g) {
-		drawCenteredText(g, "Recycle Wave", 96, 1.5);
+		drawCenteredText((Graphics2D) g, "Recycle Wave", 96, 1.5);
 
 		if (System.getProperty("os.name").contains("Mac")) {
 			g.drawRect(643, 33, 120, 40);
@@ -144,10 +144,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	}
 
 	private void drawGameGraphics(Graphics2D g) {
-		g.setColor(Color.CYAN);
-		g.drawLine(0, GameConstants.GROUND, 1550, GameConstants.GROUND);
-		g.drawLine(0, GameConstants.CEILING, 1550, GameConstants.CEILING);
-
+		lvl.drawGround(g, Color.CYAN);
 		lvl.drawBlocks(g, Color.BLUE, GameConstants.BLK);
 		lvl.drawNormalGravityPortals(g, Color.GREEN, GameConstants.NGP);
 		lvl.drawFlippedGravityPortals(g, Color.GREEN, GameConstants.FGP);
@@ -155,26 +152,27 @@ public class GameWindow extends JFrame implements ActionListener {
 		lvl.drawMiniSizePortals(g, Color.GREEN, GameConstants.MSP);
 		lvl.drawWavePortals(g, Color.GREEN, GameConstants.WVP);
 		lvl.drawCubePortals(g, Color.GREEN, GameConstants.CBP);
-		lvl.drawSlopes(g, new Color(240, 16, 160), Color.RED, GameConstants.GS, GameConstants.CS);
+		lvl.drawSlopes(g, new Color(240, 20, 162), Color.RED, GameConstants.GS, GameConstants.CS);
 		lvl.drawSawblades(g, Color.RED, GameConstants.SB);
 		lvl.drawSpeedPortals(g, Color.GREEN, String.valueOf(comboBox.getSelectedItem()));
+		lvl.drawPlayer(g, Color.RED, runP);
 		lvl.drawWaveTrail(g, new Color(35, 182, 228));
+		lvl.drawPlayer(g, Color.RED, runP);
 		lvl.drawProgressBar(g, GameConstants.FINISH_LINE, Color.BLACK, Color.CYAN);
 	}
 
 	private void draw(Graphics g) {
 		drawGameGraphics((Graphics2D) g);
-		runP.drawPlayer(g);
 		repaint();
 	}
 
-	public static void drawCenteredText(Graphics g, String s, int pt, double yFactor) {
-		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+	public static void drawCenteredText(Graphics2D g2d, String s, int pt, double yFactor) {
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		Font font = new Font(Font.SANS_SERIF, Font.PLAIN, pt);
-		FontMetrics metrics = g.getFontMetrics(font);
+		FontMetrics metrics = g2d.getFontMetrics(font);
 		int x = (1536 - metrics.stringWidth(s)) / 2;
 		int y = (int) Math.round((840 - metrics.getHeight()) / yFactor + metrics.getAscent());
-		g.setFont(font);
-		g.drawString(s, x, y / 2);
+		g2d.setFont(font);
+		g2d.drawString(s, x, y / 2);
 	}
 }
