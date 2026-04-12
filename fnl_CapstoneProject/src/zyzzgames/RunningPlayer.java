@@ -33,8 +33,8 @@ package zyzzgames;
 public class RunningPlayer extends Player implements Runnable {
 	private String difficulty;
 	private LevelEditor lvl;
-	private long accumulator;
 	private long start;
+	private long accumulator;
 	private boolean firstAttempt = true;
 	private boolean musicPlaying = false;
 	private static final int FPS = 200;
@@ -53,9 +53,9 @@ public class RunningPlayer extends Player implements Runnable {
 		setFullScore(getFullScore() * s);
 
 		try {
-			long nano_per_frame = (long) 1e+9 / FPS;
-			accumulator = 0;
 			start = System.nanoTime();
+			accumulator = 0;
+			long nano_per_frame = (long) 1e+9 / FPS;
 			
 			while (true) {
 				long now = System.nanoTime();

@@ -65,8 +65,8 @@ public class GameConstants {
 	public static final float TWO_TIMES = 1F;
 	public static final float THREE_TIMES = 1.25F;
 	public static final float FOUR_TIMES = 1.5F;
-	public static final float SILENT = 2.0F;
-	public static final float IMPOSSIBLE = 2.5F;
+	public static final float IMPOSSIBLE = 2.0F;
+	public static final float SILENT = 2.5F;
 
 	// Constants related to the images of the level's structures
 	public static final Image BLK = new ImageIcon("block.png").getImage();
