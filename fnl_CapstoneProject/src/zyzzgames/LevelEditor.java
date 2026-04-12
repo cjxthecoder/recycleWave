@@ -122,10 +122,6 @@ public class LevelEditor {
 			flippedGravityPortals, "NSP", normalSizePortals, "MSP", miniSizePortals, "WVP", wavePortals, "CBP",
 			cubePortals);
 
-	// A map consisting of the difficulty names to their corresponding speed portal images
-	private Map<String, Image> allSpeedPortals = Map.of("Easy", GameConstants.Y, "Medium", GameConstants.B, "Hard",
-			GameConstants.G, "Insane", GameConstants.P, "Impossible", GameConstants.R);
-
 	// A list consisting of the player's trail when the player is wave.
 	private List<int[]> waveTrails = new ArrayList<>();
 
@@ -164,7 +160,7 @@ public class LevelEditor {
 		g2d.setColor(c);
 
 		for (int i = 0; i < speedPortals.length; i++) {
-			g2d.drawImage(allSpeedPortals.get(difficulty), speedPortals[i][0], speedPortals[i][1],
+			g2d.drawImage(GameConstants.DIFF_IMG.get(difficulty), speedPortals[i][0], speedPortals[i][1],
 					(int) Math.round((19 * ppb) / 8.0), (int) Math.round((83 * ppb) / 40.0), null);
 			if (drawHitboxes) {
 				g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (int) Math.round((19 * ppb) / 8.0),

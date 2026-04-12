@@ -15,6 +15,8 @@
 package zyzzgames;
 
 import java.awt.Image;
+import java.util.Map;
+
 import javax.swing.ImageIcon;
 
 /**
@@ -22,7 +24,7 @@ import javax.swing.ImageIcon;
  * game. This includes the ground pixel level, the ceiling pixel level, the size
  * of the player's hitbox, integer value representations for the player's
  * gamemode and gravity, the pixel level for the start line and finish line,
- * amount of pixels per block, diameter of the saws, and double values for the
+ * amount of pixels per block, diameter of the saws, and float values for the
  * player's speed.
  * 
  * @author Brandon Tsao
@@ -58,11 +60,11 @@ public class GameConstants {
 	public static final int SAWBLADE_DIAMETER = 150;
 
 	// Constants related to the player's speed
-	public static final double HALF_TIMES = 0.5;
-	public static final double ONE_TIMES = 1.0;
-	public static final double TWO_TIMES = 1.25;
-	public static final double THREE_TIMES = 1.5;
-	public static final double FOUR_TIMES = 2.0;
+	public static final float HALF_TIMES = 0.5F;
+	public static final float ONE_TIMES = 1.0F;
+	public static final float TWO_TIMES = 1.25F;
+	public static final float THREE_TIMES = 1.5F;
+	public static final float FOUR_TIMES = 2.0F;
 
 	// Constants related to the images of the level's structures
 	public static final Image BLK = new ImageIcon("block.png").getImage();
@@ -89,4 +91,14 @@ public class GameConstants {
 	public static final Image PWU = new ImageIcon("playerWaveUp.png").getImage();
 	public static final Image PWD = new ImageIcon("playerWaveDown.png").getImage();
 	public static final Image RCB = new ImageIcon("recycleBin.png").getImage();
+	
+	// A map consisting of the difficulty names to their corresponding speed portal images
+	public static final Map<String, Image> DIFF_IMG = Map.of("Easy", GameConstants.Y,
+			"Medium", GameConstants.B, "Hard", GameConstants.G,
+			"Insane", GameConstants.P, "Impossible", GameConstants.R);
+	
+	// A map consisting of the difficulty names to their corresponding speeds
+	public static final Map<String, Float> DIFF_VAL = Map.of("Easy", GameConstants.HALF_TIMES,
+			"Medium", GameConstants.ONE_TIMES, "Hard", GameConstants.TWO_TIMES,
+			"Insane", GameConstants.THREE_TIMES, "Impossible", GameConstants.FOUR_TIMES);
 }

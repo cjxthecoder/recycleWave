@@ -33,9 +33,10 @@ package zyzzgames;
 public class RunningPlayer extends Player implements Runnable {
 	private String difficulty;
 	private LevelEditor lvl;
-	private static final float MUSIC_START = 38.3f;
+	private boolean firstAttempt = true;
+	private boolean musicPlaying = false;
 
-	public RunningPlayer(int x, int y, int gamemode, int gravity, double speed, boolean mini, String difficulty,
+	public RunningPlayer(int x, int y, int gamemode, int gravity, float speed, boolean mini, String difficulty,
 			LevelEditor lvl) {
 		super(x, y, gamemode, gravity, speed, mini);
 		this.difficulty = difficulty;
@@ -44,170 +45,163 @@ public class RunningPlayer extends Player implements Runnable {
 
 	@Override
 	public void run() {
-		double s = getSpeed();
 		GameSound gs = new GameSound("48000/574484_F-777---Sonic-Blaster_48000.wav");
-
-		switch (difficulty) {
-		case "Easy":
-			s = GameConstants.HALF_TIMES;
-			setFullScore(getFullScore() * GameConstants.HALF_TIMES);
-			break;
-		case "Medium":
-			s = GameConstants.ONE_TIMES;
-			setFullScore(getFullScore() * GameConstants.ONE_TIMES);
-			break;
-		case "Hard":
-			s = GameConstants.TWO_TIMES;
-			setFullScore(getFullScore() * GameConstants.TWO_TIMES);
-			break;
-		case "Insane":
-			s = GameConstants.THREE_TIMES;
-			setFullScore(getFullScore() * GameConstants.THREE_TIMES);
-			break;
-		case "Impossible":
-			s = GameConstants.FOUR_TIMES;
-			setFullScore(getFullScore() * GameConstants.FOUR_TIMES);
-			break;
-		}
+		float s = GameConstants.DIFF_VAL.get(difficulty);
+		setFullScore(getFullScore() * s);
 
 		try {
-			Thread.sleep(500);
-			gs.startMusic(MUSIC_START);
-
 			while (true) {
 				if (!gameIsWon()) {
-					boolean before_start = getX() < GameConstants.START_LINE;
-					boolean past_finish = lvl.getDx() <= GameConstants.START_LINE - GameConstants.FINISH_LINE;
-
-					// If player is before the start line or player is past the finish line
-					if (before_start || past_finish) {
-						if (past_finish) {
-							lvl.resetWaveTrail();
-						}
-						setXDirection(4.0 * getSpeed());
-						makePlayerReach320();
-					}
-
-					if (Collision.checkDeathCollision(lvl.getSlopes(), lvl.getSawblades(), this)) {
-						gs.stopMusic();
-						setFullScore(getFullScore() / GameConstants.MAGIC);
-						setAttempts(getAttempts() + 1);
-						Thread.sleep(1000);
-						resetPlayerFields();
-						lvl.goForward(lvl.getDx() - 2 * GameConstants.START_LINE);
-						lvl.resetWaveTrail();
-						gs.startMusic(MUSIC_START);
-					}
-
-					if (Collision.checkSpeedCollision(lvl.getPortals("SPP"), this)) {
-						setSpeed(s);
-					}
-
-					if (Collision.checkPortalCollision(lvl.getPortals("NGP"), this)) {
-						if (getGravity() == GameConstants.UP) {
-							resetTime();
-							setGravity(GameConstants.DOWN);
-						}
-					}
-
-					if (Collision.checkPortalCollision(lvl.getPortals("FGP"), this)) {
-						if (getGravity() == GameConstants.DOWN) {
-							resetTime();
-							setGravity(GameConstants.UP);
-						}
-					}
-
-					if (Collision.checkPortalCollision(lvl.getPortals("NSP"), this)) {
-
-						setMini(false);
-
-						// divide by 2 if player is wave, // else divide by 1
-						if (getGamemode() == GameConstants.WAVE) {
-							setPlayerSize(0.5);
-						} else {
-							setPlayerSize(1.0);
-						}
-
-						if (keyIsPressed() && getGamemode() == GameConstants.WAVE) {
-							setYDirection(-4.0 * getSpeed() * this.getGravity());
-						}
-					}
-
-					if (Collision.checkPortalCollision(lvl.getPortals("MSP"), this)) {
-						setMini(true);
-
-						// divide by 4 if player is wave, // else divide by 2
-						if (getGamemode() == GameConstants.WAVE) {
-							setPlayerSize(0.25);
-						} else {
-							setPlayerSize(0.5);
-						}
-
-						if (keyIsPressed() && getGamemode() == GameConstants.WAVE) {
-							setYDirection(-8.0 * getSpeed() * this.getGravity());
-						}
-					}
-
-					if (Collision.checkPortalCollision(lvl.getPortals("WVP"), this)) {
-						setGamemode(GameConstants.WAVE);
-
-						// divide by 4 if player is mini, else divide by 2
-						if (playerIsMini()) {
-							setPlayerSize(0.25);
-						} else {
-							setPlayerSize(0.5);
-						}
-					}
-
-					if (Collision.checkPortalCollision(lvl.getPortals("CBP"), this)) {
-						setGamemode(GameConstants.CUBE);
-
-						// divide by 2 if player is mini, else divide by 1
-						if (playerIsMini()) {
-							setPlayerSize(0.5);
-						} else {
-							setPlayerSize(1);
-						}
-					}
-
-					if (Collision.checkPlatformCollision(lvl.getBlocks(), this)) {
-						switch (getGravity()) {
-							case GameConstants.UP:
-								setY(getPlatformY() + 1);
-								setYDirection(0);
-								break;
-	
-							case GameConstants.DOWN:
-								setY(getPlatformY() - getHitbox());
-								setYDirection(0);
-								break;
-						}
-
-						resetTime();
-					}
-
-					if (getGamemode() == GameConstants.WAVE) {
-						lvl.addWaveTrail(false, this);
-					}
-
-					if (getX() < 1460) {
-						move();
-						fall();
-					} else {
-						setX(1460);
-						setGameWon(true);
-					}
-
-					// If player is at or after the start line and before the finish line
-					if (!before_start && !past_finish) {
-						lvl.goForward((int) (4.0 * getSpeed()));
-					}
+					update(gs, s);
 				}
 
 				Thread.sleep(5);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private void update(GameSound gs, float s) throws InterruptedException {
+		if (firstAttempt) {
+			Thread.sleep(500);
+		}
+		
+		if (!musicPlaying) {
+			if (firstAttempt) {
+				gs.startMusic(38.14F);
+			} else {
+				gs.startMusic(38.2F);
+			}
+			musicPlaying = true;
+			firstAttempt = false;
+		}
+		
+		boolean before_start = getX() < GameConstants.START_LINE;
+		boolean past_finish = lvl.getDx() <= GameConstants.START_LINE - GameConstants.FINISH_LINE;
+
+		// If player is before the start line or player is past the finish line
+		if (before_start || past_finish) {
+			if (past_finish) {
+				lvl.resetWaveTrail();
+			}
+			setXDirection(4.0F * getSpeed());
+			makePlayerReach320();
+		}
+
+		if (Collision.checkDeathCollision(lvl.getSlopes(), lvl.getSawblades(), this)) {
+			gs.stopMusic();
+			setFullScore(getFullScore() / GameConstants.MAGIC);
+			setAttempts(getAttempts() + 1);
+			Thread.sleep(1000);
+			resetPlayerFields();
+			lvl.goForward(lvl.getDx() - 2 * GameConstants.START_LINE);
+			lvl.resetWaveTrail();
+			musicPlaying = false;
+		}
+
+		if (Collision.checkSpeedCollision(lvl.getPortals("SPP"), this)) {
+			setSpeed(s);
+		}
+
+		if (Collision.checkPortalCollision(lvl.getPortals("NGP"), this)) {
+			if (getGravity() == GameConstants.UP) {
+				resetTime();
+				setGravity(GameConstants.DOWN);
+			}
+		}
+
+		if (Collision.checkPortalCollision(lvl.getPortals("FGP"), this)) {
+			if (getGravity() == GameConstants.DOWN) {
+				resetTime();
+				setGravity(GameConstants.UP);
+			}
+		}
+
+		if (Collision.checkPortalCollision(lvl.getPortals("NSP"), this)) {
+
+			setMini(false);
+
+			// divide by 2 if player is wave, // else divide by 1
+			if (getGamemode() == GameConstants.WAVE) {
+				setPlayerSize(0.5F);
+			} else {
+				setPlayerSize(1.0F);
+			}
+
+			if (keyIsPressed() && getGamemode() == GameConstants.WAVE) {
+				setYDirection(-4.0F * getSpeed() * this.getGravity());
+			}
+		}
+
+		if (Collision.checkPortalCollision(lvl.getPortals("MSP"), this)) {
+			setMini(true);
+
+			// divide by 4 if player is wave, // else divide by 2
+			if (getGamemode() == GameConstants.WAVE) {
+				setPlayerSize(0.25F);
+			} else {
+				setPlayerSize(0.5F);
+			}
+
+			if (keyIsPressed() && getGamemode() == GameConstants.WAVE) {
+				setYDirection(-8.0F * getSpeed() * this.getGravity());
+			}
+		}
+
+		if (Collision.checkPortalCollision(lvl.getPortals("WVP"), this)) {
+			setGamemode(GameConstants.WAVE);
+
+			// divide by 4 if player is mini, else divide by 2
+			if (playerIsMini()) {
+				setPlayerSize(0.25F);
+			} else {
+				setPlayerSize(0.5F);
+			}
+		}
+
+		if (Collision.checkPortalCollision(lvl.getPortals("CBP"), this)) {
+			setGamemode(GameConstants.CUBE);
+
+			// divide by 2 if player is mini, else divide by 1
+			if (playerIsMini()) {
+				setPlayerSize(0.5F);
+			} else {
+				setPlayerSize(1);
+			}
+		}
+
+		if (Collision.checkPlatformCollision(lvl.getBlocks(), this)) {
+			switch (getGravity()) {
+				case GameConstants.UP:
+					setY(getPlatformY() + 1);
+					setYDirection(0);
+					break;
+
+				case GameConstants.DOWN:
+					setY(getPlatformY() - getHitbox());
+					setYDirection(0);
+					break;
+			}
+
+			resetTime();
+		}
+
+		if (getGamemode() == GameConstants.WAVE) {
+			lvl.addWaveTrail(false, this);
+		}
+
+		if (getX() < 1460) {
+			move();
+			fall();
+		} else {
+			setX(1460);
+			setGameWon(true);
+		}
+
+		// If player is at or after the start line and before the finish line
+		if (!before_start && !past_finish) {
+			lvl.goForward((int) (4.0 * getSpeed()));
 		}
 	}
 

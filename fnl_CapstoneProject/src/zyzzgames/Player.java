@@ -41,7 +41,7 @@ public class Player {
 	private int gravity;
 	private int platformY = 0;
 	private int attempts = 1;
-	private double speed;
+	private float speed;
 	private double fullScore = 100.0;
 	private boolean mini;
 	private boolean gameWon;
@@ -49,7 +49,7 @@ public class Player {
 	private boolean keyPressed = false;
 	private List<Integer> hotKeys = List.of(KeyEvent.VK_UP, KeyEvent.VK_SPACE, KeyEvent.VK_ENTER);
 
-	public Player(int x, int y, int gamemode, int gravity, double speed, boolean mini) {
+	public Player(int x, int y, int gamemode, int gravity, float speed, boolean mini) {
 		this.gamemode = gamemode;
 		this.gravity = gravity;
 		this.speed = speed;
@@ -90,7 +90,7 @@ public class Player {
 			switch (gamemode) {
 				case GameConstants.CUBE:
 					t1++;
-					setYDirection(Math.min(t1 / 4.0, 8.0) * getSpeed() * gravity);
+					setYDirection(Math.min(t1 / 4.0F, 8.0F) * getSpeed() * gravity);
 					break;
 	
 				case GameConstants.SHIP:
@@ -102,9 +102,9 @@ public class Player {
 				case GameConstants.WAVE:
 					if (!keyPressed) {
 						if (playerIsMini()) {
-							setYDirection(8.0 * getSpeed() * gravity);
+							setYDirection(8.0F * getSpeed() * gravity);
 						} else {
-							setYDirection(4.0 * getSpeed() * gravity);
+							setYDirection(4.0F * getSpeed() * gravity);
 						}
 					}
 					break;
@@ -126,9 +126,9 @@ public class Player {
 			case GameConstants.WAVE:
 				if (hotKeys.contains(e.getKeyCode())) {
 					if (playerIsMini()) {
-						setYDirection(-8.0 * getSpeed() * gravity);
+						setYDirection(-8.0F * getSpeed() * gravity);
 					} else {
-						setYDirection(-4.0 * getSpeed() * gravity);
+						setYDirection(-4.0F * getSpeed() * gravity);
 					}
 					keyPressed = true;
 				}
@@ -187,7 +187,7 @@ public class Player {
 			g.drawImage(GameConstants.RCB, 1428, 660, null);
 			GameWindow.drawCenteredText(g, "Level Complete!", 96, 1.8);
 			GameWindow.drawCenteredText(g, "Attempts: " + getAttempts(), 72, 1.2);
-			GameWindow.drawCenteredText(g, "Your score: " + Math.round(100.0 * getFullScore()) / 100.0, 72, 0.9);
+			GameWindow.drawCenteredText(g, "Your score: " + Math.round(1000.0 * getFullScore()) / 1000.0, 72, 0.9);
 		}
 	}
 
@@ -216,7 +216,7 @@ public class Player {
 		player.x = x;
 	}
 
-	public void setXDirection(double xDir) {
+	public void setXDirection(float xDir) {
 		xDirection = (int) Math.round(xDir);
 	}
 
@@ -228,7 +228,7 @@ public class Player {
 		player.y = y;
 	}
 
-	public void setYDirection(double yDir) {
+	public void setYDirection(float yDir) {
 		yDirection = (int) Math.round(yDir);
 	}
 
@@ -236,7 +236,7 @@ public class Player {
 		return hitbox;
 	}
 
-	public void setPlayerSize(double factor) {
+	public void setPlayerSize(float factor) {
 		hitbox = (int) Math.round(GameConstants.PLAYER_HITBOX * factor);
 		player.height = hitbox;
 		player.width = hitbox;
@@ -275,11 +275,11 @@ public class Player {
 		this.attempts = attempts;
 	}
 
-	public double getSpeed() {
+	public float getSpeed() {
 		return speed;
 	}
 
-	public void setSpeed(double speed) {
+	public void setSpeed(float speed) {
 		this.speed = speed;
 	}
 

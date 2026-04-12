@@ -39,7 +39,7 @@ public class Collision {
 	public static boolean checkDeathCollision(int[][] slopes, int[][] sawblades, Player p) {
 		for (int i = 0; i < slopes.length; i++) {
 			if (new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox())
-					.intersectsLine(new Line2D.Double(slopes[i][0], slopes[i][1], slopes[i][2], slopes[i][3]))) {
+					.intersectsLine(new Line2D.Float(slopes[i][0], slopes[i][1], slopes[i][2], slopes[i][3]))) {
 				return true;
 			}
 		}
@@ -79,7 +79,7 @@ public class Collision {
 	public static boolean checkPlatformCollision(int[][] platforms, Player p) {
 		for (int i = 0; i < platforms.length; i++) {
 			if (new Rectangle(p.getX(), p.getY(), p.getHitbox(), p.getHitbox()).intersectsLine(
-					new Line2D.Double(platforms[i][0], platforms[i][1], platforms[i][0] + PPB, platforms[i][1]))) {
+					new Line2D.Float(platforms[i][0], platforms[i][1], platforms[i][0] + PPB, platforms[i][1]))) {
 				p.setPlatformY(platforms[i][1]);
 				return true;
 			}

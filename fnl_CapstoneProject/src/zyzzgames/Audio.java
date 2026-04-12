@@ -37,14 +37,14 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Audio {
 	private Clip clip;
 	private String src;
+	private float hz;
 
 	public Audio(String source) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 		src = source;
 		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(src));
 		clip = AudioSystem.getClip();
 		clip.open(audioInputStream);
-
-		// DO NOT CHANGE THE FOLLOWING FOR YOUR OWN SAFETY
+		hz = clip.getFormat().getSampleRate();
 		FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 		gain.setValue(-20.0f);
 	}
@@ -59,7 +59,6 @@ public class Audio {
 	}
 
 	public void setOffset(float seconds) {
-		int hz = Integer.parseInt(src.substring(0, 5));
 		clip.setFramePosition((int) (hz * seconds));
 	}
 
