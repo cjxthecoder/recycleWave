@@ -37,13 +37,13 @@ import java.util.Map;
  * other objects, a total of 4 special functions is used. Although not an object
  * in the game, this class also draws the progress bar for the game.
  * 
- * @author Brandon Tsao
+ * @author Daniel Cheng
  *
  * @since 1.0
  */
 
 public class LevelEditor {
-	// Starting point of the level relative to the left-side of the window
+	// Starting point of the level relative to the left side of the window
 	private int dx = GameConstants.START_LINE;
 	private int d = GameConstants.SAWBLADE_DIAMETER;
 	private int ppb = GameConstants.PIXELS_PER_BLOCK;
@@ -108,8 +108,7 @@ public class LevelEditor {
 			{ gX(271), gY(0), gX(277), gY(6) }, { gX(277), gY(6), gX(280), gY(0) },
 			{ gX(260), gY(0), gX(271), gY(0) } };
 
-	// Using the definitions above, below are 7 different types of portals and their
-	// respective positions
+	// Using the definitions above, below are 7 different types of portals and their respective positions
 	private int[][] speedPortals = { { gX(26), gY(12) }, { gX(26), gY(10) } };
 	private int[][] normalGravityPortals = { { gX(1), gY(16) }, { gX(63), gY(15) } };
 	private int[][] flippedGravityPortals = { { gX(57), gY(15) } };
@@ -123,7 +122,7 @@ public class LevelEditor {
 			flippedGravityPortals, "NSP", normalSizePortals, "MSP", miniSizePortals, "WVP", wavePortals, "CBP",
 			cubePortals);
 
-	// A list consisting of the p's trail when the p is wave.
+	// A list consisting of the player's trail when the player is wave.
 	private List<int[]> waveTrails = new ArrayList<>();
 
 	/*
@@ -395,14 +394,24 @@ public class LevelEditor {
 	}
 
 	/**
-	 * Draws the ground and ceiling.
+	 * Draws the ground.
 	 * 
 	 * @param g
-	 * @param cyan
+	 * @param c
 	 */
-	public void drawGround(Graphics2D g, Color cyan) {
-		g.setColor(Color.CYAN);
+	public void drawGround(Graphics2D g, Color c) {
+		g.setColor(c);
 		g.drawLine(0, GameConstants.GROUND, 1550, GameConstants.GROUND);
+	}
+
+	/**
+	 * Draws the ceiling.
+	 * 
+	 * @param g
+	 * @param c
+	 */
+	public void drawCeiling(Graphics2D g, Color c) {
+		g.setColor(c);
 		g.drawLine(0, GameConstants.CEILING, 1550, GameConstants.CEILING);
 	}
 

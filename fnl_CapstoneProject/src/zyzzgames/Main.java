@@ -21,7 +21,7 @@ import javax.swing.SwingUtilities;
 /**
  * The main method for our game.
  * 
- * @author Brandon Tsao
+ * @author Daniel Cheng
  *
  * @since 1.0
  */

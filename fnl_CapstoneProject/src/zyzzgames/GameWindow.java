@@ -40,7 +40,7 @@ import javax.swing.JFrame;
  * class, as well as the paint() function, is used to draw graphics on the
  * screen.
  * 
- * @author Daniel Cheng
+ * @author Brandon Tsao
  *
  * @since 1.0
  */
@@ -145,6 +145,7 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	private void drawGameGraphics(Graphics2D g) {
 		lvl.drawGround(g, Color.CYAN);
+		lvl.drawCeiling(g, Color.CYAN);
 		lvl.drawBlocks(g, Color.BLUE, GameConstants.BLK);
 		lvl.drawNormalGravityPortals(g, Color.GREEN, GameConstants.NGP);
 		lvl.drawFlippedGravityPortals(g, Color.GREEN, GameConstants.FGP);
