@@ -55,16 +55,18 @@ public class GameConstants {
 
 	// Constants related to the placement of objects in the level editor, and when the player has won the game
 	public static final int START_LINE = 320;
-	public static final int FINISH_LINE = 11320;
+	public static final int FINISH_LINE = 11360;
 	public static final int PIXELS_PER_BLOCK = 40;
 	public static final int SAWBLADE_DIAMETER = 150;
 
 	// Constants related to the player's speed
 	public static final float HALF_TIMES = 0.5F;
-	public static final float ONE_TIMES = 1.0F;
-	public static final float TWO_TIMES = 1.25F;
-	public static final float THREE_TIMES = 1.5F;
-	public static final float FOUR_TIMES = 2.0F;
+	public static final float ONE_TIMES = 0.75F;
+	public static final float TWO_TIMES = 1F;
+	public static final float THREE_TIMES = 1.25F;
+	public static final float FOUR_TIMES = 1.5F;
+	public static final float SILENT = 2.0F;
+	public static final float IMPOSSIBLE = 2.5F;
 
 	// Constants related to the images of the level's structures
 	public static final Image BLK = new ImageIcon("block.png").getImage();

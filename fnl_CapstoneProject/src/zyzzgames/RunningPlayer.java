@@ -33,8 +33,11 @@ package zyzzgames;
 public class RunningPlayer extends Player implements Runnable {
 	private String difficulty;
 	private LevelEditor lvl;
+	private long accumulator;
+	private long start;
 	private boolean firstAttempt = true;
 	private boolean musicPlaying = false;
+	private static final int FPS = 200;
 
 	public RunningPlayer(int x, int y, int gamemode, int gravity, float speed, boolean mini, String difficulty,
 			LevelEditor lvl) {
@@ -50,12 +53,24 @@ public class RunningPlayer extends Player implements Runnable {
 		setFullScore(getFullScore() * s);
 
 		try {
+			long nano_per_frame = (long) 1e+9 / FPS;
+			accumulator = 0;
+			start = System.nanoTime();
+			
 			while (true) {
-				if (!gameIsWon()) {
-					update(gs, s);
-				}
+				long now = System.nanoTime();
+			    long delta = now - start;
+			    start = now;
+			    accumulator += delta;
 
-				Thread.sleep(5);
+			    while (accumulator >= nano_per_frame) {
+					if (!gameIsWon()) {
+						update(gs, s);
+					}
+					accumulator -= nano_per_frame;
+			    }
+
+				Thread.sleep(2);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -65,13 +80,15 @@ public class RunningPlayer extends Player implements Runnable {
 	private void update(GameSound gs, float s) throws InterruptedException {
 		if (firstAttempt) {
 			Thread.sleep(500);
+			start = System.nanoTime();
+			accumulator = 0;
 		}
 		
 		if (!musicPlaying) {
 			if (firstAttempt) {
-				gs.startMusic(38.14F);
+				gs.startMusic(38.4F);
 			} else {
-				gs.startMusic(38.2F);
+				gs.startMusic(38.46F);
 			}
 			musicPlaying = true;
 			firstAttempt = false;
@@ -94,6 +111,8 @@ public class RunningPlayer extends Player implements Runnable {
 			setFullScore(getFullScore() / GameConstants.MAGIC);
 			setAttempts(getAttempts() + 1);
 			Thread.sleep(1000);
+			start = System.nanoTime();
+			accumulator = 0;
 			resetPlayerFields();
 			lvl.goForward(lvl.getDx() - 2 * GameConstants.START_LINE);
 			lvl.resetWaveTrail();

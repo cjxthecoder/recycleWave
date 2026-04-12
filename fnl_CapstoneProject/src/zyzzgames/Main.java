@@ -16,6 +16,7 @@ package zyzzgames;
 
 import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  * The main method for our game.
@@ -27,10 +28,12 @@ import javax.swing.JFrame;
 
 public class Main {
 	public static void main(String[] args) {
-		GameWindow gw = new GameWindow(0, 0, 1536, 840);
-		gw.setBackground(new Color(64, 144, 176));
-		gw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		gw.setResizable(false);
-		gw.setVisible(true);
+		SwingUtilities.invokeLater(() -> {
+            GameWindow gw = new GameWindow(0, 0, 1536, 840);
+            gw.setBackground(new Color(64, 144, 176));
+            gw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            gw.setResizable(false);
+            gw.setVisible(true);
+        });
 	}
 }

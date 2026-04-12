@@ -42,7 +42,7 @@ public class Player {
 	private int platformY = 0;
 	private int attempts = 1;
 	private float speed;
-	private double fullScore = 100.0;
+	private double fullScore = 120.0;
 	private boolean mini;
 	private boolean gameWon;
 	private int xDirection, yDirection;

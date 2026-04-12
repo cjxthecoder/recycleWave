@@ -86,6 +86,8 @@ public class GameWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (!gameStarted) {
 			gameStarted = true;
+			play.setEnabled(false);
+			comboBox.setEnabled(false);
 			runP.setDifficulty(String.valueOf(comboBox.getSelectedItem()));
 			repaint();
 			Thread p1 = new Thread(runP);
