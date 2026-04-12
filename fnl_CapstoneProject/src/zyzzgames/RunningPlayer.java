@@ -39,8 +39,8 @@ public class RunningPlayer extends Player implements Runnable {
 	private boolean musicPlaying = false;
 	private static final int FPS = 200;
 
-	public RunningPlayer(int x, int y, int gamemode, int gravity, float speed, boolean mini, String difficulty,
-			LevelEditor lvl) {
+	public RunningPlayer(int x, int y, int gamemode, int gravity, float speed, boolean mini,
+			String difficulty, LevelEditor lvl) {
 		super(x, y, gamemode, gravity, speed, mini);
 		this.difficulty = difficulty;
 		this.lvl = lvl;
@@ -56,19 +56,19 @@ public class RunningPlayer extends Player implements Runnable {
 			start = System.nanoTime();
 			accumulator = 0;
 			long nano_per_frame = (long) 1e+9 / FPS;
-			
+
 			while (true) {
 				long now = System.nanoTime();
-			    long delta = now - start;
-			    start = now;
-			    accumulator += delta;
+				long delta = now - start;
+				start = now;
+				accumulator += delta;
 
-			    while (accumulator >= nano_per_frame) {
+				while (accumulator >= nano_per_frame) {
 					if (!gameIsWon()) {
 						update(gs, s);
 					}
 					accumulator -= nano_per_frame;
-			    }
+				}
 
 				Thread.sleep(2);
 			}
@@ -76,14 +76,14 @@ public class RunningPlayer extends Player implements Runnable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void update(GameSound gs, float s) throws InterruptedException {
 		if (firstAttempt) {
 			Thread.sleep(500);
 			start = System.nanoTime();
 			accumulator = 0;
 		}
-		
+
 		if (!musicPlaying) {
 			if (firstAttempt) {
 				gs.startMusic(38.4F);
@@ -93,7 +93,7 @@ public class RunningPlayer extends Player implements Runnable {
 			musicPlaying = true;
 			firstAttempt = false;
 		}
-		
+
 		boolean before_start = getX() < GameConstants.START_LINE;
 		boolean past_finish = lvl.getDx() <= GameConstants.START_LINE - GameConstants.FINISH_LINE;
 
@@ -196,7 +196,7 @@ public class RunningPlayer extends Player implements Runnable {
 					setY(getPlatformY() + 1);
 					setYDirection(0);
 					break;
-
+	
 				case GameConstants.DOWN:
 					setY(getPlatformY() - getHitbox());
 					setYDirection(0);
