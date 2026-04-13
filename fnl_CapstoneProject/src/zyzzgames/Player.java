@@ -218,7 +218,6 @@ public class Player {
 	}
 
 	public void setGravity(int gravity) {
-		resetTime();
 		this.gravity = gravity;
 	}
 
