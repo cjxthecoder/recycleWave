@@ -66,11 +66,11 @@ public class Player {
 		player = new Rectangle(x, y, hitbox, hitbox);
 	}
 
-	public void makePlayerReach320() {
+	public void movePlayerX() {
 		player.x += xDirection;
 	}
 
-	public void move() {
+	public void movePlayerY() {
 		player.y += yDirection;
 
 		if (player.y <= GameConstants.CEILING) {

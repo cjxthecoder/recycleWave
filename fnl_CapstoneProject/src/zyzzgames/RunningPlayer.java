@@ -39,8 +39,8 @@ public class RunningPlayer extends Player implements Runnable {
 	private boolean musicPlaying = false;
 	private static final int FPS = 200;
 
-	public RunningPlayer(int x, int y, int gamemode, int gravity, float speed, boolean mini,
-			String difficulty, LevelEditor lvl) {
+	public RunningPlayer(int x, int y, int gamemode, int gravity, float speed, boolean mini, String difficulty,
+			LevelEditor lvl) {
 		super(x, y, gamemode, gravity, speed, mini);
 		this.difficulty = difficulty;
 		this.lvl = lvl;
@@ -103,7 +103,7 @@ public class RunningPlayer extends Player implements Runnable {
 				lvl.resetWaveTrail();
 			}
 			setXDirection(4.0F * getSpeed());
-			makePlayerReach320();
+			movePlayerX();
 		}
 
 		if (Collision.checkDeathCollision(lvl.getSlopes(), lvl.getSawblades(), this)) {
@@ -138,7 +138,6 @@ public class RunningPlayer extends Player implements Runnable {
 		}
 
 		if (Collision.checkPortalCollision(lvl.getPortals("NSP"), this)) {
-
 			setMini(false);
 
 			// divide by 2 if player is wave, // else divide by 1
@@ -192,15 +191,15 @@ public class RunningPlayer extends Player implements Runnable {
 
 		if (Collision.checkPlatformCollision(lvl.getBlocks(), this)) {
 			switch (getGravity()) {
-				case GameConstants.UP:
-					setY(getPlatformY() + 1);
-					setYDirection(0);
-					break;
-	
-				case GameConstants.DOWN:
-					setY(getPlatformY() - getHitbox());
-					setYDirection(0);
-					break;
+			case GameConstants.UP:
+				setY(getPlatformY() + 1);
+				setYDirection(0);
+				break;
+
+			case GameConstants.DOWN:
+				setY(getPlatformY() - getHitbox());
+				setYDirection(0);
+				break;
 			}
 
 			resetTime();
@@ -211,7 +210,7 @@ public class RunningPlayer extends Player implements Runnable {
 		}
 
 		if (getX() < 1460) {
-			move();
+			movePlayerY();
 			fall();
 		} else {
 			setX(1460);
