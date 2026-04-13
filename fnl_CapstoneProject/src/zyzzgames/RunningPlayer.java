@@ -70,7 +70,7 @@ public class RunningPlayer extends Player implements Runnable {
 					accumulator -= nano_per_frame;
 				}
 
-				Thread.sleep(2);
+				Thread.sleep(1);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
