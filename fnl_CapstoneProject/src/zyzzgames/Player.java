@@ -99,7 +99,7 @@ public class Player {
 	
 				case GameConstants.WAVE:
 					if (!keyPressed) {
-						if (playerIsMini()) {
+						if (getMini()) {
 							setYDirection(8.0F * getSpeed() * gravity);
 						} else {
 							setYDirection(4.0F * getSpeed() * gravity);
@@ -123,7 +123,7 @@ public class Player {
 	
 			case GameConstants.WAVE:
 				if (hotKeys.contains(e.getKeyCode())) {
-					if (playerIsMini()) {
+					if (getMini()) {
 						setYDirection(-8.0F * getSpeed() * gravity);
 					} else {
 						setYDirection(-4.0F * getSpeed() * gravity);
@@ -253,7 +253,7 @@ public class Player {
 		this.fullScore = fullScore;
 	}
 
-	public boolean playerIsMini() {
+	public boolean getMini() {
 		return mini;
 	}
 

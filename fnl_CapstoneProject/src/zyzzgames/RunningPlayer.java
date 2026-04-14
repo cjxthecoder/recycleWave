@@ -171,7 +171,7 @@ public class RunningPlayer extends Player implements Runnable {
 			setGamemode(GameConstants.WAVE);
 
 			// divide by 4 if player is mini, else divide by 2
-			if (playerIsMini()) {
+			if (getMini()) {
 				setPlayerSize(0.25F);
 			} else {
 				setPlayerSize(0.5F);
@@ -182,7 +182,7 @@ public class RunningPlayer extends Player implements Runnable {
 			setGamemode(GameConstants.CUBE);
 
 			// divide by 2 if player is mini, else divide by 1
-			if (playerIsMini()) {
+			if (getMini()) {
 				setPlayerSize(0.5F);
 			} else {
 				setPlayerSize(1);
@@ -190,16 +190,12 @@ public class RunningPlayer extends Player implements Runnable {
 		}
 
 		if (Collision.checkPlatformCollision(lvl.getBlocks(), this)) {
-			switch (getGravity()) {
-			case GameConstants.UP:
-				setY(getPlatformY() + 1);
-				setYDirection(0);
-				break;
-
-			case GameConstants.DOWN:
+			if (getGravity() == GameConstants.DOWN) {
 				setY(getPlatformY() - getHitbox());
 				setYDirection(0);
-				break;
+			} else {
+				setY(getPlatformY() + 1);
+				setYDirection(0);
 			}
 
 			resetTime();
@@ -210,12 +206,14 @@ public class RunningPlayer extends Player implements Runnable {
 		}
 
 		if (getX() < 1460) {
-			movePlayerY();
 			fall();
+			movePlayerY();
 		} else {
 			setX(1460);
 			setGameWon(true);
 		}
+		
+		System.out.println(getGravity() + ": " + Collision.checkPortalCollision(lvl.getPortals("NGP"), this));
 
 		// If player is at or after the start line and before the finish line
 		if (!before_start && !past_finish) {
