@@ -47,6 +47,8 @@ public class LevelEditor {
 	private int dx = GameConstants.START_LINE;
 	private int d = GameConstants.SAWBLADE_DIAMETER;
 	private int ppb = GameConstants.PIXELS_PER_BLOCK;
+	private int portal_width = (int) Math.round((3 * ppb) / 2.0);
+	private int portal_height = (int) Math.round((15 * ppb) / 4.0);
 	private Stroke default_stroke = new BasicStroke(0);
 	private Stroke small_stroke = new BasicStroke(3);
 	private Stroke large_stroke = new BasicStroke(10);
@@ -108,7 +110,8 @@ public class LevelEditor {
 			{ gX(271), gY(0), gX(277), gY(6) }, { gX(277), gY(6), gX(280), gY(0) },
 			{ gX(260), gY(0), gX(271), gY(0) } };
 
-	// Using the definitions above, below are 7 different types of portals and their respective positions
+	// Using the definitions above, below are 7 different types of portals and their
+	// respective positions
 	private int[][] speedPortals = { { gX(26), gY(12) }, { gX(26), gY(10) } };
 	private int[][] normalGravityPortals = { { gX(1), gY(16) }, { gX(63), gY(15) } };
 	private int[][] flippedGravityPortals = { { gX(57), gY(15) } };
@@ -182,11 +185,9 @@ public class LevelEditor {
 
 		for (int i = 0; i < normalGravityPortals.length; i++) {
 			if (!(normalGravityPortals[i][0] < -165 || normalGravityPortals[i][0] > 1560)) {
-				g2d.drawImage(pic, normalGravityPortals[i][0], normalGravityPortals[i][1],
-						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
+				g2d.drawImage(pic, normalGravityPortals[i][0], normalGravityPortals[i][1], portal_width, portal_height, null);
 				if (drawHitboxes) {
-					g2d.drawRect(normalGravityPortals[i][0], normalGravityPortals[i][1],
-							(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0));
+					g2d.drawRect(normalGravityPortals[i][0], normalGravityPortals[i][1], portal_width, portal_height);
 				}
 			}
 		}
@@ -205,11 +206,9 @@ public class LevelEditor {
 
 		for (int i = 0; i < flippedGravityPortals.length; i++) {
 			if (!(flippedGravityPortals[i][0] < -165 || flippedGravityPortals[i][0] > 1560)) {
-				g2d.drawImage(pic, flippedGravityPortals[i][0], flippedGravityPortals[i][1],
-						(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0), null);
+				g2d.drawImage(pic, flippedGravityPortals[i][0], flippedGravityPortals[i][1], portal_width, portal_height, null);
 				if (drawHitboxes) {
-					g2d.drawRect(flippedGravityPortals[i][0], flippedGravityPortals[i][1],
-							(int) Math.round((3 * ppb) / 2.0), (int) Math.round((15 * ppb) / 4.0));
+					g2d.drawRect(flippedGravityPortals[i][0], flippedGravityPortals[i][1], portal_width, portal_height);
 				}
 			}
 		}
@@ -228,11 +227,9 @@ public class LevelEditor {
 
 		for (int i = 0; i < normalSizePortals.length; i++) {
 			if (!(normalSizePortals[i][0] < -165 || normalSizePortals[i][0] > 1560)) {
-				g2d.drawImage(pic, normalSizePortals[i][0], normalSizePortals[i][1], (int) Math.round((3 * ppb) / 2.0),
-						(int) Math.round((15 * ppb) / 4.0), null);
+				g2d.drawImage(pic, normalSizePortals[i][0], normalSizePortals[i][1], portal_width, portal_height, null);
 				if (drawHitboxes) {
-					g2d.drawRect(normalSizePortals[i][0], normalSizePortals[i][1], (int) Math.round((3 * ppb) / 2.0),
-							(int) Math.round((15 * ppb) / 4.0));
+					g2d.drawRect(normalSizePortals[i][0], normalSizePortals[i][1], portal_width, portal_height);
 				}
 			}
 		}
@@ -251,11 +248,11 @@ public class LevelEditor {
 
 		for (int i = 0; i < miniSizePortals.length; i++) {
 			if (!(miniSizePortals[i][0] < -165 || miniSizePortals[i][0] > 1560)) {
-				g2d.drawImage(pic, miniSizePortals[i][0], miniSizePortals[i][1], (int) Math.round((3 * ppb) / 2.0),
-						(int) Math.round((15 * ppb) / 4.0), null);
+				g2d.drawImage(pic, miniSizePortals[i][0], miniSizePortals[i][1], portal_width,
+						portal_height, null);
 				if (drawHitboxes) {
-					g2d.drawRect(miniSizePortals[i][0], miniSizePortals[i][1], (int) Math.round((3 * ppb) / 2.0),
-							(int) Math.round((15 * ppb) / 4.0));
+					g2d.drawRect(miniSizePortals[i][0], miniSizePortals[i][1], portal_width,
+							portal_height);
 				}
 			}
 		}
@@ -274,11 +271,9 @@ public class LevelEditor {
 
 		for (int i = 0; i < wavePortals.length; i++) {
 			if (!(wavePortals[i][0] < -165 || wavePortals[i][0] > 1560)) {
-				g2d.drawImage(pic, wavePortals[i][0], wavePortals[i][1], (int) Math.round((3 * ppb) / 2.0),
-						(int) Math.round((15 * ppb) / 4.0), null);
+				g2d.drawImage(pic, wavePortals[i][0], wavePortals[i][1], portal_width, portal_height, null);
 				if (drawHitboxes) {
-					g2d.drawRect(wavePortals[i][0], wavePortals[i][1], (int) Math.round((3 * ppb) / 2.0),
-							(int) Math.round((15 * ppb) / 4.0));
+					g2d.drawRect(wavePortals[i][0], wavePortals[i][1], portal_width, portal_height);
 				}
 			}
 		}
@@ -297,11 +292,9 @@ public class LevelEditor {
 
 		for (int i = 0; i < cubePortals.length; i++) {
 			if (!(cubePortals[i][0] < -165 || cubePortals[i][0] > 1560)) {
-				g2d.drawImage(pic, cubePortals[i][0], cubePortals[i][1], (int) Math.round((3 * ppb) / 2.0),
-						(int) Math.round((15 * ppb) / 4.0), null);
+				g2d.drawImage(pic, cubePortals[i][0], cubePortals[i][1], portal_width, portal_height, null);
 				if (drawHitboxes) {
-					g2d.drawRect(cubePortals[i][0], cubePortals[i][1], (int) Math.round((3 * ppb) / 2.0),
-							(int) Math.round((15 * ppb) / 4.0));
+					g2d.drawRect(cubePortals[i][0], cubePortals[i][1], portal_width, portal_height);
 				}
 			}
 		}
@@ -361,7 +354,6 @@ public class LevelEditor {
 	 * @param ceilingSpike
 	 */
 	public void drawSlopes(Graphics2D g2d, Color c, Color h, Image groundSpike, Image ceilingSpike) {
-		g2d.setColor(c);
 		for (int i = 0; i < slopes.length; i++) {
 			if (!(slopes[i][1] < -24 || slopes[i][0] > 1560)) {
 				if (slopes[i][1] == slopes[i][3] && slopes[i][1] >= 420) {
@@ -381,9 +373,7 @@ public class LevelEditor {
 						g2d.setColor(h);
 						g2d.setStroke(default_stroke);
 						g2d.draw(new Line2D.Double(slopes[i][0], slopes[i][1], slopes[i][2], slopes[i][3]));
-					}
-
-					else {
+					} else {
 						g2d.setColor(c);
 						g2d.setStroke(large_stroke);
 						g2d.draw(new Line2D.Double(slopes[i][0], slopes[i][1], slopes[i][2], slopes[i][3]));
@@ -443,11 +433,11 @@ public class LevelEditor {
 	public void drawWaveTrail(Graphics2D g2d, Color c) {
 		if (drawWaveTrail) {
 			for (int i = 0; i < waveTrails.size(); i++) {
+				int[] wt = waveTrails.get(i);
+				int trail_offset = (int) Math.round(ppb / (20 * wt[2]));
+				int trail_size = (int) Math.round(ppb / (2.5 * wt[2]));
 				g2d.setColor(c);
-				g2d.fillRect(waveTrails.get(i)[0],
-						waveTrails.get(i)[1] + (int) Math.round(ppb * 0.1),
-						(int) Math.round(ppb / (2.5 * waveTrails.get(i)[2])),
-						(int) Math.round(ppb / (2.5 * waveTrails.get(i)[2])));
+				g2d.fillRect(wt[0] + trail_offset, wt[1] + trail_offset, trail_size, trail_size);
 			}
 		}
 	}

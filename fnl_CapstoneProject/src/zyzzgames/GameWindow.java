@@ -56,7 +56,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	private JButton play;
 	private JComboBox<String> comboBox;
 	private String[] difficulty = { "Easy", "Medium", "Hard", "Insane", "Extreme", "Impossible" };
-	private LevelEditor lvl = new LevelEditor(true, true);
+	private LevelEditor lvl = new LevelEditor(false, true);
 	private RunningPlayer runP = new RunningPlayer(-GameConstants.PLAYER_HITBOX,
 			GameConstants.GROUND - GameConstants.PLAYER_HITBOX, GameConstants.CUBE, GameConstants.UP,
 			GameConstants.THREE_TIMES, false, "Insane", lvl);
@@ -116,9 +116,9 @@ public class GameWindow extends JFrame implements ActionListener {
 			g.drawRect(643, 33, 120, 40);
 			g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
 			g.drawString("Drag your cursor here", 650, 56);
-			g.drawRect(761, 37, 120, 99);
+			g.drawRect(761, 37, 120, 117);
 			g.drawRect(767, 39, 126, 27);
-			g.drawLine(860, 39, 860, 66);
+			g.drawLine(878, 39, 878, 66);
 			g.drawString("Over there>", 772, 56);
 			g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
 			g.drawString("As well!", 778, 90);
