@@ -52,7 +52,6 @@ public class GameWindow extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private Image gdImage;
 	private Graphics gdGraphics;
-
 	private JButton play;
 	private JComboBox<String> comboBox;
 	private String[] difficulty = { "Easy", "Medium", "Hard", "Insane", "Extreme", "Impossible" };
