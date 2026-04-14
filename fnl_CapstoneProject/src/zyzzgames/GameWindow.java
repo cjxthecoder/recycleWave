@@ -117,7 +117,7 @@ public class GameWindow extends JFrame implements ActionListener {
 			g.drawString("Drag your cursor here", 650, 56);
 			g.drawRect(761, 37, 120, 117);
 			g.drawRect(767, 39, 126, 27);
-			g.drawLine(878, 39, 878, 66);
+			g.drawLine(860, 39, 860, 66);
 			g.drawString("Over there>", 772, 56);
 			g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
 			g.drawString("As well!", 778, 90);
