@@ -33,17 +33,18 @@ import java.util.List;
 
 public class Player {
 	private Rectangle player;
-	private int t1;
 	private int hitbox;
 	private int gamemode;
 	private int gravity;
+	private int xDirection;
+	private int yDirection;
+	private int t1 = 0;
 	private int platformY = 0;
 	private int attempts = 1;
 	private float speed;
 	private double fullScore = 120.0;
 	private boolean mini;
 	private boolean gameWon;
-	private int xDirection, yDirection;
 	private boolean keyPressed = false;
 	private List<Integer> hotKeys = List.of(KeyEvent.VK_UP, KeyEvent.VK_SPACE, KeyEvent.VK_ENTER);
 
@@ -99,10 +100,16 @@ public class Player {
 	
 				case GameConstants.WAVE:
 					if (!keyPressed) {
-						if (getMini()) {
+						if (playerIsMini()) {
 							setYDirection(8.0F * getSpeed() * gravity);
 						} else {
 							setYDirection(4.0F * getSpeed() * gravity);
+						}
+					} else {
+						if (playerIsMini()) {
+							setYDirection(-8.0F * getSpeed() * gravity);
+						} else {
+							setYDirection(-4.0F * getSpeed() * gravity);
 						}
 					}
 					break;
@@ -123,7 +130,7 @@ public class Player {
 	
 			case GameConstants.WAVE:
 				if (hotKeys.contains(e.getKeyCode())) {
-					if (getMini()) {
+					if (playerIsMini()) {
 						setYDirection(-8.0F * getSpeed() * gravity);
 					} else {
 						setYDirection(-4.0F * getSpeed() * gravity);
@@ -162,6 +169,7 @@ public class Player {
 		player.width = hitbox;
 		gamemode = GameConstants.CUBE;
 		gravity = GameConstants.UP;
+		resetTime();
 		setSpeed(GameConstants.THREE_TIMES);
 		setMini(false);
 		keyPressed = false;
@@ -253,7 +261,7 @@ public class Player {
 		this.fullScore = fullScore;
 	}
 
-	public boolean getMini() {
+	public boolean playerIsMini() {
 		return mini;
 	}
 

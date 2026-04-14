@@ -416,7 +416,7 @@ public class LevelEditor {
 			int[] wt = new int[3];
 			wt[0] = p.getX();
 			wt[1] = p.getY();
-			wt[2] = changeSize ? (p.getMini() ? 2 : 1) : 1;
+			wt[2] = changeSize ? (p.playerIsMini() ? 2 : 1) : 1;
 			waveTrails.add(wt);
 			if (waveTrails.size() > 165) {
 				waveTrails.remove(0);
