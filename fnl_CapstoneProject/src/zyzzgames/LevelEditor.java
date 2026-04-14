@@ -444,7 +444,8 @@ public class LevelEditor {
 		if (drawWaveTrail) {
 			for (int i = 0; i < waveTrails.size(); i++) {
 				g2d.setColor(c);
-				g2d.fillRect(waveTrails.get(i)[0], waveTrails.get(i)[1],
+				g2d.fillRect(waveTrails.get(i)[0],
+						waveTrails.get(i)[1] + (int) Math.round(ppb * 0.1),
 						(int) Math.round(ppb / (2.5 * waveTrails.get(i)[2])),
 						(int) Math.round(ppb / (2.5 * waveTrails.get(i)[2])));
 			}

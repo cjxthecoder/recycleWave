@@ -55,8 +55,8 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	private JButton play;
 	private JComboBox<String> comboBox;
-	private String[] difficulty = { "Easy", "Medium", "Hard", "Insane", "Impossible" };
-	private LevelEditor lvl = new LevelEditor(false, true);
+	private String[] difficulty = { "Easy", "Medium", "Hard", "Insane", "Extreme", "Impossible" };
+	private LevelEditor lvl = new LevelEditor(true, true);
 	private RunningPlayer runP = new RunningPlayer(-GameConstants.PLAYER_HITBOX,
 			GameConstants.GROUND - GameConstants.PLAYER_HITBOX, GameConstants.CUBE, GameConstants.UP,
 			GameConstants.THREE_TIMES, false, "Insane", lvl);

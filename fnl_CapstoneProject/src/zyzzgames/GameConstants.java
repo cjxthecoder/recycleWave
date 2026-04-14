@@ -86,6 +86,7 @@ public class GameConstants {
 	public static final Image G = new ImageIcon("two.png").getImage();
 	public static final Image P = new ImageIcon("three.png").getImage();
 	public static final Image R = new ImageIcon("four.png").getImage();
+	public static final Image V = new ImageIcon("five.png").getImage();
 
 	// Constants related to the images of the player
 	public static final Image PCU = new ImageIcon("playerCubeUp.png").getImage();
@@ -97,10 +98,12 @@ public class GameConstants {
 	// A map consisting of the difficulty names to their corresponding speed portal images
 	public static final Map<String, Image> DIFF_IMG = Map.of("Easy", GameConstants.Y,
 			"Medium", GameConstants.B, "Hard", GameConstants.G,
-			"Insane", GameConstants.P, "Impossible", GameConstants.R);
+			"Insane", GameConstants.P, "Extreme", GameConstants.R,
+			"Impossible", GameConstants.V);
 	
 	// A map consisting of the difficulty names to their corresponding speeds
 	public static final Map<String, Float> DIFF_VAL = Map.of("Easy", GameConstants.HALF_TIMES,
 			"Medium", GameConstants.ONE_TIMES, "Hard", GameConstants.TWO_TIMES,
-			"Insane", GameConstants.THREE_TIMES, "Impossible", GameConstants.FOUR_TIMES);
+			"Insane", GameConstants.THREE_TIMES, "Extreme", GameConstants.FOUR_TIMES,
+			"Impossible", GameConstants.IMPOSSIBLE);
 }
