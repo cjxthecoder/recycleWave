@@ -32,9 +32,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class GameSound {
 	private Audio audio;
 
-	public GameSound(String file) {
+	public GameSound(String source) {
 		try {
-			audio = new Audio(file);
+			audio = new Audio(source);
 		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 			e.printStackTrace();
 		}

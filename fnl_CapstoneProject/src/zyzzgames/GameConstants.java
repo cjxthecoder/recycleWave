@@ -15,8 +15,11 @@
 package zyzzgames;
 
 import java.awt.Image;
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
 
 /**
  * The GameConstants class contains the list of constant values used in our
@@ -52,7 +55,8 @@ public class GameConstants {
 	public static final int DOWN = 1;
 	public static final int UP = -1;
 
-	// Constants related to the placement of objects in the level editor, and when the player has won the game
+	// Constants related to the placement of objects in the level editor, and when
+	// the player has won the game
 	public static final int START_LINE = 320;
 	public static final int FINISH_LINE = 11360;
 	public static final int PIXELS_PER_BLOCK = 40;
@@ -68,41 +72,99 @@ public class GameConstants {
 	public static final float SILENT = 2.5F;
 
 	// Constants related to the images of the level's structures
-	public static final Image BLK = new ImageIcon("resources/block.png").getImage();
-	public static final Image NGP = new ImageIcon("resources/normalGravityPortal.png").getImage();
-	public static final Image FGP = new ImageIcon("resources/flippedGravityPortal.png").getImage();
-	public static final Image NSP = new ImageIcon("resources/normalSizePortal.png").getImage();
-	public static final Image MSP = new ImageIcon("resources/miniSizePortal.png").getImage();
-	public static final Image WVP = new ImageIcon("resources/wavePortal.png").getImage();
-	public static final Image CBP = new ImageIcon("resources/cubePortal.png").getImage();
-	public static final Image GS = new ImageIcon("resources/groundSpike.png").getImage();
-	public static final Image CS = new ImageIcon("resources/ceilingSpike.png").getImage();
-	public static final Image SB = new ImageIcon("resources/fish.png").getImage();
+	private static final URL BLK_URL = ClassLoader.getSystemResource("block.png");
+	private static final URL NGP_URL = ClassLoader.getSystemResource("normalGravityPortal.png");
+	private static final URL FGP_URL = ClassLoader.getSystemResource("flippedGravityPortal.png");
+	private static final URL NSP_URL = ClassLoader.getSystemResource("normalSizePortal.png");
+	private static final URL MSP_URL = ClassLoader.getSystemResource("miniSizePortal.png");
+	private static final URL WVP_URL = ClassLoader.getSystemResource("wavePortal.png");
+	private static final URL CBP_URL = ClassLoader.getSystemResource("cubePortal.png");
+	private static final URL GS_URL = ClassLoader.getSystemResource("groundSpike.png");
+	private static final URL CS_URL = ClassLoader.getSystemResource("ceilingSpike.png");
+	private static final URL SB_URL = ClassLoader.getSystemResource("fish.png");
 
 	// Constants related to the images of the level's difficulty
-	public static final Image Y = new ImageIcon("resources/half.png").getImage();
-	public static final Image B = new ImageIcon("resources/one.png").getImage();
-	public static final Image G = new ImageIcon("resources/two.png").getImage();
-	public static final Image P = new ImageIcon("resources/three.png").getImage();
-	public static final Image R = new ImageIcon("resources/four.png").getImage();
-	public static final Image V = new ImageIcon("resources/five.png").getImage();
+	private static final URL Y_URL = ClassLoader.getSystemResource("half.png");
+	private static final URL B_URL = ClassLoader.getSystemResource("one.png");
+	private static final URL G_URL = ClassLoader.getSystemResource("two.png");
+	private static final URL P_URL = ClassLoader.getSystemResource("three.png");
+	private static final URL R_URL = ClassLoader.getSystemResource("four.png");
+	private static final URL V_URL = ClassLoader.getSystemResource("five.png");
 
 	// Constants related to the images of the player
-	public static final Image PCU = new ImageIcon("resources/playerCubeUp.png").getImage();
-	public static final Image PCD = new ImageIcon("resources/playerCubeDown.png").getImage();
-	public static final Image PWU = new ImageIcon("resources/playerWaveUp.png").getImage();
-	public static final Image PWD = new ImageIcon("resources/playerWaveDown.png").getImage();
-	public static final Image RCB = new ImageIcon("resources/recycleBin.png").getImage();
+	private static final URL PCU_URL = ClassLoader.getSystemResource("playerCubeUp.png");
+	private static final URL PCD_URL = ClassLoader.getSystemResource("playerCubeDown.png");
+	private static final URL PWU_URL = ClassLoader.getSystemResource("playerWaveUp.png");
+	private static final URL PWD_URL = ClassLoader.getSystemResource("playerWaveDown.png");
+	private static final URL RCB_URL = ClassLoader.getSystemResource("recycleBin.png");
 	
 	// A map consisting of the difficulty names to their corresponding speed portal images
-	public static final Map<String, Image> DIFF_IMG = Map.of("Easy", GameConstants.Y,
-			"Medium", GameConstants.B, "Hard", GameConstants.G,
-			"Insane", GameConstants.P, "Extreme", GameConstants.R,
-			"Impossible", GameConstants.V);
+	public static final Map<String, Image> DIFF_IMG = new HashMap<>();
 	
 	// A map consisting of the difficulty names to their corresponding speeds
-	public static final Map<String, Float> DIFF_VAL = Map.of("Easy", GameConstants.HALF_TIMES,
-			"Medium", GameConstants.ONE_TIMES, "Hard", GameConstants.TWO_TIMES,
-			"Insane", GameConstants.THREE_TIMES, "Extreme", GameConstants.FOUR_TIMES,
-			"Impossible", GameConstants.IMPOSSIBLE);
+	public static final Map<String, Float> DIFF_VAL = new HashMap<>();
+
+	// Image assets (initialized at runtime via loadResources)
+	public static Image BLK = null;
+	public static Image NGP = null;
+	public static Image FGP = null;
+	public static Image NSP = null;
+	public static Image MSP = null;
+	public static Image WVP = null;
+	public static Image CBP = null;
+	public static Image GS = null;
+	public static Image CS = null;
+	public static Image SB = null;
+	public static Image Y = null;
+	public static Image B = null;
+	public static Image G = null;
+	public static Image P = null;
+	public static Image R = null;
+	public static Image V = null;
+	public static Image PCU = null;
+	public static Image PCD = null;
+	public static Image PWU = null;
+	public static Image PWD = null;
+	public static Image RCB = null;
+	
+	// Loads all image resources from the classpath and initializes related mappings
+	public static void loadResources() {
+		try {
+			BLK = ImageIO.read(BLK_URL);
+			NGP = ImageIO.read(NGP_URL);
+			FGP = ImageIO.read(FGP_URL);
+			NSP = ImageIO.read(NSP_URL);
+			MSP = ImageIO.read(MSP_URL);
+			WVP = ImageIO.read(WVP_URL);
+			CBP = ImageIO.read(CBP_URL);
+			GS = ImageIO.read(GS_URL);
+			CS = ImageIO.read(CS_URL);
+			SB = ImageIO.read(SB_URL);
+			Y = ImageIO.read(Y_URL);
+			B = ImageIO.read(B_URL);
+			G = ImageIO.read(G_URL);
+			P = ImageIO.read(P_URL);
+			R = ImageIO.read(R_URL);
+			V = ImageIO.read(V_URL);
+			PCU = ImageIO.read(PCU_URL);
+			PCD = ImageIO.read(PCD_URL);
+			PWU = ImageIO.read(PWU_URL);
+			PWD = ImageIO.read(PWD_URL);
+			RCB = ImageIO.read(RCB_URL);
+			DIFF_IMG.put("Easy", Y);
+			DIFF_IMG.put("Medium", B);
+			DIFF_IMG.put("Hard", G);
+			DIFF_IMG.put("Insane", P);
+			DIFF_IMG.put("Extreme", R);
+			DIFF_IMG.put("Impossible", V);
+			DIFF_VAL.put("Easy", HALF_TIMES);
+			DIFF_VAL.put("Medium", ONE_TIMES);
+			DIFF_VAL.put("Hard", TWO_TIMES);
+			DIFF_VAL.put("Insane", THREE_TIMES);
+			DIFF_VAL.put("Extreme", FOUR_TIMES);
+			DIFF_VAL.put("Impossible", IMPOSSIBLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

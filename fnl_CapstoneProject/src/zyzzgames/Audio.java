@@ -14,9 +14,7 @@
 
 package zyzzgames;
 
-import java.io.File;
 import java.io.IOException;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -36,12 +34,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Audio {
 	private Clip clip;
-	private String src;
 	private float hz;
 
 	public Audio(String source) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
-		src = source;
-		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(src));
+		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(source));
 		clip = AudioSystem.getClip();
 		clip.open(audioInputStream);
 		hz = clip.getFormat().getSampleRate();

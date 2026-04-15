@@ -29,6 +29,7 @@ import javax.swing.SwingUtilities;
 public class Main {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
+			GameConstants.loadResources();
             GameWindow gw = new GameWindow(0, 0, 1536, 840);
             gw.setBackground(new Color(64, 144, 176));
             gw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
