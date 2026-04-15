@@ -1,20 +1,21 @@
 # Capstone Project: Recycle Wave
 
 Lead Designer & Developer: Daniel Cheng
+Team members: Brandon Tsao, Ali Haryanawalla, Daniel Cheng
 
-Document last revised: 8/22/2025
+Document last revised: 4/15/2026
 
 ![My Image](Screen%20Shot%202025-05-12%20at%204.53.26%20PM.png)
 
 ## Program purpose:
-A game with a character that moves up and down in a wave pattern. Your goal is to not hit the sides, or you lose the game. The environmental idea is to have a plastic bottle and a tree or coral, while you try to move the bottle into the recycling bin without hitting the coral or the fish.
+A game with a character that moves up and down in a wave pattern. Your goal is to not hit the sides, or you lose the game. The environmental aspect is that we have a plastic bottle, coral, and fish, while moving the bottle into the recycling bin without hitting the coral or the fish is important for recycling and marine life.
 
 ## Target user profile:
 Children or adults of all ages.
 
 ## Instructions: 
-1. Press the run button (if you are running in the Java IDE)
-2. It will load you into a window that may or may not have a background. On top of the title, there are 2 rectangles that say to "Drag your cursor here" or "Over there> As well!". Drag your mouse there.
+1. Download recycleWave.jar and open it. You will be loaded into a window.
+2. On top of the title, there are 2 rectangles that say to "Drag your cursor here" or "Over there> As well!". Drag your mouse there.
 3. Dragging your mouse to the left rectangle will create the "Play" button. Click this to play the game. Dragging to the area pointed by the text "over there>" creates a drop-down menu, where you can choose the speed of the game.
 4. Once the game is running, your player will land on a platform before entering a cool portal. You can press the spacebar, enter, or up key to move your character. Holding the key makes your character move up, while releasing the key allows your character to fall.
 5. Reach 100% to complete the level, where your final score will be given exactly by (100s)/(x^(deaths)), where s is the level's speed and x is a constant left as an exercise for the reader to discover. After the level is completed, you can rerun the program to try the game at a different speed to achieve a higher score.
@@ -80,6 +81,3 @@ Children or adults of all ages.
   - How to draw images on the window
 - Stars
   - How to use for-loops
-
-
-
