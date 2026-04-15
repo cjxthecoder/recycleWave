@@ -68,31 +68,31 @@ public class GameConstants {
 	public static final float SILENT = 2.5F;
 
 	// Constants related to the images of the level's structures
-	public static final Image BLK = new ImageIcon("block.png").getImage();
-	public static final Image NGP = new ImageIcon("normalGravityPortal.png").getImage();
-	public static final Image FGP = new ImageIcon("flippedGravityPortal.png").getImage();
-	public static final Image NSP = new ImageIcon("normalSizePortal.png").getImage();
-	public static final Image MSP = new ImageIcon("miniSizePortal.png").getImage();
-	public static final Image WVP = new ImageIcon("wavePortal.png").getImage();
-	public static final Image CBP = new ImageIcon("cubePortal.png").getImage();
-	public static final Image GS = new ImageIcon("groundSpike.png").getImage();
-	public static final Image CS = new ImageIcon("ceilingSpike.png").getImage();
-	public static final Image SB = new ImageIcon("fish.png").getImage();
+	public static final Image BLK = new ImageIcon("resources/block.png").getImage();
+	public static final Image NGP = new ImageIcon("resources/normalGravityPortal.png").getImage();
+	public static final Image FGP = new ImageIcon("resources/flippedGravityPortal.png").getImage();
+	public static final Image NSP = new ImageIcon("resources/normalSizePortal.png").getImage();
+	public static final Image MSP = new ImageIcon("resources/miniSizePortal.png").getImage();
+	public static final Image WVP = new ImageIcon("resources/wavePortal.png").getImage();
+	public static final Image CBP = new ImageIcon("resources/cubePortal.png").getImage();
+	public static final Image GS = new ImageIcon("resources/groundSpike.png").getImage();
+	public static final Image CS = new ImageIcon("resources/ceilingSpike.png").getImage();
+	public static final Image SB = new ImageIcon("resources/fish.png").getImage();
 
 	// Constants related to the images of the level's difficulty
-	public static final Image Y = new ImageIcon("half.png").getImage();
-	public static final Image B = new ImageIcon("one.png").getImage();
-	public static final Image G = new ImageIcon("two.png").getImage();
-	public static final Image P = new ImageIcon("three.png").getImage();
-	public static final Image R = new ImageIcon("four.png").getImage();
-	public static final Image V = new ImageIcon("five.png").getImage();
+	public static final Image Y = new ImageIcon("resources/half.png").getImage();
+	public static final Image B = new ImageIcon("resources/one.png").getImage();
+	public static final Image G = new ImageIcon("resources/two.png").getImage();
+	public static final Image P = new ImageIcon("resources/three.png").getImage();
+	public static final Image R = new ImageIcon("resources/four.png").getImage();
+	public static final Image V = new ImageIcon("resources/five.png").getImage();
 
 	// Constants related to the images of the player
-	public static final Image PCU = new ImageIcon("playerCubeUp.png").getImage();
-	public static final Image PCD = new ImageIcon("playerCubeDown.png").getImage();
-	public static final Image PWU = new ImageIcon("playerWaveUp.png").getImage();
-	public static final Image PWD = new ImageIcon("playerWaveDown.png").getImage();
-	public static final Image RCB = new ImageIcon("recycleBin.png").getImage();
+	public static final Image PCU = new ImageIcon("resources/playerCubeUp.png").getImage();
+	public static final Image PCD = new ImageIcon("resources/playerCubeDown.png").getImage();
+	public static final Image PWU = new ImageIcon("resources/playerWaveUp.png").getImage();
+	public static final Image PWD = new ImageIcon("resources/playerWaveDown.png").getImage();
+	public static final Image RCB = new ImageIcon("resources/recycleBin.png").getImage();
 	
 	// A map consisting of the difficulty names to their corresponding speed portal images
 	public static final Map<String, Image> DIFF_IMG = Map.of("Easy", GameConstants.Y,
