@@ -9,7 +9,7 @@
  * Please contact danielcheng2200@gmail.com if you need additional information
  * or have any questions.
  * 
- * Current Version: 1.8
+ * Current Version: 1.9
  */
 
 package zyzzgames;
