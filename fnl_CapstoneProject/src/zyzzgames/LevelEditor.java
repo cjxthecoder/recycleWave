@@ -21,6 +21,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class LevelEditor {
 	private int ppb = GameConstants.PIXELS_PER_BLOCK;
 	private int portal_width = (int) Math.round((3 * ppb) / 2.0);
 	private int portal_height = (int) Math.round((15 * ppb) / 4.0);
+	private double rotationAngle = 0.0;
 	private Stroke default_stroke = new BasicStroke(0);
 	private Stroke small_stroke = new BasicStroke(3);
 	private Stroke large_stroke = new BasicStroke(10);
@@ -110,8 +112,7 @@ public class LevelEditor {
 			{ gX(271), gY(0), gX(277), gY(6) }, { gX(277), gY(6), gX(280), gY(0) },
 			{ gX(260), gY(0), gX(271), gY(0) } };
 
-	// Using the definitions above, below are 7 different types of portals and their
-	// respective positions
+	// Using the definitions above, below are 7 different types of portals and their respective positions
 	private int[][] speedPortals = { { gX(26), gY(12) }, { gX(26), gY(10) } };
 	private int[][] normalGravityPortals = { { gX(1), gY(16) }, { gX(63), gY(15) } };
 	private int[][] flippedGravityPortals = { { gX(57), gY(15) } };
@@ -185,7 +186,8 @@ public class LevelEditor {
 
 		for (int i = 0; i < normalGravityPortals.length; i++) {
 			if (!(normalGravityPortals[i][0] < -165 || normalGravityPortals[i][0] > 1560)) {
-				g2d.drawImage(pic, normalGravityPortals[i][0], normalGravityPortals[i][1], portal_width, portal_height, null);
+				g2d.drawImage(pic, normalGravityPortals[i][0], normalGravityPortals[i][1], portal_width, portal_height,
+						null);
 				if (drawHitboxes) {
 					g2d.drawRect(normalGravityPortals[i][0], normalGravityPortals[i][1], portal_width, portal_height);
 				}
@@ -206,7 +208,8 @@ public class LevelEditor {
 
 		for (int i = 0; i < flippedGravityPortals.length; i++) {
 			if (!(flippedGravityPortals[i][0] < -165 || flippedGravityPortals[i][0] > 1560)) {
-				g2d.drawImage(pic, flippedGravityPortals[i][0], flippedGravityPortals[i][1], portal_width, portal_height, null);
+				g2d.drawImage(pic, flippedGravityPortals[i][0], flippedGravityPortals[i][1], portal_width,
+						portal_height, null);
 				if (drawHitboxes) {
 					g2d.drawRect(flippedGravityPortals[i][0], flippedGravityPortals[i][1], portal_width, portal_height);
 				}
@@ -248,11 +251,9 @@ public class LevelEditor {
 
 		for (int i = 0; i < miniSizePortals.length; i++) {
 			if (!(miniSizePortals[i][0] < -165 || miniSizePortals[i][0] > 1560)) {
-				g2d.drawImage(pic, miniSizePortals[i][0], miniSizePortals[i][1], portal_width,
-						portal_height, null);
+				g2d.drawImage(pic, miniSizePortals[i][0], miniSizePortals[i][1], portal_width, portal_height, null);
 				if (drawHitboxes) {
-					g2d.drawRect(miniSizePortals[i][0], miniSizePortals[i][1], portal_width,
-							portal_height);
+					g2d.drawRect(miniSizePortals[i][0], miniSizePortals[i][1], portal_width, portal_height);
 				}
 			}
 		}
@@ -331,10 +332,17 @@ public class LevelEditor {
 	public void drawSawblades(Graphics2D g2d, Color c, Image pic) {
 		g2d.setColor(c);
 		g2d.setStroke(default_stroke);
+		rotationAngle += Math.toRadians(3);
 
 		for (int i = 0; i < sawblades.length; i++) {
 			if (!((sawblades[i][0] + sawblades[i][2] / 2) < -24 || (sawblades[i][0] - sawblades[i][2] / 2) > 1560)) {
-				g2d.drawImage(pic, sawblades[i][0] - sawblades[i][2] / 2, sawblades[i][1] - sawblades[i][2] / 2, null);
+				AffineTransform old = g2d.getTransform();
+
+				g2d.translate(sawblades[i][0], sawblades[i][1]);
+				g2d.rotate(rotationAngle);
+				g2d.drawImage(pic, -sawblades[i][2] / 2, -sawblades[i][2] / 2, null);
+				g2d.setTransform(old);
+
 				if (drawHitboxes) {
 					g2d.drawOval(sawblades[i][0] - sawblades[i][2] / 2, sawblades[i][1] - sawblades[i][2] / 2,
 							sawblades[i][2], sawblades[i][2]);
@@ -520,15 +528,15 @@ public class LevelEditor {
 	 * @param barColor
 	 * @param progressColor
 	 */
-	public void drawProgressBar(Graphics2D g2d, int levelEndPoint, Color barColor, Color progressColor) {
+	public void drawProgressBar(Graphics2D g2d, int levelEnd, Color barColor, Color progressColor) {
 		g2d.setStroke(small_stroke);
 		g2d.setColor(progressColor);
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.fillRect(558, 38, Math.round((420 * (GameConstants.START_LINE - dx)) / levelEndPoint), 15);
+		g2d.fillRect(558, 38, Math.round((420 * (GameConstants.START_LINE - dx)) / levelEnd), 15);
 		g2d.setColor(barColor);
 		g2d.drawRect(558, 38, 420, 15);
 		g2d.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
-		g2d.drawString((Math.max(0, Math.round((100 * (GameConstants.START_LINE - dx)) / levelEndPoint))) + "%", 986, 54);
+		g2d.drawString((Math.max(0, Math.round((100 * (GameConstants.START_LINE - dx)) / levelEnd))) + "%", 986, 54);
 	}
 
 	public int getDx() {
