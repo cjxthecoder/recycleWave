@@ -49,8 +49,8 @@ public class RunningPlayer extends Player implements Runnable {
 	@Override
 	public void run() {
 		GameSound gs = new GameSound("48000/574484_F-777---Sonic-Blaster_48000.wav");
-		float s = GameConstants.DIFF_VAL.get(difficulty);
-		setFullScore(getFullScore() * s);
+		float difficultySpeed = GameConstants.DIFF_VAL.get(difficulty);
+		setFullScore(getFullScore() * difficultySpeed);
 
 		try {
 			start = System.nanoTime();
@@ -65,7 +65,7 @@ public class RunningPlayer extends Player implements Runnable {
 
 				while (accumulator >= nano_per_frame) {
 					if (!gameIsWon()) {
-						update(gs, s);
+						update(gs, difficultySpeed);
 					}
 					accumulator -= nano_per_frame;
 				}
