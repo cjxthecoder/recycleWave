@@ -399,7 +399,7 @@ public class LevelEditor {
 	 */
 	public void drawGround(Graphics2D g, Color c) {
 		g.setColor(c);
-		g.drawLine(0, GameConstants.GROUND, 1550, GameConstants.GROUND);
+		g.drawLine(0, GameConstants.GROUND, 1535, GameConstants.GROUND);
 	}
 
 	/**
@@ -410,7 +410,7 @@ public class LevelEditor {
 	 */
 	public void drawCeiling(Graphics2D g, Color c) {
 		g.setColor(c);
-		g.drawLine(0, GameConstants.CEILING, 1550, GameConstants.CEILING);
+		g.drawLine(0, GameConstants.CEILING, 1535, GameConstants.CEILING);
 	}
 
 	/**
@@ -524,7 +524,7 @@ public class LevelEditor {
 	 * Draws the progress bar based on the player's current position.
 	 * 
 	 * @param g2d
-	 * @param levelEndPoint
+	 * @param levelEnd
 	 * @param barColor
 	 * @param progressColor
 	 */
