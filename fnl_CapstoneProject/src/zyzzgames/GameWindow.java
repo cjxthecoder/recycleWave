@@ -30,6 +30,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 /**
  * The GameWindow class is the class responsible for drawing graphics on the
@@ -50,16 +51,25 @@ public class GameWindow extends JFrame implements ActionListener {
 	 * 2026-04-09T16:03:19
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final long START_PAUSE_TIME = (long) 1e+6 * 500;
+	private static final long FAIL_PAUSE_TIME = (long) 1e+9;
+	private static final int FPS = 200;
+	
 	private Image gdImage;
 	private Graphics gdGraphics;
 	private JButton play;
 	private JComboBox<String> comboBox;
-	private String[] difficulty = { "Easy", "Medium", "Hard", "Insane", "Extreme", "Impossible" };
+	private String[] difficulties = { "Easy", "Medium", "Hard", "Insane", "Extreme", "Impossible" };
 	private LevelEditor lvl = new LevelEditor(false, true);
 	private RunningPlayer runP = new RunningPlayer(-GameConstants.PLAYER_HITBOX,
 			GameConstants.GROUND - GameConstants.PLAYER_HITBOX, GameConstants.CUBE, GameConstants.UP,
-			GameConstants.THREE_TIMES, false, "Insane", lvl);
+			GameConstants.THREE_TIMES, false, lvl);
+
+	private long start;
+	private long accumulator;
 	private boolean gameStarted = false;
+	private boolean runRest = false;
+	private boolean trackNotReset = true;
 
 	public GameWindow(int x, int y, int width, int height) {
 		super("Recycle Wave");
@@ -73,7 +83,7 @@ public class GameWindow extends JFrame implements ActionListener {
 		play.addActionListener(this);
 		play.setFocusable(false);
 
-		comboBox = new JComboBox<>(difficulty);
+		comboBox = new JComboBox<>(difficulties);
 		comboBox.setFocusable(false);
 
 		Container c = getContentPane();
@@ -87,10 +97,21 @@ public class GameWindow extends JFrame implements ActionListener {
 			gameStarted = true;
 			play.setEnabled(false);
 			comboBox.setEnabled(false);
-			runP.setDifficulty(String.valueOf(comboBox.getSelectedItem()));
 			repaint();
-			Thread p1 = new Thread(runP);
-			p1.start();
+
+			GameSound gs = new GameSound("48000/574484_F-777---Sonic-Blaster_48000.wav");
+			float speed = GameConstants.DIFF_VAL.get(String.valueOf(comboBox.getSelectedItem()));
+			runP.setFullScore(runP.getFullScore() * speed);
+
+			start = System.nanoTime();
+			accumulator = 0;
+
+			Timer timer = new Timer(1, e2 -> {
+				runGameLoop(gs, speed, (long) 1e+9 / FPS);
+			});
+
+			timer.setCoalesce(true);
+			timer.start();
 		}
 	}
 
@@ -105,6 +126,54 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		else {
 			drawGameTitle(g);
+		}
+	}
+
+	private void runGameLoop(GameSound gs, float speed, long nano_per_frame) {
+		long now = System.nanoTime();
+		long delta = now - start;
+		start = now;
+		accumulator += delta;
+
+		if (runP.isFirstAttempt()) {
+			if (accumulator >= START_PAUSE_TIME) {
+				runRest = true;
+				start = System.nanoTime();
+				accumulator = 0;
+			}
+		}
+
+		if (runRest) {
+			if (runP.isMusicStart()) {
+				if (runP.isFirstAttempt()) {
+					gs.startMusic(38.4F);
+				} else {
+					gs.startMusic(38.46F);
+				}
+				runP.setMusicStart(false);
+				runP.setFirstAttempt(false);
+			}
+
+			while (accumulator >= nano_per_frame && !runP.gameIsOver()) {
+				if (!runP.gameIsWon()) {
+					runP.update(gs, speed);
+				}
+				accumulator -= nano_per_frame;
+			}
+
+			if (runP.gameIsOver()) {
+				if (trackNotReset) {
+					runP.stopTrack(gs);
+					trackNotReset = false;
+				}
+				if (accumulator >= FAIL_PAUSE_TIME) {
+					runP.resetFields();
+					runP.setMusicStart(true);
+					trackNotReset = true;
+					start = System.nanoTime();
+					accumulator = 0;
+				}
+			}
 		}
 	}
 
@@ -143,8 +212,8 @@ public class GameWindow extends JFrame implements ActionListener {
 	}
 
 	private void drawGameGraphics(Graphics2D g) {
-		lvl.drawGround(g, Color.CYAN);
-		lvl.drawCeiling(g, Color.CYAN);
+		lvl.drawGround(g, Color.CYAN, this.getWidth());
+		lvl.drawCeiling(g, Color.CYAN, this.getWidth());
 		lvl.drawBlocks(g, Color.BLUE, GameConstants.BLK);
 		lvl.drawNormalGravityPortals(g, Color.GREEN, GameConstants.NGP);
 		lvl.drawFlippedGravityPortals(g, Color.GREEN, GameConstants.FGP);

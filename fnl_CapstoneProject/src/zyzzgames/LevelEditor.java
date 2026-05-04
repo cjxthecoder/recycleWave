@@ -396,10 +396,11 @@ public class LevelEditor {
 	 * 
 	 * @param g
 	 * @param c
+	 * @param width
 	 */
-	public void drawGround(Graphics2D g, Color c) {
+	public void drawGround(Graphics2D g, Color c, int width) {
 		g.setColor(c);
-		g.drawLine(0, GameConstants.GROUND, 1535, GameConstants.GROUND);
+		g.drawLine(0, GameConstants.GROUND, width - 1, GameConstants.GROUND);
 	}
 
 	/**
@@ -407,10 +408,11 @@ public class LevelEditor {
 	 * 
 	 * @param g
 	 * @param c
+	 * @param width
 	 */
-	public void drawCeiling(Graphics2D g, Color c) {
+	public void drawCeiling(Graphics2D g, Color c, int width) {
 		g.setColor(c);
-		g.drawLine(0, GameConstants.CEILING, 1535, GameConstants.CEILING);
+		g.drawLine(0, GameConstants.CEILING, width - 1, GameConstants.CEILING);
 	}
 
 	/**

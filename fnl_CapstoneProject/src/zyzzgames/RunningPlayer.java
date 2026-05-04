@@ -30,67 +30,32 @@ package zyzzgames;
  * @since 1.0
  */
 
-public class RunningPlayer extends Player implements Runnable {
-	private String difficulty;
+public class RunningPlayer extends Player {
 	private LevelEditor lvl;
-	private long start;
-	private long accumulator;
-	private boolean firstAttempt = true;
-	private boolean musicPlaying = false;
-	private static final int FPS = 200;
+	private boolean firstAttempt;
+	private boolean musicStart;
 
-	public RunningPlayer(int x, int y, int gamemode, int gravity, float speed, boolean mini, String difficulty,
-			LevelEditor lvl) {
+	public RunningPlayer(int x, int y, int gamemode, int gravity, float speed, boolean mini, LevelEditor lvl) {
 		super(x, y, gamemode, gravity, speed, mini);
-		this.difficulty = difficulty;
 		this.lvl = lvl;
+		this.firstAttempt = true;
+		this.musicStart = true;
 	}
+	
+	public void update(GameSound gs, float speed) {
+//		if (firstAttempt) {
+//			Thread.sleep(500);
+//			start = System.nanoTime();
+//			accumulator = 0;
+//		}
 
-	@Override
-	public void run() {
-		GameSound gs = new GameSound("48000/574484_F-777---Sonic-Blaster_48000.wav");
-		float difficultySpeed = GameConstants.DIFF_VAL.get(difficulty);
-		setFullScore(getFullScore() * difficultySpeed);
-
-		try {
-			start = System.nanoTime();
-			accumulator = 0;
-			long nano_per_frame = (long) 1e+9 / FPS;
-
-			while (true) {
-				long now = System.nanoTime();
-				long delta = now - start;
-				start = now;
-				accumulator += delta;
-
-				while (accumulator >= nano_per_frame) {
-					if (!gameIsWon()) {
-						update(gs, difficultySpeed);
-					}
-					accumulator -= nano_per_frame;
-				}
-
-				Thread.sleep(1);
-			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void update(GameSound gs, float s) throws InterruptedException {
-		if (firstAttempt) {
-			Thread.sleep(500);
-			start = System.nanoTime();
-			accumulator = 0;
-		}
-
-		if (!musicPlaying) {
+		if (musicStart) {
 			if (firstAttempt) {
 				gs.startMusic(38.4F);
 			} else {
 				gs.startMusic(38.46F);
 			}
-			musicPlaying = true;
+			musicStart = false;
 			firstAttempt = false;
 		}
 
@@ -106,21 +71,8 @@ public class RunningPlayer extends Player implements Runnable {
 			movePlayerX();
 		}
 
-		if (Collision.checkDeathCollision(lvl.getSlopes(), lvl.getSawblades(), this)) {
-			gs.stopMusic();
-			setFullScore(getFullScore() / GameConstants.MAGIC);
-			setAttempts(getAttempts() + 1);
-			Thread.sleep(1000);
-			start = System.nanoTime();
-			accumulator = 0;
-			resetPlayerFields();
-			lvl.goForward(lvl.getDx() - 2 * GameConstants.START_LINE);
-			lvl.resetWaveTrail();
-			musicPlaying = false;
-		}
-
 		if (Collision.checkSpeedCollision(lvl.getPortals("SPP"), this)) {
-			setSpeed(s);
+			setSpeed(speed);
 		}
 
 		if (Collision.checkPortalCollision(lvl.getPortals("NGP"), this)) {
@@ -218,8 +170,36 @@ public class RunningPlayer extends Player implements Runnable {
 			lvl.goForward((int) (4.0 * getSpeed()));
 		}
 	}
-
-	public void setDifficulty(String newDifficulty) {
-		difficulty = newDifficulty;
+	
+	public boolean isFirstAttempt() {
+		return firstAttempt;
+	}
+	
+	public void setFirstAttempt(boolean first) {
+		firstAttempt = first;
+	}
+	
+	public boolean isMusicStart() {
+		return musicStart;
+	}
+	
+	public void setMusicStart(boolean start) {
+		musicStart = start;
+	}
+	
+	public boolean gameIsOver() {
+		return Collision.checkDeathCollision(lvl.getSlopes(), lvl.getSawblades(), this);
+	}
+	
+	public void stopTrack(GameSound gs) {
+		gs.stopMusic();
+		setFullScore(getFullScore() / GameConstants.MAGIC);
+		setAttempts(getAttempts() + 1);
+	}
+	
+	public void resetFields() {
+		resetPlayerFields();
+		lvl.goForward(lvl.getDx() - 2 * GameConstants.START_LINE);
+		lvl.resetWaveTrail();
 	}
 }
