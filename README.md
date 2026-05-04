@@ -1,6 +1,7 @@
 # Capstone Project: Recycle Wave
 
 Lead Designer & Developer: Daniel Cheng
+
 Team members: Brandon Tsao, Ali Haryanawalla, Daniel Cheng
 
 Document last revised: 4/15/2026

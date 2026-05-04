@@ -42,23 +42,7 @@ public class RunningPlayer extends Player {
 		this.musicStart = true;
 	}
 
-	public void update(GameSound gs, float speed) {
-//		if (firstAttempt) {
-//			Thread.sleep(500);
-//			start = System.nanoTime();
-//			accumulator = 0;
-//		}
-
-		if (musicStart) {
-			if (firstAttempt) {
-				gs.startMusic(38.4F);
-			} else {
-				gs.startMusic(38.46F);
-			}
-			musicStart = false;
-			firstAttempt = false;
-		}
-
+	public void update(float speed) {
 		boolean before_start = getX() < GameConstants.START_LINE;
 		boolean past_finish = lvl.getDx() <= GameConstants.START_LINE - GameConstants.FINISH_LINE;
 
@@ -92,7 +76,7 @@ public class RunningPlayer extends Player {
 		if (Collision.checkPortalCollision(lvl.getPortals("NSP"), this)) {
 			setMini(false);
 
-			// divide by 2 if player is wave, // else divide by 1
+			// Divide by 2 if player is wave, else divide by 1
 			if (getGamemode() == GameConstants.WAVE) {
 				setPlayerSize(0.5F);
 			} else {
@@ -107,7 +91,7 @@ public class RunningPlayer extends Player {
 		if (Collision.checkPortalCollision(lvl.getPortals("MSP"), this)) {
 			setMini(true);
 
-			// divide by 4 if player is wave, // else divide by 2
+			// Divide by 4 if player is wave, else divide by 2
 			if (getGamemode() == GameConstants.WAVE) {
 				setPlayerSize(0.25F);
 			} else {
@@ -122,7 +106,7 @@ public class RunningPlayer extends Player {
 		if (Collision.checkPortalCollision(lvl.getPortals("WVP"), this)) {
 			setGamemode(GameConstants.WAVE);
 
-			// divide by 4 if player is mini, else divide by 2
+			// Divide by 4 if player is mini, else divide by 2
 			if (playerIsMini()) {
 				setPlayerSize(0.25F);
 			} else {
@@ -133,7 +117,7 @@ public class RunningPlayer extends Player {
 		if (Collision.checkPortalCollision(lvl.getPortals("CBP"), this)) {
 			setGamemode(GameConstants.CUBE);
 
-			// divide by 2 if player is mini, else divide by 1
+			// Divide by 2 if player is mini, else divide by 1
 			if (playerIsMini()) {
 				setPlayerSize(0.5F);
 			} else {

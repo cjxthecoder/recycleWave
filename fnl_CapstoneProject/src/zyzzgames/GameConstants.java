@@ -14,6 +14,7 @@
 
 package zyzzgames;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
@@ -71,6 +72,11 @@ public class GameConstants {
 	public static final float IMPOSSIBLE = 2.0F;
 	public static final float SILENT = 2.5F;
 
+	// Constants related to the game's colors
+	public static final Color CORAL_PINK = new Color(240, 20, 162);
+	public static final Color WATER_BLUE = new Color(52, 106, 150);
+	public static final Color PLASTIC_BLUE = new Color(35, 182, 228);
+
 	// Constants related to the images of the level's structures
 	private static final URL BLK_URL = ClassLoader.getSystemResource("block.png");
 	private static final URL NGP_URL = ClassLoader.getSystemResource("normalGravityPortal.png");
@@ -98,8 +104,7 @@ public class GameConstants {
 	private static final URL PWD_URL = ClassLoader.getSystemResource("playerWaveDown.png");
 	private static final URL RCB_URL = ClassLoader.getSystemResource("recycleBin.png");
 
-	// A map consisting of the difficulty names to their corresponding speed portal
-	// images
+	// A map consisting of the difficulty names to their corresponding speed portal images
 	public static final Map<String, Image> DIFF_IMG = new HashMap<>();
 
 	// A map consisting of the difficulty names to their corresponding speeds
@@ -128,7 +133,7 @@ public class GameConstants {
 	public static Image PWD = null;
 	public static Image RCB = null;
 
-	// Loads all image resources from the classpath and initializes related mappings
+	// Load all image resources from the classpath and initializes related mappings
 	public static void loadResources() {
 		try {
 			BLK = ImageIO.read(BLK_URL);

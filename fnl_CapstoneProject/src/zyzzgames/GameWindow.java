@@ -51,7 +51,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	 * 2026-04-09T16:03:19
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final long START_PAUSE_TIME = (long) 1e+6 * 500;
+	private static final long START_PAUSE_TIME = (long) 1e+9 / 2;
 	private static final long FAIL_PAUSE_TIME = (long) 1e+9;
 	private static final int FPS = 200;
 
@@ -69,7 +69,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	private long accumulator;
 	private boolean gameStarted = false;
 	private boolean runRest = false;
-	private boolean trackNotReset = true;
+	private boolean trackStopped = false;
 
 	public GameWindow(int x, int y, int width, int height) {
 		super("Recycle Wave");
@@ -102,15 +102,13 @@ public class GameWindow extends JFrame implements ActionListener {
 			GameSound gs = new GameSound("48000/574484_F-777---Sonic-Blaster_48000.wav");
 			float speed = GameConstants.DIFF_VAL.get(String.valueOf(comboBox.getSelectedItem()));
 			runP.setFullScore(runP.getFullScore() * speed);
-
 			start = System.nanoTime();
 			accumulator = 0;
 
 			Timer timer = new Timer(1, e2 -> {
 				runGameLoop(gs, speed, (long) 1e+9 / FPS);
 			});
-
-			timer.setCoalesce(true);
+			
 			timer.start();
 		}
 	}
@@ -122,9 +120,7 @@ public class GameWindow extends JFrame implements ActionListener {
 			gdGraphics = gdImage.getGraphics();
 			draw(gdGraphics);
 			g.drawImage(gdImage, 0, 0, this);
-		}
-
-		else {
+		} else {
 			drawGameTitle(g);
 		}
 	}
@@ -156,20 +152,21 @@ public class GameWindow extends JFrame implements ActionListener {
 
 			while (accumulator >= nano_per_frame && !runP.gameIsOver()) {
 				if (!runP.gameIsWon()) {
-					runP.update(gs, speed);
+					runP.update(speed);
 				}
 				accumulator -= nano_per_frame;
 			}
 
 			if (runP.gameIsOver()) {
-				if (trackNotReset) {
+				if (!trackStopped) {
 					runP.stopTrack(gs);
-					trackNotReset = false;
+					trackStopped = true;
 				}
+				
 				if (accumulator >= FAIL_PAUSE_TIME) {
 					runP.resetFields();
 					runP.setMusicStart(true);
-					trackNotReset = true;
+					trackStopped = false;
 					start = System.nanoTime();
 					accumulator = 0;
 				}
@@ -193,9 +190,7 @@ public class GameWindow extends JFrame implements ActionListener {
 			g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
 			g.drawString("Don't forget to", 778, 110);
 			g.drawString("try clicking :)", 778, 130);
-		}
-
-		else {
+		} else {
 			g.drawRect(661, 35, 120, 40);
 			g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
 			g.drawString("Drag your cursor here", 664, 58);
@@ -221,13 +216,12 @@ public class GameWindow extends JFrame implements ActionListener {
 		lvl.drawMiniSizePortals(g, Color.GREEN, GameConstants.MSP);
 		lvl.drawWavePortals(g, Color.GREEN, GameConstants.WVP);
 		lvl.drawCubePortals(g, Color.GREEN, GameConstants.CBP);
-		lvl.drawSlopes(g, new Color(240, 20, 162), Color.RED, GameConstants.GS, GameConstants.CS);
+		lvl.drawSlopes(g, GameConstants.CORAL_PINK, Color.RED, GameConstants.GS, GameConstants.CS);
 		lvl.drawSawblades(g, Color.RED, GameConstants.SB);
 		lvl.drawSpeedPortals(g, Color.GREEN, String.valueOf(comboBox.getSelectedItem()));
+		lvl.drawWaveTrail(g, GameConstants.PLASTIC_BLUE);
 		lvl.drawPlayer(g, Color.RED, runP);
-		lvl.drawWaveTrail(g, new Color(35, 182, 228));
-		lvl.drawPlayer(g, Color.RED, runP);
-		lvl.drawProgressBar(g, GameConstants.FINISH_LINE, Color.BLACK, Color.CYAN);
+		lvl.drawProgressBar(g, GameConstants.FINISH_LINE, Color.BLACK, GameConstants.PLASTIC_BLUE);
 	}
 
 	private void draw(Graphics g) {

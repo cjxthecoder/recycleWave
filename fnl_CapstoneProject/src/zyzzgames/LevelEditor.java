@@ -155,6 +155,23 @@ public class LevelEditor {
 	}
 
 	/**
+	 * Draws the outline of the specified rectangle exactly. The left and right
+	 * edges of the rectangle are at {@code x} and
+	 * <code>x&nbsp;+&nbsp;width&nbsp;-&nbsp;1</code>. The top and bottom edges are
+	 * at {@code y} and <code>y&nbsp;+&nbsp;height&nbsp;-&nbsp;1</code>. The
+	 * rectangle is drawn using the graphics context's current color.
+	 * 
+	 * @param g2d    the {@code Graphics2D} object.
+	 * @param x      the <i>x</i> coordinate of the rectangle to be drawn.
+	 * @param y      the <i>y</i> coordinate of the rectangle to be drawn.
+	 * @param width  the exact width of the rectangle to be drawn.
+	 * @param height the exact height of the rectangle to be drawn.
+	 */
+	private void drawRectExact(Graphics2D g2d, int x, int y, int width, int height) {
+		g2d.drawRect(x, y, width - 1, height - 1);
+	}
+
+	/**
 	 * Draw speed portals based on the difficulty selected by the user.
 	 * 
 	 * @param g2d
@@ -163,13 +180,14 @@ public class LevelEditor {
 	 */
 	public void drawSpeedPortals(Graphics2D g2d, Color c, String difficulty) {
 		g2d.setColor(c);
+		int spw = (int) Math.round((19 * ppb) / 8.0);
+		int sph = (int) Math.round((83 * ppb) / 40.0);
 
 		for (int i = 0; i < speedPortals.length; i++) {
-			g2d.drawImage(GameConstants.DIFF_IMG.get(difficulty), speedPortals[i][0], speedPortals[i][1],
-					(int) Math.round((19 * ppb) / 8.0), (int) Math.round((83 * ppb) / 40.0), null);
+			g2d.drawImage(GameConstants.DIFF_IMG.get(difficulty), speedPortals[i][0], speedPortals[i][1], spw, sph,
+					null);
 			if (drawHitboxes) {
-				g2d.drawRect(speedPortals[i][0], speedPortals[i][1], (int) Math.round((19 * ppb) / 8.0),
-						(int) Math.round((83 * ppb) / 40.0));
+				drawRectExact(g2d, speedPortals[i][0], speedPortals[i][1], spw, sph);
 			}
 		}
 	}
@@ -190,7 +208,8 @@ public class LevelEditor {
 				g2d.drawImage(pic, normalGravityPortals[i][0], normalGravityPortals[i][1], portal_width, portal_height,
 						null);
 				if (drawHitboxes) {
-					g2d.drawRect(normalGravityPortals[i][0], normalGravityPortals[i][1], portal_width, portal_height);
+					drawRectExact(g2d, normalGravityPortals[i][0], normalGravityPortals[i][1], portal_width,
+							portal_height);
 				}
 			}
 		}
@@ -212,7 +231,8 @@ public class LevelEditor {
 				g2d.drawImage(pic, flippedGravityPortals[i][0], flippedGravityPortals[i][1], portal_width,
 						portal_height, null);
 				if (drawHitboxes) {
-					g2d.drawRect(flippedGravityPortals[i][0], flippedGravityPortals[i][1], portal_width, portal_height);
+					drawRectExact(g2d, flippedGravityPortals[i][0], flippedGravityPortals[i][1], portal_width,
+							portal_height);
 				}
 			}
 		}
@@ -233,7 +253,7 @@ public class LevelEditor {
 			if (!(normalSizePortals[i][0] < -165 || normalSizePortals[i][0] > 1560)) {
 				g2d.drawImage(pic, normalSizePortals[i][0], normalSizePortals[i][1], portal_width, portal_height, null);
 				if (drawHitboxes) {
-					g2d.drawRect(normalSizePortals[i][0], normalSizePortals[i][1], portal_width, portal_height);
+					drawRectExact(g2d, normalSizePortals[i][0], normalSizePortals[i][1], portal_width, portal_height);
 				}
 			}
 		}
@@ -254,7 +274,7 @@ public class LevelEditor {
 			if (!(miniSizePortals[i][0] < -165 || miniSizePortals[i][0] > 1560)) {
 				g2d.drawImage(pic, miniSizePortals[i][0], miniSizePortals[i][1], portal_width, portal_height, null);
 				if (drawHitboxes) {
-					g2d.drawRect(miniSizePortals[i][0], miniSizePortals[i][1], portal_width, portal_height);
+					drawRectExact(g2d, miniSizePortals[i][0], miniSizePortals[i][1], portal_width, portal_height);
 				}
 			}
 		}
@@ -275,7 +295,7 @@ public class LevelEditor {
 			if (!(wavePortals[i][0] < -165 || wavePortals[i][0] > 1560)) {
 				g2d.drawImage(pic, wavePortals[i][0], wavePortals[i][1], portal_width, portal_height, null);
 				if (drawHitboxes) {
-					g2d.drawRect(wavePortals[i][0], wavePortals[i][1], portal_width, portal_height);
+					drawRectExact(g2d, wavePortals[i][0], wavePortals[i][1], portal_width, portal_height);
 				}
 			}
 		}
@@ -296,7 +316,7 @@ public class LevelEditor {
 			if (!(cubePortals[i][0] < -165 || cubePortals[i][0] > 1560)) {
 				g2d.drawImage(pic, cubePortals[i][0], cubePortals[i][1], portal_width, portal_height, null);
 				if (drawHitboxes) {
-					g2d.drawRect(cubePortals[i][0], cubePortals[i][1], portal_width, portal_height);
+					drawRectExact(g2d, cubePortals[i][0], cubePortals[i][1], portal_width, portal_height);
 				}
 			}
 		}
@@ -317,7 +337,7 @@ public class LevelEditor {
 			if (!(blocks[i][0] + ppb < -24 || blocks[i][0] > 1560)) {
 				g2d.drawImage(pic, blocks[i][0], blocks[i][1], ppb, ppb, null);
 				if (drawHitboxes) {
-					g2d.drawRect(blocks[i][0], blocks[i][1], ppb, ppb);
+					drawRectExact(g2d, blocks[i][0], blocks[i][1], ppb, ppb);
 				}
 			}
 		}
@@ -354,7 +374,6 @@ public class LevelEditor {
 
 	/**
 	 * Slopes: x-start, y-start, x-end, y-end. <br>
-	 * Since we are lazy we decided to make ground spikes slope as well.
 	 * 
 	 * @param g2d
 	 * @param c
@@ -419,8 +438,8 @@ public class LevelEditor {
 	/**
 	 * Adds the player's current position to the wave trail list.
 	 * 
-	 * @param p
 	 * @param changeSize
+	 * @param p
 	 */
 	public void addWaveTrail(boolean changeSize, Player p) {
 		if (drawWaveTrail) {
@@ -474,44 +493,44 @@ public class LevelEditor {
 		g2d.setStroke(default_stroke);
 
 		switch (p.getGamemode()) {
-		case GameConstants.CUBE:
-			if (p.getGravity() == GameConstants.DOWN) {
-				g2d.drawImage(GameConstants.PCU, p.getX(), p.getY(), p.getHitbox(), p.getHitbox(), null);
-			}
-
-			else {
-				g2d.drawImage(GameConstants.PCD, p.getX(), p.getY(), p.getHitbox(), p.getHitbox(), null);
-			}
-
-			if (drawHitboxes) {
-				g2d.drawRect(p.getX(), p.getY(), p.getHitbox(), p.getHitbox());
-			}
-			break;
-
-		case GameConstants.WAVE:
-			if ((p.getGravity() == GameConstants.DOWN && !p.keyIsPressed())
-					|| (p.getGravity() == GameConstants.UP && p.keyIsPressed())) {
-				g2d.drawImage(GameConstants.PWD, p.getX() - p.getHitbox() / 2, p.getY() - p.getHitbox() / 2,
-						p.getHitbox() * 2, p.getHitbox() * 2, null);
-			}
-
-			else {
-				g2d.drawImage(GameConstants.PWU, p.getX() - p.getHitbox() / 2, p.getY() - p.getHitbox() / 2,
-						p.getHitbox() * 2, p.getHitbox() * 2, null);
-			}
-
-			if (drawHitboxes) {
-				g2d.drawRect(p.getX(), p.getY(), p.getHitbox(), p.getHitbox());
-			}
-			break;
-
-		default:
-			for (int i = p.getX(); i < p.getX() + p.getHitbox(); i += 2) {
-				for (int j = p.getY(); j < p.getY() + p.getHitbox(); j += 2) {
-					g2d.setColor((i / 2 + j / 2) % 2 == 0 ? Color.BLACK : Color.MAGENTA);
-					g2d.fillRect(i, j, 2, 2);
+			case GameConstants.CUBE:
+				if (p.getGravity() == GameConstants.DOWN) {
+					g2d.drawImage(GameConstants.PCU, p.getX(), p.getY(), p.getHitbox(), p.getHitbox(), null);
 				}
-			}
+	
+				else {
+					g2d.drawImage(GameConstants.PCD, p.getX(), p.getY(), p.getHitbox(), p.getHitbox(), null);
+				}
+	
+				if (drawHitboxes) {
+					drawRectExact(g2d, p.getX(), p.getY(), p.getHitbox(), p.getHitbox());
+				}
+				break;
+	
+			case GameConstants.WAVE:
+				if ((p.getGravity() == GameConstants.DOWN && !p.keyIsPressed())
+						|| (p.getGravity() == GameConstants.UP && p.keyIsPressed())) {
+					g2d.drawImage(GameConstants.PWD, p.getX() - p.getHitbox() / 2, p.getY() - p.getHitbox() / 2,
+							p.getHitbox() * 2, p.getHitbox() * 2, null);
+				}
+	
+				else {
+					g2d.drawImage(GameConstants.PWU, p.getX() - p.getHitbox() / 2, p.getY() - p.getHitbox() / 2,
+							p.getHitbox() * 2, p.getHitbox() * 2, null);
+				}
+	
+				if (drawHitboxes) {
+					drawRectExact(g2d, p.getX(), p.getY(), p.getHitbox(), p.getHitbox());
+				}
+				break;
+	
+			default:
+				for (int i = p.getX(); i < p.getX() + p.getHitbox(); i += 2) {
+					for (int j = p.getY(); j < p.getY() + p.getHitbox(); j += 2) {
+						g2d.setColor((i / 2 + j / 2) % 2 == 0 ? Color.BLACK : Color.MAGENTA);
+						g2d.fillRect(i, j, 2, 2);
+					}
+				}
 		}
 
 		if (p.getX() >= 768) {

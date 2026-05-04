@@ -107,6 +107,6 @@ public class Collision {
 		double distY = circleY - testY;
 		double distance = Math.sqrt((distX * distX) + (distY * distY));
 
-		return distance <= (double) diameter / 2.0;
+		return distance <= diameter / 2.0;
 	}
 }
