@@ -61,7 +61,7 @@ Children or adults of all ages.
 - If we had more time, we would make more levels, try representing objects in an ArrayList, add more graphics to the game, or create a level select and pause menu.
 - Other areas of RND:
   - Explore modeling the player's movement by including a vector for x and y velocities so that other gamemodes, such as cube or ship, can be accurately implemented as well.
-  - Remake the project using JComponent.paintComponent(g) instead of Window.paint(g) so that there will not be issues like the button not showing.
+  - Remake the project using paintComponent(g) instead of paint(g) so that there won't be issues like the button not showing.
   - Add a camera to track the player so that the player can move higher than y=720.
   - Add a Level Editor GUI so that a level can be edited directly by the user in a window.
 ## Credit List
