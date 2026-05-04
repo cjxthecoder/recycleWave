@@ -87,77 +87,77 @@ public class Player {
 		if ((gravity == GameConstants.UP && player.y <= GameConstants.GROUND - hitbox)
 				|| (gravity == GameConstants.DOWN && player.y >= GameConstants.CEILING)) {
 			switch (gamemode) {
-				case GameConstants.CUBE:
-					t1++;
-					setYDirection(Math.min(t1 / 4.0F, 8.0F) * getSpeed() * gravity);
-					break;
-	
-				case GameConstants.SHIP:
-					break;
-	
-				case GameConstants.BALL:
-					break;
-	
-				case GameConstants.WAVE:
-					if (!keyPressed) {
-						if (playerIsMini()) {
-							setYDirection(8.0F * getSpeed() * gravity);
-						} else {
-							setYDirection(4.0F * getSpeed() * gravity);
-						}
+			case GameConstants.CUBE:
+				t1++;
+				setYDirection(Math.min(t1 / 4.0F, 8.0F) * getSpeed() * gravity);
+				break;
+
+			case GameConstants.SHIP:
+				break;
+
+			case GameConstants.BALL:
+				break;
+
+			case GameConstants.WAVE:
+				if (!keyPressed) {
+					if (playerIsMini()) {
+						setYDirection(8.0F * getSpeed() * gravity);
 					} else {
-						if (playerIsMini()) {
-							setYDirection(-8.0F * getSpeed() * gravity);
-						} else {
-							setYDirection(-4.0F * getSpeed() * gravity);
-						}
+						setYDirection(4.0F * getSpeed() * gravity);
 					}
-					break;
+				} else {
+					if (playerIsMini()) {
+						setYDirection(-8.0F * getSpeed() * gravity);
+					} else {
+						setYDirection(-4.0F * getSpeed() * gravity);
+					}
+				}
+				break;
 			}
 		}
 	}
 
 	public void keyPressed(KeyEvent e) {
 		switch (gamemode) {
-			case GameConstants.CUBE:
-				break;
-	
-			case GameConstants.SHIP:
-				break;
-	
-			case GameConstants.BALL:
-				break;
-	
-			case GameConstants.WAVE:
-				if (hotKeys.contains(e.getKeyCode())) {
-					if (playerIsMini()) {
-						setYDirection(-8.0F * getSpeed() * gravity);
-					} else {
-						setYDirection(-4.0F * getSpeed() * gravity);
-					}
-					keyPressed = true;
+		case GameConstants.CUBE:
+			break;
+
+		case GameConstants.SHIP:
+			break;
+
+		case GameConstants.BALL:
+			break;
+
+		case GameConstants.WAVE:
+			if (hotKeys.contains(e.getKeyCode())) {
+				if (playerIsMini()) {
+					setYDirection(-8.0F * getSpeed() * gravity);
+				} else {
+					setYDirection(-4.0F * getSpeed() * gravity);
 				}
-				break;
+				keyPressed = true;
+			}
+			break;
 		}
 	}
 
 	public void keyReleased(KeyEvent e) {
 		switch (gamemode) {
-			case GameConstants.CUBE:
-				break;
-	
-			case GameConstants.SHIP:
-				break;
-	
-			case GameConstants.BALL:
-				break;
-	
-			case GameConstants.WAVE:
-				if (hotKeys.contains(e.getKeyCode())) {
-					setYDirection(0);
-					keyPressed = false;
-				}
-				break;
+		case GameConstants.CUBE:
+			break;
+
+		case GameConstants.SHIP:
+			break;
+
+		case GameConstants.BALL:
+			break;
+
+		case GameConstants.WAVE:
+			if (hotKeys.contains(e.getKeyCode())) {
+				setYDirection(0);
+				keyPressed = false;
+			}
+			break;
 		}
 	}
 

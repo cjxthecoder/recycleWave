@@ -41,7 +41,7 @@ public class RunningPlayer extends Player {
 		this.firstAttempt = true;
 		this.musicStart = true;
 	}
-	
+
 	public void update(GameSound gs, float speed) {
 //		if (firstAttempt) {
 //			Thread.sleep(500);
@@ -164,39 +164,39 @@ public class RunningPlayer extends Player {
 			setX(1460);
 			setGameWon(true);
 		}
-		
+
 		// If player is at or after the start line and before the finish line
 		if (!before_start && !past_finish) {
 			lvl.goForward((int) (4.0 * getSpeed()));
 		}
 	}
-	
+
 	public boolean isFirstAttempt() {
 		return firstAttempt;
 	}
-	
+
 	public void setFirstAttempt(boolean first) {
 		firstAttempt = first;
 	}
-	
+
 	public boolean isMusicStart() {
 		return musicStart;
 	}
-	
+
 	public void setMusicStart(boolean start) {
 		musicStart = start;
 	}
-	
+
 	public boolean gameIsOver() {
 		return Collision.checkDeathCollision(lvl.getSlopes(), lvl.getSawblades(), this);
 	}
-	
+
 	public void stopTrack(GameSound gs) {
 		gs.stopMusic();
 		setFullScore(getFullScore() / GameConstants.MAGIC);
 		setAttempts(getAttempts() + 1);
 	}
-	
+
 	public void resetFields() {
 		resetPlayerFields();
 		lvl.goForward(lvl.getDx() - 2 * GameConstants.START_LINE);

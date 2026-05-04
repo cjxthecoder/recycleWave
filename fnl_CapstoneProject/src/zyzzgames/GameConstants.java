@@ -97,10 +97,11 @@ public class GameConstants {
 	private static final URL PWU_URL = ClassLoader.getSystemResource("playerWaveUp.png");
 	private static final URL PWD_URL = ClassLoader.getSystemResource("playerWaveDown.png");
 	private static final URL RCB_URL = ClassLoader.getSystemResource("recycleBin.png");
-	
-	// A map consisting of the difficulty names to their corresponding speed portal images
+
+	// A map consisting of the difficulty names to their corresponding speed portal
+	// images
 	public static final Map<String, Image> DIFF_IMG = new HashMap<>();
-	
+
 	// A map consisting of the difficulty names to their corresponding speeds
 	public static final Map<String, Float> DIFF_VAL = new HashMap<>();
 
@@ -126,7 +127,7 @@ public class GameConstants {
 	public static Image PWU = null;
 	public static Image PWD = null;
 	public static Image RCB = null;
-	
+
 	// Loads all image resources from the classpath and initializes related mappings
 	public static void loadResources() {
 		try {

@@ -54,7 +54,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	private static final long START_PAUSE_TIME = (long) 1e+6 * 500;
 	private static final long FAIL_PAUSE_TIME = (long) 1e+9;
 	private static final int FPS = 200;
-	
+
 	private Image gdImage;
 	private Graphics gdGraphics;
 	private JButton play;
